@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ubjo2o0sluou"]
+[gd_scene load_steps=7 format=3 uid="uid://ubjo2o0sluou"]
 
 [ext_resource type="Script" uid="uid://pesu4lwdsx8w" path="res://Player/Player.gd" id="1_q3lat"]
 [ext_resource type="Texture2D" uid="uid://chu2o2dgtawpn" path="res://Map/TestTileSet.png" id="2_q3lat"]
+[ext_resource type="Script" uid="uid://3xunmn8dhic2" path="res://Player/weapon.gd" id="3_ddoul"]
+[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="3_tok1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 
@@ -27,3 +29,16 @@ shape = SubResource("RectangleShape2D_l8h54")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_ddoul")
+
+[node name="Rotatable" type="Node2D" parent="Weapon"]
+position = Vector2(8, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon/Rotatable"]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("3_tok1r")
+
+[node name="RayCast2D" type="RayCast2D" parent="Weapon/Rotatable"]
+target_position = Vector2(100, 0)
