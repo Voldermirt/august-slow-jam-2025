@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://pdips57ntli5"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_c6fgr"]
-[ext_resource type="PackedScene" uid="uid://bh02elgmgeqw" path="res://scenes/test_scene.tscn" id="1_nsuby"]
+[ext_resource type="PackedScene" uid="uid://gg1vc8lc6qb" path="res://Map/test_area/test_map.tscn" id="2_dsxa0"]
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_dsxa0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nsuby"]
@@ -86,7 +86,7 @@ texture = SubResource("ViewportTexture_nsuby")
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(640, 360)
 
-[node name="TestScene" parent="SubViewport" instance=ExtResource("1_nsuby")]
+[node name="TestMap" parent="SubViewport" instance=ExtResource("2_dsxa0")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.292)
