@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chu2o2dgtawpn"
-path="res://.godot/imported/TestTileSet.png-ca41658adfeb5b4667a57f950b99753a.ctex"
+uid="uid://pvbtjexxtahg"
+path="res://.godot/imported/player_stub.png-7c292b7cccc3dfa37700df991994073d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Map/TestTileSet.png"
-dest_files=["res://.godot/imported/TestTileSet.png-ca41658adfeb5b4667a57f950b99753a.ctex"]
+source_file="res://Player/AnimalCrossing/player_stub.png"
+dest_files=["res://.godot/imported/player_stub.png-7c292b7cccc3dfa37700df991994073d.ctex"]
 
 [params]
 
