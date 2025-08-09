@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ubjo2o0sluou"]
+
+[ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_3v0ge"]
+[ext_resource type="Texture2D" uid="uid://ca3dt6icidsgy" path="res://Player/Default/player_stub.png" id="2_yt6s3"]
+[ext_resource type="PackedScene" uid="uid://b0mj8pauo4inv" path="res://Player/Default/default_weapon.tscn" id="3_qgiie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yt6s3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default"]]
+script = ExtResource("1_3v0ge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_l8h54")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4ntmi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DefaultWeapon2D" parent="." groups=["default"] instance=ExtResource("3_qgiie")]

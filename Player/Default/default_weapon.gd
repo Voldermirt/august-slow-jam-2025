@@ -1,0 +1,5 @@
+extends BaseWeapon2D
+
+class_name DefaultWeapon2D
+
+pass
