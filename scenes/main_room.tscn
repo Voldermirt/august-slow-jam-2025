@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_c6fgr"]
 [ext_resource type="PackedScene" uid="uid://bh02elgmgeqw" path="res://scenes/test_scene.tscn" id="1_nsuby"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7xwv4"]
+[ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_dsxa0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nsuby"]
 viewport_path = NodePath("SubViewport")
@@ -80,10 +79,6 @@ _data = {
 [node name="MainRoom" type="Node3D"]
 script = ExtResource("1_c6fgr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.515466)
-mesh = SubResource("BoxMesh_7xwv4")
-
 [node name="Display" type="Sprite3D" parent="."]
 transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
 texture = SubResource("ViewportTexture_nsuby")
@@ -106,3 +101,6 @@ libraries = {
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185934, 0.277266, 0.796172)
+
+[node name="desk" parent="." instance=ExtResource("3_dsxa0")]
+transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.353789, -1.33828, -0.226489)
