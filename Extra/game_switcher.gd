@@ -1,6 +1,7 @@
 extends Node2D
 
 
+
 var current_game_idx := 0
 
 func switch_random_games():
@@ -13,6 +14,7 @@ func switch_games(game_index: Globals.GameList):
 	for wrapper in wrappers:
 		var switch_wrapper = wrapper as BaseWrapper
 		switch_wrapper.switch_to(game_index)
+	Globals.signal_game_change(game_index)
 	
 
 func _process(delta):

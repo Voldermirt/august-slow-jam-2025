@@ -6,12 +6,14 @@ const Portal := preload("res://Player/Portal/portal.tscn")
 
 var is_orange = false # Blue if false, orange if true
 var direction := Vector2.RIGHT
+var color : Color
 
 func _ready() -> void:
-	if is_orange:
-		pass
-	else:
-		pass
+	$Sprite2D.self_modulate = color
+	Globals.game_changed.connect(game_changed)
+
+func game_changed(_game):
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	global_rotation = direction.angle()
@@ -22,6 +24,7 @@ func _physics_process(delta: float) -> void:
 		# Spawn a portal
 		var portal = Portal.instantiate()
 		portal.is_orange = is_orange
+		portal.color = color
 		Globals.get_2d_root().add_child(portal)
 		portal.global_rotation = col.get_angle()
 		portal.global_position = col.get_position()
