@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0n5mu8b66cta"]
+
+[ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_56ux8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
+
+[node name="DefaultCollectable2D" type="Area2D" groups=["default"]]
+script = ExtResource("1_56ux8")
+metadata/_custom_type_script = "uid://bbgqvpkp2dqul"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_56ux8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

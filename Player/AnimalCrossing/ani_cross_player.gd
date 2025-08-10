@@ -1,3 +1,0 @@
-extends BasePlayer2D
-
-class_name AniCrossPlayer2D

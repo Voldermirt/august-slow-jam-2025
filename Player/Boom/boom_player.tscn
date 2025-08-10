@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs2njbev0dw5c"]
+
+[ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_vd6ah"]
+[ext_resource type="Texture2D" uid="uid://b66neae7dychh" path="res://Player/Boom/player_stub.png" id="2_1en2f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1en2f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoomPlayer2D" type="CharacterBody2D" groups=["doom"]]
+script = ExtResource("1_vd6ah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_l8h54")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4ntmi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
