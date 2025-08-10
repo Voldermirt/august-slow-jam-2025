@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="August Slow Jam"
-run/main_scene="uid://pdips57ntli5"
+run/main_scene="uid://bt2j76m7ful7f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=2
 window/stretch/mode="viewport"
 
 [editor]

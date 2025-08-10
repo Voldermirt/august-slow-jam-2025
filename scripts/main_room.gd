@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var zoom_anim := $ZoomAnim
+@onready var camera_3d := $Camera3D
 
 var zoom_out = false
 
