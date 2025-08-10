@@ -4,3 +4,4 @@
 
 [node name="SwitchWrapper2D" type="Node2D" groups=["switch_wrapper"]]
 script = ExtResource("1_qrunw")
+metadata/_custom_type_script = "uid://b4kb538qp5tfv"

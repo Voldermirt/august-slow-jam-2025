@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0n5mu8b66cta"]
+[gd_scene load_steps=5 format=3 uid="uid://ckej42hj0tyww"]
 
-[ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_56ux8"]
-[ext_resource type="Texture2D" uid="uid://b2832eq4pwtyr" path="res://Collectables/Default/collectable_stub.png" id="2_n6l1f"]
+[ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_o86ln"]
+[ext_resource type="Texture2D" uid="uid://c41vffppymt6f" path="res://Collectables/CritterJunction/collectable_stub.png" id="2_on0bj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
@@ -9,7 +9,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_n6l1f")
+"texture": ExtResource("2_on0bj")
 }],
 "loop": true,
 "name": &"default",
@@ -17,7 +17,7 @@ animations = [{
 }]
 
 [node name="DefaultCollectable2D" type="Area2D" groups=["default"]]
-script = ExtResource("1_56ux8")
+script = ExtResource("1_o86ln")
 metadata/_custom_type_script = "uid://bbgqvpkp2dqul"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

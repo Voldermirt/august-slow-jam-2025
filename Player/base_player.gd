@@ -32,4 +32,5 @@ func _player_movement_process():
 
 func _ready():
 	if not get_parent().is_in_group("switch_wrapper"):
-		push_error(str(self, " player/object is not the child of in the SwitchWrapper"))
+		assert(false, str(self, " player is not the child of in the SwitchWrapper"))
+		

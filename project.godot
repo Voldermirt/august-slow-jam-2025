@@ -29,10 +29,11 @@ version_control/autoload_on_startup=true
 
 [global_group]
 
-portal=""
 default=""
-animal_crossing=""
-doom=""
+boom=""
+critter_junction=""
+gateway=""
+player=""
 
 [input]
 

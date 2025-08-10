@@ -1,5 +1,5 @@
 extends BaseCollectable2D
 
-class_name BoomCollectable2D
+class_name DefaultCollectable2D
 
 pass
