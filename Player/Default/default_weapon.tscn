@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3xunmn8dhic2" path="res://Player/Default/default_weapon.gd" id="1_t005n"]
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_55skg"]
 
-[node name="DefaultWeapon2D" type="Node2D"]
+[node name="PortalGun" type="Node2D"]
 script = ExtResource("1_t005n")
 
 [node name="Rotatator" type="Node2D" parent="."]

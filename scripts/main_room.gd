@@ -1,4 +1,5 @@
 extends Node3D
+class_name MainRoom
 
 @onready var zoom_anim := $ZoomAnim
 @onready var camera_3d := $Camera3D

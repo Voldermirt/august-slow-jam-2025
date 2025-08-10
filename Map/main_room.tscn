@@ -55,7 +55,7 @@ _data = {
 [node name="MainRoom" type="Node3D"]
 script = ExtResource("1_1mhs4")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." groups=["2d_viewport"]]
 canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)
 

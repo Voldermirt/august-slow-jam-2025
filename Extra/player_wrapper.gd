@@ -7,7 +7,7 @@ const DOOM_PLAYER_SCENE: PackedScene = preload("res://Player/Doom/doom_player.ts
 const PORTAL_PLAYER_SCENE: PackedScene = preload("res://Player/Portal/portal_player.tscn")
 const ANIMAL_CROSSING_SCENE: PackedScene = preload("res://Player/AnimalCrossing/ani_cross_player.tscn")
 
-func switch_to(game: GlobalEnums.GameList):
+func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
 	var children: Array[Node]
 	# The current scene to be replaced
@@ -18,7 +18,7 @@ func switch_to(game: GlobalEnums.GameList):
 	var previous_position: Vector2
 	
 	
-	if game < 0 or game > GlobalEnums.GameList.size():
+	if game < 0 or game > Globals.GameList.size():
 		assert(false, "Not recognizing the game to switch to!")
 		return
 	
@@ -35,13 +35,13 @@ func switch_to(game: GlobalEnums.GameList):
 	previous_position = player_to_replace.position
 	player_to_replace.queue_free()
 	match game:
-		GlobalEnums.GameList.DEFAULT:
+		Globals.GameList.DEFAULT:
 			new_player_scene = DEFAULT_PLAYER_SCENE.instantiate()
-		GlobalEnums.GameList.DOOM:
+		Globals.GameList.DOOM:
 			new_player_scene = DOOM_PLAYER_SCENE.instantiate()
-		GlobalEnums.GameList.PORTAL:
+		Globals.GameList.PORTAL:
 			new_player_scene = PORTAL_PLAYER_SCENE.instantiate()
-		GlobalEnums.GameList.ANIMAL_CROSSING:
+		Globals.GameList.ANIMAL_CROSSING:
 			new_player_scene = ANIMAL_CROSSING_SCENE.instantiate()
 		_:
 			push_error("Trying to switch to a non-existing game!")

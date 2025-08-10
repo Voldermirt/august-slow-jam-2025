@@ -21,7 +21,8 @@ texture = ExtResource("1_ohof8")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_h34xd"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_ca0m2")
 pattern_0 = SubResource("TileMapPattern_ca0m2")
 pattern_1 = SubResource("TileMapPattern_lwjec")

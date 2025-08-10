@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cidgov3h5uqox"]
 
-[ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_vrmhp"]
+[ext_resource type="Script" uid="uid://b2h0i7wn08swy" path="res://Player/AnimalCrossing/ani_cross_player.gd" id="1_40sjj"]
 [ext_resource type="Texture2D" uid="uid://pvbtjexxtahg" path="res://Player/AnimalCrossing/player_stub.png" id="2_40sjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
@@ -17,7 +17,8 @@ animations = [{
 }]
 
 [node name="AnimalCrossingPlayer2D" type="CharacterBody2D" groups=["animal_crossing"]]
-script = ExtResource("1_vrmhp")
+collision_mask = 14
+script = ExtResource("1_40sjj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.6, 1.6)

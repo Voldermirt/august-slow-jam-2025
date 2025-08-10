@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr0tu4ea1313"]
+[gd_scene load_steps=6 format=3 uid="uid://dr0tu4ea1313"]
 
-[ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_1iq4m"]
+[ext_resource type="Script" uid="uid://bjyywkkb36366" path="res://Player/Portal/portal_player.gd" id="1_1iq4m"]
 [ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Portal/player_stub.png" id="2_mwf1e"]
+[ext_resource type="PackedScene" uid="uid://csxiow13e80jm" path="res://Player/Portal/portal_gun.tscn" id="3_1iq4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 
@@ -17,6 +18,7 @@ animations = [{
 }]
 
 [node name="PortalPlayer2D" type="CharacterBody2D" groups=["portal"]]
+collision_mask = 14
 script = ExtResource("1_1iq4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -27,3 +29,5 @@ shape = SubResource("RectangleShape2D_l8h54")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PortalGun" parent="." instance=ExtResource("3_1iq4m")]
