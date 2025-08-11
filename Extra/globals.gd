@@ -2,7 +2,7 @@ extends Node
 
 # It's time for a GAME CHANGER
 # I'm Sam Reich, and I've been here the WHOLE TIME
-# (sorry lmao)
+# (idk lmao)
 signal game_changed(new_game : GameList)
 
 enum GameList {
