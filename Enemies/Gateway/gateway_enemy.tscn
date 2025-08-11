@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn85l00otsm16"]
+[gd_scene load_steps=5 format=3 uid="uid://cn85l00otsm16"]
 
 [ext_resource type="Texture2D" uid="uid://cbggq4aaanngh" path="res://Enemies/Gateway/enemy_stub.png" id="1_avvyt"]
+[ext_resource type="Script" uid="uid://3p6na7i7is4v" path="res://Enemies/Gateway/gateway_enemy.gd" id="1_vyccc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
 
@@ -16,7 +17,8 @@ animations = [{
 }]
 
 [node name="GatewayEnemy2D" type="CharacterBody2D" groups=["enemy", "gateway"]]
-metadata/_custom_type_script = "uid://bylf7n3n8p70k"
+script = ExtResource("1_vyccc")
+metadata/_custom_type_script = "uid://3p6na7i7is4v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j5ojn")

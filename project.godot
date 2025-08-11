@@ -36,6 +36,7 @@ gateway=""
 player=""
 pushable=""
 enemy=""
+boss=""
 
 [input]
 

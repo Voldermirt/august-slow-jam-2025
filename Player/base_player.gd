@@ -59,3 +59,6 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.get_collider().is_in_group("pushable"):
 			collision.get_collider().apply_central_impulse(direction * push_force)
+
+func _on_hit():
+	pass

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3y6vpr4xcp4n"]
+[gd_scene load_steps=5 format=3 uid="uid://b3y6vpr4xcp4n"]
 
+[ext_resource type="Script" uid="uid://bylf7n3n8p70k" path="res://Enemies/Default/default_enemy.gd" id="1_d1gei"]
 [ext_resource type="Texture2D" uid="uid://b2ugginuk104n" path="res://Enemies/Default/enemy_stub.png" id="2_prpc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
@@ -16,6 +17,7 @@ animations = [{
 }]
 
 [node name="DefaultEnemy2D" type="CharacterBody2D" groups=["default", "enemy"]]
+script = ExtResource("1_d1gei")
 metadata/_custom_type_script = "uid://bylf7n3n8p70k"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
