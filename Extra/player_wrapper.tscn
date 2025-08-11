@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://druy6btfw0yl4"]
+[gd_scene load_steps=2 format=3 uid="uid://duymjfignn2dy"]
 
-[ext_resource type="Script" uid="uid://cgggha1mik2jn" path="res://Extra/player_wrapper.gd" id="1_qrunw"]
+[ext_resource type="Script" uid="uid://b4kb538qp5tfv" path="res://Extra/switch_wrapper.gd" id="1_ns2rc"]
 
-[node name="SwitchWrapper" type="Node2D" groups=["switch_wrapper"]]
-script = ExtResource("1_qrunw")
+[node name="SwitchWrapper2D" type="Node2D" groups=["switch_wrapper"]]
+script = ExtResource("1_ns2rc")

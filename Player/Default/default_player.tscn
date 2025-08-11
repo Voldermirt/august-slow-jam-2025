@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b0mj8pauo4inv" path="res://Player/Default/default_weapon.tscn" id="3_qgiie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+size = Vector2(15, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
@@ -17,10 +18,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default"]]
+[node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default", "player"]]
+collision_layer = 3
 script = ExtResource("1_3v0ge")
+metadata/_custom_type_script = "uid://pbh68marjmsv"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.76837e-07, 0)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_l8h54")
 

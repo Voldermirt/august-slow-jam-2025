@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://7wmqgm21rt3g"]
+
+[ext_resource type="Script" uid="uid://b4kb538qp5tfv" path="res://Extra/switch_wrapper.gd" id="1_qrunw"]
+
+[node name="SwitchWrapper2D" type="Node2D" groups=["switch_wrapper"]]
+script = ExtResource("1_qrunw")
+metadata/_custom_type_script = "uid://b4kb538qp5tfv"

@@ -4,7 +4,7 @@ class_name GlobalEnums
 
 enum GameList {
 	DEFAULT,
-	DOOM,
-	PORTAL,
-	ANIMAL_CROSSING
+	BOOM,
+	GATEWAY,
+	CRITTER_JUNCTION
 }
