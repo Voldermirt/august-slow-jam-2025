@@ -11,5 +11,7 @@ func _ready():
 
 
 func _on_body_entered(body: CharacterBody2D):
-	if body.is_in_group("player"):
+	if body is BasePlayer2D:
+		var player = body as BasePlayer2D
+		player._on_get_collectable(self)
 		get_parent().queue_free()

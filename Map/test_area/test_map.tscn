@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://gg1vc8lc6qb"]
+[gd_scene load_steps=24 format=4 uid="uid://gg1vc8lc6qb"]
 
 [ext_resource type="Texture2D" uid="uid://chu2o2dgtawpn" path="res://Map/test_area/TestTileSet.png" id="1_ohof8"]
 [ext_resource type="PackedScene" uid="uid://ubjo2o0sluou" path="res://Player/Default/default_player.tscn" id="2_08stc"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://coey1ghipk7r6" path="res://Object/Boom/boom_object.tscn" id="13_nfn30"]
 [ext_resource type="PackedScene" uid="uid://bchjd55mblijf" path="res://Object/Gateway/gateway_object.tscn" id="14_ue6cb"]
 [ext_resource type="PackedScene" uid="uid://ci6vxup5e8oqd" path="res://Object/CritterJunction/cri_jun_object.tscn" id="15_o4w7f"]
+[ext_resource type="PackedScene" uid="uid://b3y6vpr4xcp4n" path="res://Enemies/Default/default_enemy.tscn" id="16_ue6cb"]
+[ext_resource type="PackedScene" uid="uid://6lct7wefkvt0" path="res://Enemies/Boom/boom_enemy.tscn" id="17_5v51e"]
+[ext_resource type="PackedScene" uid="uid://cn85l00otsm16" path="res://Enemies/Gateway/gateway_enemy.tscn" id="18_um6hx"]
+[ext_resource type="PackedScene" uid="uid://dx2q6nx1rdria" path="res://Enemies/CritterJunction/cri_jun_enemy.tscn" id="19_woi1h"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ca0m2"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 327682, 0, 0, 393218, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 327683, 0, 0, 393219, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 327685, 0, 0, 393221, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0)
@@ -71,3 +75,13 @@ gateway_scene = ExtResource("14_ue6cb")
 critter_junction_scene = ExtResource("15_o4w7f")
 
 [node name="DefaultObject2D" parent="GameSwitcher/SwitchWrapper2D3" instance=ExtResource("12_1x3co")]
+inside_object_scene = ExtResource("16_ue6cb")
+
+[node name="SwitchWrapper2D4" parent="GameSwitcher" instance=ExtResource("3_jd06k")]
+default_scene = ExtResource("16_ue6cb")
+boom_scene = ExtResource("17_5v51e")
+gateway_scene = ExtResource("18_um6hx")
+critter_junction_scene = ExtResource("19_woi1h")
+
+[node name="DefaultEnemy2D" parent="GameSwitcher/SwitchWrapper2D4" instance=ExtResource("16_ue6cb")]
+position = Vector2(466, 232)

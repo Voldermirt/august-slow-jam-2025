@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3y6vpr4xcp4n"]
+[gd_scene load_steps=4 format=3 uid="uid://6lct7wefkvt0"]
 
-[ext_resource type="Script" uid="uid://bylf7n3n8p70k" path="res://Enemies/Default/skeleton_enemy.gd" id="1_j5ojn"]
-[ext_resource type="Texture2D" uid="uid://b2ugginuk104n" path="res://Enemies/Default/enemy_stub.png" id="2_prpc3"]
+[ext_resource type="Texture2D" uid="uid://cv4gis312h5no" path="res://Enemies/Boom/enemy_stub.png" id="1_rxycp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
 
@@ -9,15 +8,15 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_prpc3")
+"texture": ExtResource("1_rxycp")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="SkeletonEnemy2D" type="CharacterBody2D"]
-script = ExtResource("1_j5ojn")
+[node name="BoomEnemy2D" type="CharacterBody2D" groups=["boom", "enemy"]]
+metadata/_custom_type_script = "uid://bylf7n3n8p70k"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j5ojn")

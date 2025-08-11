@@ -71,6 +71,6 @@ func switch_to(game: GlobalEnums.GameList):
 			new_scene.add_to_group("critter_junction")
 		_:
 			push_error("Trying to switch to a non-existing game!")
+	new_scene.global_position = previous_position
 	add_child(new_scene)
-	new_scene.global_position  = previous_position
 	

@@ -17,6 +17,7 @@ animations = [{
 }]
 
 [node name="CriJunCollectable2D" type="Area2D" groups=["default"]]
+rotation = 1.5708
 script = ExtResource("1_on0bj")
 metadata/_custom_type_script = "uid://du5p7n5o0sxma"
 

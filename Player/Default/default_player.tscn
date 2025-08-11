@@ -19,6 +19,7 @@ animations = [{
 }]
 
 [node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default", "player"]]
+collision_layer = 3
 script = ExtResource("1_3v0ge")
 metadata/_custom_type_script = "uid://pbh68marjmsv"
 

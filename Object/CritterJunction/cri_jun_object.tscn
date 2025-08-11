@@ -14,4 +14,5 @@ metadata/_custom_type_script = "uid://cg5tdbwenia4d"
 shape = SubResource("RectangleShape2D_vs2sg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.785398
 texture = ExtResource("2_vs2sg")

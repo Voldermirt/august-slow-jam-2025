@@ -35,6 +35,7 @@ critter_junction=""
 gateway=""
 player=""
 pushable=""
+enemy=""
 
 [input]
 

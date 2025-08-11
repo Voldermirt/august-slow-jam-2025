@@ -17,6 +17,7 @@ animations = [{
 }]
 
 [node name="BoomCollectable2D" type="Area2D" groups=["boom"]]
+rotation = 1.5708
 script = ExtResource("1_y3twh")
 metadata/_custom_type_script = "uid://so4fnn84iq2a"
 

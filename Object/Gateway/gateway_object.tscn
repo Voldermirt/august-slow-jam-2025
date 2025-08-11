@@ -6,7 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3rni"]
 size = Vector2(24, 32)
 
-[node name="GatewayObject2D" type="RigidBody2D" groups=["gateway"]]
+[node name="GatewayObject2D" type="RigidBody2D" groups=["gateway", "pushable"]]
+rotation = 0.785398
+linear_damp = 30.0
 script = ExtResource("1_ep008")
 metadata/_custom_type_script = "uid://cr6js8v3yi2wj"
 
