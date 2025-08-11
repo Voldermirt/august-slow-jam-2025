@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_181jr"]
 size = Vector2(24, 32)
 
-[node name="BoomObject2D" type="RigidBody2D" groups=["default"]]
+[node name="BoomObject2D" type="RigidBody2D" groups=["boom"]]
 script = ExtResource("1_181jr")
 metadata/_custom_type_script = "uid://dxsawl2382idu"
 

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pvbtjexxtahg" path="res://Player/CritterJunction/player_stub.png" id="2_40sjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+size = Vector2(15, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
@@ -21,6 +22,7 @@ script = ExtResource("1_r35s0")
 metadata/_custom_type_script = "uid://b2h0i7wn08swy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.76837e-07, 0)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_l8h54")
 

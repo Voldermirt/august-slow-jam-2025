@@ -9,6 +9,7 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 @export var gateway_scene: PackedScene
 @export var critter_junction_scene: PackedScene
 
+
 ## Empty function to be overriden by the subclass
 #func switch_to(game: GlobalEnums.GameList):
 	#push_error("This is an abstract method, only should be overriden and called in the subclass")
@@ -30,7 +31,7 @@ func switch_to(game: GlobalEnums.GameList):
 	# The current scene to be replaced
 	var scene_to_replace: Node2D
 	# The new scene replacing the old one
-	var new_scene
+	var new_scene: Node2D
 	# The positin of the scene to be replaced
 	var previous_position: Vector2
 	
@@ -48,9 +49,13 @@ func switch_to(game: GlobalEnums.GameList):
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return
-		
-	previous_position = scene_to_replace.position
+
+	previous_position = scene_to_replace.global_position
+	
+	# Deletes the previous scene and waits until it is deleted!
 	scene_to_replace.queue_free()
+	await get_tree().process_frame
+	
 	match game:
 		GlobalEnums.GameList.DEFAULT:
 			new_scene = default_scene.instantiate()
@@ -67,5 +72,5 @@ func switch_to(game: GlobalEnums.GameList):
 		_:
 			push_error("Trying to switch to a non-existing game!")
 	add_child(new_scene)
-	new_scene.position = previous_position
+	new_scene.global_position  = previous_position
 	

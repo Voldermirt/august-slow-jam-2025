@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs2sg"]
 size = Vector2(24, 32)
 
-[node name="CriJunObject2D" type="RigidBody2D" groups=["default"]]
+[node name="CriJunObject2D" type="RigidBody2D" groups=["critter_junction"]]
 script = ExtResource("1_vs2sg")
 metadata/_custom_type_script = "uid://cg5tdbwenia4d"
 

@@ -5,7 +5,6 @@ class_name DefaultPlayer2D
 
 @onready var default_weapon: DefaultWeapon2D = $DefaultWeapon2D
 
-
 func _ready():
 	super._ready()
 	pass

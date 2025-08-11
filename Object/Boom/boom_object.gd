@@ -2,4 +2,6 @@ extends BaseObject2D
 
 class_name BoomObject2D
 
-pass
+
+func _ready():
+	super._ready()

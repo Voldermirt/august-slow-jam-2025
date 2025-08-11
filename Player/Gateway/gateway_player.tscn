@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_j700q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+size = Vector2(15, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
