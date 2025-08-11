@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nsuby"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("Render2D/Level2D")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c6fgr"]
 
@@ -52,32 +52,67 @@ _data = {
 &"zoom": SubResource("Animation_c6fgr")
 }
 
-[node name="MainRoom" type="Node3D"]
+[node name="MainRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_1mhs4")
 
-[node name="SubViewport" type="SubViewport" parent="." groups=["2d_viewport"]]
+[node name="Render2D" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level2D" type="SubViewport" parent="Render2D" groups=["2d_viewport"]]
+handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)
+render_target_update_mode = 4
 
-[node name="TestMap" parent="SubViewport" instance=ExtResource("2_3anwy")]
+[node name="Level" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
 
-[node name="Display" type="Sprite3D" parent="."]
+[node name="Render3D" type="SubViewportContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level3D" type="SubViewport" parent="Render3D"]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 0
+
+[node name="DeskRoom" type="Node3D" parent="Render3D/Level3D"]
+
+[node name="Display" type="Sprite3D" parent="Render3D/Level3D/DeskRoom"]
 transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
 texture = SubResource("ViewportTexture_nsuby")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="Render3D/Level3D/DeskRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.292)
 environment = SubResource("Environment_c6fgr")
 current = true
 size = 0.46
 
-[node name="ZoomAnim" type="AnimationPlayer" parent="."]
+[node name="ZoomAnim" type="AnimationPlayer" parent="Render3D/Level3D/DeskRoom"]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_i44h1")
 }
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="Render3D/Level3D/DeskRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185934, 0.277266, 0.796172)
 
-[node name="desk" parent="." instance=ExtResource("3_p8vsj")]
+[node name="desk" parent="Render3D/Level3D/DeskRoom" instance=ExtResource("3_p8vsj")]
 transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.353789, -1.33828, -0.226489)
+
+[connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]

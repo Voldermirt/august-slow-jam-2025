@@ -4,6 +4,7 @@ extends Node
 # I'm Sam Reich, and I've been here the WHOLE TIME
 # (idk lmao)
 signal game_changed(new_game : GameList)
+signal level_change_requested(new_level : PackedScene)
 
 enum GameList {
 	DEFAULT,
@@ -26,3 +27,6 @@ func get_portal(orange):
 		if portal is Portal and portal.is_orange == orange:
 			return portal
 	return null
+
+func change_level(new_level : PackedScene):
+	level_change_requested.emit(new_level)
