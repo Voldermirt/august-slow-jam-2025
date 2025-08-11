@@ -1,0 +1,3 @@
+extends BaseObject2D
+
+class_name GatewayObject2D

@@ -34,6 +34,7 @@ boom=""
 critter_junction=""
 gateway=""
 player=""
+pushable=""
 
 [input]
 

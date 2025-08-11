@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckej42hj0tyww"]
 
-[ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_o86ln"]
+[ext_resource type="Script" uid="uid://du5p7n5o0sxma" path="res://Collectables/CritterJunction/cri_jun_collectable.gd" id="1_on0bj"]
 [ext_resource type="Texture2D" uid="uid://c41vffppymt6f" path="res://Collectables/CritterJunction/collectable_stub.png" id="2_on0bj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
@@ -16,9 +16,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DefaultCollectable2D" type="Area2D" groups=["default"]]
-script = ExtResource("1_o86ln")
-metadata/_custom_type_script = "uid://bbgqvpkp2dqul"
+[node name="CriJunCollectable2D" type="Area2D" groups=["default"]]
+script = ExtResource("1_on0bj")
+metadata/_custom_type_script = "uid://du5p7n5o0sxma"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_56ux8")

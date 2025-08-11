@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://coey1ghipk7r6"]
+
+[ext_resource type="Script" uid="uid://dxsawl2382idu" path="res://Object/Boom/boom_object.gd" id="1_181jr"]
+[ext_resource type="Texture2D" uid="uid://d0jeij6ytxc8m" path="res://Object/Boom/object_stub.png" id="2_181jr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_181jr"]
+size = Vector2(24, 32)
+
+[node name="BoomObject2D" type="RigidBody2D" groups=["default"]]
+script = ExtResource("1_181jr")
+metadata/_custom_type_script = "uid://dxsawl2382idu"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_181jr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_181jr")

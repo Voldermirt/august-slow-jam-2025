@@ -1,0 +1,3 @@
+extends BaseObject2D
+
+class_name DefaultObject2D

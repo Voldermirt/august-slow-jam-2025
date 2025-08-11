@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddd3g4d6q3clu"]
 
-[ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_km7b8"]
+[ext_resource type="Script" uid="uid://so4fnn84iq2a" path="res://Collectables/Boom/boom_collectable.gd" id="1_y3twh"]
 [ext_resource type="Texture2D" uid="uid://bjtp1bhygpg6g" path="res://Collectables/Boom/collectable_stub.png" id="2_y3twh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
@@ -17,8 +17,8 @@ animations = [{
 }]
 
 [node name="BoomCollectable2D" type="Area2D" groups=["boom"]]
-script = ExtResource("1_km7b8")
-metadata/_custom_type_script = "uid://bbgqvpkp2dqul"
+script = ExtResource("1_y3twh")
+metadata/_custom_type_script = "uid://so4fnn84iq2a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_56ux8")

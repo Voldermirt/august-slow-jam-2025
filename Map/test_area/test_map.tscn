@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://gg1vc8lc6qb"]
+[gd_scene load_steps=20 format=4 uid="uid://gg1vc8lc6qb"]
 
 [ext_resource type="Texture2D" uid="uid://chu2o2dgtawpn" path="res://Map/test_area/TestTileSet.png" id="1_ohof8"]
 [ext_resource type="PackedScene" uid="uid://ubjo2o0sluou" path="res://Player/Default/default_player.tscn" id="2_08stc"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://ddd3g4d6q3clu" path="res://Collectables/Boom/boom_collectable.tscn" id="9_ncile"]
 [ext_resource type="PackedScene" uid="uid://dbkwjooflp27j" path="res://Collectables/Gateway/gateway_collectable.tscn" id="10_ncile"]
 [ext_resource type="PackedScene" uid="uid://ckej42hj0tyww" path="res://Collectables/CritterJunction/cri_jun_collectable.tscn" id="11_kuu4c"]
+[ext_resource type="PackedScene" uid="uid://do3pnxooit0it" path="res://Object/Default/default_object.tscn" id="12_1x3co"]
+[ext_resource type="PackedScene" uid="uid://coey1ghipk7r6" path="res://Object/Boom/boom_object.tscn" id="13_nfn30"]
+[ext_resource type="PackedScene" uid="uid://bchjd55mblijf" path="res://Object/Gateway/gateway_object.tscn" id="14_ue6cb"]
+[ext_resource type="PackedScene" uid="uid://ci6vxup5e8oqd" path="res://Object/CritterJunction/cri_jun_object.tscn" id="15_o4w7f"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ca0m2"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 327682, 0, 0, 393218, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 327683, 0, 0, 393219, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 327685, 0, 0, 393221, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 393222, 0, 0)
@@ -28,7 +32,7 @@ texture = ExtResource("1_ohof8")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_h34xd"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
 sources/0 = SubResource("TileSetAtlasSource_ca0m2")
 pattern_0 = SubResource("TileMapPattern_ca0m2")
 pattern_1 = SubResource("TileMapPattern_lwjec")
@@ -59,3 +63,11 @@ critter_junction_scene = ExtResource("11_kuu4c")
 
 [node name="DefaultCollectable2D" parent="GameSwitcher/SwitchWrapper2D2" instance=ExtResource("8_mfew6")]
 position = Vector2(578, -63)
+
+[node name="SwitchWrapper2D3" parent="GameSwitcher" instance=ExtResource("3_jd06k")]
+default_scene = ExtResource("12_1x3co")
+boom_scene = ExtResource("13_nfn30")
+gateway_scene = ExtResource("14_ue6cb")
+critter_junction_scene = ExtResource("15_o4w7f")
+
+[node name="DefaultObject2D" parent="GameSwitcher/SwitchWrapper2D3" instance=ExtResource("12_1x3co")]

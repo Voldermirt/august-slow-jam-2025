@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://do3pnxooit0it"]
+
+[ext_resource type="Script" uid="uid://yofgf6jo17wk" path="res://Object/Default/default_object.gd" id="1_t3rni"]
+[ext_resource type="Texture2D" uid="uid://ca8lfxrmqx2io" path="res://Object/Default/object_stub.png" id="2_p45qf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p45qf"]
+size = Vector2(24, 32)
+
+[node name="DefaultObject2D" type="RigidBody2D" groups=["default", "pushable"]]
+linear_damp = 30.0
+script = ExtResource("1_t3rni")
+metadata/_custom_type_script = "uid://yofgf6jo17wk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p45qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p45qf")
