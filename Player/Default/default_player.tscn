@@ -27,6 +27,4 @@ shape = SubResource("RectangleShape2D_l8h54")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="DefaultWeapon2D" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
