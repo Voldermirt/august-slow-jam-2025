@@ -18,7 +18,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BoomPlayer2D" type="CharacterBody2D" groups=["doom"]]
+[node name="BoomPlayer2D" type="CharacterBody2D" groups=["boom", "doom", "player"]]
 collision_mask = 14
 script = ExtResource("1_1en2f")
 
@@ -29,8 +29,7 @@ shape = SubResource("RectangleShape2D_l8h54")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
-<<<<<<< HEAD:Player/Doom/doom_player.tscn
-=======
 
 [node name="BoomGun" parent="." instance=ExtResource("3_8be1d")]
->>>>>>> main:Player/Boom/boom_player.tscn
+
+[node name="Camera2D" type="Camera2D" parent="."]

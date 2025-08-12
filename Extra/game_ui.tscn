@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://6x7dkrdl3vbw" path="res://Player/Gateway/gateway_ui.tscn" id="1_an0i2"]
 
 [node name="UI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
