@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn85l00otsm16"]
+
+[ext_resource type="Texture2D" uid="uid://cbggq4aaanngh" path="res://Enemies/Gateway/enemy_stub.png" id="1_avvyt"]
+[ext_resource type="Script" uid="uid://3p6na7i7is4v" path="res://Enemies/Gateway/gateway_enemy.gd" id="1_vyccc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_avvyt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GatewayEnemy2D" type="CharacterBody2D" groups=["enemy", "gateway"]]
+script = ExtResource("1_vyccc")
+metadata/_custom_type_script = "uid://3p6na7i7is4v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j5ojn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pubjm")

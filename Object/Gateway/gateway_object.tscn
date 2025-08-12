@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bchjd55mblijf"]
+
+[ext_resource type="Script" uid="uid://cr6js8v3yi2wj" path="res://Object/Gateway/gateway_object.gd" id="1_ep008"]
+[ext_resource type="Texture2D" uid="uid://c47jhtnqymfma" path="res://Object/Gateway/object_stub.png" id="2_ep008"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3rni"]
+size = Vector2(24, 32)
+
+[node name="GatewayObject2D" type="RigidBody2D" groups=["gateway", "pushable"]]
+rotation = 0.785398
+linear_damp = 30.0
+script = ExtResource("1_ep008")
+metadata/_custom_type_script = "uid://cr6js8v3yi2wj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t3rni")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ep008")

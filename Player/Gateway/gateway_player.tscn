@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr0tu4ea1313"]
+
+[ext_resource type="Script" uid="uid://bjyywkkb36366" path="res://Player/Gateway/gateway_player.gd" id="1_1s7tf"]
+[ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_j700q"]
+[ext_resource type="PackedScene" uid="uid://csxiow13e80jm" path="res://Player/Gateway/gateway_gun.tscn" id="3_j700q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+size = Vector2(15, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j700q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GatewayPlayer2D" type="CharacterBody2D" groups=["gateway", "player"]]
+script = ExtResource("1_1s7tf")
+metadata/_custom_type_script = "uid://bjyywkkb36366"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_l8h54")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4ntmi")
+
+[node name="GatewayGun" parent="." instance=ExtResource("3_j700q")]

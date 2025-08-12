@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://bt2j76m7ful7f"]
+
+[ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
+[ext_resource type="PackedScene" uid="uid://gg1vc8lc6qb" path="res://Map/test_area/test_map.tscn" id="2_3anwy"]
+[ext_resource type="PackedScene" uid="uid://cj1u75xigyjh1" path="res://Extra/game_ui.tscn" id="3_3anwy"]
+[ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nsuby"]
+viewport_path = NodePath("Render2D/Level2D")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c6fgr"]
+
+[sub_resource type="Sky" id="Sky_dsxa0"]
+sky_material = SubResource("ProceduralSkyMaterial_c6fgr")
+
+[sub_resource type="Environment" id="Environment_c6fgr"]
+background_mode = 2
+sky = SubResource("Sky_dsxa0")
+
+[sub_resource type="Animation" id="Animation_dsxa0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.292)]
+}
+
+[sub_resource type="Animation" id="Animation_c6fgr"]
+resource_name = "zoom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.292), Vector3(0, 0, 0.954213)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i44h1"]
+_data = {
+&"RESET": SubResource("Animation_dsxa0"),
+&"zoom": SubResource("Animation_c6fgr")
+}
+
+[node name="MainRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1mhs4")
+
+[node name="Render2D" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level2D" type="SubViewport" parent="Render2D" groups=["2d_viewport"]]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Level" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
+
+[node name="UI" parent="Render2D/Level2D" instance=ExtResource("3_3anwy")]
+
+[node name="Render3D" type="SubViewportContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level3D" type="SubViewport" parent="Render3D"]
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 0
+
+[node name="DeskRoom" type="Node3D" parent="Render3D/Level3D"]
+
+[node name="Display" type="Sprite3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+texture = SubResource("ViewportTexture_nsuby")
+
+[node name="Camera3D" type="Camera3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.292)
+environment = SubResource("Environment_c6fgr")
+current = true
+size = 0.46
+
+[node name="ZoomAnim" type="AnimationPlayer" parent="Render3D/Level3D/DeskRoom"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_i44h1")
+}
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185934, 0.277266, 0.796172)
+
+[node name="desk" parent="Render3D/Level3D/DeskRoom" instance=ExtResource("3_p8vsj")]
+transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.353789, -1.33828, -0.226489)
+
+[connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]

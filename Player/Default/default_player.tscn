@@ -1,30 +1,64 @@
-[gd_scene load_steps=6 format=3 uid="uid://ubjo2o0sluou"]
+[gd_scene load_steps=10 format=3 uid="uid://ubjo2o0sluou"]
 
 [ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_3v0ge"]
-[ext_resource type="Texture2D" uid="uid://ca3dt6icidsgy" path="res://Player/Default/player_stub.png" id="2_yt6s3"]
+[ext_resource type="Texture2D" uid="uid://dl4vnlasjmn4p" path="res://Player/Default/player.png" id="2_yt6s3"]
 [ext_resource type="PackedScene" uid="uid://b0mj8pauo4inv" path="res://Player/Default/default_weapon.tscn" id="3_qgiie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+size = Vector2(15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhyap"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjm7u"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irnmt"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u0vu"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_yt6s3")
+"texture": SubResource("AtlasTexture_dhyap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjm7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irnmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u0vu")
 }],
-"loop": false,
-"name": &"default",
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
-[node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default"]]
+[node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default", "player"]]
+collision_mask = 2
 script = ExtResource("1_3v0ge")
+metadata/_custom_type_script = "uid://pbh68marjmsv"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.76837e-07, 0)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_l8h54")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.14972
 
-[node name="DefaultWeapon2D" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
+[node name="DefaultSword" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

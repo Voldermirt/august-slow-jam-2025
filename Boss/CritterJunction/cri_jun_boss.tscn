@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://yypoytgt0wk"]
+
+[ext_resource type="Script" uid="uid://d2rt44gntsbdl" path="res://Boss/CritterJunction/cri_jun_boss.gd" id="1_02012"]
+[ext_resource type="Texture2D" uid="uid://c75o1sbjm52su" path="res://Enemies/CritterJunction/enemy_stub.png" id="1_ij65h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ij65h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CritterJunctionBoss2D" type="CharacterBody2D" groups=["boss", "critter_junction"]]
+script = ExtResource("1_02012")
+metadata/_custom_type_script = "uid://d2rt44gntsbdl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j5ojn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pubjm")

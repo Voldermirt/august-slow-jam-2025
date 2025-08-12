@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://h3ify7f64pox"]
+
+[ext_resource type="Script" uid="uid://wbr6oogsw2q" path="res://Object/Boom/explosion.gd" id="1_kj21f"]
+
+[sub_resource type="Gradient" id="Gradient_q2vgx"]
+offsets = PackedFloat32Array(0.533333, 0.994872)
+colors = PackedColorArray(1, 1, 1, 1, 0.984314, 0.984314, 0.984314, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ag21d"]
+gradient = SubResource("Gradient_q2vgx")
+
+[sub_resource type="Curve" id="Curve_snb1n"]
+_data = [Vector2(0, 0.988563), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_moqwr"]
+curve = SubResource("Curve_snb1n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q2vgx"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 179.1
+initial_velocity_max = 686.56
+gravity = Vector3(0, 98, 0)
+scale_min = 5.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_moqwr")
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_ag21d")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kly11"]
+
+[node name="Explosion" type="GPUParticles2D"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_q2vgx")
+script = ExtResource("1_kj21f")
+
+[node name="ExplosionArea2D" type="Area2D" parent="."]
+process_mode = 4
+scale = Vector2(14.09, 14.09)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea2D"]
+shape = SubResource("RectangleShape2D_kly11")
+
+[connection signal="body_entered" from="ExplosionArea2D" to="." method="_on_explosion_area_2d_body_entered"]

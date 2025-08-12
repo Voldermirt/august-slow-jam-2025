@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ktj28riv7puy"]
+
+[ext_resource type="Texture2D" uid="uid://cv4gis312h5no" path="res://Enemies/Boom/enemy_stub.png" id="1_3pqcb"]
+[ext_resource type="Script" uid="uid://dmo2131h74atk" path="res://Boss/Boom/boom_boss.gd" id="1_fwi8l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3pqcb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoomBoss2D" type="CharacterBody2D" groups=["boom", "boss"]]
+script = ExtResource("1_fwi8l")
+metadata/_custom_type_script = "uid://dmo2131h74atk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j5ojn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pubjm")
