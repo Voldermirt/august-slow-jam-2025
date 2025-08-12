@@ -17,7 +17,10 @@ func knockback_applied(direction: Vector2, force: float, duration: float):
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 	if weapon_to_rotate != null:
-		weapon_to_rotate.look_at(get_global_mouse_position())
+		var screen_size = get_viewport_rect().size
+		var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
+		#print(mouse_pos - screen_size / 2)
+		weapon_to_rotate.look_at((mouse_pos - screen_size / 2) + global_position)
 
 ## Player is moving the character 
 #func _player_movement_process(direction):
