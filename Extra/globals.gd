@@ -19,6 +19,11 @@ enum GameList {
 # Eh, as long as it works I guess
 func signal_game_change(new_game : GameList):
 	game_changed.emit(new_game)
+	await get_tree().process_frame
+	update_ui()
+
+func update_ui():
+	ui_update_requested.emit()
 
 func get_2d_root() -> Node2D:
 	return get_tree().get_first_node_in_group("2d_viewport").get_child(0)
@@ -31,3 +36,6 @@ func get_portal(orange):
 
 func change_level(new_level : PackedScene):
 	level_change_requested.emit(new_level)
+
+func _process(delta: float) -> void:
+	update_ui()

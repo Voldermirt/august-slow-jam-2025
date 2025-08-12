@@ -19,6 +19,7 @@ animations = [{
 }]
 
 [node name="GatewayPlayer2D" type="CharacterBody2D" groups=["gateway", "player"]]
+collision_mask = 10
 script = ExtResource("1_1s7tf")
 metadata/_custom_type_script = "uid://bjyywkkb36366"
 

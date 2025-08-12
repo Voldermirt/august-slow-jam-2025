@@ -15,11 +15,12 @@ func game_changed(_game):
 func teleport(body):
 	body.global_position = $TeleportTarget.global_position
 	just_teleported = true
+	await get_tree().create_timer(0.1).timeout
+	just_teleported = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if just_teleported:
 		# Don't want an immediate return trip
-		just_teleported = false
 		return
 		
 	var other_portal = Globals.get_portal(!is_orange)

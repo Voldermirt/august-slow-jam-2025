@@ -78,7 +78,9 @@ render_target_update_mode = 4
 
 [node name="Level" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
 
-[node name="UI" parent="Render2D/Level2D" instance=ExtResource("3_3anwy")]
+[node name="CanvasLayer" type="CanvasLayer" parent="Render2D/Level2D"]
+
+[node name="UI" parent="Render2D/Level2D/CanvasLayer" instance=ExtResource("3_3anwy")]
 
 [node name="Render3D" type="SubViewportContainer" parent="."]
 visible = false

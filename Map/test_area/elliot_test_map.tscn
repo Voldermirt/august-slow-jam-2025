@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://di5d635itt4e0"]
+[gd_scene load_steps=12 format=4 uid="uid://di5d635itt4e0"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_mlcq5"]
 [ext_resource type="PackedScene" uid="uid://cuctkdj46buox" path="res://Extra/game_switcher.tscn" id="2_gphaj"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="7_ealf0"]
 [ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_fl3tg"]
 [ext_resource type="Script" uid="uid://xtxfxdc8dgu6" path="res://Extra/camera_follow.gd" id="9_gphaj"]
+[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="10_dtc1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d67br"]
+size = Vector2(64, 64)
 
 [node name="ElliotTestMap" type="Node2D"]
 
@@ -36,3 +40,16 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("9_gphaj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(254, 114)
+collision_layer = 8
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_d67br")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_dtc1e")
