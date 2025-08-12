@@ -5,12 +5,13 @@ extends Node
 # (idk lmao)
 signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
+signal ui_update_requested()
 
 enum GameList {
 	DEFAULT,
-	DOOM,
-	PORTAL,
-	ANIMAL_CROSSING
+	BOOM,
+	GATEWAY,
+	CRITTER_JUNCTION
 }
 
 # The game switcher should maybe be merged into this object?

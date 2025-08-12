@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs2njbev0dw5c"]
 
-[ext_resource type="Script" uid="uid://pl73rftardge" path="res://Player/Doom/doom_player.gd" id="1_1en2f"]
-[ext_resource type="Texture2D" uid="uid://b66neae7dychh" path="res://Player/Doom/player_stub.png" id="2_1en2f"]
-[ext_resource type="PackedScene" uid="uid://ryqhbpys3hvx" path="res://Player/Doom/doom_gun.tscn" id="3_8be1d"]
+[ext_resource type="Script" uid="uid://pl73rftardge" path="res://Player/Boom/boom_player.gd" id="1_1en2f"]
+[ext_resource type="Texture2D" uid="uid://b66neae7dychh" path="res://Player/Boom/player_stub.png" id="2_1en2f"]
+[ext_resource type="PackedScene" uid="uid://ryqhbpys3hvx" path="res://Player/Boom/boom_gun.tscn" id="3_8be1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 size = Vector2(15, 20)
@@ -18,7 +18,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DoomPlayer2D" type="CharacterBody2D" groups=["doom"]]
+[node name="BoomPlayer2D" type="CharacterBody2D" groups=["doom"]]
 collision_mask = 14
 script = ExtResource("1_1en2f")
 
@@ -30,6 +30,4 @@ shape = SubResource("RectangleShape2D_l8h54")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="DoomGun" parent="." instance=ExtResource("3_8be1d")]
+[node name="BoomGun" parent="." instance=ExtResource("3_8be1d")]

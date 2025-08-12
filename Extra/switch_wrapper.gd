@@ -11,7 +11,7 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 
 
 ## Empty function to be overriden by the subclass
-#func switch_to(game: GlobalEnums.GameList):
+#func switch_to(game: Globals.GameList):
 	#push_error("This is an abstract method, only should be overriden and called in the subclass")
 	
 func _ready():
@@ -25,7 +25,7 @@ func _ready():
 		push_error("No critter junction export scene supplied")
 
 
-func switch_to(game: GlobalEnums.GameList):
+func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
 	var children: Array[Node]
 	# The current scene to be replaced
@@ -36,7 +36,7 @@ func switch_to(game: GlobalEnums.GameList):
 	var previous_position: Vector2
 	
 	
-	if game < 0 or game > GlobalEnums.GameList.size():
+	if game < 0 or game > Globals.GameList.size():
 		assert(false, "Not recognizing the game to switch to!")
 		return
 	
@@ -57,16 +57,16 @@ func switch_to(game: GlobalEnums.GameList):
 	await get_tree().process_frame
 	
 	match game:
-		GlobalEnums.GameList.DEFAULT:
+		Globals.GameList.DEFAULT:
 			new_scene = default_scene.instantiate()
 			new_scene.add_to_group("default")
-		GlobalEnums.GameList.BOOM:
+		Globals.GameList.BOOM:
 			new_scene = boom_scene.instantiate()
 			new_scene.add_to_group("boom")
-		GlobalEnums.GameList.GATEWAY:
+		Globals.GameList.GATEWAY:
 			new_scene = gateway_scene.instantiate()
 			new_scene.add_to_group("gateway")
-		GlobalEnums.GameList.CRITTER_JUNCTION:
+		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
 			new_scene.add_to_group("critter_junction")
 		_:

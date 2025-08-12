@@ -1,7 +1,7 @@
 extends BaseWeapon2D
 class_name PortalGun
 
-const Bullet := preload("res://Player/Portal/portal_bullet.tscn")
+const Bullet := preload("res://Player/Gateway/gateway_bullet.tscn")
 
 @export var blue_color : Color
 @export var orange_color : Color

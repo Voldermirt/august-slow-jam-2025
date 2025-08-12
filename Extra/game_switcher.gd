@@ -3,10 +3,10 @@ extends Node2D
 # Switches the game by asking each switchable object to switch to a particular game
 class_name GameSwitcher2D
 
-var current_game_index: int = GlobalEnums.GameList.DEFAULT
+var current_game_index: int = Globals.GameList.DEFAULT
 
 func get_random_game():
-	return randi() % GlobalEnums.GameList.size()
+	return randi() % Globals.GameList.size()
 	
 func switch_random_games():
 	var chosen_game_index: int = get_random_game()
@@ -27,8 +27,8 @@ func switch_games(game_index: Globals.GameList):
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		#switch_random_games()
-		var new_idx = wrap(current_game_idx + 1, 0, Globals.GameList.size())
-		current_game_idx = new_idx
+		var new_idx = wrap(current_game_index + 1, 0, Globals.GameList.size())
+		current_game_index = new_idx
 		switch_games(new_idx)
 		pass
 		

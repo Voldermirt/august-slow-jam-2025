@@ -9,6 +9,8 @@ var push_force: float = 200.0
 var cur_knock_force: Vector2
 var cur_knock_duration: float
 
+var effective_size := Vector2(32, 32)
+
 func knockback_applied(direction: Vector2, force: float, duration: float):
 	cur_knock_force = direction * force
 	cur_knock_duration = duration 
@@ -20,7 +22,9 @@ func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 		var screen_size = get_viewport_rect().size
 		var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
 		#print(mouse_pos - screen_size / 2)
-		weapon_to_rotate.look_at((mouse_pos - screen_size / 2) + global_position)
+		var look_pos = (mouse_pos - screen_size / 2) + global_position
+		#print(look_pos)
+		weapon_to_rotate.look_at(look_pos)
 
 ## Player is moving the character 
 #func _player_movement_process(direction):

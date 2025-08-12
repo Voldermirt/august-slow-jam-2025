@@ -23,6 +23,7 @@ func _input(event: InputEvent) -> void:
 		zoom_anim.play_backwards("zoom")
 
 
+
 func _on_zoom_anim_animation_finished(anim_name: StringName) -> void:
 	if not zoom_out:
 		view_3d.visible = false

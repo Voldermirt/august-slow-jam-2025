@@ -3,7 +3,7 @@ extends BasePlayer2D
 # The default player game starts with
 class_name DefaultPlayer2D
 
-@onready var default_weapon: DefaultWeapon2D = $DefaultWeapon2D
+@onready var default_weapon: DefaultSword = $DefaultSword
 
 func _ready():
 	super._ready()

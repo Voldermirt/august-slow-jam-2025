@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const Portal := preload("res://Player/Portal/portal.tscn")
+const Gateway := preload("res://Player/Gateway/gateway.tscn")
 
 @export var speed := 500
 
@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	
 	if col:
 		# Spawn a portal
-		var portal = Portal.instantiate()
+		var portal = Gateway.instantiate()
 		portal.is_orange = is_orange
 		portal.color = color
 		Globals.get_2d_root().add_child(portal)

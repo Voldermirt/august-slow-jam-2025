@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://csxiow13e80jm"]
 
-[ext_resource type="Script" uid="uid://cove68frnhifa" path="res://Player/Portal/portal_gun.gd" id="1_ulaan"]
+[ext_resource type="Script" uid="uid://cove68frnhifa" path="res://Player/Gateway/gateway_gun.gd" id="1_ulaan"]
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_c1cri"]
 
-[node name="PortalGun" type="Node2D"]
+[node name="GatewayGun" type="Node2D"]
 script = ExtResource("1_ulaan")
 blue_color = Color(0, 0.65, 1, 1)
 orange_color = Color(1, 0.466667, 0, 1)
