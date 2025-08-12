@@ -4,7 +4,7 @@ class_name CamZoneManager
 
 @export var zones : Array[Rect2i]
 @export_flags_2d_physics var collision_mask # (int, LAYERS_2D_PHYSICS)
-@export var screen_size := Vector2i(640, 360)
+@export var screen_size := Vector2i(640, 384)
 
 var animate = true
 var current_zone_idx = 0
@@ -19,7 +19,8 @@ func _draw():
 		return
 	
 	for zone in zones:
-		draw_rect(zone, Color.RED, false, 4)# false) TODOGODOT4 Antialiasing argument is missing
+		if screen_size:
+			draw_rect(Rect2i(zone.position * screen_size, zone.size * screen_size), Color.RED, false, 4)
 
 func initizlize_area(region):
 	var area = Area2D.new()
@@ -37,6 +38,10 @@ func _ready():
 		return
 	
 	for i in range(len(zones)):
+		# Set the zones to the correct size
+		zones[i].position *= screen_size
+		zones[i].size *= screen_size
+		
 		var area = initizlize_area(zones[i])
 		area.global_position = zones[i].position + (zones[i].size / 2)
 		#area.connect("body_entered",Callable(self,"_on_player_entered_zone").bind(i))
@@ -89,7 +94,7 @@ func interpolate_cam_bounds(cam, tween : Tween, _old_cam_bounds, new_cam_bounds,
 	
 	
 func _on_player_entered_zone(body, zone_idx):
-	if body.name != "Player":
+	if not body.is_in_group("player"):
 		return
 	
 	var cam = get_viewport().get_camera_2d()
@@ -97,7 +102,7 @@ func _on_player_entered_zone(body, zone_idx):
 	
 	var player_vel = body.velocity
 	
-	var screen_size = get_viewport().content_scale_size
+	var screen_size = get_viewport_rect().size
 	
 	get_tree().paused = true
 	
@@ -116,7 +121,7 @@ func _on_player_entered_zone(body, zone_idx):
 	
 	
 	#interpolate_cam_bounds(cam, tween, zones[current_zone_idx], zone, (1.0 if animate else 0.0))
-	interpolate_cam_bounds(cam, tween, old_cam_bounds, new_cam_bounds, (1.0 if animate else 0.0))
+	interpolate_cam_bounds(cam, tween, old_cam_bounds, new_cam_bounds, (0.5 if animate else 0.0))
 	
 	
 	await tween.finished

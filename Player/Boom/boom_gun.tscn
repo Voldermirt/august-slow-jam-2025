@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://ryqhbpys3hvx"]
 
-[ext_resource type="Script" uid="uid://dm81tuhe30h37" path="res://Player/Doom/doom_gun.gd" id="1_e6h6s"]
+[ext_resource type="Script" uid="uid://dm81tuhe30h37" path="res://Player/Boom/boom_gun.gd" id="1_e6h6s"]
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_fihyg"]
 
-[node name="DoomGun" type="Node2D"]
+[node name="BoomGun" type="Node2D"]
 script = ExtResource("1_e6h6s")
 
 [node name="Rotatator" type="Node2D" parent="."]

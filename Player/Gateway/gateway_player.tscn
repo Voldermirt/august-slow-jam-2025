@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjyywkkb36366" path="res://Player/Gateway/gateway_player.gd" id="1_1s7tf"]
 [ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_j700q"]
+[ext_resource type="PackedScene" uid="uid://csxiow13e80jm" path="res://Player/Gateway/gateway_gun.tscn" id="3_j700q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 size = Vector2(15, 20)
@@ -28,6 +29,4 @@ shape = SubResource("RectangleShape2D_l8h54")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="PortalGun" parent="." instance=ExtResource("3_1iq4m")]
+[node name="GatewayGun" parent="." instance=ExtResource("3_j700q")]

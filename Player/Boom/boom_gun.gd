@@ -1,7 +1,7 @@
 extends BaseWeapon2D
 class_name DoomGun
 
-const Bullet := preload("res://Player/Doom/doom_bullet.tscn")
+const Bullet := preload("res://Player/Boom/boom_bullet.tscn")
 
 @export var max_ammo := 10
 @export var shoot_cooldown := 0.1
