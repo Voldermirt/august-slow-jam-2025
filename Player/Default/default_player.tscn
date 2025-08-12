@@ -60,5 +60,3 @@ autoplay = "walk"
 frame_progress = 0.14972
 
 [node name="DefaultSword" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
-
-[node name="Camera2D" type="Camera2D" parent="."]

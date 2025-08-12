@@ -30,5 +30,3 @@ shape = SubResource("RectangleShape2D_l8h54")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
 [node name="GatewayGun" parent="." instance=ExtResource("3_j700q")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
