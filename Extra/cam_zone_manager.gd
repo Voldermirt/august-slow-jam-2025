@@ -2,9 +2,9 @@
 extends Node2D
 class_name CamZoneManager
 
-@export var zones : Array[Rect2i]
+@export var zones : Array[Rect2]
 @export_flags_2d_physics var collision_mask # (int, LAYERS_2D_PHYSICS)
-@export var screen_size := Vector2i(640, 384)
+@export var screen_size := Vector2(640, 384)
 
 var animate = true
 var current_zone_idx = 0
@@ -20,7 +20,7 @@ func _draw():
 	
 	for zone in zones:
 		if screen_size:
-			draw_rect(Rect2i(zone.position * screen_size, zone.size * screen_size), Color.RED, false, 4)
+			draw_rect(Rect2(zone.position * screen_size, zone.size * screen_size), Color.RED, false, 4)
 
 func initizlize_area(region):
 	var area = Area2D.new()
