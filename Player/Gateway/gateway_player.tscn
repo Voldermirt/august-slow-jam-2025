@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr0tu4ea1313"]
+[gd_scene load_steps=6 format=3 uid="uid://dr0tu4ea1313"]
 
 [ext_resource type="Script" uid="uid://bjyywkkb36366" path="res://Player/Gateway/gateway_player.gd" id="1_1s7tf"]
 [ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_j700q"]
@@ -29,3 +29,5 @@ shape = SubResource("RectangleShape2D_l8h54")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PortalGun" parent="." instance=ExtResource("3_1iq4m")]
