@@ -18,6 +18,7 @@ animations = [{
 }]
 
 [node name="CritterJunctionPlayer2D" type="CharacterBody2D" groups=["critter_junction", "player"]]
+collision_layer = 33
 script = ExtResource("1_r35s0")
 metadata/_custom_type_script = "uid://b2h0i7wn08swy"
 

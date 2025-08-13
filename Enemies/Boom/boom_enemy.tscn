@@ -17,6 +17,7 @@ animations = [{
 }]
 
 [node name="BoomEnemy2D" type="CharacterBody2D" groups=["boom", "enemy"]]
+collision_layer = 33
 script = ExtResource("1_ccxsa")
 metadata/_custom_type_script = "uid://ypb3yci08os4"
 

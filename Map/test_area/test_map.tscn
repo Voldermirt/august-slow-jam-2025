@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cuctkdj46buox" path="res://Extra/game_switcher.tscn" id="3_7834y"]
 [ext_resource type="PackedScene" uid="uid://dr0tu4ea1313" path="res://Player/Gateway/gateway_player.tscn" id="4_6tcai"]
 [ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="5_mfew6"]
-[ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_mfew6"]
+[ext_resource type="Script" path="res://Extra/cam_zone_manager.gd" id="8_mfew6"]
 
 [node name="TestMap" type="Node2D"]
 
@@ -30,5 +30,4 @@ position = Vector2(300, 189)
 script = ExtResource("8_mfew6")
 zones = Array[Rect2]([Rect2(0, 0, 1, 1), Rect2(1, 0, 1, 1)])
 screen_size = Vector2(640, 360)
-metadata/_custom_type_script = "uid://b3byaucvkypwn"
 metadata/_edit_lock_ = true

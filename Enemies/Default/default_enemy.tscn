@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3y6vpr4xcp4n"]
+[gd_scene load_steps=6 format=3 uid="uid://b3y6vpr4xcp4n"]
 
 [ext_resource type="Script" uid="uid://bylf7n3n8p70k" path="res://Enemies/Default/default_enemy.gd" id="1_d1gei"]
 [ext_resource type="Texture2D" uid="uid://b2ugginuk104n" path="res://Enemies/Default/enemy_stub.png" id="2_prpc3"]
@@ -16,7 +16,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_d1gei"]
+radius = 36.0
+
 [node name="DefaultEnemy2D" type="CharacterBody2D" groups=["default", "enemy"]]
+collision_layer = 33
 script = ExtResource("1_d1gei")
 metadata/_custom_type_script = "uid://bylf7n3n8p70k"
 
@@ -25,3 +29,10 @@ shape = SubResource("RectangleShape2D_j5ojn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pubjm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_d1gei")
