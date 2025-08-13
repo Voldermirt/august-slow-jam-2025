@@ -185,7 +185,7 @@ script = ExtResource("1_t005n")
 position = Vector2(10, 0)
 
 [node name="Sword" type="Area2D" parent="Rotatator"]
-collision_mask = 2
+collision_mask = 34
 
 [node name="WeaponSprite" type="Sprite2D" parent="Rotatator/Sword"]
 position = Vector2(4, 0)

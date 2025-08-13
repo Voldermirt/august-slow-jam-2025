@@ -13,7 +13,7 @@ var cri_jun_collectables: float
 var default_collectables: float
 
 var effective_size := Vector2(32, 32)
-
+	
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
 	var player_retrieved_from: BasePlayer2D = (retrieved_from as BasePlayer2D)
@@ -47,14 +47,10 @@ func _ready():
 	super._ready()
 
 func _physics_process(delta):
-	var direction: Vector2 = Vector2.ZERO
-
+	var direction: Vector2
+	
 	if cur_knock_duration > 0.0:
-		direction = cur_knock_force.normalized()
-		velocity = cur_knock_force
-		cur_knock_duration -= delta
-		if cur_knock_duration <= 0.0:
-			cur_knock_force = Vector2.ZERO
+		_knockback_procses(delta)
 	else:
 		if Input.is_action_pressed("right"):
 			direction.x += 1
@@ -64,7 +60,6 @@ func _physics_process(delta):
 			direction.y += 1
 		if Input.is_action_pressed("up"):
 			direction.y -= 1
-		
 		velocity = direction.normalized() * moving_speed
 	
 	move_and_slide()

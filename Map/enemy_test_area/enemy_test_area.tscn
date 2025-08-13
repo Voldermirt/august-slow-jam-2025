@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://d0bpck6w0fufw"]
+[gd_scene load_steps=25 format=4 uid="uid://d0bpck6w0fufw"]
 
 [ext_resource type="Texture2D" uid="uid://mqex5iff4ama" path="res://Map/enemy_test_area/enemy_test_area.png" id="1_6okg1"]
 [ext_resource type="PackedScene" uid="uid://cuctkdj46buox" path="res://Extra/game_switcher.tscn" id="1_auh41"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://ddd3g4d6q3clu" path="res://Collectables/Boom/boom_collectable.tscn" id="13_d6fkh"]
 [ext_resource type="PackedScene" uid="uid://dbkwjooflp27j" path="res://Collectables/Gateway/gateway_collectable.tscn" id="14_fg600"]
 [ext_resource type="PackedScene" uid="uid://ckej42hj0tyww" path="res://Collectables/CritterJunction/cri_jun_collectable.tscn" id="15_q2bcx"]
+[ext_resource type="PackedScene" uid="uid://do3pnxooit0it" path="res://Object/Default/default_object.tscn" id="16_r8nqg"]
+[ext_resource type="PackedScene" uid="uid://coey1ghipk7r6" path="res://Object/Boom/boom_object.tscn" id="17_3i5kv"]
+[ext_resource type="PackedScene" uid="uid://bchjd55mblijf" path="res://Object/Gateway/gateway_object.tscn" id="18_iks63"]
+[ext_resource type="PackedScene" uid="uid://ci6vxup5e8oqd" path="res://Object/CritterJunction/cri_jun_object.tscn" id="19_hri2c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2gel8"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -71,7 +75,7 @@ gateway_scene = ExtResource("10_8n2i6")
 critter_junction_scene = ExtResource("11_md38r")
 
 [node name="DefaultEnemy2D" parent="GameSwitcher2D/TileMapLayer/SwitchWrapper2D3" instance=ExtResource("7_ukwf7")]
-position = Vector2(354, 0)
+position = Vector2(117, -2)
 
 [node name="SwitchWrapper2D4" parent="GameSwitcher2D/TileMapLayer" instance=ExtResource("2_ccqp4")]
 default_scene = ExtResource("12_8n2i6")
@@ -81,3 +85,13 @@ critter_junction_scene = ExtResource("15_q2bcx")
 
 [node name="DefaultCollectable2D" parent="GameSwitcher2D/TileMapLayer/SwitchWrapper2D4" instance=ExtResource("12_8n2i6")]
 position = Vector2(-161, 120)
+
+[node name="SwitchWrapper2D5" parent="GameSwitcher2D/TileMapLayer" instance=ExtResource("2_ccqp4")]
+default_scene = ExtResource("16_r8nqg")
+boom_scene = ExtResource("17_3i5kv")
+gateway_scene = ExtResource("18_iks63")
+critter_junction_scene = ExtResource("19_hri2c")
+
+[node name="DefaultObject2D" parent="GameSwitcher2D/TileMapLayer/SwitchWrapper2D5" instance=ExtResource("16_r8nqg")]
+position = Vector2(-122, -82)
+inside_object_scene = ExtResource("12_8n2i6")

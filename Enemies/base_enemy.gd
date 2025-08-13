@@ -3,7 +3,7 @@ extends BaseEntity2D
 class_name BaseEnemy2D
 
 const DEFAULT_RECOVERY_SECONDS: float = 0.2
-const ENEMY_MOVEMENT: float = 100
+const ENEMY_MOVEMENT: float = 90
 const ENEMY_BASE_HEALTH: float = 20
 const ENEMY_BASE_CONTACT_DAMAGE: float = 5
 
@@ -112,40 +112,39 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	if n_agent != null and n_agent.target_position != Vector2.INF and stationary_timer.time_left <= 0:
-		move_to_ntarget()
+	if cur_knock_duration > 0.0:
+		_knockback_procses(delta)
+	else:
+		if n_agent != null and n_agent.target_position != Vector2.INF and stationary_timer.time_left <= 0:
+			move_to_ntarget()
 
 func _n_navigation_reached():
 	var chance_rolled: int = randi_range(0, 100)
-	if chance_rolled > 60:
-		stationary_timer.start(randi_range(0.5, 1))
-	elif chance_rolled > 30:
+	if chance_rolled > 90:
+		stationary_timer.start(randi_range(0.5, 0.8))
+	elif chance_rolled > 50:
 		make_player_around_path()
 	else:
 		make_player_path()
 	
 func _n_link_reached():
 	pass
-	
-func _on_getting_hit(damage: float):
-	health -= damage
-	if health <= 0:
-		_on_death()
-	#else:
-		#start_damage_recovery()
-		
-func _on_death():
-	pass
 
 func _on_hitbox_entering(body: Node2D):
 	if body is BasePlayer2D:
-		on_contact_hit_delay_timer.start(randi_range(0.4, 1))
+		var delay = randi_range(0.3, 0.6)
+		on_contact_hit_delay_timer.start(delay)
+		stationary_timer.start(delay)
 		
 func _on_contact_hitbox_timeout():
 	var bodies: Array[Node2D] = on_contact_hitbox.get_overlapping_bodies()
 	for body in bodies:
 		if body is BasePlayer2D:
 			(body as BasePlayer2D)._on_getting_hit(ENEMY_BASE_CONTACT_DAMAGE)
+			var dir = global_position.direction_to(body.global_position)
+			global_position += dir * (global_position.distance_to(body.global_position)/2)
+			stationary_timer.start(0.5)
+			
 
 func _on_stationary_timeout():
 	_n_navigation_reached()

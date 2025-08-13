@@ -8,6 +8,7 @@
 size = Vector2(24, 32)
 
 [node name="BoomObject2D" type="RigidBody2D" groups=["boom"]]
+collision_layer = 33
 script = ExtResource("1_181jr")
 explosion_effect = ExtResource("2_rmd42")
 metadata/_custom_type_script = "uid://dxsawl2382idu"

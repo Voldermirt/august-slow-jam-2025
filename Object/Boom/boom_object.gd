@@ -8,7 +8,7 @@ func _ready():
 	super._ready()
 
 func _process(delta):
-	if OS.is_debug_build() and Input.is_key_pressed(KEY_E):
+	if OS.is_debug_build() and Input.is_key_pressed(KEY_Q):
 		explode()
 
 func explode():
