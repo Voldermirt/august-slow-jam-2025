@@ -14,15 +14,10 @@ enum GameList {
 	CRITTER_JUNCTION
 }
 
-# The game switcher should maybe be merged into this object?
-# Or maybe this object shouldn't exist at all and I'm going about it all wrong?
-# Eh, as long as it works I guess
-func signal_game_change(new_game : GameList):
-	game_changed.emit(new_game)
-	await get_tree().process_frame
-	update_ui()
+var current_game_index: int = GameList.DEFAULT
 
-func update_ui():
+
+func _process(delta: float) -> void:
 	ui_update_requested.emit()
 
 func get_2d_root() -> Node2D:
@@ -37,5 +32,21 @@ func get_portal(orange):
 func change_level(new_level : PackedScene):
 	level_change_requested.emit(new_level)
 
-func _process(delta: float) -> void:
-	update_ui()
+
+func get_random_game() -> int:
+	return randi() % GameList.size()
+	
+func switch_random_games():
+	var chosen_game_index := get_random_game()
+	while chosen_game_index == current_game_index:
+		chosen_game_index = get_random_game()
+	current_game_index = chosen_game_index
+	switch_games(chosen_game_index)
+
+func switch_games(game_index: GameList):
+	var wrappers: Array[Node] = get_tree().get_nodes_in_group("switch_wrapper")
+	for wrapper in wrappers:
+		var switch_wrapper = wrapper as SwitchWrapper2D
+		switch_wrapper.switch_to(game_index)
+	game_changed.emit(game_index)
+	
