@@ -121,6 +121,6 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185934, 0.277266, 0.796172)
 
 [node name="desk" parent="Render3D/Level3D/DeskRoom" instance=ExtResource("3_p8vsj")]
-transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.353789, -1.33828, -0.226489)
+transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.429633, -1.33828, -0.226489)
 
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]
