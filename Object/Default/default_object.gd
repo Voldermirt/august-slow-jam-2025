@@ -20,7 +20,7 @@ func break_itself(body: Node):
 		if inside_object is Node2D:
 			inside_object.global_position = global_position
 			parent_node.add_child(inside_object)
-	kill()
+	queue_free()
 
 func _ready():
 	super._ready()

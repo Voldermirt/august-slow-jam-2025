@@ -1,20 +1,27 @@
-extends CharacterBody2D
+extends BaseEntity2D
 
 # Defines the base functions and variables that all players will have access to
 class_name BasePlayer2D
 
+const DEFAULT_RECOVERY_SECONDS: float = 1
 @export var moving_speed: float = 250.0
-var push_force: float = 200.0
 
-var cur_knock_force: Vector2
-var cur_knock_duration: float
+var push_force: float = 200.0
+var gateway_collectables: float
+var boom_collectables: float
+var cri_jun_collectables: float
+var default_collectables: float
 
 var effective_size := Vector2(32, 32)
-
-func knockback_applied(direction: Vector2, force: float, duration: float):
-	cur_knock_force = direction * force
-	cur_knock_duration = duration 
-	pass
+	
+func retrieve_data(retrieved_from: BaseEntity2D):
+	super.retrieve_data(retrieved_from)
+	var player_retrieved_from: BasePlayer2D = (retrieved_from as BasePlayer2D)
+	if player_retrieved_from != null:
+		gateway_collectables = player_retrieved_from.gateway_collectables
+		boom_collectables = player_retrieved_from.boom_collectables
+		cri_jun_collectables = player_retrieved_from.cri_jun_collectables
+		default_collectables = player_retrieved_from.default_collectables
 
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
@@ -25,27 +32,24 @@ func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 		
 		weapon_to_rotate.look_at(look_pos)
 
-## Player is moving the character 
-#func _player_movement_process(direction):
-	## Normalize to avoid faster diagonal movement
-
 func _on_get_collectable(collectable: BaseCollectable2D):
-	pass
+	if collectable is DefaultCollectable2D:
+		default_collectables += collectable.get_value()
+	elif collectable is BoomCollectable2D:
+		boom_collectables += collectable.get_value()
+	elif collectable is GatewayCollectable2D:
+		gateway_collectables += collectable.get_value()
+	elif collectable is CriJunCollectable2D:
+		cri_jun_collectables += collectable.get_value()
 
 func _ready():
-	if not get_parent().is_in_group("switch_wrapper"):
-		assert(false, str(self, " player is not the child of in the SwitchWrapper"))
-		
+	super._ready()
 
 func _physics_process(delta):
-	var direction: Vector2 = Vector2.ZERO
-
+	var direction: Vector2
+	
 	if cur_knock_duration > 0.0:
-		direction = cur_knock_force.normalized()
-		velocity = cur_knock_force
-		cur_knock_duration -= delta
-		if cur_knock_duration <= 0.0:
-			cur_knock_force = Vector2.ZERO
+		_knockback_procses(delta)
 	else:
 		if Input.is_action_pressed("right"):
 			direction.x += 1
@@ -55,7 +59,6 @@ func _physics_process(delta):
 			direction.y += 1
 		if Input.is_action_pressed("up"):
 			direction.y -= 1
-		
 		velocity = direction.normalized() * moving_speed
 	
 	move_and_slide()
@@ -65,6 +68,3 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.get_collider().is_in_group("pushable"):
 			collision.get_collider().apply_central_impulse(direction * push_force)
-
-func _on_hit():
-	pass
