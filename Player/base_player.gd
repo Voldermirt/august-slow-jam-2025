@@ -4,9 +4,9 @@ extends BaseEntity2D
 class_name BasePlayer2D
 
 const DEFAULT_RECOVERY_SECONDS: float = 1
+@export var moving_speed: float = 250.0
 
 var push_force: float = 200.0
-
 var gateway_collectables: float
 var boom_collectables: float
 var cri_jun_collectables: float
@@ -26,11 +26,10 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 	if weapon_to_rotate != null:
-		var screen_size = get_viewport_rect().size
 		var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
-		#print(mouse_pos - screen_size / 2)
-		var look_pos = (mouse_pos - screen_size / 2) + global_position
-		#print(look_pos)
+		var screen_pos = get_global_transform_with_canvas().origin
+		var look_pos = (mouse_pos - screen_pos) + global_position
+		
 		weapon_to_rotate.look_at(look_pos)
 
 func _on_get_collectable(collectable: BaseCollectable2D):

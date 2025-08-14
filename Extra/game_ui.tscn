@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj1u75xigyjh1"]
+[gd_scene load_steps=8 format=3 uid="uid://cj1u75xigyjh1"]
 
 [ext_resource type="PackedScene" uid="uid://6x7dkrdl3vbw" path="res://Player/Gateway/gateway_ui.tscn" id="1_an0i2"]
+[ext_resource type="Script" uid="uid://b4kb538qp5tfv" path="res://Extra/switch_wrapper.gd" id="2_2nh78"]
+[ext_resource type="PackedScene" uid="uid://k68aosr78yjo" path="res://Player/Default/default_ui.tscn" id="2_cj0ru"]
+[ext_resource type="PackedScene" uid="uid://15nf77pg74je" path="res://Player/Boom/boom_ui.tscn" id="2_t5clu"]
+[ext_resource type="PackedScene" uid="uid://bkp4c3oycvlkj" path="res://Player/CritterJunction/cri_jun_ui.tscn" id="5_10174"]
+[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="6_10174"]
+[ext_resource type="Script" uid="uid://dh5bqnxe8q5xd" path="res://Player/general_ui.gd" id="6_alrrk"]
 
 [node name="UI" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,5 +16,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PortalUI" parent="." instance=ExtResource("1_an0i2")]
+[node name="UISwitcher" type="Control" parent="." groups=["switch_wrapper"]]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2nh78")
+default_scene = ExtResource("2_cj0ru")
+boom_scene = ExtResource("2_t5clu")
+gateway_scene = ExtResource("1_an0i2")
+critter_junction_scene = ExtResource("5_10174")
+
+[node name="DefaultUI" parent="UISwitcher" instance=ExtResource("2_cj0ru")]
+layout_mode = 1
+
+[node name="GeneralUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_alrrk")
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="GeneralUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -37.0
+offset_right = 174.0
+offset_bottom = -16.0
+grow_vertical = 0
+value = 66.0
+nine_patch_stretch = true
+texture_under = ExtResource("6_10174")
+texture_progress = ExtResource("6_10174")
+tint_under = Color(0.0475577, 0.0475576, 0.0475576, 1)
+tint_progress = Color(1, 0, 0, 1)

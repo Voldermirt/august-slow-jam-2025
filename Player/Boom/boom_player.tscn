@@ -32,5 +32,3 @@ shape = SubResource("RectangleShape2D_l8h54")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
 [node name="BoomGun" parent="." instance=ExtResource("3_8be1d")]
-
-[node name="Camera2D" type="Camera2D" parent="."]

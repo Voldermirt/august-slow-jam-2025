@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 class_name SwitchWrapper2D
 
@@ -37,9 +37,9 @@ func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
 	var children: Array[Node]
 	# The current scene to be replaced
-	var scene_to_replace: Node2D
+	var scene_to_replace: Node
 	# The new scene replacing the old one
-	var new_scene: Node2D
+	var new_scene: Node
 	# The positin of the scene to be replaced
 	var previous_position: Vector2
 	

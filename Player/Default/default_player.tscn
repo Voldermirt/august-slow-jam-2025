@@ -44,8 +44,7 @@ animations = [{
 }]
 
 [node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default", "player"]]
-collision_layer = 33
-collision_mask = 3
+collision_mask = 10
 script = ExtResource("1_3v0ge")
 metadata/_custom_type_script = "uid://pbh68marjmsv"
 
@@ -61,5 +60,3 @@ autoplay = "walk"
 frame_progress = 0.14972
 
 [node name="DefaultSword" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
-
-[node name="Camera2D" type="Camera2D" parent="."]

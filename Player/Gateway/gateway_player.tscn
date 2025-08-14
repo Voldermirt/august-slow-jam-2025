@@ -19,6 +19,7 @@ animations = [{
 }]
 
 [node name="GatewayPlayer2D" type="CharacterBody2D" groups=["gateway", "player"]]
+collision_mask = 10
 script = ExtResource("1_1s7tf")
 metadata/_custom_type_script = "uid://bjyywkkb36366"
 
@@ -30,5 +31,3 @@ shape = SubResource("RectangleShape2D_l8h54")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 
 [node name="GatewayGun" parent="." instance=ExtResource("3_j700q")]
-
-[node name="Camera2D" type="Camera2D" parent="."]

@@ -48,6 +48,13 @@ func _ready():
 		area.body_entered.connect(_on_player_entered_zone.bind(i))
 		area.name = "CamZone_%s" % i
 		add_child(area)
+	
+	Globals.game_changed.connect(game_switch_disable_animate)
+	
+func game_switch_disable_animate(_game):
+	set_animate(false)
+	await get_tree().create_timer(0.1).timeout
+	set_animate(true)
 
 func _process(_delta):
 	queue_redraw()
