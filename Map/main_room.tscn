@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bt2j76m7ful7f"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
-[ext_resource type="PackedScene" uid="uid://di5d635itt4e0" path="res://Map/test_area/elliot_test_map.tscn" id="2_3anwy"]
+[ext_resource type="PackedScene" uid="uid://dmbt7ahfudc6w" path="res://Map/main_level.tscn" id="2_3anwy"]
 [ext_resource type="PackedScene" uid="uid://cj1u75xigyjh1" path="res://Extra/game_ui.tscn" id="3_3anwy"]
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
 
@@ -80,7 +80,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="Level" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
+[node name="MainLevel" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Render2D/Level2D"]
 
