@@ -10,12 +10,16 @@ const Bullet := preload("res://Player/Boom/boom_bullet.tscn")
 @onready var cooldown_timer := $Cooldown
 @onready var ammo := max_ammo
 
+func _ready() -> void:
+	PlayerStats.ammo = ammo
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
 		shoot()
 	if Input.is_action_just_pressed("secondary"):
 		reload()
+
+	PlayerStats.cooldown = cooldown_timer.time_left
 
 func shoot():
 	if ammo <= 0 or not cooldown_timer.is_stopped():
@@ -24,15 +28,20 @@ func shoot():
 	Globals.get_2d_root().add_child(bullet)
 	bullet.global_position = global_position
 	bullet.direction = Vector2.RIGHT.rotated(global_rotation)
+	
 	ammo -= 1
 	cooldown_timer.start(shoot_cooldown)
+	
+	PlayerStats.ammo = ammo
+	PlayerStats.max_cooldown = shoot_cooldown
+	PlayerStats.cooldown = shoot_cooldown
 
 func reload():
 	if not cooldown_timer.is_stopped():
 		return
 	cooldown_timer.start(reload_cooldown)
+	PlayerStats.max_cooldown = reload_cooldown
+	PlayerStats.cooldown = reload_cooldown
+	await cooldown_timer.timeout
 	ammo = max_ammo
-
-func update_ammo_gui():
-	pass
-	# Implement this function once the GUI exists
+	PlayerStats.ammo = ammo
