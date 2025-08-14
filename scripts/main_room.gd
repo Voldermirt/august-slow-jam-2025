@@ -4,6 +4,7 @@ class_name MainRoom
 enum Direction {UP, DOWN, LEFT, RIGHT}
 
 @export_group("Cheat Codes")
+@export var default_code : Array[Direction]
 @export var boom_code : Array[Direction]
 @export var gateway_code : Array[Direction]
 @export var critter_junction_code : Array[Direction]
@@ -75,7 +76,7 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	
 	# Check if input matches any of the codes
 	var matches = false
-	for code in [boom_code, gateway_code, critter_junction_code]:
+	for code in [default_code, boom_code, gateway_code, critter_junction_code]:
 		if idx < len(code) and dir == code[idx]:
 			matches = true
 			if idx + 1 == len(code):
@@ -87,6 +88,8 @@ func handle_directional_input(dir : Direction, pressed : bool):
 		current_sequence = []
 
 func code_to_game(code) -> Globals.GameList:
+	if code == default_code:
+		return Globals.GameList.DEFAULT
 	if code == boom_code:
 		return Globals.GameList.BOOM
 	if code == gateway_code:
