@@ -4,7 +4,6 @@ extends BaseEntity2D
 class_name BasePlayer2D
 
 const DEFAULT_RECOVERY_SECONDS: float = 1
-@export var moving_speed: float = 250.0
 
 var push_force: float = 200.0
 var gateway_collectables: float
