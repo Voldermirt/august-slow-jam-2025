@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cj1u75xigyjh1"]
 
 [ext_resource type="PackedScene" uid="uid://6x7dkrdl3vbw" path="res://Player/Gateway/gateway_ui.tscn" id="1_an0i2"]
-[ext_resource type="Script" uid="uid://b4kb538qp5tfv" path="res://Extra/switch_wrapper.gd" id="2_2nh78"]
+[ext_resource type="Script" uid="uid://b4kb538qp5tfv" path="res://Extra/Switchers/switch_wrapper.gd" id="2_2nh78"]
 [ext_resource type="PackedScene" uid="uid://k68aosr78yjo" path="res://Player/Default/default_ui.tscn" id="2_cj0ru"]
 [ext_resource type="PackedScene" uid="uid://15nf77pg74je" path="res://Player/Boom/boom_ui.tscn" id="2_t5clu"]
 [ext_resource type="PackedScene" uid="uid://bkp4c3oycvlkj" path="res://Player/CritterJunction/cri_jun_ui.tscn" id="5_10174"]
@@ -58,3 +58,5 @@ texture_under = ExtResource("6_10174")
 texture_progress = ExtResource("6_10174")
 tint_under = Color(0.0475577, 0.0475576, 0.0475576, 1)
 tint_progress = Color(1, 0, 0, 1)
+
+[connection signal="child_entered_tree" from="UISwitcher" to="UISwitcher" method="_on_child_entered_tree"]

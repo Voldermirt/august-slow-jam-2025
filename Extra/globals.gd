@@ -5,7 +5,6 @@ extends Node
 # (idk lmao)
 signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
-signal ui_update_requested()
 
 enum GameList {
 	DEFAULT,
@@ -18,10 +17,23 @@ var current_game_index: int = GameList.DEFAULT
 
 
 func _process(delta: float) -> void:
-	ui_update_requested.emit()
+	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
+		switch_random_games()
 
 func get_2d_root() -> Node2D:
-	return get_tree().get_first_node_in_group("2d_viewport").get_child(0)
+	var to_return: Node
+	var tree = get_tree()
+	var view_port_2D: Node = tree.get_first_node_in_group("2d_viewport")
+	
+	# Spawn on 2D viewport specifically
+	if view_port_2D != null:
+		to_return = view_port_2D.get_child(0)
+	
+	# If there's none, only spawn at root when debugging
+	elif OS.is_debug_build():
+		to_return = tree.root
+	
+	return to_return
 
 func get_portal(orange):
 	for portal in get_tree().get_nodes_in_group("portal_instance"):

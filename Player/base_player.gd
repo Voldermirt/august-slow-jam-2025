@@ -3,25 +3,26 @@ extends BaseEntity2D
 # Defines the base functions and variables that all players will have access to
 class_name BasePlayer2D
 
+signal player_instantiated
+
+const BASE_PLAYER_MAX_HEALTH: float = 100
 const DEFAULT_RECOVERY_SECONDS: float = 1
 
 var push_force: float = 200.0
-var gateway_collectables: float
-var boom_collectables: float
-var cri_jun_collectables: float
-var default_collectables: float
 
+var collectables: float = 0
+ 
 var effective_size := Vector2(32, 32)
-	
+
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
 	var player_retrieved_from: BasePlayer2D = (retrieved_from as BasePlayer2D)
 	if player_retrieved_from != null:
-		gateway_collectables = player_retrieved_from.gateway_collectables
-		boom_collectables = player_retrieved_from.boom_collectables
-		cri_jun_collectables = player_retrieved_from.cri_jun_collectables
-		default_collectables = player_retrieved_from.default_collectables
+		collectables = player_retrieved_from.collectables
 
+func get_max_health():
+	return BASE_PLAYER_MAX_HEALTH
+	
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 	if weapon_to_rotate != null:
@@ -31,18 +32,18 @@ func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 		
 		weapon_to_rotate.look_at(look_pos)
 
-func _on_get_collectable(collectable: BaseCollectable2D):
-	if collectable is DefaultCollectable2D:
-		default_collectables += collectable.get_value()
-	elif collectable is BoomCollectable2D:
-		boom_collectables += collectable.get_value()
-	elif collectable is GatewayCollectable2D:
-		gateway_collectables += collectable.get_value()
-	elif collectable is CriJunCollectable2D:
-		cri_jun_collectables += collectable.get_value()
+func _on_get_collectable(found_collectable: BaseCollectable2D):
+	self.collectables += found_collectable.get_value()
+	
 
 func _ready():
 	super._ready()
+	
+	#if (collision_layer & PLAYER_LAYER_NUMBER) == 0:
+		#collision_layer += PLAYER_LAYER_NUMBER
+	#if (collision_mask & ENEMY_LAYER_NUMER) == 0:
+		#collision_mask += ENEMY_LAYER_NUMER
+	
 
 func _physics_process(delta):
 	var direction: Vector2

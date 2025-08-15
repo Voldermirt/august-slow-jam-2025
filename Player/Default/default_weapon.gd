@@ -37,3 +37,5 @@ func _on_sword_body_entered(body: Node2D) -> void:
 	# To be implemented once enemies exist I guess
 	if body is BaseEnemy2D:
 		(body as BaseEnemy2D)._on_getting_hit(SWORD_DAMAGE)
+	elif body is BaseObject2D:
+		(body as BaseObject2D).receive_damage(self)

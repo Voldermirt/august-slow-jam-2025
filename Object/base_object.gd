@@ -25,3 +25,5 @@ func kill():
 	else:
 		queue_free()
 		
+func receive_damage(body: Node):
+	pass

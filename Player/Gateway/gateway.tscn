@@ -8,7 +8,7 @@ size = Vector2(64, 16)
 
 [node name="Gateway" type="Area2D" groups=["portal_instance"]]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 51
 script = ExtResource("1_psoc1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

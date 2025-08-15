@@ -9,7 +9,8 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 @export var gateway_scene: PackedScene
 @export var critter_junction_scene: PackedScene
 
-
+var switching_scene: Node
+	
 ## Empty function to be overriden by the subclass
 #func switch_to(game: Globals.GameList):
 	#push_error("This is an abstract method, only should be overriden and called in the subclass")
@@ -35,7 +36,7 @@ func _ready():
 
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
-	var children: Array[Node]
+	#var children: Array[Node]
 	# The current scene to be replaced
 	var scene_to_replace: Node
 	# The new scene replacing the old one
@@ -48,17 +49,20 @@ func switch_to(game: Globals.GameList):
 		assert(false, "Not recognizing the game to switch to!")
 		return
 	
-	children = get_children()
-	if children.size() != 1:
-		assert(false, INVALID_CHILD_ERROR)
-		return
-		
-	scene_to_replace = children[0]
+	#children = get_children()
+	#if children.size() != 1:
+		#assert(false, INVALID_CHILD_ERROR)
+		#return
+		#
+	
+	scene_to_replace = switching_scene 
+	
+	#scene_to_replace = children[0]
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return
 
-	previous_position = scene_to_replace.global_position
+	previous_position = scene_to_replace.position
 	
 	match game:
 		Globals.GameList.DEFAULT:
@@ -88,3 +92,8 @@ func switch_to(game: Globals.GameList):
 	new_scene.global_position = previous_position
 	add_child(new_scene)
 	
+
+
+func _on_child_entered_tree(node: Node):
+	# REMEMBER THIS
+	switching_scene = node
