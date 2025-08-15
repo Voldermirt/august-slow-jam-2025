@@ -19,6 +19,8 @@ var current_game_index: int = GameList.DEFAULT
 
 func _process(delta: float) -> void:
 	ui_update_requested.emit()
+	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
+		switch_random_games()
 
 func get_2d_root() -> Node2D:
 	return get_tree().get_first_node_in_group("2d_viewport").get_child(0)

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://15nf77pg74je" path="res://Player/Boom/boom_ui.tscn" id="2_t5clu"]
 [ext_resource type="PackedScene" uid="uid://bkp4c3oycvlkj" path="res://Player/CritterJunction/cri_jun_ui.tscn" id="5_10174"]
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="6_10174"]
-[ext_resource type="Script" uid="uid://dh5bqnxe8q5xd" path="res://Player/general_ui.gd" id="6_alrrk"]
+[ext_resource type="Script" path="res://Player/general_ui.gd" id="6_alrrk"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
