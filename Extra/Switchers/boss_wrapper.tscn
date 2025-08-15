@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3 uid="uid://csvqos6vt8axp"]
+
+[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_6rbvy"]
+[ext_resource type="PackedScene" uid="uid://dub6m5q2lfqoq" path="res://Boss/Default/default_boss.tscn" id="2_bk4r8"]
+[ext_resource type="PackedScene" uid="uid://ktj28riv7puy" path="res://Boss/Boom/boom_boss.tscn" id="3_4u6t5"]
+[ext_resource type="PackedScene" uid="uid://dfw16loha2lix" path="res://Boss/Gateway/gateway_boss.tscn" id="4_aixm6"]
+[ext_resource type="PackedScene" uid="uid://yypoytgt0wk" path="res://Boss/CritterJunction/cri_jun_boss.tscn" id="5_nigwm"]
+
+[node name="BossWrapper2D" instance=ExtResource("1_6rbvy")]
+default_scene = ExtResource("2_bk4r8")
+boom_scene = ExtResource("3_4u6t5")
+gateway_scene = ExtResource("4_aixm6")
+critter_junction_scene = ExtResource("5_nigwm")
