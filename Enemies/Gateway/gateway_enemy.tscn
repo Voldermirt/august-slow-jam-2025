@@ -17,7 +17,7 @@ animations = [{
 }]
 
 [node name="GatewayEnemy2D" type="CharacterBody2D" groups=["enemy", "gateway"]]
-collision_mask = 9
+collision_mask = 25
 script = ExtResource("1_vyccc")
 metadata/_custom_type_script = "uid://3p6na7i7is4v"
 

@@ -1,7 +1,7 @@
 extends GPUParticles2D
 
 @onready var explosion_area: Area2D = $ExplosionArea2D
-var knockback_force: float = 700
+var knockback_force: float = 300
 var knockback_duration: float = 0.5
 
 func _ready():
@@ -17,3 +17,7 @@ func _on_explosion_area_2d_body_entered(body: Node2D):
 	if body is BasePlayer2D:
 		(body as BasePlayer2D).knockback_applied(global_position.direction_to(body.global_position), knockback_force, knockback_duration)
 		
+
+
+func _on_ttl_timeout():
+	queue_free()

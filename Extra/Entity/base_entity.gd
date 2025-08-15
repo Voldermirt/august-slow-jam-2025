@@ -3,7 +3,8 @@ extends CharacterBody2D
 class_name BaseEntity2D 
 
 const BASE_MAX_HEALTH: float = 100
-const DAMAGE_LAYER_NUMER: int = 32
+const ENEMY_LAYER_NUMER: int = 2
+const PLAYER_LAYER_NUMBER: int = 1
 
 var health: float
 
@@ -15,15 +16,16 @@ var moving_speed: float = 100.0
 var cur_knock_force: Vector2
 var cur_knock_duration: float
 
+func get_max_health():
+	return BASE_MAX_HEALTH
 
 # Copied the data from another player instance, useful for switching games and maintaining data
 func retrieve_data(retrieved_from: BaseEntity2D):
-	self.health = retrieved_from.health
+	self.health = (retrieved_from.health / retrieved_from.get_max_health())*get_max_health()
 
 # Gives entity the data it should receive on initial Îspawning
 func set_spawn_data():
 	self.health = BASE_MAX_HEALTH
-
 
 func knockback_applied(direction: Vector2, force: float, duration: float):
 	cur_knock_force = direction * force
@@ -39,9 +41,6 @@ func _knockback_procses(delta):
 func _ready():
 	if not get_parent().is_in_group("switch_wrapper"):
 		assert(false, str(self, " entity is not the child of in the SwitchWrapper"))
-	
-	if (collision_layer & DAMAGE_LAYER_NUMER) == 0:
-		collision_layer += DAMAGE_LAYER_NUMER
 	
 	recovery_timer = Timer.new()
 	recovery_timer.one_shot = true
@@ -68,8 +67,8 @@ func _on_death():
 func _start_damage_recovery():
 	recovery_timer.start(damage_recovery_seconds)
 	modulate.a = 0.5
-	collision_layer -= DAMAGE_LAYER_NUMER
+	#collision_layer -= DAMAGE_LAYER_NUMER
 
 func _end_damage_recovery():
-	collision_layer += DAMAGE_LAYER_NUMER
+	#collision_layer += DAMAGE_LAYER_NUMER
 	modulate.a = 1

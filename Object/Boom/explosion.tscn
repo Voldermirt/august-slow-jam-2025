@@ -20,8 +20,7 @@ curve = SubResource("Curve_snb1n")
 lifetime_randomness = 0.5
 particle_flag_disable_z = true
 spread = 180.0
-initial_velocity_min = 179.1
-initial_velocity_max = 686.56
+initial_velocity_max = 354.87
 gravity = Vector3(0, 98, 0)
 scale_min = 5.0
 scale_max = 20.0
@@ -35,15 +34,22 @@ color_ramp = SubResource("GradientTexture1D_ag21d")
 emitting = false
 amount = 100
 one_shot = true
+speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_q2vgx")
 script = ExtResource("1_kj21f")
 
 [node name="ExplosionArea2D" type="Area2D" parent="."]
 process_mode = 4
-scale = Vector2(14.09, 14.09)
+scale = Vector2(5, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea2D"]
 shape = SubResource("RectangleShape2D_kly11")
 
+[node name="TTL" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="ExplosionArea2D" to="." method="_on_explosion_area_2d_body_entered"]
+[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]

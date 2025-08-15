@@ -11,3 +11,5 @@ default_scene = ExtResource("2_mm2aw")
 boom_scene = ExtResource("3_gwh63")
 gateway_scene = ExtResource("4_wk7dv")
 critter_junction_scene = ExtResource("5_touqt")
+
+[node name="DefaultEnemy2D" parent="." index="0" instance=ExtResource("2_mm2aw")]

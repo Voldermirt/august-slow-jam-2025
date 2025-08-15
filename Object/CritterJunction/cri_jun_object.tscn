@@ -7,6 +7,8 @@
 size = Vector2(24, 32)
 
 [node name="CriJunObject2D" type="RigidBody2D" groups=["critter_junction"]]
+collision_layer = 32
+collision_mask = 43
 script = ExtResource("1_vs2sg")
 metadata/_custom_type_script = "uid://cg5tdbwenia4d"
 

@@ -108,7 +108,7 @@ secondary={
 2d_physics/layer_3="portal"
 2d_physics/layer_4="obstacles"
 2d_physics/layer_5="projectile"
-2d_physics/layer_6="damage_layer"
+2d_physics/layer_6="objects"
 
 [rendering]
 

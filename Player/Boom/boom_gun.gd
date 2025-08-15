@@ -12,6 +12,7 @@ const Bullet := preload("res://Player/Boom/boom_bullet.tscn")
 
 func _ready() -> void:
 	PlayerStats.ammo = ammo
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):

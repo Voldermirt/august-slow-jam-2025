@@ -62,7 +62,7 @@ func switch_to(game: Globals.GameList):
 		assert(false, INVALID_CHILD_ERROR)
 		return
 
-	previous_position = scene_to_replace.global_position
+	previous_position = scene_to_replace.position
 	
 	match game:
 		Globals.GameList.DEFAULT:

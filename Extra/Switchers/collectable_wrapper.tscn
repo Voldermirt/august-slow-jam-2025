@@ -11,3 +11,5 @@ default_scene = ExtResource("2_gngdw")
 boom_scene = ExtResource("3_g6r4t")
 gateway_scene = ExtResource("4_7x0hq")
 critter_junction_scene = ExtResource("5_8ixk7")
+
+[node name="DefaultCollectable2D" parent="." index="0" instance=ExtResource("2_gngdw")]

@@ -13,4 +13,6 @@ boom_scene = ExtResource("3_j0yb3")
 gateway_scene = ExtResource("4_lox0v")
 critter_junction_scene = ExtResource("5_yvsw7")
 
+[node name="DefaultPlayer2D" parent="." instance=ExtResource("2_kbj8r")]
+
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
