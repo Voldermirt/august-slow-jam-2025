@@ -1,7 +1,9 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://bmgdqt5klxnk1"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bmgdqt5klxnk1"]
 
 [ext_resource type="Texture2D" uid="uid://caeaoc2g3yl01" path="res://assets/sprites/default_walls.png" id="1_vrii4"]
 [ext_resource type="Texture2D" uid="uid://bjtfum45iwdq" path="res://Map/enemy_test_area/debug_floor.png" id="2_mdcg2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qxhi5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0c70c"]
 texture = ExtResource("1_vrii4")
@@ -184,6 +186,7 @@ texture_region_size = Vector2i(32, 32)
 9:1/0/terrains_peering_bit/top_right_corner = 0
 10:1/0 = 0
 10:1/0/terrain_set = 0
+10:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_qxhi5")
 11:1/0 = 0
 11:1/0/terrain_set = 0
 11:1/0/terrain = 0

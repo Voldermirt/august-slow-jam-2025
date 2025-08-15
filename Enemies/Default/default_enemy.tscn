@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://bylf7n3n8p70k" path="res://Enemies/Default/default_enemy.gd" id="1_d1gei"]
 [ext_resource type="Texture2D" uid="uid://b2ugginuk104n" path="res://Enemies/Default/enemy_stub.png" id="2_prpc3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
 animations = [{
 "frames": [{
@@ -19,14 +17,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_d1gei"]
 radius = 36.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1gei"]
+height = 32.0
+
 [node name="DefaultEnemy2D" type="CharacterBody2D" groups=["default", "enemy"]]
 collision_layer = 2
 collision_mask = 25
 script = ExtResource("1_d1gei")
 metadata/_custom_type_script = "uid://bylf7n3n8p70k"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j5ojn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pubjm")
@@ -36,3 +34,6 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_d1gei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d1gei")

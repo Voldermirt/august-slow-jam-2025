@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://ypb3yci08os4" path="res://Enemies/Boom/boom_enemy.gd" id="1_ccxsa"]
 [ext_resource type="Texture2D" uid="uid://cv4gis312h5no" path="res://Enemies/Boom/enemy_stub.png" id="1_rxycp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccxsa"]
+height = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
 animations = [{
@@ -26,7 +27,7 @@ script = ExtResource("1_ccxsa")
 metadata/_custom_type_script = "uid://ypb3yci08os4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j5ojn")
+shape = SubResource("CapsuleShape2D_ccxsa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pubjm")
