@@ -30,9 +30,5 @@ func delete_existing_portal(orange):
 			portal.queue_free()
 
 func animate():
-	#while global_rotation_degrees < -180:
-		#global_rotation_degrees += 360
-	#while global_rotation_degrees > 180:
-		#global_rotation_degrees -= 360
 	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90
 	sprite.z_index = -1 if global_rotation_degrees < 0 else 0
