@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://csxiow13e80jm"]
 
-[ext_resource type="Script" uid="uid://cove68frnhifa" path="res://Player/Gateway/gateway_gun.gd" id="1_ulaan"]
+[ext_resource type="Script" path="res://Player/Gateway/gateway_gun.gd" id="1_ulaan"]
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_c1cri"]
 
 [node name="GatewayGun" type="Node2D"]

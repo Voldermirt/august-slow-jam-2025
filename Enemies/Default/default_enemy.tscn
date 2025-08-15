@@ -20,6 +20,7 @@ animations = [{
 radius = 36.0
 
 [node name="DefaultEnemy2D" type="CharacterBody2D" groups=["default", "enemy"]]
+collision_layer = 2
 collision_mask = 25
 script = ExtResource("1_d1gei")
 metadata/_custom_type_script = "uid://bylf7n3n8p70k"
