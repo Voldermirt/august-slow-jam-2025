@@ -1,58 +1,49 @@
-[gd_scene load_steps=12 format=4 uid="uid://di5d635itt4e0"]
+[gd_scene load_steps=10 format=4 uid="uid://dmbt7ahfudc6w"]
 
-[ext_resource type="Script" path="res://Map/test_area/test_map.gd" id="1_d67br"]
-[ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_mlcq5"]
-[ext_resource type="PackedScene" uid="uid://cuctkdj46buox" path="res://Extra/game_switcher.tscn" id="2_gphaj"]
-[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="3_dtc1e"]
-[ext_resource type="PackedScene" uid="uid://ubjo2o0sluou" path="res://Player/Default/default_player.tscn" id="4_d67br"]
-[ext_resource type="PackedScene" uid="uid://bs2njbev0dw5c" path="res://Player/Boom/boom_player.tscn" id="5_f8rj8"]
-[ext_resource type="PackedScene" uid="uid://dr0tu4ea1313" path="res://Player/Gateway/gateway_player.tscn" id="6_787cd"]
-[ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="7_ealf0"]
-[ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_fl3tg"]
-[ext_resource type="Script" path="res://Extra/camera_follow.gd" id="9_gphaj"]
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="10_dtc1e"]
+[ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
+[ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="2_sq1yp"]
+[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="3_ojblk"]
+[ext_resource type="PackedScene" uid="uid://ubjo2o0sluou" path="res://Player/Default/default_player.tscn" id="4_rrqod"]
+[ext_resource type="PackedScene" uid="uid://bs2njbev0dw5c" path="res://Player/Boom/boom_player.tscn" id="5_lipnt"]
+[ext_resource type="PackedScene" uid="uid://dr0tu4ea1313" path="res://Player/Gateway/gateway_player.tscn" id="6_dukwj"]
+[ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="7_w7g0n"]
+[ext_resource type="PackedScene" uid="uid://bmat7gx3yerwq" path="res://Enemies/enemy_wrapper_2d.tscn" id="8_sq1yp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d67br"]
-size = Vector2(64, 64)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ojblk"]
+vertices = PackedVector2Array(1055.95, -272.039, 1051.04, 744.961, -449.977, 739.031, -448.008, -278.953)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1066, -282, -458, -289, -460, 749, 1061, 755)])
 
-[node name="ElliotTestMap" type="Node2D"]
-script = ExtResource("1_d67br")
+[node name="MainLevel" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAAGAAIAAAAAAAEAAAALAAIAAAAAAAIAAAALAAIAAAAAAAMAAAALAAIAAAAAAAQAAAALAAIAAAAAAAUAAAALAAIAAAAAAAYAAAALAAIAAAAAAAcAAAALAAIAAAAAAAgAAAALAAIAAAAAAAkAAAALAAIAAAAAAAoAAAALAAIAAAAAAAsAAAAGAAEAAAABAAsAAAAKAAAAAAACAAsAAAAKAAAAAAADAAsAAAAKAAAAAAAEAAsAAAAKAAAAAAAFAAsAAAAKAAAAAAAGAAsAAAAKAAAAAAAHAAsAAAAKAAAAAAAIAAsAAAAKAAAAAAAJAAsAAAAKAAAAAAAKAAsAAAAKAAAAAAALAAsAAAAKAAAAAAAMAAsAAAAKAAAAAAANAAsAAAAKAAAAAAAOAAsAAAAKAAAAAAAPAAsAAAAKAAAAAAAQAAsAAAAKAAAAAAARAAsAAAAKAAAAAAASAAsAAAAKAAAAAAATAAsAAAAFAAEAAAATAAoAAAAIAAEAAAATAAkAAAAIAAEAAAATAAgAAAAIAAEAAAATAAcAAAAFAAAAAAATAAQAAAAFAAMAAAATAAMAAAAIAAEAAAATAAIAAAAIAAEAAAATAAEAAAAIAAEAAAATAAAAAAAFAAIAAAASAAAAAAAJAAMAAAARAAAAAAAJAAMAAAAQAAAAAAAJAAMAAAAPAAAAAAAJAAMAAAAOAAAAAAAJAAMAAAANAAAAAAAJAAMAAAAMAAAAAAAJAAMAAAALAAAAAAAJAAMAAAAKAAAAAAAJAAMAAAAJAAAAAAAJAAMAAAAIAAAAAAAJAAMAAAAHAAAAAAAJAAMAAAAGAAAAAAAJAAMAAAAFAAAAAAAJAAMAAAAEAAAAAAAJAAMAAAADAAAAAAAJAAMAAAACAAAAAAAJAAMAAAABAAAAAAAJAAMAAAAAAP//AAAKAAAAAAABAP//AAAKAAAAAAACAP//AAAKAAAAAAADAP//AAAKAAAAAAAEAP//AAAKAAAAAAAFAP//AAAKAAAAAAAGAP//AAAKAAAAAAAHAP//AAAKAAAAAAAIAP//AAAKAAAAAAAJAP//AAAKAAAAAAAKAP//AAAKAAAAAAALAP//AAAKAAAAAAAMAP//AAAKAAAAAAANAP//AAAKAAAAAAAOAP//AAAKAAAAAAAPAP//AAAKAAAAAAAQAP//AAAKAAAAAAATAP//AAAKAAAAAAASAP//AAAKAAAAAAARAP//AAAKAAAAAAD/////AAAIAAAAAAD//wAAAAAIAAEAAAD//wEAAAAIAAEAAAD//wIAAAAIAAEAAAD//wMAAAAIAAEAAAD//wQAAAAIAAEAAAD//wUAAAAIAAEAAAD//wYAAAAIAAEAAAD//wcAAAAIAAEAAAD//wgAAAAIAAEAAAD//wkAAAAIAAEAAAD//woAAAAIAAEAAAD//wsAAAAIAAEAAAD//wwAAAAIAAMAAAAAAAwAAAAJAAMAAAABAAwAAAAJAAMAAAACAAwAAAAJAAMAAAADAAwAAAAJAAMAAAAEAAwAAAAJAAMAAAAFAAwAAAAJAAMAAAAGAAwAAAAJAAMAAAAHAAwAAAAJAAMAAAAIAAwAAAAJAAMAAAAJAAwAAAAJAAMAAAAKAAwAAAAJAAMAAAALAAwAAAAJAAMAAAAUAAwAAAAJAAMAAAATAAwAAAAJAAMAAAASAAwAAAAJAAMAAAARAAwAAAAJAAMAAAAQAAwAAAAJAAMAAAAPAAwAAAAJAAMAAAAOAAwAAAAJAAMAAAANAAwAAAAJAAMAAAAMAAwAAAAJAAMAAAAVAAwAAAAJAAMAAAAWAAwAAAAJAAMAAAAXAAwAAAAJAAMAAAAYAAwAAAAJAAMAAAAZAAwAAAAJAAMAAAAaAAwAAAAJAAMAAAAbAAwAAAAJAAMAAAAcAAwAAAAJAAMAAAAdAAwAAAAJAAMAAAAeAAwAAAAJAAMAAAAfAAwAAAAJAAMAAAAgAAwAAAAJAAMAAAAhAAwAAAAJAAMAAAAiAAwAAAAJAAMAAAAjAAwAAAAJAAMAAAAkAAwAAAAJAAMAAAAlAAwAAAAJAAMAAAAmAAwAAAAJAAMAAAAnAAwAAAAJAAMAAAAoAAwAAAALAAMAAAAoAAsAAAALAAIAAAAoAAoAAAALAAIAAAAoAAkAAAALAAIAAAAoAAgAAAALAAIAAAAoAAcAAAALAAIAAAAoAAYAAAALAAIAAAAoAAUAAAALAAIAAAAoAAQAAAALAAIAAAAoAAMAAAALAAIAAAAoAAIAAAALAAIAAAAoAAEAAAALAAIAAAAoAAAAAAALAAIAAAAoAP//AAALAAAAAAAnAP//AAAKAAAAAAAmAP//AAAKAAAAAAAlAP//AAAKAAAAAAAkAP//AAAKAAAAAAAjAP//AAAKAAAAAAAiAP//AAAKAAAAAAAhAP//AAAKAAAAAAAgAP//AAAKAAAAAAAfAP//AAAKAAAAAAAeAP//AAAKAAAAAAAdAP//AAAKAAAAAAAcAP//AAAKAAAAAAAbAP//AAAKAAAAAAAaAP//AAAKAAAAAAAZAP//AAAKAAAAAAAYAP//AAAKAAAAAAAXAP//AAAKAAAAAAAWAP//AAAKAAAAAAAVAP//AAAKAAAAAAAUAP//AAAKAAAAAAAUAAAAAAAGAAIAAAAVAAAAAAAJAAMAAAAWAAAAAAAJAAMAAAAXAAAAAAAJAAMAAAAYAAAAAAAJAAMAAAAZAAAAAAAFAAIAAAAaAAAAAAAGAAIAAAAbAAAAAAAJAAMAAAAcAAAAAAAJAAMAAAAdAAAAAAAJAAMAAAAeAAAAAAAJAAMAAAAfAAAAAAAJAAMAAAAgAAAAAAAJAAMAAAAhAAAAAAAJAAMAAAAiAAAAAAAJAAMAAAAjAAAAAAAJAAMAAAAkAAAAAAAJAAMAAAAlAAAAAAAJAAMAAAAmAAAAAAAJAAMAAAAnAAAAAAAFAAIAAAAUAAsAAAAGAAEAAAAVAAsAAAAKAAAAAAAWAAsAAAAKAAAAAAAXAAsAAAAKAAAAAAAYAAsAAAAKAAAAAAAZAAsAAAAKAAAAAAAaAAsAAAAKAAAAAAAbAAsAAAAKAAAAAAAcAAsAAAAKAAAAAAAdAAsAAAAKAAAAAAAeAAsAAAAKAAAAAAAfAAsAAAAFAAEAAAAgAAsAAAAGAAEAAAAhAAsAAAAKAAAAAAAiAAsAAAAKAAAAAAAjAAsAAAAKAAAAAAAkAAsAAAAKAAAAAAAlAAsAAAAKAAAAAAAmAAsAAAAKAAAAAAAnAAsAAAAFAAEAAAAnAAEAAAAIAAEAAAAnAAcAAAAIAAEAAAAnAAYAAAAIAAEAAAAnAAUAAAAIAAEAAAAnAAQAAAAIAAEAAAAnAAMAAAAIAAEAAAAnAAIAAAAIAAEAAAAnAAkAAAAIAAEAAAAnAAoAAAAIAAEAAAAnAAgAAAAIAAEAAAAUAAEAAAALAAIAAAAUAAIAAAALAAIAAAAUAAMAAAALAAIAAAAUAAQAAAAGAAMAAAAUAAcAAAAGAAAAAAAUAAgAAAALAAIAAAAUAAkAAAALAAIAAAAUAAoAAAALAAIAAAADAAgAAAAIAAMAAAADAAcAAAAIAAAAAAAEAAcAAAALAAAAAAAEAAgAAAALAAMAAAADAAQAAAAIAAMAAAAEAAQAAAALAAMAAAAEAAMAAAALAAAAAAADAAMAAAAIAAAAAAASAAcAAAABAAMAAAASAAQAAAABAAMAAAAVAAQAAAADAAMAAAAVAAcAAAADAAMAAAANAAMAAAACAAMAAAAOAAMAAAACAAMAAAAPAAMAAAADAAMAAAAMAAMAAAABAAMAAAAMAAgAAAABAAMAAAANAAgAAAACAAMAAAAOAAgAAAACAAMAAAAPAAgAAAADAAMAAAAZAAEAAAAIAAEAAAAZAAIAAAAIAAEAAAAZAAMAAAAIAAEAAAAZAAQAAAAIAAEAAAAZAAUAAAAIAAEAAAAZAAYAAAAIAAEAAAAZAAcAAAAIAAMAAAAaAAcAAAALAAMAAAAaAAYAAAALAAIAAAAaAAUAAAALAAIAAAAaAAQAAAALAAIAAAAaAAMAAAALAAIAAAAaAAIAAAALAAIAAAAaAAEAAAALAAIAAAAgAAoAAAALAAIAAAAgAAkAAAALAAIAAAAgAAgAAAALAAIAAAAgAAcAAAALAAIAAAAgAAYAAAALAAIAAAAgAAUAAAALAAAAAAAfAAUAAAAIAAAAAAAfAAYAAAAIAAEAAAAfAAcAAAAIAAEAAAAfAAgAAAAIAAEAAAAfAAkAAAAIAAEAAAAfAAoAAAAIAAEAAAA=")
-tile_set = ExtResource("1_mlcq5")
-
-[node name="GameSwitcher2D" parent="." instance=ExtResource("2_gphaj")]
-script = null
-
-[node name="PlayerWrapper2D" parent="GameSwitcher2D" instance=ExtResource("3_dtc1e")]
-default_scene = ExtResource("4_d67br")
-boom_scene = ExtResource("5_f8rj8")
-gateway_scene = ExtResource("6_787cd")
-critter_junction_scene = ExtResource("7_ealf0")
-
-[node name="DefaultPlayer2D" parent="GameSwitcher2D/PlayerWrapper2D" instance=ExtResource("4_d67br")]
-position = Vector2(300, 189)
+tile_set = ExtResource("1_2l6ds")
 
 [node name="CamZoneManager" type="Node2D" parent="."]
-script = ExtResource("8_fl3tg")
+script = ExtResource("2_sq1yp")
 zones = Array[Rect2]([Rect2(0, 0, 1, 1), Rect2(1, 0, 1, 1)])
 screen_size = Vector2(640, 360)
 metadata/_custom_type_script = "uid://b3byaucvkypwn"
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("9_gphaj")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(254, 114)
-collision_layer = 8
-collision_mask = 0
-metadata/_edit_group_ = true
+[node name="PlayerWrapper2D" parent="." instance=ExtResource("3_ojblk")]
+default_scene = ExtResource("4_rrqod")
+boom_scene = ExtResource("5_lipnt")
+gateway_scene = ExtResource("6_dukwj")
+critter_junction_scene = ExtResource("7_w7g0n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_d67br")
+[node name="DefaultPlayer2D" parent="PlayerWrapper2D" instance=ExtResource("4_rrqod")]
+position = Vector2(300, 189)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_dtc1e")
+[node name="Enemies" type="Node" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies"]
+navigation_polygon = SubResource("NavigationPolygon_ojblk")
+
+[node name="EnemyWrapper2D" parent="Enemies" instance=ExtResource("8_sq1yp")]
+position = Vector2(481, 190)
+
+[editable path="Enemies/EnemyWrapper2D"]

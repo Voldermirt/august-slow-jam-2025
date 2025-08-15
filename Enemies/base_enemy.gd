@@ -73,6 +73,12 @@ func _ready():
 	
 	moving_speed = ENEMY_MOVEMENT
 	
+	
+	#if (collision_layer & ENEMY_LAYER_NUMER) == 0:
+		#collision_layer += ENEMY_LAYER_NUMER
+	#if (collision_mask & PLAYER_LAYER_NUMBER) == 0:
+		#collision_mask += PLAYER_LAYER_NUMBER
+		
 	if n_agent == null:
 		n_agent = NavigationAgent2D.new()
 		n_agent.navigation_finished.connect(_n_navigation_reached)
@@ -122,7 +128,7 @@ func _n_navigation_reached():
 	var chance_rolled: int = randi_range(0, 100)
 	if chance_rolled > 90:
 		stationary_timer.start(randi_range(0.5, 0.8))
-	elif chance_rolled > 50:
+	elif chance_rolled > 70:
 		make_player_around_path()
 	else:
 		make_player_path()

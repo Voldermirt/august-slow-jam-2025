@@ -1,12 +1,13 @@
-extends Control
+extends GeneralUI
 
+class_name Gateway2D
 
 @onready var orange_indicator := $PortalIndicatorBG/OrangeIndicator
 @onready var blue_indicator := $PortalIndicatorBG/BlueIndicator
 
-func _ready() -> void:
-	update_ui()
-	Globals.ui_update_requested.connect(update_ui)
+#func _ready() -> void:
+	#update_ui()
+	#Globals.ui_update_requested.connect(update_ui)
 
 func update_ui():
 	var blue = Globals.get_portal(false) != null

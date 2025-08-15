@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dkep5w4ndcvts" path="res://Player/Gateway/gateway_bullet.gd" id="1_vi6p4"]
 [ext_resource type="Texture2D" uid="uid://b8gd3e2oqe8dn" path="res://Player/Gateway/portal_bullet.png" id="2_vi6p4"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tk7p"]
 size = Vector2(8, 8)
 

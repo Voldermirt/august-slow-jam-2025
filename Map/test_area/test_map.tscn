@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=4 uid="uid://cxrah1hxkqfkg"]
 
-[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/switch_wrapper.tscn" id="1_4bso5"]
+[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_4bso5"]
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="2_0c70c"]
 [ext_resource type="PackedScene" uid="uid://ubjo2o0sluou" path="res://Player/Default/default_player.tscn" id="2_jd06k"]
 [ext_resource type="PackedScene" uid="uid://bs2njbev0dw5c" path="res://Player/Boom/boom_player.tscn" id="3_0c70c"]
 [ext_resource type="PackedScene" uid="uid://cuctkdj46buox" path="res://Extra/game_switcher.tscn" id="3_7834y"]
 [ext_resource type="PackedScene" uid="uid://dr0tu4ea1313" path="res://Player/Gateway/gateway_player.tscn" id="4_6tcai"]
 [ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="5_mfew6"]
-[ext_resource type="Script" path="res://Extra/cam_zone_manager.gd" id="8_mfew6"]
+[ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_mfew6"]
 
 [node name="TestMap" type="Node2D"]
 

@@ -19,12 +19,15 @@ func break_itself(body: Node):
 		var inside_object = inside_object_scene.instantiate()
 		if inside_object is Node2D:
 			inside_object.global_position = global_position
-			parent_node.add_child(inside_object)
-	queue_free()
+			parent_node.add_sibling(inside_object)
+	kill()
 
 func _ready():
 	super._ready()
 
+#func _on_body_entered(body):
+	#break_itself(body)
 
-func _on_area_2d_body_entered(body: Node):
+func receive_damage(body: Node):
+	super.receive_damage(body)
 	break_itself(body)

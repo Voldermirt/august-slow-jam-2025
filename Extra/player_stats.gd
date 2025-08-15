@@ -1,9 +1,11 @@
 extends Node
 
+pass
+
 ## GENERAL STATS
-var max_health := 100
-var health := 100
-var money := 0
+var _max_health := 100
+var _health := 100
+var _money := 0
 
 ## DEFAULT GAME STATS
 # ...
