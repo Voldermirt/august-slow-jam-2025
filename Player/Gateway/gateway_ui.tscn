@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://6x7dkrdl3vbw"]
+[gd_scene load_steps=5 format=3 uid="uid://6x7dkrdl3vbw"]
 
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="1_lu8xt"]
 [ext_resource type="Script" uid="uid://bsypkrninqk0g" path="res://Player/Gateway/gateway_ui.gd" id="1_x68nj"]
+[ext_resource type="Texture2D" uid="uid://b2fhspdavl1xs" path="res://Player/Gateway/gateway_indicator.png" id="2_3su7a"]
+[ext_resource type="Texture2D" uid="uid://4ovd2c6ak6dn" path="res://Player/Gateway/blue_indicator.png" id="3_7lid2"]
+[ext_resource type="Texture2D" uid="uid://cre1ju2jgq1sc" path="res://Player/Gateway/orange_indicator.png" id="4_4ty0e"]
 
 [node name="GatewayUI" type="Control"]
 layout_mode = 3
@@ -13,62 +15,53 @@ grow_vertical = 2
 script = ExtResource("1_x68nj")
 metadata/_edit_lock_ = true
 
-[node name="OrangeBG" type="TextureRect" parent="."]
-self_modulate = Color(0.0941176, 0.0941176, 0.0941176, 1)
+[node name="PortalIndicatorBG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -66.0
-offset_top = -114.0
-offset_right = -13.0
-offset_bottom = -61.0
+offset_left = -112.0
+offset_top = -112.0
+offset_right = -16.0
+offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("1_lu8xt")
-expand_mode = 4
-metadata/_edit_group_ = true
+texture = ExtResource("2_3su7a")
+stretch_mode = 2
+metadata/_edit_lock_ = true
 
-[node name="OrangeIndicator" type="TextureRect" parent="OrangeBG"]
-visible = false
-modulate = Color(1, 0.366667, 0, 1)
+[node name="BlueIndicator" type="TextureRect" parent="PortalIndicatorBG"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 4.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_lu8xt")
-expand_mode = 4
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(18, 18)
+texture = ExtResource("3_7lid2")
+stretch_mode = 2
 
-[node name="BlueBG" type="TextureRect" parent="."]
-self_modulate = Color(0.0941176, 0.0941176, 0.0941176, 1)
+[node name="OrangeIndicator" type="TextureRect" parent="PortalIndicatorBG"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = -61.0
-offset_right = -65.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("1_lu8xt")
-expand_mode = 4
-metadata/_edit_group_ = true
-
-[node name="BlueIndicator" type="TextureRect" parent="BlueBG"]
-visible = false
-modulate = Color(0, 0.633333, 1, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -40.0
+offset_right = 44.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_lu8xt")
-expand_mode = 4
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(18, 18)
+texture = ExtResource("4_4ty0e")
+stretch_mode = 2

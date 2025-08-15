@@ -77,7 +77,7 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	# Check if input matches any of the codes
 	var matches = false
 	for code in [default_code, boom_code, gateway_code, critter_junction_code]:
-		if idx < len(code) and dir == code[idx]:
+		if idx < len(code) and current_sequence == code.slice(0, idx + 1):
 			matches = true
 			if idx + 1 == len(code):
 				print("Code successfully inputted!")

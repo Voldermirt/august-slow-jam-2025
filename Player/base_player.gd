@@ -14,6 +14,7 @@ var collectables: float = 0
  
 var effective_size := Vector2(32, 32)
 
+var anim : AnimatedSprite2D = null
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
 	var player_retrieved_from: BasePlayer2D = (retrieved_from as BasePlayer2D)
@@ -68,3 +69,15 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.get_collider().is_in_group("pushable"):
 			collision.get_collider().apply_central_impulse(direction * push_force)
+	
+	# Animate
+	if anim:
+		if direction.length() > 0:
+			anim.play("walk")
+		else:
+			anim.play("idle")
+		
+		if direction.x > 0:
+			anim.flip_h = false
+		elif direction.x < 0:
+			anim.flip_h = true

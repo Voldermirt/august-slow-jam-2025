@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://di5d635itt4e0"]
+[gd_scene load_steps=12 format=4 uid="uid://di5d635itt4e0"]
 
 [ext_resource type="Script" path="res://Map/test_area/test_map.gd" id="1_d67br"]
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_mlcq5"]
