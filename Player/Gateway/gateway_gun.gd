@@ -6,11 +6,14 @@ const Bullet := preload("res://Player/Gateway/gateway_bullet.tscn")
 @export var blue_color : Color
 @export var orange_color : Color
 
+@onready var sprite := $Rotatator/WeaponSprite
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
 		shoot_portal(false)
 	if Input.is_action_just_pressed("secondary"):
 		shoot_portal(true)
+	animate()
 
 func shoot_portal(is_orange):
 	delete_existing_portal(is_orange)
@@ -25,3 +28,11 @@ func delete_existing_portal(orange):
 	for portal in get_tree().get_nodes_in_group("portal_instance"):
 		if portal.is_orange == orange:
 			portal.queue_free()
+
+func animate():
+	#while global_rotation_degrees < -180:
+		#global_rotation_degrees += 360
+	#while global_rotation_degrees > 180:
+		#global_rotation_degrees -= 360
+	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90
+	sprite.z_index = -1 if global_rotation_degrees < 0 else 0

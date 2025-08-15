@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://csxiow13e80jm"]
 
 [ext_resource type="Script" uid="uid://cove68frnhifa" path="res://Player/Gateway/gateway_gun.gd" id="1_ulaan"]
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_c1cri"]
+[ext_resource type="Texture2D" uid="uid://cim1om0ifdv07" path="res://Player/Gateway/portal_gun.png" id="2_gy27w"]
 
 [node name="GatewayGun" type="Node2D"]
 script = ExtResource("1_ulaan")
@@ -9,8 +9,7 @@ blue_color = Color(0, 0.65, 1, 1)
 orange_color = Color(1, 0.466667, 0, 1)
 
 [node name="Rotatator" type="Node2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(16, 0)
 
 [node name="WeaponSprite" type="Sprite2D" parent="Rotatator"]
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("2_c1cri")
+texture = ExtResource("2_gy27w")

@@ -1,10 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm0fb4uqi2m1d"]
+[gd_scene load_steps=15 format=3 uid="uid://cm0fb4uqi2m1d"]
 
 [ext_resource type="Script" uid="uid://la2phqwofky8" path="res://Player/Gateway/gateway.gd" id="1_psoc1"]
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_uyihj"]
+[ext_resource type="Texture2D" uid="uid://b266piau8it3n" path="res://Player/Gateway/portal.png" id="2_psoc1"]
+[ext_resource type="Texture2D" uid="uid://b8gd3e2oqe8dn" path="res://Player/Gateway/portal_bullet.png" id="3_uyihj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i65ev"]
-size = Vector2(64, 16)
+size = Vector2(32, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyihj"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kibu3"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijhcj"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsyu4"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha8e0"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1itpv"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwgc3"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5vmi"]
+atlas = ExtResource("2_psoc1")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vsnt2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyihj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kibu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijhcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsyu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha8e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1itpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwgc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5vmi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="Curve" id="Curve_kibu3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.65704, 0.80597), -1.02918, -1.02918, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Gateway" type="Area2D" groups=["portal_instance"]]
 collision_layer = 4
@@ -12,13 +81,38 @@ collision_mask = 3
 script = ExtResource("1_psoc1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_i65ev")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.126)
-texture = ExtResource("2_uyihj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_vsnt2")
+autoplay = "default"
+frame_progress = 0.0427369
 
 [node name="TeleportTarget" type="Marker2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -28)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+texture = ExtResource("3_uyihj")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.83
+randomness = 0.15
+emission_shape = 3
+emission_rect_extents = Vector2(16, 1)
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 87.25
+initial_velocity_max = 134.22
+linear_accel_min = -51.68
+linear_accel_max = -36.92
+scale_amount_min = 0.5
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_kibu3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

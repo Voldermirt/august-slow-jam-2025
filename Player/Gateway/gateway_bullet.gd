@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		portal.is_orange = is_orange
 		portal.color = color
 		Globals.get_2d_root().add_child(portal)
-		portal.global_rotation = col.get_angle()
+		portal.rotation = col.get_angle()
 		portal.global_position = col.get_position()
 		
 		queue_free()

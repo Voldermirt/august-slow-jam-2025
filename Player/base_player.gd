@@ -4,7 +4,6 @@ extends BaseEntity2D
 class_name BasePlayer2D
 
 const DEFAULT_RECOVERY_SECONDS: float = 1
-@export var moving_speed: float = 250.0
 
 var push_force: float = 200.0
 var gateway_collectables: float
@@ -13,6 +12,8 @@ var cri_jun_collectables: float
 var default_collectables: float
 
 var effective_size := Vector2(32, 32)
+
+var anim : AnimatedSprite2D = null
 	
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
@@ -68,3 +69,15 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.get_collider().is_in_group("pushable"):
 			collision.get_collider().apply_central_impulse(direction * push_force)
+	
+	# Animate
+	if anim:
+		if direction.length() > 0:
+			anim.play("walk")
+		else:
+			anim.play("idle")
+		
+		if direction.x > 0:
+			anim.flip_h = false
+		elif direction.x < 0:
+			anim.flip_h = true
