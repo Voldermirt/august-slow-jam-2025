@@ -36,7 +36,7 @@ func _ready():
 
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
-	var children: Array[Node]
+	#var children: Array[Node]
 	# The current scene to be replaced
 	var scene_to_replace: Node
 	# The new scene replacing the old one
@@ -49,12 +49,15 @@ func switch_to(game: Globals.GameList):
 		assert(false, "Not recognizing the game to switch to!")
 		return
 	
-	children = get_children()
-	if children.size() != 1:
-		assert(false, INVALID_CHILD_ERROR)
-		return
-		
-	scene_to_replace = children[0]
+	#children = get_children()
+	#if children.size() != 1:
+		#assert(false, INVALID_CHILD_ERROR)
+		#return
+		#
+	
+	scene_to_replace = switching_scene 
+	
+	#scene_to_replace = children[0]
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return

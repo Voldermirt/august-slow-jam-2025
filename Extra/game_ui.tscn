@@ -58,3 +58,5 @@ texture_under = ExtResource("6_10174")
 texture_progress = ExtResource("6_10174")
 tint_under = Color(0.0475577, 0.0475576, 0.0475576, 1)
 tint_progress = Color(1, 0, 0, 1)
+
+[connection signal="child_entered_tree" from="UISwitcher" to="UISwitcher" method="_on_child_entered_tree"]

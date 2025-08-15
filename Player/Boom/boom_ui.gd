@@ -1,13 +1,12 @@
-extends Control
+extends GeneralUI
+
+class_name BoomUI
 
 @onready var cooldown_bar := $CooldownBar
 @onready var ammo_label := $AmmoCount
 
-func _ready():
-	update_ui()
-	Globals.ui_update_requested.connect(update_ui)
-
 func update_ui():
-	cooldown_bar.max_value = PlayerStats.max_cooldown
-	cooldown_bar.value = PlayerStats.cooldown
-	ammo_label.text = " %s " % PlayerStats.ammo
+	pass
+	#cooldown_bar.max_value = _current_player_scene.max_cooldown
+	#cooldown_bar.value = _current_player_scene.cooldown
+	#ammo_label.text = " %s " % _current_player_scene.ammo
