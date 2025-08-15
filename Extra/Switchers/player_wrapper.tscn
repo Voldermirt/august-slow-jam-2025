@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://duymjfignn2dy"]
+
+[ext_resource type="Script" uid="uid://byjf188e53q71" path="res://Extra/Switchers/player_wrapper.gd" id="1_y2ua7"]
+[ext_resource type="PackedScene" uid="uid://bs2njbev0dw5c" path="res://Player/Boom/boom_player.tscn" id="3_j0yb3"]
+[ext_resource type="PackedScene" uid="uid://dr0tu4ea1313" path="res://Player/Gateway/gateway_player.tscn" id="4_lox0v"]
+[ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="5_yvsw7"]
+
+[node name="PlayerWrapper2D" type="Node2D" groups=["player_wrapper", "switch_wrapper"]]
+script = ExtResource("1_y2ua7")
+default_scene = null
+boom_scene = ExtResource("3_j0yb3")
+gateway_scene = ExtResource("4_lox0v")
+critter_junction_scene = ExtResource("5_yvsw7")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

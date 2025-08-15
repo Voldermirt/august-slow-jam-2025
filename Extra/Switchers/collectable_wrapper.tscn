@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk84mg461j7qv"]
+
+[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_fl4in"]
+[ext_resource type="PackedScene" uid="uid://c0n5mu8b66cta" path="res://Collectables/Default/default_collectable.tscn" id="2_gngdw"]
+[ext_resource type="PackedScene" uid="uid://ddd3g4d6q3clu" path="res://Collectables/Boom/boom_collectable.tscn" id="3_g6r4t"]
+[ext_resource type="PackedScene" uid="uid://dbkwjooflp27j" path="res://Collectables/Gateway/gateway_collectable.tscn" id="4_7x0hq"]
+[ext_resource type="PackedScene" uid="uid://ckej42hj0tyww" path="res://Collectables/CritterJunction/cri_jun_collectable.tscn" id="5_8ixk7"]
+
+[node name="CollectableWrapper2D" instance=ExtResource("1_fl4in")]
+default_scene = ExtResource("2_gngdw")
+boom_scene = ExtResource("3_g6r4t")
+gateway_scene = ExtResource("4_7x0hq")
+critter_junction_scene = ExtResource("5_8ixk7")

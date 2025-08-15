@@ -9,7 +9,8 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 @export var gateway_scene: PackedScene
 @export var critter_junction_scene: PackedScene
 
-
+var switching_scene: Node
+	
 ## Empty function to be overriden by the subclass
 #func switch_to(game: Globals.GameList):
 	#push_error("This is an abstract method, only should be overriden and called in the subclass")
@@ -88,3 +89,8 @@ func switch_to(game: Globals.GameList):
 	new_scene.global_position = previous_position
 	add_child(new_scene)
 	
+
+
+func _on_child_entered_tree(node: Node):
+	# REMEMBER THIS
+	switching_scene = node

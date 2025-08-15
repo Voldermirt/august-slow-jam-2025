@@ -3,6 +3,8 @@ extends BaseEntity2D
 # Defines the base functions and variables that all players will have access to
 class_name BasePlayer2D
 
+signal player_instantiated
+
 const DEFAULT_RECOVERY_SECONDS: float = 1
 
 var push_force: float = 200.0

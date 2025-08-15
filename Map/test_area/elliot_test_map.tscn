@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=4 uid="uid://di5d635itt4e0"]
 
-[ext_resource type="Script" uid="uid://hhiq4f6ylgfw" path="res://Map/test_area/test_map.gd" id="1_d67br"]
+[ext_resource type="Script" path="res://Map/test_area/test_map.gd" id="1_d67br"]
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_mlcq5"]
 [ext_resource type="PackedScene" uid="uid://cuctkdj46buox" path="res://Extra/game_switcher.tscn" id="2_gphaj"]
-[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/switch_wrapper.tscn" id="3_dtc1e"]
+[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="3_dtc1e"]
 [ext_resource type="PackedScene" uid="uid://ubjo2o0sluou" path="res://Player/Default/default_player.tscn" id="4_d67br"]
 [ext_resource type="PackedScene" uid="uid://bs2njbev0dw5c" path="res://Player/Boom/boom_player.tscn" id="5_f8rj8"]
 [ext_resource type="PackedScene" uid="uid://dr0tu4ea1313" path="res://Player/Gateway/gateway_player.tscn" id="6_787cd"]
 [ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="7_ealf0"]
 [ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_fl3tg"]
-[ext_resource type="Script" uid="uid://xtxfxdc8dgu6" path="res://Extra/camera_follow.gd" id="9_gphaj"]
+[ext_resource type="Script" path="res://Extra/camera_follow.gd" id="9_gphaj"]
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="10_dtc1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d67br"]

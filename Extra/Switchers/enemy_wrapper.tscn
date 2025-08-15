@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3 uid="uid://dua4bgn4syyt1"]
+
+[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_lmbdt"]
+[ext_resource type="PackedScene" uid="uid://b3y6vpr4xcp4n" path="res://Enemies/Default/default_enemy.tscn" id="2_mm2aw"]
+[ext_resource type="PackedScene" uid="uid://6lct7wefkvt0" path="res://Enemies/Boom/boom_enemy.tscn" id="3_gwh63"]
+[ext_resource type="PackedScene" uid="uid://cn85l00otsm16" path="res://Enemies/Gateway/gateway_enemy.tscn" id="4_wk7dv"]
+[ext_resource type="PackedScene" uid="uid://dx2q6nx1rdria" path="res://Enemies/CritterJunction/cri_jun_enemy.tscn" id="5_touqt"]
+
+[node name="EnemyWrapper2D" instance=ExtResource("1_lmbdt")]
+default_scene = ExtResource("2_mm2aw")
+boom_scene = ExtResource("3_gwh63")
+gateway_scene = ExtResource("4_wk7dv")
+critter_junction_scene = ExtResource("5_touqt")

@@ -5,7 +5,6 @@ extends Node
 # (idk lmao)
 signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
-signal ui_update_requested()
 
 enum GameList {
 	DEFAULT,
@@ -18,7 +17,6 @@ var current_game_index: int = GameList.DEFAULT
 
 
 func _process(delta: float) -> void:
-	ui_update_requested.emit()
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
 		switch_random_games()
 
