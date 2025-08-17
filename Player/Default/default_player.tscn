@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ubjo2o0sluou"]
+[gd_scene load_steps=11 format=3 uid="uid://ubjo2o0sluou"]
 
 [ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_3v0ge"]
 [ext_resource type="Texture2D" uid="uid://dl4vnlasjmn4p" path="res://Player/Default/player.png" id="2_yt6s3"]
@@ -7,25 +7,40 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 size = Vector2(15, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhyap"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u0vu"]
 atlas = ExtResource("2_yt6s3")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt6s3"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhyap"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 64, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjm7u"]
 atlas = ExtResource("2_yt6s3")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_irnmt"]
 atlas = ExtResource("2_yt6s3")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8u0vu"]
-atlas = ExtResource("2_yt6s3")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u0vu")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt6s3")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dhyap")
 }, {
@@ -34,16 +49,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_irnmt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8u0vu")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default", "player"]]
+z_index = 3
 collision_mask = 46
 script = ExtResource("1_3v0ge")
 metadata/_custom_type_script = "uid://pbh68marjmsv"
@@ -55,8 +68,7 @@ shape = SubResource("RectangleShape2D_l8h54")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.14972
+animation = &"idle"
+autoplay = "idle"
 
 [node name="DefaultSword" parent="." groups=["default"] instance=ExtResource("3_qgiie")]

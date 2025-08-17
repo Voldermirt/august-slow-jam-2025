@@ -20,7 +20,10 @@ func break_itself(body: Node):
 		if inside_object is Node2D:
 			inside_object.global_position = global_position
 			parent_node.add_sibling(inside_object)
-	kill()
+	
+	$Sprite2D.play("break")
+	process_mode = Node.PROCESS_MODE_DISABLED
+	#kill()
 
 func _ready():
 	super._ready()

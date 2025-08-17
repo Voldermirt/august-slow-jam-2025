@@ -80,7 +80,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="MainLevel" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
+[node name="Level" parent="Render2D/Level2D" instance=ExtResource("2_3anwy")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Render2D/Level2D"]
 

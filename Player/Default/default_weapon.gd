@@ -5,6 +5,7 @@ const SWORD_DAMAGE: float = 50
 
 @onready var anim = $Rotatator/AnimationPlayer
 @onready var block_col = $Rotatator/BlockCollision
+@onready var sprite := $Rotatator/Sword/WeaponSprite
 
 func is_attacking():
 	return anim.current_animation == "swing"
@@ -39,3 +40,7 @@ func _on_sword_body_entered(body: Node2D) -> void:
 		(body as BaseEnemy2D)._on_getting_hit(SWORD_DAMAGE)
 	elif body is BaseObject2D:
 		(body as BaseObject2D).receive_damage(self)
+
+func animate():
+	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90
+	sprite.z_index = -1 if global_rotation_degrees < 0 else 0
