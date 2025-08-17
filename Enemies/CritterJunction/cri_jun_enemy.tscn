@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx2q6nx1rdria"]
+[gd_scene load_steps=6 format=3 uid="uid://dx2q6nx1rdria"]
 
 [ext_resource type="Texture2D" uid="uid://c75o1sbjm52su" path="res://Enemies/CritterJunction/enemy_stub.png" id="1_n3wof"]
 [ext_resource type="Script" uid="uid://8saum54nmi5k" path="res://Enemies/CritterJunction/cri_jun_enemy.gd" id="1_tjt3c"]
@@ -17,6 +17,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tjt3c"]
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjt3c"]
+radius = 36.0
+
 [node name="CritterJunctionEnemy2D" type="CharacterBody2D" groups=["critter_junction", "enemy"]]
 collision_mask = 25
 script = ExtResource("1_tjt3c")
@@ -27,3 +30,9 @@ sprite_frames = SubResource("SpriteFrames_pubjm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tjt3c")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tjt3c")

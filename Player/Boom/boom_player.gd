@@ -11,6 +11,7 @@ func get_max_health():
 
 func _ready():
 	super._ready()
+	anim = $AnimatedSprite2D
 
 func _physics_process(delta):
 	super._physics_process(delta)

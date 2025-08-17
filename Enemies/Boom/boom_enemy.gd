@@ -2,4 +2,6 @@ extends BaseEnemy2D
 
 class_name BoomEnemy2D
 
-pass
+func _ready() -> void:
+	super._ready()
+	anim = $AnimatedSprite2D
