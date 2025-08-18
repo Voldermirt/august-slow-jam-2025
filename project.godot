@@ -43,6 +43,7 @@ pushable=""
 enemy=""
 boss=""
 portal_instance=""
+checkpoint=""
 
 [input]
 
@@ -123,10 +124,10 @@ secondary={
 2d_physics/layer_2="character"
 2d_physics/layer_3="portal"
 2d_physics/layer_4="obstacles"
-2d_physics/layer_5="projectile"
+2d_physics/layer_5="player_projectile"
 2d_physics/layer_6="objects"
-2d_physics/layer_7="cri_jun_interact"
-2d_physics/layer_8="cri_jun_fruit_platform"
+2d_physics/layer_7="enemy_projectile"
+2d_physics/layer_8="cri_jun_interact"
 
 [rendering]
 

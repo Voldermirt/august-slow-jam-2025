@@ -17,7 +17,7 @@ func switch_to(game: Globals.GameList):
 
 func _on_child_entered_tree(node: Node):
 	super._on_child_entered_tree(node)
-	if switching_scene is BasePlayer2D and is_node_ready():
+	if switching_scene is BasePlayer2D:
 		player_switched_games.emit(switching_scene as BasePlayer2D)
 	else:
 		push_error("Player Wrapper doesn't have the player scene?")

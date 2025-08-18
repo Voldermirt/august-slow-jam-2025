@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb01e6tfjcsmv"]
+[gd_scene load_steps=7 format=3 uid="uid://bb01e6tfjcsmv"]
 
 [ext_resource type="Script" uid="uid://dkep5w4ndcvts" path="res://Player/Gateway/gateway_bullet.gd" id="1_vi6p4"]
 [ext_resource type="Texture2D" uid="uid://b8gd3e2oqe8dn" path="res://Player/Gateway/portal_bullet.png" id="2_vi6p4"]
@@ -6,9 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tk7p"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vi6p4"]
+size = Vector2(12, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moe8f"]
+size = Vector2(3, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0c2qr"]
+size = Vector2(3, 8)
+
 [node name="GatewayBullet" type="CharacterBody2D" groups=["portal_instance"]]
 scale = Vector2(0.9931, 1)
-collision_layer = 16
+collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_vi6p4")
 speed = 800
@@ -19,3 +28,35 @@ shape = SubResource("RectangleShape2D_1tk7p")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("2_vi6p4")
+
+[node name="RightFront" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightFront"]
+position = Vector2(6, 14)
+shape = SubResource("RectangleShape2D_vi6p4")
+
+[node name="LeftFront" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftFront"]
+position = Vector2(6, -14)
+shape = SubResource("RectangleShape2D_vi6p4")
+
+[node name="RightSide" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSide"]
+position = Vector2(-6.04169, 16)
+shape = SubResource("RectangleShape2D_moe8f")
+
+[node name="LeftSide" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSide"]
+position = Vector2(-6.04169, -16)
+shape = SubResource("RectangleShape2D_0c2qr")

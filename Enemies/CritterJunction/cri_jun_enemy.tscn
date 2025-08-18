@@ -18,6 +18,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tjt3c"]
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjt3c"]
+radius = 36.0
+
 [node name="CritterJunctionEnemy2D" type="CharacterBody2D" groups=["critter_junction", "enemy"]]
 collision_mask = 25
 script = ExtResource("1_tjt3c")
@@ -68,3 +71,10 @@ expand_mode = 2
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "2"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tjt3c")
+

@@ -12,6 +12,9 @@ func _ready() -> void:
 	particles.color = color
 	Globals.game_changed.connect(game_changed)
 
+func _process(delta: float) -> void:
+	global_rotation_degrees = snappedi(global_rotation_degrees, 90)
+
 func game_changed(_game):
 	queue_free()
 

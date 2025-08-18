@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://18e7w3cg1e68"]
+
+[ext_resource type="Script" uid="uid://3lesfxowx76y" path="res://Enemies/Boom/enemy_fileball.gd" id="1_p1hqx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1hqx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5ai41"]
+size = Vector2(20, 20)
+
+[node name="EnemyFileball" type="CharacterBody2D"]
+collision_layer = 64
+script = ExtResource("1_p1hqx")
+metadata/_custom_type_script = "uid://3lesfxowx76y"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p1hqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_5ai41")

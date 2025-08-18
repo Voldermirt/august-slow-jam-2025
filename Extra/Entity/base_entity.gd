@@ -6,7 +6,10 @@ const BASE_MAX_HEALTH: float = 100
 const ENEMY_LAYER_NUMER: int = 2
 const PLAYER_LAYER_NUMBER: int = 1
 
+var allowed_to_move: bool = true
+
 var health: float
+var is_invincible: bool = false
 
 var damage_recovery_seconds: float
 var recovery_timer: Timer
@@ -31,7 +34,7 @@ func knockback_applied(direction: Vector2, force: float, duration: float):
 	cur_knock_force = direction * force
 	cur_knock_duration = duration 
 
-func _knockback_procses(delta):
+func _knockback_proccess(delta):
 	var direction = cur_knock_force.normalized()
 	velocity = cur_knock_force
 	cur_knock_duration -= delta
@@ -52,11 +55,12 @@ func _physics_process(delta):
 	pass
 
 func _on_getting_hit(damage: float):
-	health -= damage
-	if health <= 0:
-		_on_death()
-	else:
-		_start_damage_recovery()
+	if not is_invincible:
+		health -= damage
+		if health <= 0:
+			_on_death()
+		else:
+			_start_damage_recovery()
 
 func _on_death():
 	var parent = get_parent()
@@ -67,8 +71,8 @@ func _on_death():
 func _start_damage_recovery():
 	recovery_timer.start(damage_recovery_seconds)
 	modulate.a = 0.5
-	#collision_layer -= DAMAGE_LAYER_NUMER
+	is_invincible = true
 
 func _end_damage_recovery():
-	#collision_layer += DAMAGE_LAYER_NUMER
+	is_invincible = false
 	modulate.a = 1

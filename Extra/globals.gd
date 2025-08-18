@@ -58,7 +58,6 @@ func switch_random_games():
 func switch_games(game_index: GameList):
 	var wrappers: Array[Node] = get_tree().get_nodes_in_group("switch_wrapper")
 	for wrapper in wrappers:
-		var switch_wrapper = wrapper as SwitchWrapper2D
-		switch_wrapper.switch_to(game_index)
+		wrapper.switch_to(game_index)
 	game_changed.emit(game_index)
 	

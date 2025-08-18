@@ -14,8 +14,9 @@ var on_contact_hit_delay_timer: Timer
 var stationary_timer: Timer
 
 var player_body: BasePlayer2D
+var anim : AnimatedSprite2D = null
 
-# Gives entity the data it should receive on initial Îspawning
+# Gives entity the data it should receive on initial spawning
 func set_spawn_data():
 	super.set_spawn_data()
 	self.health = BASE_MAX_HEALTH
@@ -39,7 +40,6 @@ func make_player_path():
 		return Vector2.INF
 	return make_path(player_body.global_position)
 	
-
 func make_player_around_path():
 	if player_body == null:
 		return false
@@ -115,14 +115,28 @@ func _process(delta):
 			make_player_path()
 		if Input.is_key_pressed(KEY_R):
 			make_player_around_path()
-	pass
 	
 func _physics_process(delta):
 	if cur_knock_duration > 0.0:
-		_knockback_procses(delta)
+		_knockback_proccess(delta)
 	else:
 		if n_agent != null and n_agent.target_position != Vector2.INF and stationary_timer.time_left <= 0:
 			move_to_ntarget()
+	animate()
+
+func animate():
+	if not anim:
+		return
+	
+	if velocity.length() > 0:
+		anim.play("walk")
+	else:
+		anim.play("idle")
+	
+	if velocity.x > 0:
+		anim.flip_h = false
+	elif velocity.x < 0:
+		anim.flip_h = true
 
 func _n_navigation_reached():
 	var chance_rolled: int = randi_range(0, 100)

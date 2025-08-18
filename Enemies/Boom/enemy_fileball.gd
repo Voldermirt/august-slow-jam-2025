@@ -1,6 +1,6 @@
 extends BaseProjectile2D
 
-class_name BoomProjectile2D
+class_name FireballProjectile2D
 
 func _physics_process(delta: float) -> void:
 	global_rotation = direction.angle()
@@ -9,14 +9,8 @@ func _physics_process(delta: float) -> void:
 	
 	if col and col.get_collider() != null:
 		var collider: Object = col.get_collider()
-		if collider is BaseEnemy2D:
-			var enemy: BaseEnemy2D = collider as BaseEnemy2D
-			enemy._on_getting_hit(damage)
+		if collider is BasePlayer2D:
+			(collider as BasePlayer2D)._on_getting_hit(damage)
 			
-		if collider is BaseObject2D:
-			var object: BaseObject2D = collider as BaseObject2D
-			object.receive_damage(self)
 		hide()
 		queue_free()
-		
-		
