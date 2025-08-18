@@ -1,4 +1,34 @@
-[gd_scene load_steps=0 format=3 uid="uid://bkp4c3oycvlkj"]
+[gd_scene load_steps=13 format=3 uid="uid://bkp4c3oycvlkj"]
+
+[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="1_0pqit"]
+[ext_resource type="Script" uid="uid://dkh8cn8kie663" path="res://Player/CritterJunction/cri_jun_ui.gd" id="1_r76oj"]
+[ext_resource type="Texture2D" uid="uid://cqut0h1wua4u0" path="res://Object/CritterJunction/fruit.png" id="2_3qiqx"]
+[ext_resource type="Texture2D" uid="uid://dyu8pmjxog6s0" path="res://Object/CritterJunction/fruit_focused.png" id="4_erj35"]
+[ext_resource type="Script" uid="uid://2jjfab4duh64" path="res://Player/CritterJunction/apple_button.gd" id="5_f2tcw"]
+
+[sub_resource type="Theme" id="Theme_f2tcw"]
+
+[sub_resource type="Theme" id="Theme_74gde"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r76oj"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erj35"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2tcw"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74gde"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw80p"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(64, 0, 16, 16)
 
 [node name="CriJunUI" type="Control"]
 layout_mode = 3
@@ -7,3 +37,64 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_r76oj")
+
+[node name="MoneyContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 117.0
+offset_bottom = 67.0
+
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer"]
+modulate = Color(0.97, 0.51119, 0.1358, 1)
+layout_mode = 2
+texture = ExtResource("1_0pqit")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MoneyContainer"]
+layout_mode = 2
+text = "1000"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_right = -544.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_f2tcw")
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="SeedsContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="AppleButton" type="TextureButton" parent="ScrollContainer/SeedsContainer"]
+layout_mode = 2
+theme = SubResource("Theme_74gde")
+texture_normal = SubResource("AtlasTexture_r76oj")
+texture_focused = ExtResource("4_erj35")
+script = ExtResource("5_f2tcw")
+
+[node name="OrangeButton" type="TextureButton" parent="ScrollContainer/SeedsContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_erj35")
+texture_focused = ExtResource("4_erj35")
+
+[node name="CherryButton" type="TextureButton" parent="ScrollContainer/SeedsContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_f2tcw")
+texture_focused = ExtResource("4_erj35")
+
+[node name="PeachButton" type="TextureButton" parent="ScrollContainer/SeedsContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_74gde")
+texture_focused = ExtResource("4_erj35")
+
+[node name="PearButton" type="TextureButton" parent="ScrollContainer/SeedsContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_vw80p")
+texture_focused = ExtResource("4_erj35")
