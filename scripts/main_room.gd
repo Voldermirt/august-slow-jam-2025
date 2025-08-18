@@ -10,14 +10,28 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var critter_junction_code : Array[Direction]
 
 @onready var zoom_anim := %ZoomAnim
+@onready var view_2d := $ScreenEffects/EffectViewport/Render2D
 @onready var view_3d := $Render3D
-@onready var level = $Render2D/Level2D/Level
+@onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D
 
 var zoom_out = false      # Are we zoomed/zooming out
 var current_sequence = [] # Current cheat code input sequence
 
+
+# Shader variables
+@export_group("Glitch effect")
+@export var glitch_curve : Curve
+@export var max_glitch := 600
+@export var glitch_seconds := 1.0
+var glitch_rotation := 0.0
+var current_glitch_time := 0.0
+var glitching := false
+
+var selected_game : Globals.GameList
+
 func _ready() -> void:
 	Globals.level_change_requested.connect(change_level)
+	view_2d.material.set_shader_parameter("offset", 0.0)
 
 func string_to_dir(input : String):
 	match input:
@@ -63,29 +77,52 @@ func change_level(new_level : PackedScene):
 	level = new_level.instantiate()
 	$Render2D/Level2D.add_child(level)
 
+func _process(delta: float) -> void:
+	
+	### GLITCH ANIMATION ###
+	# Rotation
+	glitch_rotation = wrap(glitch_rotation + delta, 0.0, 1.0)
+	view_2d.material.set_shader_parameter("rotation_ratio", glitch_rotation)
+	# Intensity
+	if glitching:
+		current_glitch_time = clamp(current_glitch_time + delta / glitch_seconds, 0.0, 1.0)
+	else:
+		current_glitch_time = clamp(current_glitch_time - delta / glitch_seconds, 0.0, 1.0)
+	
+	var intensity = glitch_curve.sample(current_glitch_time) * max_glitch
+	view_2d.material.set_shader_parameter("offset", int(intensity))
+	
+	if current_glitch_time >= 1.0:
+		Globals.switch_games(selected_game)
+		glitching = false
+		get_tree().paused = false
+		selected_game = -1
+	
+
 ###### CHEAT CODE INPUT ######
 func handle_directional_input(dir : Direction, pressed : bool):
-	if not zoom_out:
+	if get_tree().paused or not zoom_out:
 		current_sequence = []
 		return
 	if not pressed:
 		return # I have this as a parameter just in case, I guess
 	
 	current_sequence.append(dir)
-	var idx = len(current_sequence) - 1
+	if len(current_sequence) > 5:
+		current_sequence.remove_at(0)
 	
 	# Check if input matches any of the codes
-	var matches = false
 	for code in [default_code, boom_code, gateway_code, critter_junction_code]:
-		if idx < len(code) and current_sequence == code.slice(0, idx + 1):
-			matches = true
-			if idx + 1 == len(code):
+		if current_sequence == code:
+			if code_to_game(code) != Globals.current_game_index:
 				print("Code successfully inputted!")
-				Globals.switch_games(code_to_game(code))
+				get_tree().paused = true
+				#Globals.switch_games(code_to_game(code))
+				selected_game = code_to_game(code)
+				glitching = true
 				current_sequence = []
-	if not matches:
-		# Reset
-		current_sequence = []
+				return
+	
 
 func code_to_game(code) -> Globals.GameList:
 	if code == default_code:
