@@ -72,6 +72,18 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	_push_objects()
+	
+	# Animate
+	if anim:
+		if movement_direction.length() > 0:
+			anim.play("walk")
+		else:
+			anim.play("idle")
+		
+		if movement_direction.x > 0:
+			anim.flip_h = false
+		elif movement_direction.x < 0:
+			anim.flip_h = true
 
 func _push_objects():
 	## Push pushable objects on contact
@@ -80,14 +92,3 @@ func _push_objects():
 		if collision.get_collider().is_in_group("pushable"):
 			collision.get_collider().apply_central_impulse(movement_direction * push_force)
 	
-	# Animate
-	if anim:
-		if direction.length() > 0:
-			anim.play("walk")
-		else:
-			anim.play("idle")
-		
-		if direction.x > 0:
-			anim.flip_h = false
-		elif direction.x < 0:
-			anim.flip_h = true
