@@ -2,6 +2,10 @@ extends BaseEnemy2D
 
 class_name BoomEnemy2D
 
+func _ready() -> void:
+	super._ready()
+	anim = $AnimatedSprite2D
+
 const FIREBALL_CD_TIME_MAX = 3
 const FIREBALL_CD_TIME_MIN = 1
 

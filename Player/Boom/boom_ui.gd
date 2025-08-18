@@ -1,4 +1,4 @@
-extends GeneralUI
+extends BaseUI
 
 class_name BoomUI
 

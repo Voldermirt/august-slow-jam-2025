@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn85l00otsm16"]
+[gd_scene load_steps=6 format=3 uid="uid://cn85l00otsm16"]
 
 [ext_resource type="Texture2D" uid="uid://cbggq4aaanngh" path="res://Enemies/Gateway/enemy_stub.png" id="1_avvyt"]
 [ext_resource type="Script" uid="uid://3p6na7i7is4v" path="res://Enemies/Gateway/gateway_enemy.gd" id="1_vyccc"]
@@ -17,6 +17,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vyccc"]
 height = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyccc"]
+radius = 36.0
+
 [node name="GatewayEnemy2D" type="CharacterBody2D" groups=["enemy", "gateway"]]
 collision_mask = 25
 script = ExtResource("1_vyccc")
@@ -27,3 +30,9 @@ sprite_frames = SubResource("SpriteFrames_pubjm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_vyccc")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vyccc")
