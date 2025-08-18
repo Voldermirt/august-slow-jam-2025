@@ -5,8 +5,11 @@ var is_orange = false # Blue if false, orange if true
 var color : Color
 var just_teleported := false
 
+@onready var particles := $CPUParticles2D
+
 func _ready() -> void:
-	$Sprite2D.self_modulate = color
+	$AnimatedSprite2D.self_modulate = color
+	particles.color = color
 	Globals.game_changed.connect(game_changed)
 
 func game_changed(_game):
@@ -14,6 +17,7 @@ func game_changed(_game):
 
 func teleport(body):
 	body.global_position = $TeleportTarget.global_position
+	particles.emitting = true
 	just_teleported = true
 	await get_tree().create_timer(0.1).timeout
 	just_teleported = false
