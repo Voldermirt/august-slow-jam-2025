@@ -1,20 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci6vxup5e8oqd"]
+[gd_scene load_steps=7 format=3 uid="uid://ci6vxup5e8oqd"]
 
 [ext_resource type="Script" uid="uid://cg5tdbwenia4d" path="res://Object/CritterJunction/cri_jun_object.gd" id="1_vs2sg"]
-[ext_resource type="Texture2D" uid="uid://croaiexwgl17c" path="res://Object/CritterJunction/object_stub.png" id="2_vs2sg"]
+[ext_resource type="Texture2D" uid="uid://dsw7vhmniuf76" path="res://Object/CritterJunction/tree.png" id="2_mdje4"]
+[ext_resource type="Script" uid="uid://bu4cttp7wtsyd" path="res://Object/CritterJunction/plant_interact_area.gd" id="3_mdje4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs2sg"]
-size = Vector2(24, 32)
+size = Vector2(24, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdje4"]
+size = Vector2(22, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfew4"]
+size = Vector2(28, 2)
 
 [node name="CriJunObject2D" type="RigidBody2D" groups=["critter_junction"]]
 collision_layer = 32
 collision_mask = 43
+mass = 1000.0
 script = ExtResource("1_vs2sg")
 metadata/_custom_type_script = "uid://cg5tdbwenia4d"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vs2sg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 0.785398
-texture = ExtResource("2_vs2sg")
+position = Vector2(0, -30)
+texture = ExtResource("2_mdje4")
+hframes = 3
+frame = 2
+
+[node name="PlantInteractArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("3_mdje4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantInteractArea"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mdje4")
+
+[node name="FruitLanding" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitLanding"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_dfew4")
