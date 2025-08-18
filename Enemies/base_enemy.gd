@@ -39,7 +39,6 @@ func make_player_path():
 		return Vector2.INF
 	return make_path(player_body.global_position)
 	
-
 func make_player_around_path():
 	if player_body == null:
 		return false
@@ -119,7 +118,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if cur_knock_duration > 0.0:
-		_knockback_procses(delta)
+		_knockback_proccess(delta)
 	else:
 		if n_agent != null and n_agent.target_position != Vector2.INF and stationary_timer.time_left <= 0:
 			move_to_ntarget()
