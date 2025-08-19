@@ -182,28 +182,27 @@ func _ready():
 	
 	decision_timer.start()
 	
-func is_player_found():
+func is_player_seen():
 	if awareness_raycast != null and player_body != null:
-		return awareness_raycast.is_colliding() and awareness_raycast.get_collider() is BasePlayer2D and thinking_state == ThinkState.Neutral and thinking_switch_timer.time_left <= 0
+		return awareness_raycast.is_colliding() and awareness_raycast.get_collider() is BasePlayer2D and thinking_switch_timer.time_left <= 0
 	return false
+#
+## Decision-making
+#func _process(delta):
+	#if n_agent != null and spawn_delay.time_left <= 0:
+		#match thinking_state:
+			#ThinkState.Neutral:
+					#pass
+			#ThinkState.Targeting:
+				#pass
 
-# Decision-making
-func _process(delta):
-	if n_agent != null and spawn_delay.time_left <= 0:
-		match thinking_state:
-			ThinkState.Neutral:
-					pass
-			ThinkState.Targeting:
-				pass
-
-# Movement
 func _physics_process(delta):
 	if n_agent != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
+		awareness_raycast.look_at(player_body.global_position)
 		match thinking_state:
 			ThinkState.Neutral:
-				awareness_raycast.look_at(player_body.global_position)
 				# Check if we could find the player
-				if is_player_found():
+				if is_player_seen():
 					thinking_switch_timer.start(randi_range(PLAYER_DETECTED_DELAY_MIN, PLAYER_DETECTED_DELAY_MAX))
 				
 			ThinkState.Targeting:
@@ -239,11 +238,16 @@ func decide_movement():
 			else:
 				desired_movement_position = make_player_path()
 	
-	if desired_movement_position != Vector2.INF:
+	set_pathing_time(desired_movement_position)
+	
+	return desired_movement_position
+
+func set_pathing_time(target_position: Vector2) -> float:
+	var time: float = 0.1
+	if target_position != Vector2.INF:
 		# Time to get to the destination
-		var time: float = 0.1
 		var speed: float = moving_speed
-		var distance: float = global_position.distance_to(desired_movement_position)
+		var distance: float = global_position.distance_to(target_position)
 		
 		if speed != 0:
 			time = (distance/speed)
@@ -251,8 +255,8 @@ func decide_movement():
 			if thinking_state == ThinkState.Targeting:
 				time /= 2
 		pathing_limit_timer.start(time)
-	return desired_movement_position
-	
+	return time
+
 func animate():
 	if not anim:
 		return
