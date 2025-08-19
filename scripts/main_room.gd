@@ -14,6 +14,7 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 @onready var view_3d := $Render3D
 @onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D/Level
 
+
 var zoom_out = false      # Are we zoomed/zooming out
 var current_sequence = [] # Current cheat code input sequence
 
@@ -23,9 +24,11 @@ var current_sequence = [] # Current cheat code input sequence
 @export var glitch_curve : Curve
 @export var max_glitch := 600
 @export var glitch_seconds := 1.0
+var glitch_spin_ratio = 1.0
 var glitch_rotation := 0.0
 var current_glitch_time := 0.0
 var glitching := false
+var min_glitch := 0
 
 var selected_game : Globals.GameList
 
@@ -53,6 +56,7 @@ func _input(event: InputEvent) -> void:
 		view_3d.visible = true
 		zoom_out = true
 		zoom_anim.play("zoom")
+		get_tree().paused = true
 	elif event.is_action_released("zoom") and zoom_out:
 		# Zoom in
 		zoom_out = false
@@ -71,6 +75,7 @@ func _input(event: InputEvent) -> void:
 func _on_zoom_anim_animation_finished(anim_name: StringName) -> void:
 	if not zoom_out:
 		view_3d.visible = false
+		get_tree().paused = false
 
 func change_level(new_level : PackedScene):
 	level.queue_free()
@@ -82,7 +87,7 @@ func _process(delta: float) -> void:
 	
 	### GLITCH ANIMATION ###
 	# Rotation
-	glitch_rotation = wrap(glitch_rotation + delta, 0.0, 1.0)
+	glitch_rotation = wrap(glitch_rotation + delta * glitch_spin_ratio, 0.0, 1.0)
 	view_2d.material.set_shader_parameter("rotation_ratio", glitch_rotation)
 	# Intensity
 	if glitching:
@@ -90,19 +95,18 @@ func _process(delta: float) -> void:
 	else:
 		current_glitch_time = clamp(current_glitch_time - delta / glitch_seconds, 0.0, 1.0)
 	
-	var intensity = glitch_curve.sample(current_glitch_time) * max_glitch
+	var intensity = max(glitch_curve.sample(current_glitch_time) * max_glitch, min_glitch)
 	view_2d.material.set_shader_parameter("offset", int(intensity))
 	
 	if current_glitch_time >= 1.0:
 		Globals.switch_games(selected_game)
 		glitching = false
-		get_tree().paused = false
 		selected_game = -1
 	
 
 ###### CHEAT CODE INPUT ######
 func handle_directional_input(dir : Direction, pressed : bool):
-	if get_tree().paused or not zoom_out:
+	if glitching or not zoom_out:
 		current_sequence = []
 		return
 	if not pressed:
@@ -117,7 +121,6 @@ func handle_directional_input(dir : Direction, pressed : bool):
 		if current_sequence == code:
 			if code_to_game(code) != Globals.current_game_index:
 				print("Code successfully inputted!")
-				get_tree().paused = true
 				#Globals.switch_games(code_to_game(code))
 				selected_game = code_to_game(code)
 				glitching = true

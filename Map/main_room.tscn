@@ -93,7 +93,6 @@ size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="Render2D" type="SubViewportContainer" parent="ScreenEffects/EffectViewport"]
-process_mode = 1
 material = SubResource("ShaderMaterial_uj7hd")
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,6 +115,7 @@ render_target_update_mode = 4
 [node name="UI" parent="ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer" instance=ExtResource("3_3anwy")]
 
 [node name="Render3D" type="SubViewportContainer" parent="."]
+process_mode = 3
 visible = false
 layout_mode = 1
 anchors_preset = 15

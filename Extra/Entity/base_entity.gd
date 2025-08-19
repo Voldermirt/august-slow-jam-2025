@@ -54,8 +54,8 @@ func _ready():
 func _physics_process(delta):
 	pass
 
-func _on_getting_hit(damage: float):
-	if not is_invincible:
+func _on_getting_hit(damage: float, bypass_invincibility=false):
+	if bypass_invincibility or not is_invincible:
 		health -= damage
 		if health <= 0:
 			_on_death()

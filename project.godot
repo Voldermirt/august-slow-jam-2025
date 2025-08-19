@@ -128,6 +128,7 @@ secondary={
 2d_physics/layer_6="objects"
 2d_physics/layer_7="enemy_projectile"
 2d_physics/layer_8="cri_jun_interact"
+2d_physics/layer_9="hazard"
 
 [rendering]
 

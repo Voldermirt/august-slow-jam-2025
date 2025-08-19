@@ -201,7 +201,7 @@ text = "- Credits -
 noodlestrudel
 Voldermirt
 Sage
-Artur"
+lowercasewords"
 
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/PlayButton/Button" to="." method="_on_play"]
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/QuitButton/Button" to="." method="_on_quit"]
