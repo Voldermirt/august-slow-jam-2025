@@ -1,0 +1,207 @@
+[gd_scene load_steps=14 format=3 uid="uid://dqkbxbrdinqrh"]
+
+[ext_resource type="FontFile" uid="uid://kxxnh1pkyvk6" path="res://GameFont.ttf" id="1_csa5h"]
+[ext_resource type="Script" uid="uid://bwaytkvbnfyrq" path="res://Extra/title_screen.gd" id="1_ywq4r"]
+[ext_resource type="Texture2D" uid="uid://6msmo1f6jg7q" path="res://assets/sprites/button.png" id="2_x7vqw"]
+[ext_resource type="Texture2D" uid="uid://bjbq5tvx0tlo5" path="res://Player/Default/sword.png" id="3_x7vqw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csa5h"]
+texture = ExtResource("2_x7vqw")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ywq4r"]
+texture = ExtResource("2_x7vqw")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pkh3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_right = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmmii"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_recy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dtut"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tlb7i"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ywq4r"]
+device = -1
+pressed = true
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_ywq4r"]
+events = [SubResource("InputEventKey_ywq4r")]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ywq4r")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_csa5h")
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftSide" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSide"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="HBoxContainer/LeftSide/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 24
+text = "KNIGHT'S WELL"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftSide/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/LeftSide/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_x7vqw")
+
+[node name="Subtitle" type="Label" parent="HBoxContainer/LeftSide/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 16
+text = "A Quest To 
+Slay A Dragon"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/LeftSide/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_x7vqw")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftSide/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftSide/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="PlayButton" type="PanelContainer" parent="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ywq4r")
+
+[node name="Button" type="Button" parent="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/PlayButton"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gmmii")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_recy4")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4dtut")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tlb7i")
+shortcut = SubResource("Shortcut_ywq4r")
+text = "PLAY"
+
+[node name="QuitButton" type="PanelContainer" parent="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ywq4r")
+
+[node name="Button" type="Button" parent="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/QuitButton"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_gmmii")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_recy4")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5pkh3")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_4dtut")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tlb7i")
+text = "QUIT"
+
+[node name="RightSide" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightSide"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="Info" type="Label" parent="HBoxContainer/RightSide/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 16
+text = "- Controls -
+WASD: Move
+LMB: Attack
+RMB: Block
+"
+
+[node name="Credits" type="Label" parent="HBoxContainer/RightSide/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 16
+text = "- Credits -
+noodlestrudel
+Voldermirt
+Sage
+Artur"
+
+[connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/PlayButton/Button" to="." method="_on_play"]
+[connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/QuitButton/Button" to="." method="_on_quit"]

@@ -103,6 +103,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Level2D" type="SubViewport" parent="ScreenEffects/EffectViewport/Render2D" groups=["2d_viewport"]]
+process_mode = 1
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)

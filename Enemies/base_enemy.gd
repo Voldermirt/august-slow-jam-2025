@@ -71,7 +71,6 @@ func _ready():
 	
 	# Assign the player to navigate towards
 	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
-	print("Player set")
 	
 	moving_speed = ENEMY_MOVEMENT
 	

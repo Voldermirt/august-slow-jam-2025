@@ -1,11 +1,11 @@
-extends Control
+extends BaseUI
 
 class_name GeneralUI
 
 @onready var health_bar := $HealthBar
 
-var player_wrapper: PlayerWrapper2D
-var _current_player_scene: BasePlayer2D
+#var player_wrapper: PlayerWrapper2D
+#var _current_player_scene: BasePlayer2D
 
 
 func update_ui():

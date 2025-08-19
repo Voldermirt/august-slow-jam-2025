@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dmbt7ahfudc6w"]
+[gd_scene load_steps=20 format=4 uid="uid://dmbt7ahfudc6w"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
 [ext_resource type="Script" uid="uid://0ag0yqm6uqvv" path="res://Map/main_level.gd" id="1_lipnt"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cidgov3h5uqox" path="res://Player/CritterJunction/cri_jun_player.tscn" id="7_w7g0n"]
 [ext_resource type="PackedScene" uid="uid://bmat7gx3yerwq" path="res://Enemies/enemy_wrapper_2d.tscn" id="8_sq1yp"]
 [ext_resource type="PackedScene" uid="uid://doq02tnud8ynx" path="res://Extra/Switchers/object_wrapper.tscn" id="10_rrqod"]
+[ext_resource type="PackedScene" uid="uid://b4onp3aqt10hf" path="res://Object/Default/bucket.tscn" id="11_26esg"]
+[ext_resource type="PackedScene" uid="uid://bdkertdo8k862" path="res://Extra/empty.tscn" id="12_ccsef"]
 [ext_resource type="Texture2D" uid="uid://dpbtb3vavy3wi" path="res://assets/sprites/background.png" id="16_doev0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ojblk"]
@@ -200,8 +202,16 @@ position = Vector2(5552, 992)
 [node name="ObjectWrapper2D9" parent="Objects/Node3" instance=ExtResource("10_rrqod")]
 position = Vector2(5520, 824)
 
-[node name="ObjectWrapper2D10" parent="Objects/Node3" instance=ExtResource("10_rrqod")]
-position = Vector2(5600, 904)
+[node name="BucketWrapper" parent="Objects" instance=ExtResource("3_ojblk")]
+z_index = 50
+position = Vector2(320, 136)
+default_scene = ExtResource("11_26esg")
+boom_scene = ExtResource("12_ccsef")
+gateway_scene = ExtResource("12_ccsef")
+critter_junction_scene = ExtResource("12_ccsef")
+metadata/_edit_group_ = true
+
+[node name="Bucket" parent="Objects/BucketWrapper" instance=ExtResource("11_26esg")]
 
 [node name="PlayerWrapper2D" parent="." groups=["player_wrapper"] instance=ExtResource("3_ojblk")]
 script = ExtResource("4_c4224")
@@ -218,10 +228,15 @@ z_index = -20
 scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(640, 360)
 repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("16_doev0")
+
+[node name="ObjectWrapper2D10" parent="Background" instance=ExtResource("10_rrqod")]
+position = Vector2(5600, 904)
 
 [editable path="Enemies/EnemyWrapper2D"]
 [editable path="Enemies/EnemyWrapper2D2"]
@@ -240,3 +255,4 @@ texture = ExtResource("16_doev0")
 [editable path="Enemies/Node/EnemyWrapper2D15"]
 [editable path="Enemies/Node/EnemyWrapper2D17"]
 [editable path="Enemies/Node/EnemyWrapper2D16"]
+[editable path="Objects/BucketWrapper"]

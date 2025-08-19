@@ -14,7 +14,7 @@ enum GameList {
 }
 
 var current_game_index: int = GameList.DEFAULT
-
+var can_switch = true
 
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
@@ -56,6 +56,8 @@ func switch_random_games():
 	switch_games(chosen_game_index)
 
 func switch_games(game_index: GameList):
+	if not can_switch:
+		return
 	var wrappers: Array[Node] = get_tree().get_nodes_in_group("switch_wrapper")
 	current_game_index = game_index
 	for wrapper in wrappers:

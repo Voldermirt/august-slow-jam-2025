@@ -12,7 +12,7 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 @onready var zoom_anim := %ZoomAnim
 @onready var view_2d := $ScreenEffects/EffectViewport/Render2D
 @onready var view_3d := $Render3D
-@onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D
+@onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D/Level
 
 var zoom_out = false      # Are we zoomed/zooming out
 var current_sequence = [] # Current cheat code input sequence
@@ -75,7 +75,8 @@ func _on_zoom_anim_animation_finished(anim_name: StringName) -> void:
 func change_level(new_level : PackedScene):
 	level.queue_free()
 	level = new_level.instantiate()
-	$Render2D/Level2D.add_child(level)
+	$ScreenEffects/EffectViewport/Render2D/Level2D.add_child(level)
+	
 
 func _process(delta: float) -> void:
 	
