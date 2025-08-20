@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://doq02tnud8ynx"]
+[gd_scene load_steps=7 format=3 uid="uid://doq02tnud8ynx"]
 
 [ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_lbkgf"]
 [ext_resource type="PackedScene" uid="uid://do3pnxooit0it" path="res://Object/Default/default_object.tscn" id="2_4b3tr"]
-[ext_resource type="PackedScene" uid="uid://coey1ghipk7r6" path="res://Object/Boom/boom_object.tscn" id="3_24m20"]
-[ext_resource type="PackedScene" uid="uid://bchjd55mblijf" path="res://Object/Gateway/gateway_object.tscn" id="4_ppmgh"]
-[ext_resource type="PackedScene" uid="uid://dx2q6nx1rdria" path="res://Enemies/CritterJunction/cri_jun_enemy.tscn" id="5_rhpwn"]
+[ext_resource type="Script" uid="uid://np207ka2dye8" path="res://Extra/Switchers/object_wrapper.gd" id="2_cw3y5"]
+[ext_resource type="PackedScene" uid="uid://coey1ghipk7r6" path="res://Object/Boom/boom_object.tscn" id="4_24m20"]
+[ext_resource type="PackedScene" uid="uid://bchjd55mblijf" path="res://Object/Gateway/gateway_object.tscn" id="5_ppmgh"]
+[ext_resource type="PackedScene" uid="uid://ci6vxup5e8oqd" path="res://Object/CritterJunction/cri_jun_object.tscn" id="6_rhpwn"]
 
 [node name="ObjectWrapper2D" instance=ExtResource("1_lbkgf")]
+script = ExtResource("2_cw3y5")
 default_scene = ExtResource("2_4b3tr")
-boom_scene = ExtResource("3_24m20")
-gateway_scene = ExtResource("4_ppmgh")
-critter_junction_scene = ExtResource("5_rhpwn")
+boom_scene = ExtResource("4_24m20")
+gateway_scene = ExtResource("5_ppmgh")
+critter_junction_scene = ExtResource("6_rhpwn")
 
 [node name="DefaultObject2D" parent="." index="0" instance=ExtResource("2_4b3tr")]

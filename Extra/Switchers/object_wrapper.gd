@@ -1,38 +1,20 @@
-extends Node
+extends SwitchWrapper2D
 
-class_name SwitchWrapper2D
+class_name ObjectWrapper2D
 
-const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player/object scene that can be switched between games!"
+"""
+	Object wrapper specifically for storing info between Games
+"""
 
-@export var default_scene: PackedScene
-@export var boom_scene: PackedScene
-@export var gateway_scene: PackedScene
-@export var critter_junction_scene: PackedScene
+# persistent info for Critter Junction
+enum state {PLOT, SAPLING, TREE}
+enum fruit {APPLE, ORANGE, CHERRY, PEACH, PEAR}
 
-var switching_scene: Node
-	
-## Empty function to be overriden by the subclass
-#func switch_to(game: Globals.GameList):
-	#push_error("This is an abstract method, only should be overriden and called in the subclass")
-	
-func _ready():
-	var children_nodes: Array[Node]
-	
-	if default_scene == null:
-		push_error("No default export scene supplied")
-	if boom_scene == null:
-		push_error("No boom export scene supplied")
-	if gateway_scene == null: 
-		push_error("No gateway export scene supplied")
-	if critter_junction_scene == null:
-		push_error("No critter junction export scene supplied")
-	
-	# Makes sure that the Entity spawns with the correct starting data
-	children_nodes = get_children()
-	if children_nodes != null and children_nodes.size() == 1:
-		if children_nodes[0] is BaseEntity2D:
-			(children_nodes[0] as BaseEntity2D).set_spawn_data()
+var cri_jun_state: state
+var cri_jun_fruit: fruit
+var cri_jun_made_fruit: bool = false
 
+# custom switch_to which
 
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
@@ -55,12 +37,18 @@ func switch_to(game: Globals.GameList):
 		#return
 		#
 	
-	scene_to_replace = switching_scene
+	scene_to_replace = switching_scene 
 	
 	#scene_to_replace = children[0]
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return
+	elif scene_to_replace.name == "CriJunObject2D":
+		# Snatch the fruit and current state of the plant and if its made fruit
+		var tree = get_child(0)
+		cri_jun_fruit = tree.fruit_type
+		cri_jun_state = tree.current_state
+		cri_jun_made_fruit = tree.made_fruit
 
 	previous_position = scene_to_replace.position
 	
@@ -76,6 +64,15 @@ func switch_to(game: Globals.GameList):
 			new_scene.add_to_group("gateway")
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
+			# Load the saved state and fruit into the cri jun scene
+				# grow the tree if switching back to scene with a sapling
+			if cri_jun_state == state.SAPLING:
+				new_scene.current_state = state.TREE
+			else:
+				new_scene.current_state = cri_jun_state
+			
+			new_scene.fruit_type = cri_jun_fruit
+			new_scene.made_fruit = cri_jun_made_fruit
 			new_scene.add_to_group("critter_junction")
 		_:
 			push_error("Trying to switch to a non-existing game!")
@@ -92,8 +89,3 @@ func switch_to(game: Globals.GameList):
 	new_scene.global_position = previous_position
 	add_child(new_scene)
 	
-
-
-func _on_child_entered_tree(node: Node):
-	# REMEMBER THIS
-	switching_scene = node

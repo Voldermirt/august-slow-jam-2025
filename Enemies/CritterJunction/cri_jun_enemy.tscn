@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx2q6nx1rdria"]
+[gd_scene load_steps=7 format=3 uid="uid://dx2q6nx1rdria"]
 
 [ext_resource type="Texture2D" uid="uid://c75o1sbjm52su" path="res://Enemies/CritterJunction/enemy_stub.png" id="1_n3wof"]
 [ext_resource type="Script" uid="uid://8saum54nmi5k" path="res://Enemies/CritterJunction/cri_jun_enemy.gd" id="1_tjt3c"]
@@ -77,4 +77,3 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_tjt3c")
-

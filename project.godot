@@ -44,6 +44,8 @@ enemy=""
 boss=""
 portal_instance=""
 checkpoint=""
+plants="critter junction plants"
+cri_jun_ui=""
 room=""
 navigation_map=""
 

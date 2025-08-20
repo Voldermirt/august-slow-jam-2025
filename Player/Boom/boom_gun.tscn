@@ -1,17 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://ryqhbpys3hvx"]
 
 [ext_resource type="Script" uid="uid://dm81tuhe30h37" path="res://Player/Boom/boom_gun.gd" id="1_e6h6s"]
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="2_fihyg"]
+[ext_resource type="Texture2D" uid="uid://b7sd520uc5hqr" path="res://Player/Boom/boom_gun.png" id="2_382ef"]
 
 [node name="BoomGun" type="Node2D"]
 script = ExtResource("1_e6h6s")
 
 [node name="Rotatator" type="Node2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(21, 0)
 
 [node name="WeaponSprite" type="Sprite2D" parent="Rotatator"]
-scale = Vector2(0.07, 0.07)
-texture = ExtResource("2_fihyg")
+texture = ExtResource("2_382ef")
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true

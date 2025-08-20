@@ -30,6 +30,9 @@ func shoot():
 	PlayerStats.cooldown = shoot_cooldown
 	autoreload_timer.start()
 
+func _process() -> void:
+  animate()
+
 func reload():
 	if not cooldown_timer.is_stopped():
 		return
@@ -42,6 +45,9 @@ func reload():
 	ammo = max_ammo
 	PlayerStats.ammo = ammo
 
+func animate():
+	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90
+	$Rotatator/WeaponSprite.z_index = -1 if global_rotation_degrees < 0 else 0
 
 func _on_audo_reload_timeout():
 	reload()

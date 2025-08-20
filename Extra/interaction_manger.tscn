@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdghdt3tlu53t"]
+
+[ext_resource type="Script" uid="uid://bjhf1do6pqp4n" path="res://scripts/cri_jun_interaction_manager.gd" id="1_pnmeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8s1g"]
+
+[node name="InteractionManger" type="Area2D"]
+script = ExtResource("1_pnmeg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k8s1g")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

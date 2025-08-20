@@ -47,7 +47,9 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	
+	if Input.is_action_pressed("secondary") and dash_duration_timer.time_left <= 0 and allowed_to_move:
+		perform_dash()
+		anim.play("dash")
 	
 	if dash_duration_timer.time_left > 0:
 		move_and_slide()
@@ -58,6 +60,7 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
 
 func _on_dash_duration_timeout():
+	anim.play("walk")
 	allowed_to_move = true
 	is_invincible = false
 

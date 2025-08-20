@@ -44,6 +44,8 @@ polygon = PackedVector2Array(12, -1, 23, -1, 23, -4, 27, -4, 30, -1, 27, 2, 23, 
 
 [node name="Interaction" type="Area2D" parent="Tools/Polygon2D"]
 position = Vector2(23, 0)
+collision_layer = 128
+collision_mask = 128
 script = ExtResource("4_ae7tb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tools/Polygon2D/Interaction"]
@@ -52,3 +54,6 @@ shape = SubResource("RectangleShape2D_42cfi")
 
 [node name="Polygon2D2" type="Polygon2D" parent="Tools"]
 polygon = PackedVector2Array(12, 0, 18, -9, 34, 15, 35, 15, 35, 16, 34, 16, 33, 15, 18, -8, 12, 1, 12, 1)
+
+[connection signal="area_entered" from="Tools/Polygon2D/Interaction" to="Tools/Polygon2D/Interaction" method="_on_area_entered"]
+[connection signal="area_exited" from="Tools/Polygon2D/Interaction" to="Tools/Polygon2D/Interaction" method="_on_area_exited"]

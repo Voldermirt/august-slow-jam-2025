@@ -1,20 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckej42hj0tyww"]
+[gd_scene load_steps=4 format=3 uid="uid://ckej42hj0tyww"]
 
 [ext_resource type="Script" uid="uid://du5p7n5o0sxma" path="res://Collectables/CritterJunction/cri_jun_collectable.gd" id="1_on0bj"]
-[ext_resource type="Texture2D" uid="uid://c41vffppymt6f" path="res://Collectables/CritterJunction/collectable_stub.png" id="2_on0bj"]
+[ext_resource type="Texture2D" uid="uid://cqut0h1wua4u0" path="res://Object/CritterJunction/fruit.png" id="2_on0bj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4lanw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_on0bj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="CriJunCollectable2D" type="Area2D" groups=["default"]]
 rotation = 1.5708
@@ -24,5 +13,8 @@ metadata/_custom_type_script = "uid://du5p7n5o0sxma"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_56ux8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4lanw")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+rotation = -1.5708
+texture = ExtResource("2_on0bj")
+hframes = 5
