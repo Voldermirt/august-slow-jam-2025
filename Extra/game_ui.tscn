@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj1u75xigyjh1"]
+[gd_scene load_steps=9 format=3 uid="uid://cj1u75xigyjh1"]
 
 [ext_resource type="PackedScene" uid="uid://6x7dkrdl3vbw" path="res://Player/Gateway/gateway_ui.tscn" id="1_an0i2"]
 [ext_resource type="Script" uid="uid://b4kb538qp5tfv" path="res://Extra/Switchers/switch_wrapper.gd" id="2_2nh78"]
 [ext_resource type="PackedScene" uid="uid://k68aosr78yjo" path="res://Player/Default/default_ui.tscn" id="2_cj0ru"]
 [ext_resource type="PackedScene" uid="uid://15nf77pg74je" path="res://Player/Boom/boom_ui.tscn" id="2_t5clu"]
 [ext_resource type="PackedScene" uid="uid://bkp4c3oycvlkj" path="res://Player/CritterJunction/cri_jun_ui.tscn" id="5_10174"]
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="6_10174"]
 [ext_resource type="Script" uid="uid://dh5bqnxe8q5xd" path="res://Player/general_ui.gd" id="6_alrrk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_10174"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_alrrk"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -52,11 +55,11 @@ offset_top = -37.0
 offset_right = 174.0
 offset_bottom = -16.0
 grow_vertical = 0
-value = 66.0
+value = 100.0
 nine_patch_stretch = true
-texture_under = ExtResource("6_10174")
-texture_progress = ExtResource("6_10174")
-tint_under = Color(0.0475577, 0.0475576, 0.0475576, 1)
+texture_under = SubResource("PlaceholderTexture2D_10174")
+texture_progress = SubResource("PlaceholderTexture2D_alrrk")
+tint_under = Color(0.144091, 6.69318e-08, 1.50409e-08, 1)
 tint_progress = Color(1, 0, 0, 1)
 
 [connection signal="child_entered_tree" from="UISwitcher" to="UISwitcher" method="_on_child_entered_tree"]

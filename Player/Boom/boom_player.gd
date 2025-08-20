@@ -34,6 +34,16 @@ func perform_dash():
 func _ready():
 	super._ready()
 	anim = $AnimatedSprite2D
+	
+	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("primary"):
+		weapon.shoot()
+	if Input.is_action_just_pressed("secondary"):
+		if dash_duration_timer.time_left <= 0 and allowed_to_move:
+			perform_dash()
+
+	#PlayerStats.cooldown = cooldown_timer.time_left
 
 func _physics_process(delta):
 	super._physics_process(delta)

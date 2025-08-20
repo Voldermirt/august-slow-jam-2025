@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu43hrbgxf4on"]
+
+[ext_resource type="Texture2D" uid="uid://bjact1h1v7imf" path="res://Object/Default/default_chasm.png" id="1_764os"]
+[ext_resource type="Script" uid="uid://cwabgrcp0mhb7" path="res://Object/chasm.gd" id="1_r4kk4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_764os"]
+load_path = "res://.godot/imported/default_chasm.png-99bc5e9be2cd8831d0032c613cddc27d.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxb3e"]
+size = Vector2(54, 32)
+
+[node name="Chasm" type="Node2D" groups=["switch_wrapper"]]
+z_index = -1
+script = ExtResource("1_r4kk4")
+default_sprite = SubResource("CompressedTexture2D_764os")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wxb3e")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

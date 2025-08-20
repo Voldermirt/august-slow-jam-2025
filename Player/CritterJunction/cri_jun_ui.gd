@@ -1,4 +1,4 @@
-extends GeneralUI
+extends BaseUI
 
 signal get_fruit_index(index: int)
 

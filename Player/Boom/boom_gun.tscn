@@ -14,3 +14,9 @@ texture = ExtResource("2_382ef")
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudoReload" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="AudoReload" to="." method="_on_audo_reload_timeout"]

@@ -64,6 +64,7 @@ one_shot = true
 autostart = true
 
 [node name="CloseRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CloseRange"]
 shape = SubResource("CircleShape2D_0l3xu")

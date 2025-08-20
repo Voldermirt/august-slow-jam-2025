@@ -25,11 +25,11 @@ tile_set = ExtResource("1_3i5kv")
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("20_3i5kv")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["navigation_map"]]
 navigation_polygon = SubResource("NavigationPolygon_6okg1")
 
 [node name="PlayerWrapper2D" parent="NavigationRegion2D" instance=ExtResource("2_u6kf1")]
-position = Vector2(602, 177)
+position = Vector2(453, 299)
 
 [node name="EnemyWrapper2D" parent="NavigationRegion2D" instance=ExtResource("4_2gel8")]
 position = Vector2(405, 190)
