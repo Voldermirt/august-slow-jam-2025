@@ -7,20 +7,12 @@ const Bullet := preload("res://Player/Boom/boom_bullet.tscn")
 @export var shoot_cooldown := 0.1
 @export var reload_cooldown := 1.0
 
+@onready var autoreload_timer: Timer = $AudoReload
 @onready var cooldown_timer := $Cooldown
 @onready var ammo := max_ammo
 
 func _ready() -> void:
 	PlayerStats.ammo = ammo
-	
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("primary"):
-		shoot()
-	if Input.is_action_just_pressed("secondary"):
-		reload()
-
-	PlayerStats.cooldown = cooldown_timer.time_left
 
 func shoot():
 	if ammo <= 0 or not cooldown_timer.is_stopped():
@@ -36,13 +28,20 @@ func shoot():
 	PlayerStats.ammo = ammo
 	PlayerStats.max_cooldown = shoot_cooldown
 	PlayerStats.cooldown = shoot_cooldown
+	autoreload_timer.start()
 
 func reload():
 	if not cooldown_timer.is_stopped():
 		return
+	autoreload_timer.stop()
+	
 	cooldown_timer.start(reload_cooldown)
 	PlayerStats.max_cooldown = reload_cooldown
 	PlayerStats.cooldown = reload_cooldown
 	await cooldown_timer.timeout
 	ammo = max_ammo
 	PlayerStats.ammo = ammo
+
+
+func _on_audo_reload_timeout():
+	reload()
