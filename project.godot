@@ -45,6 +45,7 @@ boss=""
 portal_instance=""
 checkpoint=""
 room=""
+navigation_map=""
 
 [input]
 
