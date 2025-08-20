@@ -30,8 +30,8 @@ func shoot():
 	PlayerStats.cooldown = shoot_cooldown
 	autoreload_timer.start()
 
-func _process() -> void:
-  animate()
+func _process(delta : float) -> void:
+	animate()
 
 func reload():
 	if not cooldown_timer.is_stopped():
