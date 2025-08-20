@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="August Slow Jam"
-run/main_scene="uid://d0bpck6w0fufw"
+run/main_scene="uid://dqkbxbrdinqrh"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -44,6 +44,7 @@ enemy=""
 boss=""
 portal_instance=""
 checkpoint=""
+room=""
 navigation_map=""
 
 [input]
@@ -129,6 +130,7 @@ secondary={
 2d_physics/layer_6="objects"
 2d_physics/layer_7="enemy_projectile"
 2d_physics/layer_8="cri_jun_interact"
+2d_physics/layer_9="hazard"
 
 [rendering]
 

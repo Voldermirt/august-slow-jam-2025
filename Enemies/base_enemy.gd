@@ -117,6 +117,7 @@ func make_player_around_path():
 
 func _ready():
 	super._ready()
+	await get_tree().process_frame
 	
 	# Assign the player to navigate towards
 	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D

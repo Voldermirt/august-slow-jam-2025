@@ -65,6 +65,8 @@ func decide_movement():
 
 
 func launch_fireball():
+	if not player_body:
+		return
 	var fireball_projectile: FireballProjectile2D = fireball_scene.instantiate()
 	var destination = player_body.global_position
 	

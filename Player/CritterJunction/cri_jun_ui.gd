@@ -1,4 +1,4 @@
-extends GeneralUI
+extends BaseUI
 
 @onready var apple_icon = $ScrollContainer/SeedsContainer/AppleIcon
 @onready var buttons = $ScrollContainer/SeedsContainer.get_children()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://bkp4c3oycvlkj"]
 
 [ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="1_0pqit"]
-[ext_resource type="Script" uid="uid://dkh8cn8kie663" path="res://Player/CritterJunction/cri_jun_ui.gd" id="1_r76oj"]
+[ext_resource type="Script" path="res://Player/CritterJunction/cri_jun_ui.gd" id="1_r76oj"]
 [ext_resource type="Texture2D" uid="uid://cqut0h1wua4u0" path="res://Object/CritterJunction/fruit.png" id="2_3qiqx"]
 [ext_resource type="Texture2D" uid="uid://dyu8pmjxog6s0" path="res://Object/CritterJunction/fruit_focused.png" id="4_erj35"]
-[ext_resource type="Script" uid="uid://2jjfab4duh64" path="res://Player/CritterJunction/apple_button.gd" id="5_f2tcw"]
+[ext_resource type="Script" path="res://Player/CritterJunction/apple_button.gd" id="5_f2tcw"]
 
 [sub_resource type="Theme" id="Theme_f2tcw"]
 
