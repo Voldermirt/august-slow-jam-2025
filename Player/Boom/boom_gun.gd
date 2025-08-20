@@ -46,3 +46,7 @@ func reload():
 	await cooldown_timer.timeout
 	ammo = max_ammo
 	PlayerStats.ammo = ammo
+
+func animate():
+	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90
+	$Rotatator/WeaponSprite.z_index = -1 if global_rotation_degrees < 0 else 0

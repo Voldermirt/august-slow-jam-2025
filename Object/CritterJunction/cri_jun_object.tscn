@@ -13,10 +13,11 @@ size = Vector2(22, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfew4"]
 size = Vector2(28, 2)
 
-[node name="CriJunObject2D" type="RigidBody2D" groups=["critter_junction"]]
+[node name="CriJunObject2D" type="RigidBody2D" groups=["critter_junction", "plants"]]
 collision_layer = 32
 collision_mask = 43
 mass = 1000.0
+freeze = true
 script = ExtResource("1_vs2sg")
 metadata/_custom_type_script = "uid://cg5tdbwenia4d"
 
@@ -40,9 +41,24 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mdje4")
 
 [node name="FruitLanding" type="StaticBody2D" parent="."]
-collision_layer = 128
+collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FruitLanding"]
-position = Vector2(0, 3)
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_dfew4")
+
+[node name="FruitSpawns" type="Node" parent="."]
+
+[node name="LeftPoint" type="Marker2D" parent="FruitSpawns"]
+position = Vector2(-11, -27)
+
+[node name="MiddlePoint" type="Marker2D" parent="FruitSpawns"]
+position = Vector2(0, -41)
+
+[node name="RightPoint" type="Marker2D" parent="FruitSpawns"]
+position = Vector2(11, -27)
+
+[connection signal="area_entered" from="PlantInteractArea" to="PlantInteractArea" method="_on_area_entered"]
+[connection signal="area_exited" from="PlantInteractArea" to="PlantInteractArea" method="_on_area_exited"]
+[connection signal="on_plant_interaction" from="PlantInteractArea" to="." method="_on_plant_interaction"]

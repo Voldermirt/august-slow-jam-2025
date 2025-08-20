@@ -1,10 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkp4c3oycvlkj"]
+[gd_scene load_steps=17 format=3 uid="uid://bkp4c3oycvlkj"]
 
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="1_0pqit"]
 [ext_resource type="Script" uid="uid://dkh8cn8kie663" path="res://Player/CritterJunction/cri_jun_ui.gd" id="1_r76oj"]
 [ext_resource type="Texture2D" uid="uid://cqut0h1wua4u0" path="res://Object/CritterJunction/fruit.png" id="2_3qiqx"]
 [ext_resource type="Texture2D" uid="uid://dyu8pmjxog6s0" path="res://Object/CritterJunction/fruit_focused.png" id="4_erj35"]
 [ext_resource type="Script" uid="uid://2jjfab4duh64" path="res://Player/CritterJunction/apple_button.gd" id="5_f2tcw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e6bw"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xga6m"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxhib"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofnh5"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwoan"]
+atlas = ExtResource("2_3qiqx")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="Theme" id="Theme_f2tcw"]
 
@@ -30,7 +49,7 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("2_3qiqx")
 region = Rect2(64, 0, 16, 16)
 
-[node name="CriJunUI" type="Control"]
+[node name="CriJunUI" type="Control" groups=["cri_jun_ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,13 +63,63 @@ layout_mode = 0
 offset_right = 117.0
 offset_bottom = 67.0
 
-[node name="TextureRect" type="TextureRect" parent="MoneyContainer"]
-modulate = Color(0.97, 0.51119, 0.1358, 1)
+[node name="AppleCount" type="VBoxContainer" parent="MoneyContainer"]
 layout_mode = 2
-texture = ExtResource("1_0pqit")
-expand_mode = 2
 
-[node name="Label" type="Label" parent="MoneyContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer/AppleCount"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_4e6bw")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MoneyContainer/AppleCount"]
+layout_mode = 2
+text = "1000"
+
+[node name="OrangeCount" type="VBoxContainer" parent="MoneyContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer/OrangeCount"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xga6m")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MoneyContainer/OrangeCount"]
+layout_mode = 2
+text = "1000"
+
+[node name="CherryCount" type="VBoxContainer" parent="MoneyContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer/CherryCount"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_oxhib")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MoneyContainer/CherryCount"]
+layout_mode = 2
+text = "1000"
+
+[node name="PeachCount" type="VBoxContainer" parent="MoneyContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer/PeachCount"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ofnh5")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MoneyContainer/PeachCount"]
+layout_mode = 2
+text = "1000"
+
+[node name="PearCount" type="VBoxContainer" parent="MoneyContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer/PearCount"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_fwoan")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="MoneyContainer/PearCount"]
 layout_mode = 2
 text = "1000"
 
@@ -60,8 +129,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -61.0
-offset_right = -544.0
+offset_left = 16.0
+offset_top = -97.0
+offset_right = -528.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_f2tcw")
@@ -69,7 +140,7 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
 
-[node name="SeedsContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="SeedsContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 
 [node name="AppleButton" type="TextureButton" parent="ScrollContainer/SeedsContainer"]

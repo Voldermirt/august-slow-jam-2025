@@ -69,6 +69,7 @@ func _ready():
 	super._ready()
 	
 	# Assign the player to navigate towards
+	await get_tree().process_frame
 	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
 	
 	moving_speed = ENEMY_MOVEMENT
