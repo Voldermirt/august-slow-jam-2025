@@ -16,6 +16,8 @@ enum GameList {
 var current_game_index: int = GameList.DEFAULT
 var can_switch = true
 
+@onready var current_bgm_track := $DefaultMusic
+
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
 		switch_random_games()
@@ -63,4 +65,22 @@ func switch_games(game_index: GameList):
 	for wrapper in wrappers:
 		wrapper.switch_to(game_index)
 	game_changed.emit(game_index)
+	
+	# Change BGM
+	create_tween().tween_property(current_bgm_track, "volume_db", -40, 1)
+	var old_pos = current_bgm_track.get_playback_position()
+	var new_track = current_bgm_track
+	match game_index:
+		GameList.DEFAULT:
+			new_track = $DefaultMusic
+		GameList.BOOM:
+			new_track = $BoomMusic
+		GameList.GATEWAY:
+			new_track = $GatewayMusic
+		GameList.CRITTER_JUNCTION:
+			new_track = $CriJunMusic
+	create_tween().tween_property(new_track, "volume_db", 0.0, 1)
+	# Just to make sure
+	new_track.seek(old_pos)
+	current_bgm_track = new_track
 	

@@ -44,7 +44,7 @@ func decide_movement():
 			var stand_weight: int = is_player_seen() if 2 else 1
 			
 			total_weight = straight_weight + around_weight + stand_weight
-			if total_weight != null:
+			if total_weight != 0:
 				roll = randi() % total_weight
 	
 			if roll < straight_weight:

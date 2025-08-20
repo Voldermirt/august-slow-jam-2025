@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b3oomukv736w3" path="res://Object/door.gd" id="1_qlq3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbi8v"]
-size = Vector2(32, 64)
+size = Vector2(32, 80)
 
 [node name="Door" type="StaticBody2D"]
 collision_layer = 8
