@@ -44,6 +44,7 @@ enemy=""
 boss=""
 portal_instance=""
 checkpoint=""
+room=""
 
 [input]
 

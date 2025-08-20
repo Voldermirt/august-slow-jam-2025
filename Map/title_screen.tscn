@@ -203,5 +203,14 @@ Voldermirt
 Sage
 lowercasewords"
 
+[node name="Warning" type="Label" parent="HBoxContainer/RightSide/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.28, 0.28, 1)
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 16
+text = "Minor epilepsy 
+warning!"
+
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/PlayButton/Button" to="." method="_on_play"]
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/QuitButton/Button" to="." method="_on_quit"]

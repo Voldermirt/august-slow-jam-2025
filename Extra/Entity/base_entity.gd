@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name BaseEntity2D 
 
+signal death
+
 const BASE_MAX_HEALTH: float = 100
 const ENEMY_LAYER_NUMER: int = 2
 const PLAYER_LAYER_NUMBER: int = 1
@@ -63,9 +65,12 @@ func _on_getting_hit(damage: float, bypass_invincibility=false):
 			_start_damage_recovery()
 
 func _on_death():
+	death.emit()
 	var parent = get_parent()
 	if parent != null and parent.is_in_group("switch_wrapper"):
 		get_parent().queue_free()
+	else:
+		queue_free()
 
 # Start the recover after damage, during which player can't be damaged
 func _start_damage_recovery():
