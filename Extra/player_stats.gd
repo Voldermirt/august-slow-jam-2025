@@ -1,7 +1,5 @@
 extends Node
 
-pass
-
 ## GENERAL STATS
 var _max_health := 100
 var _health := 100
@@ -19,4 +17,4 @@ var cooldown : float
 # ...
 
 ## CRITTER JUNCTION STATS
-# ...
+var fruit_count: Array[int] = [0, 0, 0, 0, 0]

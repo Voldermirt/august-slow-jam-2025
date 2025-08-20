@@ -17,7 +17,7 @@ var fireball_scene = preload("res://Enemies/Boom/enemy_fileball.tscn")
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if spawn_delay.time_left <= 0:
+	if spawn_delay != null and spawn_delay.time_left <= 0:
 		match thinking_state:
 			ThinkState.Targeting:
 				if is_player_seen() and fireball_cd_timer.time_left <= 0:
@@ -44,7 +44,7 @@ func decide_movement():
 			var stand_weight: int = is_player_seen() if 2 else 1
 			
 			total_weight = straight_weight + around_weight + stand_weight
-			if total_weight != null:
+			if total_weight != 0:
 				roll = randi() % total_weight
 	
 			if roll < straight_weight:

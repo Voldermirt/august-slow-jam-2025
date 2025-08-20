@@ -18,14 +18,13 @@ enum state {PLOT, SAPLING, TREE}
 enum fruit {APPLE, ORANGE, CHERRY, PEACH, PEAR}
 
 @export var current_state: state
-@export var fruit_type: fruit
+var fruit_type: fruit
 
 var made_fruit = false
 
 func _ready():
 	super._ready()
 	await get_tree().process_frame
-	get_tree().get_first_node_in_group("cri_jun_ui").get_fruit_index.connect(_on_ui_get_index)
 	match current_state:
 		# plot can't be stepped on
 		state.PLOT:
@@ -67,13 +66,14 @@ func _ready():
 
 func _on_ui_get_index(index: int) -> void:
 	fruit_type = index
-	print(index)
+	get_tree().get_first_node_in_group("cri_jun_ui").disconnect("get_fruit_index", _on_ui_get_index)
 
 # Recieve interaction from Villager
 func _on_plant_interaction() -> void:
 	match current_state:
 		state.PLOT:
 			# Get what kind of fruit the player wants to plant
+			get_tree().get_first_node_in_group("cri_jun_ui").get_fruit_index.connect(_on_ui_get_index)
 			emit_signal("fetch_fruit")
 			current_state = state.SAPLING
 			sprite.frame = 1
