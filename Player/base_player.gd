@@ -53,6 +53,8 @@ func _ready():
 	super._ready()
 
 func _physics_process(delta):
+	if health <= 0:
+		return 
 	
 	movement_direction = Vector2.ZERO
 	

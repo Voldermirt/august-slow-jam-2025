@@ -57,6 +57,10 @@ func set_spawn_data():
 	super.set_spawn_data()
 	self.health = BASE_MAX_HEALTH
 	thinking_state = ThinkState.Neutral
+	
+func load_json_data(data: Dictionary):
+	super.load_json_data(data)
+	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
 
 # Moves towards the navigation agent's target
 func move_to_ntarget():
@@ -117,10 +121,10 @@ func make_player_around_path():
 
 func _ready():
 	super._ready()
-	await get_tree().process_frame
+	#await get_tree().process_frame
 	
 	# Assign the player to navigate towards
-	await get_tree().process_frame
+	#await get_tree().process_frame
 	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
 	
 	moving_speed = ENEMY_MOVEMENT
@@ -184,7 +188,6 @@ func _ready():
 	add_child(awareness_raycast)
 	
 	awareness_raycast.global_position = global_position
-	
 	decision_timer.start()
 	
 func is_player_seen():
@@ -202,6 +205,9 @@ func is_player_seen():
 				#pass
 
 func _physics_process(delta):
+	if health <= 0:
+		return
+		
 	if n_agent != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
 		awareness_raycast.look_at(player_body.global_position)
 		match thinking_state:
@@ -227,6 +233,9 @@ func _physics_process(delta):
 func decide_movement():
 	var desired_movement_position: Vector2 = Vector2.INF
 	
+	if health <= 0:
+		return desired_movement_position
+		
 	pathing_limit_timer.stop()
 	
 	match thinking_state:
@@ -277,6 +286,8 @@ func animate():
 		anim.flip_h = true
 
 func _on_hitbox_entering(body: Node2D):
+	if health <= 0:
+		return
 	if body is BasePlayer2D:
 		var delay = get_attack_time()
 		on_contact_hit_delay_timer.start(delay)

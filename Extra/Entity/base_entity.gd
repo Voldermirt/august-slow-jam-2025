@@ -69,10 +69,12 @@ func _ready():
 	add_child(recovery_timer)
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	pass
 
 func _on_getting_hit(damage: float, bypass_invincibility=false):
-	if bypass_invincibility or not is_invincible:
+	if bypass_invincibility or not is_invincible and health > 0: 
 		health -= damage
 		if health <= 0:
 			_on_death()
@@ -82,10 +84,8 @@ func _on_getting_hit(damage: float, bypass_invincibility=false):
 func _on_death():
 	death.emit()
 	var parent = get_parent()
-	if parent != null and parent.is_in_group("switch_wrapper"):
-		get_parent().queue_free()
-	else:
-		queue_free()
+	#if parent != null and parent.is_in_group("switch_wrapper"):
+		#get_parent().queue_free()
 
 # Start the recover after damage, during which player can't be damaged
 func _start_damage_recovery():

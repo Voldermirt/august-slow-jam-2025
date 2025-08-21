@@ -66,6 +66,10 @@ func load_game():
 		var text = file.get_as_text()
 		temp_last_save = JSON.parse_string(text)
 		saving_game.emit()
+		
+		# Make sure to delete all portals
+		for gateway in get_tree().get_nodes_in_group("portal_instance"):
+			gateway.queue_free()
 	pass
 
 #func load_entities():
