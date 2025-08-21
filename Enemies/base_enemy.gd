@@ -128,6 +128,9 @@ func _ready():
 	if n_agent == null:
 		n_agent = NavigationAgent2D.new()
 		n_agent.navigation_finished.connect(_n_navigation_reached)
+		#n_agent.avoidance_enabled = true
+		#n_agent.avoidance_mask = 1
+		#n_agent.avoidance_layers = 1
 		
 		if OS.is_debug_build():
 			n_agent.debug_enabled = true

@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
 		weapon.shoot()
 	if Input.is_action_just_pressed("secondary"):
-		if dash_duration_timer.time_left <= 0 and allowed_to_move:
+		if dash_duration_timer.time_left <= 0 and allowed_to_move and available_dashes > 0:
 			perform_dash()
 
 	#PlayerStats.cooldown = cooldown_timer.time_left

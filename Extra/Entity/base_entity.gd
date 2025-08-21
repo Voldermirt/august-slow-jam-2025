@@ -21,6 +21,8 @@ var moving_speed: float = 100.0
 var cur_knock_force: Vector2
 var cur_knock_duration: float
 
+var savefile_index: int = -1
+
 func get_max_health():
 	return BASE_MAX_HEALTH
 
@@ -32,6 +34,37 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 func set_spawn_data():
 	self.health = BASE_MAX_HEALTH
 
+func save_json_data() -> Dictionary:
+	var base_player_json_data = {
+		"health": health,
+		"global_position": global_position
+	}
+	return base_player_json_data
+
+# So that the entity knows which entity from JSON file to pull data from
+func retrieve_savefile_index(index: int):
+	savefile_index = index
+
+func load_json_data():
+	var data: Dictionary
+	
+	if Globals.temp_last_save.is_empty():
+		push_error("Couldn't load data from the temporary save file variable in global!")
+		return
+	if savefile_index < 0:
+		push_error("Couldn't load data because the entity hasn't been saved yet!")
+		return
+	
+	#var debug = Globals.temp_last_save[0]
+	if not Globals.temp_last_save.has(str(savefile_index)):
+		push_error("Couldn't load data because the entity is not persent in the save file!")
+		return
+		
+	data = Globals.temp_last_save[str(savefile_index)]
+	
+	health = data["health"]
+	global_position = str_to_var("Vector2" + data["global_position"])
+	
 func knockback_applied(direction: Vector2, force: float, duration: float):
 	cur_knock_force = direction * force
 	cur_knock_duration = duration 
@@ -46,6 +79,9 @@ func _knockback_proccess(delta):
 func _ready():
 	if not get_parent().is_in_group("switch_wrapper"):
 		assert(false, str(self, " entity is not the child of in the SwitchWrapper"))
+	
+	if not is_in_group("entity"):
+		add_to_group("entity", true)
 	
 	recovery_timer = Timer.new()
 	recovery_timer.one_shot = true

@@ -36,7 +36,7 @@ func decide_movement():
 				desired_movement_position = make_wander_path()
 		ThinkState.Targeting:
 			
-			var total_weight: int = 1
+			var total_weight: int = 0
 			var roll: int = 0
 			
 			var straight_weight: int = is_player_seen() if 1 else 4
@@ -44,6 +44,8 @@ func decide_movement():
 			var stand_weight: int = is_player_seen() if 2 else 1
 			
 			total_weight = straight_weight + around_weight + stand_weight
+			if total_weight == 0:
+				total_weight = 1
 			if total_weight != null:
 				roll = randi() % total_weight
 	

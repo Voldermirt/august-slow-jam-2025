@@ -15,8 +15,6 @@ var movement_direction: Vector2 = Vector2.ZERO
  
 var effective_size := Vector2(32, 32)
 
-var last_checkpoint: Vector2
-
 var anim : AnimatedSprite2D = null
 
 func retrieve_data(retrieved_from: BaseEntity2D):
@@ -27,6 +25,21 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 
 func get_max_health():
 	return BASE_PLAYER_MAX_HEALTH
+
+func save_json_data() -> Dictionary:
+	var data = super.save_json_data()
+	data["collectables"] = collectables
+	
+	return data
+
+func load_json_data():
+	super.load_json_data()
+	var data: Dictionary
+		
+	data = Globals.temp_last_save[str(savefile_index)]
+	
+	collectables = data["collectables"]
+	
 	
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
@@ -43,12 +56,6 @@ func _on_get_collectable(found_collectable: BaseCollectable2D):
 
 func _ready():
 	super._ready()
-	
-	#if (collision_layer & PLAYER_LAYER_NUMBER) == 0:
-		#collision_layer += PLAYER_LAYER_NUMBER
-	#if (collision_mask & ENEMY_LAYER_NUMER) == 0:
-		#collision_mask += ENEMY_LAYER_NUMER
-	
 
 func _physics_process(delta):
 	
