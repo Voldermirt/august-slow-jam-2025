@@ -48,6 +48,7 @@ plants="critter junction plants"
 cri_jun_ui=""
 room=""
 navigation_map=""
+ui=""
 
 [input]
 

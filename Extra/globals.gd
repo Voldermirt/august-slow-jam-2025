@@ -44,16 +44,16 @@ func save_game() -> bool:
 		return false
 
 func save_entities(to_save_data: Dictionary, current_json_index: int) -> int:
-	var entities: Array[Node] = get_tree().get_nodes_in_group("entity")
-	for object in entities: 
-		if object is BaseEntity2D:
-			var entity: BaseEntity2D = (object as BaseEntity2D)
-			var retrieved_data: Dictionary = entity.save_json_data()
+	var objects: Array[Node] = get_tree().get_nodes_in_group("switch_wrapper")
+	for object in objects: 
+		if object is SwitchWrapper2D:
+			var wrapper: SwitchWrapper2D = (object as SwitchWrapper2D)
+			var retrieved_data: Dictionary = wrapper.save_json_data()
 			to_save_data[current_json_index] = retrieved_data
 			
-			entity.retrieve_savefile_index(current_json_index)
-			if not saving_game.is_connected(entity.load_json_data):
-				saving_game.connect(entity.load_json_data)
+			wrapper.retrieve_savefile_index(current_json_index)
+			if not saving_game.is_connected(wrapper.load_json_data):
+				saving_game.connect(wrapper.load_json_data)
 			
 		current_json_index += 1
 	return current_json_index

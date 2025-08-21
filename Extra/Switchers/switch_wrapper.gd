@@ -10,7 +10,10 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 @export var critter_junction_scene: PackedScene
 
 var switching_scene: Node
-	
+var active_game: Globals.GameList
+# Is used to map the data from the JSON save file 
+var savefile_index: int = -1
+
 ## Empty function to be overriden by the subclass
 #func switch_to(game: Globals.GameList):
 	#push_error("This is an abstract method, only should be overriden and called in the subclass")
@@ -27,11 +30,76 @@ func _ready():
 	if critter_junction_scene == null:
 		push_error("No critter junction export scene supplied")
 	
+	
 	# Makes sure that the Entity spawns with the correct starting data
 	children_nodes = get_children()
 	if children_nodes != null and children_nodes.size() == 1:
+		switching_scene = children_nodes[0]
+		if switching_scene.is_in_group("default"):
+			active_game = Globals.GameList.DEFAULT
+		elif switching_scene.is_in_group("boom"):
+			active_game = Globals.GameList.BOOM
+		elif switching_scene.is_in_group("gateway"):
+			active_game = Globals.GameList.GATEWAY
+		elif switching_scene.is_in_group("critter_junction"):
+			active_game = Globals.GameList.CRITTER_JUNCTION
+		else:
+			active_game = Globals.GameList.DEFAULT
+			push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to", active_game))
+			
 		if children_nodes[0] is BaseEntity2D:
 			(children_nodes[0] as BaseEntity2D).set_spawn_data()
+	else:
+		push_error("The switch wrapper has more than one scene upon wrapper's creation!")
+
+func save_json_data() -> Dictionary:
+	var scene_data: Dictionary = {}
+	
+	#if switching_scene != null and switching_scene.has_method("save_json_data"):
+	if switching_scene == null:
+		push_error("The entity to be saved is missing in its wrapper!")
+		return {}
+	if switching_scene.has_method("save_json_data"):
+		scene_data = switching_scene.save_json_data()
+		#push_error("The entity to be saved doesn't have save method!")
+		#return {}
+	scene_data["active_game"] = active_game
+	return scene_data
+	
+# So that the entity knows which entity from JSON file to pull data from
+func retrieve_savefile_index(index: int):
+	savefile_index = index
+	
+func load_json_data():
+	var data: Dictionary
+	
+	
+	if switching_scene == null:
+		push_error("The entity to be loaded is missing in its wrapper!")
+		return 
+	
+
+	if Globals.temp_last_save.is_empty():
+		push_error("Couldn't load data from the temporary save file variable in global!")
+		return
+		
+	if savefile_index < 0:
+		push_error("Couldn't load data because the entity hasn't been saved yet!")
+		return
+	#var debug = Globals.temp_last_save[0]
+	if not Globals.temp_last_save.has(str(savefile_index)):
+		push_error("Couldn't load data because the entity is not persent in the save file!")
+		return
+		
+	data = Globals.temp_last_save[str(savefile_index)]
+	
+	# switch the game if it is different
+	var prev_game = data.get("active_game")
+	if prev_game != null and prev_game != active_game:
+		switch_to(int(prev_game))
+	
+	if switching_scene.has_method("load_json_data"):
+		switching_scene.load_json_data(data)
 
 
 func switch_to(game: Globals.GameList):
@@ -44,6 +112,9 @@ func switch_to(game: Globals.GameList):
 	# The positin of the scene to be replaced
 	var previous_position: Vector2
 	
+	if active_game == game:
+		print("Trying to switch to the game that is already in use, aborting")
+		return
 	
 	if game < 0 or game > Globals.GameList.size():
 		assert(false, "Not recognizing the game to switch to!")
@@ -68,15 +139,19 @@ func switch_to(game: Globals.GameList):
 		Globals.GameList.DEFAULT:
 			new_scene = default_scene.instantiate()
 			new_scene.add_to_group("default")
+			active_game = Globals.GameList.DEFAULT
 		Globals.GameList.BOOM:
 			new_scene = boom_scene.instantiate()
 			new_scene.add_to_group("boom")
+			active_game = Globals.GameList.BOOM
 		Globals.GameList.GATEWAY:
 			new_scene = gateway_scene.instantiate()
 			new_scene.add_to_group("gateway")
+			active_game = Globals.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
 			new_scene.add_to_group("critter_junction")
+			active_game = Globals.GameList.CRITTER_JUNCTION
 		_:
 			push_error("Trying to switch to a non-existing game!")
 	

@@ -1,13 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0bpck6w0fufw"]
+[gd_scene load_steps=8 format=4 uid="uid://d0bpck6w0fufw"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_3i5kv"]
 [ext_resource type="PackedScene" uid="uid://duymjfignn2dy" path="res://Extra/Switchers/player_wrapper.tscn" id="2_u6kf1"]
 [ext_resource type="PackedScene" uid="uid://dua4bgn4syyt1" path="res://Extra/Switchers/enemy_wrapper.tscn" id="4_2gel8"]
-[ext_resource type="PackedScene" uid="uid://doq02tnud8ynx" path="res://Extra/Switchers/object_wrapper.tscn" id="6_8n2i6"]
-[ext_resource type="PackedScene" uid="uid://bmat7gx3yerwq" path="res://Enemies/enemy_wrapper_2d.tscn" id="6_auh41"]
 [ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_iks63"]
 [ext_resource type="PackedScene" uid="uid://18h1gm28udx5" path="res://Extra/checkpoint.tscn" id="8_rxh0n"]
-[ext_resource type="PackedScene" uid="uid://bk84mg461j7qv" path="res://Extra/Switchers/collectable_wrapper.tscn" id="9_md38r"]
 [ext_resource type="PackedScene" uid="uid://cj1u75xigyjh1" path="res://Extra/game_ui.tscn" id="20_3i5kv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6okg1"]
@@ -34,15 +31,6 @@ position = Vector2(65, 184)
 [node name="EnemyWrapper2D" parent="NavigationRegion2D" instance=ExtResource("4_2gel8")]
 position = Vector2(405, 190)
 
-[node name="ObjectWrapper2D" parent="NavigationRegion2D" instance=ExtResource("6_8n2i6")]
-position = Vector2(366, 175)
-
-[node name="DefaultObject2D" parent="NavigationRegion2D/ObjectWrapper2D" index="0"]
-inside_object_scene = ExtResource("6_auh41")
-
-[node name="CollectableWrapper2D" parent="NavigationRegion2D" instance=ExtResource("9_md38r")]
-position = Vector2(59, 260)
-
 [node name="Checkpoint" parent="NavigationRegion2D" instance=ExtResource("8_rxh0n")]
 position = Vector2(65, 121)
 
@@ -53,5 +41,3 @@ screen_size = Vector2(640, 360)
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[editable path="NavigationRegion2D/ObjectWrapper2D"]

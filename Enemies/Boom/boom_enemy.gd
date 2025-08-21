@@ -47,7 +47,7 @@ func decide_movement():
 			total_weight = straight_weight + around_weight + stand_weight
 			if total_weight != 0:
 				roll = randi() % total_weight
-	
+
 			if roll < straight_weight:
 				decision_timer.start(DECISION_TIME_DEFAULT)
 			elif roll < straight_weight + around_weight:

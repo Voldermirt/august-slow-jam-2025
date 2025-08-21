@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://k68aosr78yjo"]
 
-[node name="DefaultUI" type="Control"]
+[node name="DefaultUI" type="Control" groups=["default"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

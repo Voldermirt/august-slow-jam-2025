@@ -32,15 +32,10 @@ func save_json_data() -> Dictionary:
 	
 	return data
 
-func load_json_data():
-	super.load_json_data()
-	var data: Dictionary
-		
-	data = Globals.temp_last_save[str(savefile_index)]
-	
+func load_json_data(data: Dictionary):
+	super.load_json_data(data)
 	collectables = data["collectables"]
-	
-	
+
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 	if weapon_to_rotate != null:
