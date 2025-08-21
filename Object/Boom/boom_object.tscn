@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://coey1ghipk7r6"]
 
 [ext_resource type="Script" uid="uid://dxsawl2382idu" path="res://Object/Boom/boom_object.gd" id="1_181jr"]
-[ext_resource type="Texture2D" uid="uid://d0jeij6ytxc8m" path="res://Object/Boom/object_stub.png" id="2_181jr"]
 [ext_resource type="PackedScene" uid="uid://h3ify7f64pox" path="res://Object/Boom/explosion.tscn" id="2_rmd42"]
+[ext_resource type="Texture2D" uid="uid://biumw15g7x0d4" path="res://Object/Boom/exploding_barrel.png" id="3_rmd42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_181jr"]
 size = Vector2(24, 32)
@@ -10,6 +10,7 @@ size = Vector2(24, 32)
 [node name="BoomObject2D" type="RigidBody2D" groups=["boom"]]
 collision_layer = 32
 collision_mask = 59
+lock_rotation = true
 freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 1
@@ -18,8 +19,7 @@ explosion_effect = ExtResource("2_rmd42")
 metadata/_custom_type_script = "uid://dxsawl2382idu"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 0.785398
-texture = ExtResource("2_181jr")
+texture = ExtResource("3_rmd42")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_181jr")
