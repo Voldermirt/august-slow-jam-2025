@@ -36,14 +36,16 @@ func load_json_data(data: Dictionary):
 	super.load_json_data(data)
 	collectables = data["collectables"]
 
+func get_mouse_pos() -> Vector2:
+	var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
+	var screen_pos = get_global_transform_with_canvas().origin
+	var look_pos = (mouse_pos - screen_pos) + global_position
+
+	return look_pos
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 	if weapon_to_rotate != null:
-		var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
-		var screen_pos = get_global_transform_with_canvas().origin
-		var look_pos = (mouse_pos - screen_pos) + global_position
-		
-		weapon_to_rotate.look_at(look_pos)
+		weapon_to_rotate.look_at(get_mouse_pos())
 
 func _on_get_collectable(found_collectable: BaseCollectable2D):
 	self.collectables += found_collectable.get_value()

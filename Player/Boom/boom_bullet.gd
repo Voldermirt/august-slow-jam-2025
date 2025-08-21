@@ -3,20 +3,4 @@ extends BaseProjectile2D
 class_name BoomProjectile2D
 
 func _physics_process(delta: float) -> void:
-	global_rotation = direction.angle()
-	# Move the bullet and get the collision info
-	var col: KinematicCollision2D = move_and_collide(direction * speed * delta)
-	
-	if col and col.get_collider() != null:
-		var collider: Object = col.get_collider()
-		if collider is BaseEnemy2D:
-			var enemy: BaseEnemy2D = collider as BaseEnemy2D
-			enemy._on_getting_hit(damage)
-			
-		if collider is BaseObject2D:
-			var object: BaseObject2D = collider as BaseObject2D
-			object.receive_damage(self)
-		hide()
-		queue_free()
-		
-		
+	_player_projectile_Process(delta)

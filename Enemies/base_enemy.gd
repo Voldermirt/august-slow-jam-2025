@@ -10,7 +10,7 @@ enum ThinkState {Neutral, Targeting}
 const AWARENESS_NEUTRAL_DISTANCE: float = 300
 const AWARENESS_COLLISION_MASK: int = 9
 
-const WANDER_DISTANCE_MAX: float = 500
+const WANDER_DISTANCE_MAX: float = 100
 const WANDER_DISTANCE_MIN: float = 5
 
 const DEFAULT_RECOVERY_SECONDS: float = 0.2

@@ -27,7 +27,7 @@ func perform_dash():
 		is_invincible = true
 		available_dashes -= 1
 		
-		velocity = movement_direction.normalized() * DASH_STRENGTH
+		velocity = global_position.direction_to(get_mouse_pos()).normalized() * DASH_STRENGTH
 		return true
 	return false
 	
@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if Input.is_action_pressed("secondary") and dash_duration_timer.time_left <= 0 and allowed_to_move:
+	if Input.is_action_just_pressed("secondary") and dash_duration_timer.time_left <= 0 and allowed_to_move:
 		perform_dash()
 		anim.play("dash")
 	
