@@ -1,20 +1,9 @@
 extends SwitchWrapper2D
 
-class_name ObjectWrapper2D
+signal button_on
+signal button_off
 
-"""
-	Object wrapper specifically for storing Critter Junctioninfo between Games
-"""
-
-# persistent info for Critter Junction
-enum state {PLOT, SAPLING, TREE}
-enum fruit {APPLE, ORANGE, CHERRY, PEACH, PEAR}
-
-var cri_jun_state: state
-var cri_jun_fruit: fruit
-var cri_jun_made_fruit: bool = false
-
-# custom switch_to which
+# for button stuff
 
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
@@ -37,18 +26,15 @@ func switch_to(game: Globals.GameList):
 		#return
 		#
 	
-	scene_to_replace = switching_scene 
+	scene_to_replace = switching_scene
 	
 	#scene_to_replace = children[0]
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return
-	elif scene_to_replace.name == "CriJunObject2D":
-		# Snatch the fruit and current state of the plant and if its made fruit
-		var tree = get_child(0)
-		cri_jun_fruit = tree.fruit_type
-		cri_jun_state = tree.current_state
-		cri_jun_made_fruit = tree.made_fruit
+	elif scene_to_replace.name == "Button":
+		scene_to_replace.disconnect("on", _on_button_on)
+		scene_to_replace.disconnect("off", _on_button_off)
 
 	previous_position = scene_to_replace.position
 	
@@ -61,18 +47,11 @@ func switch_to(game: Globals.GameList):
 			new_scene.add_to_group("boom")
 		Globals.GameList.GATEWAY:
 			new_scene = gateway_scene.instantiate()
+			new_scene.on.connect(_on_button_on)
+			new_scene.off.connect(_on_button_off)
 			new_scene.add_to_group("gateway")
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
-			# Load the saved state and fruit into the cri jun scene
-				# grow the tree if switching back to scene with a sapling
-			if cri_jun_state == state.SAPLING:
-				new_scene.current_state = state.TREE
-			else:
-				new_scene.current_state = cri_jun_state
-			
-			new_scene.fruit_type = cri_jun_fruit
-			new_scene.made_fruit = cri_jun_made_fruit
 			new_scene.add_to_group("critter_junction")
 		_:
 			push_error("Trying to switch to a non-existing game!")
@@ -88,4 +67,10 @@ func switch_to(game: Globals.GameList):
 	
 	new_scene.global_position = previous_position
 	add_child(new_scene)
-	
+
+
+func _on_button_on():
+	emit_signal("button_on")
+
+func _on_button_off():
+	emit_signal("button_off")

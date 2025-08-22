@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://d0bpck6w0fufw"]
+[gd_scene load_steps=12 format=4 uid="uid://d0bpck6w0fufw"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_3i5kv"]
 [ext_resource type="PackedScene" uid="uid://duymjfignn2dy" path="res://Extra/Switchers/player_wrapper.tscn" id="2_u6kf1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmat7gx3yerwq" path="res://Enemies/enemy_wrapper_2d.tscn" id="6_auh41"]
 [ext_resource type="Script" uid="uid://b3byaucvkypwn" path="res://Extra/cam_zone_manager.gd" id="8_iks63"]
 [ext_resource type="PackedScene" uid="uid://18h1gm28udx5" path="res://Extra/checkpoint.tscn" id="8_rxh0n"]
+[ext_resource type="PackedScene" uid="uid://dnob5uyswtc7a" path="res://Object/Gateway/gateway_button_wrapper_2d.tscn" id="9_cg4xo"]
 [ext_resource type="PackedScene" uid="uid://bk84mg461j7qv" path="res://Extra/Switchers/collectable_wrapper.tscn" id="9_md38r"]
 [ext_resource type="PackedScene" uid="uid://cj1u75xigyjh1" path="res://Extra/game_ui.tscn" id="20_3i5kv"]
 
@@ -32,7 +33,9 @@ navigation_polygon = SubResource("NavigationPolygon_6okg1")
 position = Vector2(453, 299)
 
 [node name="EnemyWrapper2D" parent="NavigationRegion2D" instance=ExtResource("4_2gel8")]
-position = Vector2(405, 190)
+position = Vector2(297, 194)
+cri_jun_requested_fruit = 3
+cri_jun_requested_count = 3
 
 [node name="ObjectWrapper2D" parent="NavigationRegion2D" instance=ExtResource("6_8n2i6")]
 position = Vector2(366, 175)
@@ -45,6 +48,9 @@ position = Vector2(59, 260)
 
 [node name="Checkpoint" parent="NavigationRegion2D" instance=ExtResource("8_rxh0n")]
 position = Vector2(525, 190)
+
+[node name="ButtonWrapper2D" parent="NavigationRegion2D" instance=ExtResource("9_cg4xo")]
+position = Vector2(238, 143)
 
 [node name="CamZoneManager" type="Node2D" parent="."]
 script = ExtResource("8_iks63")
