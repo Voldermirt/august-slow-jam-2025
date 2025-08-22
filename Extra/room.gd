@@ -16,6 +16,13 @@ func get_enemies():
 	return enemies
 
 func _ready() -> void:
+	connect_enemies()
+	Globals.game_changed.connect(connect_enemies)
+	if get_num_enemies() == 0:
+		all_enemies_died.emit()
+
+func connect_enemies(_game=null):
+	await get_tree().process_frame
 	for enemy in get_enemies():
 		enemy.death.connect(_on_enemy_death)
 

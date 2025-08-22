@@ -1,20 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnsuq3opkiymb"]
+[gd_scene load_steps=7 format=3 uid="uid://cnsuq3opkiymb"]
 
-[ext_resource type="Texture2D" uid="uid://dwd33laqays5e" path="res://icon.svg" id="1_hbi8v"]
 [ext_resource type="Script" uid="uid://b3oomukv736w3" path="res://Object/door.gd" id="1_qlq3m"]
+[ext_resource type="Texture2D" uid="uid://8nbjg41858ft" path="res://Object/Default/default_door.png" id="2_qlq3m"]
+[ext_resource type="Texture2D" uid="uid://bcbc40vley2h6" path="res://Object/Boom/boom_door.png" id="3_dobhv"]
+[ext_resource type="Texture2D" uid="uid://cta2jkat5hjga" path="res://Object/Gateway/door.png" id="4_43ie3"]
+[ext_resource type="Texture2D" uid="uid://xrg0rt55uh4u" path="res://Object/CritterJunction/cri_jun_door.png" id="5_fyd6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbi8v"]
-size = Vector2(32, 64)
+size = Vector2(32, 80)
 
-[node name="Door" type="StaticBody2D"]
+[node name="Door" type="StaticBody2D" groups=["switch_wrapper"]]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_qlq3m")
+default_texture = ExtResource("2_qlq3m")
+boom_texture = ExtResource("3_dobhv")
+gateway_texture = ExtResource("4_43ie3")
+cri_jun_texture = ExtResource("5_fyd6h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hbi8v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.670097, 0.701477, 0.576759, 1)
-scale = Vector2(0.25, 0.5)
-texture = ExtResource("1_hbi8v")
+texture = ExtResource("2_qlq3m")

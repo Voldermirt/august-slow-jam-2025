@@ -1,28 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddd3g4d6q3clu"]
+[gd_scene load_steps=4 format=3 uid="uid://ddd3g4d6q3clu"]
 
 [ext_resource type="Script" uid="uid://so4fnn84iq2a" path="res://Collectables/Boom/boom_collectable.gd" id="1_y3twh"]
-[ext_resource type="Texture2D" uid="uid://bjtp1bhygpg6g" path="res://Collectables/Boom/collectable_stub.png" id="2_y3twh"]
+[ext_resource type="Texture2D" uid="uid://c5xsrguw8qn5o" path="res://Object/Boom/medkit.png" id="2_y3twh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4lanw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_y3twh")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="BoomCollectable2D" type="Area2D" groups=["boom"]]
-rotation = 1.5708
 script = ExtResource("1_y3twh")
+money_value = 0
 metadata/_custom_type_script = "uid://so4fnn84iq2a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_56ux8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4lanw")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y3twh")

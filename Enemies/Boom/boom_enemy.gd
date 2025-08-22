@@ -39,7 +39,6 @@ func decide_movement():
 			var total_weight: int = 0
 			var roll: int = 0
 			var player_seen: bool = is_player_seen()
-			
 			var straight_weight: int = 1 if player_seen else 4
 			var around_weight: int = 5 if player_seen else 2
 			var stand_weight: int = 2 if player_seen else 1

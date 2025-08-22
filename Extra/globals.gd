@@ -20,6 +20,14 @@ var current_game_index: int = GameList.DEFAULT
 var temp_last_save: Dictionary
 var can_switch = true
 
+var zoom_out = false
+
+@onready var current_bgm_track := $DefaultMusic
+
+
+func set_zoom_out(new_zoom : bool) -> void:
+	zoom_out = new_zoom
+	set_bgm(current_game_index)
 
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
@@ -135,3 +143,25 @@ func switch_games(game_index: GameList):
 	for wrapper in wrappers:
 		wrapper.switch_to(game_index)
 	game_changed.emit(game_index)
+	set_bgm(game_index)
+
+func set_bgm(game_index : GameList) -> void:
+	# Change BGM
+	create_tween().tween_property(current_bgm_track, "volume_db", -40, 1)
+	var old_pos = current_bgm_track.get_playback_position()
+	var new_track = current_bgm_track
+	var music_node = $LowQualityMusic if zoom_out else self
+	match game_index:
+		GameList.DEFAULT:
+			new_track = music_node.get_node("DefaultMusic")
+		GameList.BOOM:
+			new_track = music_node.get_node("BoomMusic")
+		GameList.GATEWAY:
+			new_track = music_node.get_node("GatewayMusic")
+		GameList.CRITTER_JUNCTION:
+			new_track = music_node.get_node("CriJunMusic")
+	create_tween().tween_property(new_track, "volume_db", 0.0, 1)
+	# Just to make sure
+	new_track.seek(old_pos)
+	current_bgm_track = new_track
+	

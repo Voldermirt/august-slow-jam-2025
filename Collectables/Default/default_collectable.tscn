@@ -1,15 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0n5mu8b66cta"]
+[gd_scene load_steps=11 format=3 uid="uid://c0n5mu8b66cta"]
 
 [ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_56ux8"]
-[ext_resource type="Texture2D" uid="uid://b2832eq4pwtyr" path="res://Collectables/Default/collectable_stub.png" id="2_n6l1f"]
+[ext_resource type="Texture2D" uid="uid://bb0jv3g252jg3" path="res://Object/Default/coin.png" id="2_n6l1f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4lanw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lanw"]
+atlas = ExtResource("2_n6l1f")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3t0y"]
+atlas = ExtResource("2_n6l1f")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkmgn"]
+atlas = ExtResource("2_n6l1f")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ir8y"]
+atlas = ExtResource("2_n6l1f")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0sv2"]
+atlas = ExtResource("2_n6l1f")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c15y"]
+atlas = ExtResource("2_n6l1f")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wgnnr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_n6l1f")
+"texture": SubResource("AtlasTexture_4lanw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3t0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkmgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ir8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0sv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c15y")
 }],
 "loop": true,
 "name": &"default",
@@ -17,12 +56,14 @@ animations = [{
 }]
 
 [node name="DefaultCollectable2D" type="Area2D" groups=["default"]]
-rotation = 1.5708
 script = ExtResource("1_56ux8")
+health_value = 0
 metadata/_custom_type_script = "uid://bbgqvpkp2dqul"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_56ux8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4lanw")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wgnnr")
+autoplay = "default"
+frame_progress = 0.190262

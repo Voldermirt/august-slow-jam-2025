@@ -1,28 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbkwjooflp27j"]
+[gd_scene load_steps=4 format=3 uid="uid://dbkwjooflp27j"]
 
 [ext_resource type="Script" uid="uid://yy4wdagksgc4" path="res://Collectables/Gateway/gateway_collectable.gd" id="1_qqpwo"]
-[ext_resource type="Texture2D" uid="uid://dkyltsjec4amn" path="res://Collectables/Gateway/collectable_stub.png" id="2_qqpwo"]
+[ext_resource type="Texture2D" uid="uid://dwpggu2hugkpn" path="res://Object/Gateway/cake.png" id="2_qqpwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4lanw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_qqpwo")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="GateWayCollectable2D" type="Area2D" groups=["default"]]
-rotation = 1.5708
 script = ExtResource("1_qqpwo")
+money_value = 0
+health_value = 0
 metadata/_custom_type_script = "uid://yy4wdagksgc4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_56ux8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4lanw")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qqpwo")

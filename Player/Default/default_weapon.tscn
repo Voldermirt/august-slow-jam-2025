@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjbq5tvx0tlo5" path="res://Player/Default/sword.png" id="2_dey40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dey40"]
-size = Vector2(25, 5)
+size = Vector2(31, 5)
 
 [sub_resource type="Animation" id="Animation_prt0v"]
 length = 0.001
@@ -220,7 +220,7 @@ rotation = 1.5708
 texture = ExtResource("2_dey40")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rotatator/Sword"]
-position = Vector2(8.5, 0.375)
+position = Vector2(11.5, 0.375)
 shape = SubResource("RectangleShape2D_dey40")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Rotatator"]
