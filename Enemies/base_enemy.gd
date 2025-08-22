@@ -55,10 +55,13 @@ func get_contact_damage() -> int:
 func get_attack_time() -> float: 
 	return randf_range(ATTACK_DELAY_MIN, ATTACK_DELAY_MAX)
 
+func get_max_health():
+	return BASE_MAX_HEALTH
+	
 # Gives entity the data it should receive on initial spawning
 func set_spawn_data():
 	super.set_spawn_data()
-	self.health = BASE_MAX_HEALTH
+	self.health = get_max_health()
 	thinking_state = ThinkState.Neutral
 	
 func save_json_data() -> Dictionary:
