@@ -21,6 +21,9 @@ var moving_speed: float = 100.0
 var cur_knock_force: Vector2
 var cur_knock_duration: float
 
+func get_recovery_time():
+	return damage_recovery_seconds
+
 func get_max_health():
 	return BASE_MAX_HEALTH
 
@@ -89,7 +92,7 @@ func _on_death():
 
 # Start the recover after damage, during which player can't be damaged
 func _start_damage_recovery():
-	recovery_timer.start(damage_recovery_seconds)
+	recovery_timer.start(get_recovery_time())
 	modulate.a = 0.5
 	is_invincible = true
 

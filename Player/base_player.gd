@@ -81,10 +81,11 @@ func _physics_process(delta):
 	
 	# Animate
 	if anim:
-		if movement_direction.length() > 0:
-			anim.play("walk")
-		else:
-			anim.play("idle")
+		if anim.animation != "dash":
+			if movement_direction.length() > 0:
+				anim.play("walk")
+			else:
+				anim.play("idle")
 		
 		if movement_direction.x > 0:
 			anim.flip_h = false

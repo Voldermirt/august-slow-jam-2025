@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dub6m5q2lfqoq"]
+[gd_scene load_steps=6 format=3 uid="uid://dub6m5q2lfqoq"]
 
 [ext_resource type="Texture2D" uid="uid://b2ugginuk104n" path="res://Enemies/Default/enemy_stub.png" id="1_t45d3"]
 [ext_resource type="Script" uid="uid://d1k1rwld8vib1" path="res://Boss/Default/default_boss.gd" id="1_ubfvn"]
@@ -16,7 +16,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfvn"]
+
 [node name="DefaultBoss2D" type="CharacterBody2D" groups=["boss", "default"]]
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_ubfvn")
 metadata/_custom_type_script = "uid://d1k1rwld8vib1"
 
@@ -25,3 +30,10 @@ shape = SubResource("RectangleShape2D_j5ojn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pubjm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1.384)
+shape = SubResource("RectangleShape2D_ubfvn")

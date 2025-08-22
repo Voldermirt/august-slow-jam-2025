@@ -23,6 +23,7 @@ func perform_dash():
 		if dash_cd_timer.time_left <= 0:
 			dash_cd_timer.start(DASH_CD_TIME)
 		
+		anim.play("dash")
 		allowed_to_move = false
 		is_invincible = true
 		available_dashes -= 1
@@ -40,16 +41,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
 		weapon.shoot()
 	if Input.is_action_just_pressed("secondary"):
-		if dash_duration_timer.time_left <= 0 and allowed_to_move and available_dashes > 0:
+		if dash_duration_timer.time_left <= 0 and allowed_to_move and available_dashes > 0 and dash_duration_timer.time_left <= 0:
 			perform_dash()
 
 	#PlayerStats.cooldown = cooldown_timer.time_left
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if Input.is_action_just_pressed("secondary") and dash_duration_timer.time_left <= 0 and allowed_to_move:
-		perform_dash()
-		anim.play("dash")
 	
 	if dash_duration_timer.time_left > 0:
 		move_and_slide()

@@ -90,12 +90,12 @@ func make_wander_path():
 	return make_path(random_move_position)
 
 func make_player_path():
-	if player_body == null:
+	if player_body == null or not is_instance_valid(player_body):
 		return make_path(Vector2.INF)
 	return make_path(player_body.global_position)
 	
 func make_player_around_path():
-	if player_body == null:
+	if player_body == null or not is_instance_valid(player_body):
 		make_path(Vector2.INF)
 	
 	var player_pos: Vector2 = player_body.global_position
@@ -116,8 +116,9 @@ func make_player_around_path():
 		#final_destination_position = player_pos + perpendicular * around_player_radius
 
 	return make_path(final_destination_position)
-	
 
+func refresh_player_reference():
+	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
 
 func _ready():
 	super._ready()
@@ -125,7 +126,7 @@ func _ready():
 	
 	# Assign the player to navigate towards
 	#await get_tree().process_frame
-	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
+	refresh_player_reference()
 	
 	moving_speed = ENEMY_MOVEMENT
 	
@@ -191,12 +192,14 @@ func _ready():
 	decision_timer.start()
 	
 func is_player_seen():
-	if awareness_raycast != null and player_body != null:
+	if awareness_raycast != null and player_body != null and is_instance_valid(player_body):
 		return awareness_raycast.is_colliding() and awareness_raycast.get_collider() is BasePlayer2D and thinking_switch_timer.time_left <= 0
 	return false
 #
 ## Decision-making
-#func _process(delta):
+func _process(delta):
+	if not is_instance_valid(player_body):
+		refresh_player_reference()
 	#if n_agent != null and spawn_delay.time_left <= 0:
 		#match thinking_state:
 			#ThinkState.Neutral:
@@ -208,7 +211,7 @@ func _physics_process(delta):
 	if health <= 0:
 		return
 		
-	if n_agent != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
+	if is_instance_valid(player_body) and n_agent != null and spawn_delay != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
 		awareness_raycast.look_at(player_body.global_position)
 		match thinking_state:
 			ThinkState.Neutral:
