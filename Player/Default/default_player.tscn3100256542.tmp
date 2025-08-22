@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://ubjo2o0sluou"]
+
+[ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_3v0ge"]
+[ext_resource type="Texture2D" uid="uid://dl4vnlasjmn4p" path="res://Player/Default/player.png" id="2_yt6s3"]
+[ext_resource type="PackedScene" uid="uid://b0mj8pauo4inv" path="res://Player/Default/default_weapon.tscn" id="3_qgiie"]
+[ext_resource type="AudioStream" uid="uid://d00lpmvq5231a" path="res://assets/sounds/sfx/Other/player_hurt.wav" id="4_dhyap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
+size = Vector2(15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u0vu"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt6s3"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhyap"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjm7u"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irnmt"]
+atlas = ExtResource("2_yt6s3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u0vu")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt6s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhyap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjm7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irnmt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="DefaultPlayer2D" type="CharacterBody2D" groups=["default", "player"]]
+z_index = 3
+collision_mask = 44
+script = ExtResource("1_3v0ge")
+metadata/_custom_type_script = "uid://pbh68marjmsv"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_l8h54")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4ntmi")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="DefaultSword" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dhyap")

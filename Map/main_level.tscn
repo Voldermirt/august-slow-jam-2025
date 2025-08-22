@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dmbt7ahfudc6w"]
+[gd_scene load_steps=29 format=4 uid="uid://dmbt7ahfudc6w"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
 [ext_resource type="Script" uid="uid://0ag0yqm6uqvv" path="res://Map/main_level.gd" id="1_lipnt"]
@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://cnsuq3opkiymb" path="res://Object/door.tscn" id="21_qqpjv"]
 [ext_resource type="PackedScene" uid="uid://dua4bgn4syyt1" path="res://Extra/Switchers/enemy_wrapper.tscn" id="22_53uk6"]
 [ext_resource type="PackedScene" uid="uid://csvqos6vt8axp" path="res://Extra/Switchers/boss_wrapper.tscn" id="23_o36ip"]
-[ext_resource type="PackedScene" uid="uid://dub6m5q2lfqoq" path="res://Boss/Default/default_boss.tscn" id="24_2rijx"]
 [ext_resource type="PackedScene" uid="uid://18h1gm28udx5" path="res://Extra/checkpoint.tscn" id="26_2rijx"]
 [ext_resource type="PackedScene" uid="uid://dnob5uyswtc7a" path="res://Object/Gateway/gateway_button_wrapper_2d.tscn" id="26_063bw"]
 
@@ -33,9 +32,6 @@
 vertices = PackedVector2Array(1055.95, -272.039, 1051.04, 744.961, -449.977, 739.031, -448.008, -278.953)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1066, -282, -458, -289, -460, 749, 1061, 755)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5bmv"]
-size = Vector2(32, 32)
 
 [node name="MainLevel" type="Node2D" groups=["switch_wrapper"]]
 script = ExtResource("1_lipnt")
@@ -215,29 +211,15 @@ position = Vector2(1896, 224)
 [node name="Door" parent="Rooms/RoomBoss" instance=ExtResource("21_qqpjv")]
 position = Vector2(3768, 544)
 
-[node name="BossWrapper2D" parent="Rooms/RoomBoss" instance=ExtResource("23_o36ip")]
+[node name="BossWrapper2D" parent="Rooms/RoomBoss" node_paths=PackedStringArray("bound_area") instance=ExtResource("23_o36ip")]
 position = Vector2(3675, 538)
-gateway_scene = ExtResource("24_2rijx")
-critter_junction_scene = ExtResource("24_2rijx")
-
-[node name="DefaultBoss2D" parent="Rooms/RoomBoss/BossWrapper2D" index="0" node_paths=PackedStringArray("bound_area")]
-bound_area = NodePath("../../BossArea2D")
+bound_area = NodePath("../BossArea2D")
 
 [node name="BossArea2D" type="Area2D" parent="Rooms/RoomBoss"]
 position = Vector2(3675, 538)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rooms/RoomBoss/BossArea2D"]
 polygon = PackedVector2Array(-379, -154, 69, -154, 69, -122, 101, -122, 101, 134, 69, 134, 69, 166, -379, 166, -379, 134, -411, 134, -411, -122, -379, -122)
-
-[node name="TESTDEATHFIELD" type="Area2D" parent="Rooms/RoomBoss"]
-position = Vector2(3520, 552)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/RoomBoss/TESTDEATHFIELD"]
-shape = SubResource("RectangleShape2D_v5bmv")
-
-[node name="Polygon2D" type="Polygon2D" parent="Rooms/RoomBoss/TESTDEATHFIELD"]
-polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [node name="Room2" parent="Rooms" instance=ExtResource("20_sxhp5")]
 
@@ -581,7 +563,7 @@ position = Vector2(6336, 928)
 
 [connection signal="fallen_into" from="Objects/Chasm1/FirstChasm" to="." method="_on_first_chasm_fallen_into"]
 [connection signal="all_enemies_died" from="Rooms/Room1" to="Rooms/Room1/Door" method="open"]
-[connection signal="body_entered" from="Rooms/RoomBoss/TESTDEATHFIELD" to="." method="_on_testdeathfield_body_entered"]
+[connection signal="death" from="Rooms/RoomBoss/BossWrapper2D/DefaultBoss2D" to="Rooms/RoomBoss/Door" method="open"]
 [connection signal="all_enemies_died" from="Rooms/Room2" to="Rooms/Room2/Door" method="open"]
 [connection signal="all_enemies_died" from="Rooms/Room3" to="Rooms/Room3/Door" method="open"]
 [connection signal="all_enemies_died" from="Rooms/Room4" to="Rooms/Room4/Door" method="open"]

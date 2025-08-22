@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="August Slow Jam"
-run/main_scene="uid://6ye3apqayap2"
+run/main_scene="uid://dqkbxbrdinqrh"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

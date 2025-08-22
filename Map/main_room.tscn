@@ -7,12 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
 [ext_resource type="PackedScene" uid="uid://dwna61n0p3n4m" path="res://models/default_game.fbx" id="6_uj7hd"]
 [ext_resource type="PackedScene" uid="uid://b0cimbwysm564" path="res://models/boom_game.fbx" id="7_oho2g"]
-[ext_resource type="AudioStream" uid="uid://b6upjs3jj6yxc" path="res://assets/sounds/sfx/Other/glitch_short.wav" id="8_cyq4t"]
+[ext_resource type="PackedScene" uid="uid://bqbmq3x2syd4w" path="res://models/gateway_game.fbx" id="8_cyq4t"]
 [ext_resource type="AudioStream" uid="uid://byn4mb3xx241o" path="res://assets/sounds/sfx/Other/room_ambience.wav" id="9_0sjnj"]
 [ext_resource type="AudioStream" uid="uid://b7bac1s80wny" path="res://assets/sounds/sfx/Other/computer_ambience.wav" id="10_qbyyd"]
 [ext_resource type="AudioStream" uid="uid://nq22u5vkh0pn" path="res://assets/sounds/sfx/Other/keyboard1.wav" id="11_rpbss"]
 [ext_resource type="AudioStream" uid="uid://dsd8dr73apyb3" path="res://assets/sounds/sfx/Other/keyboard2.wav" id="12_dbnuq"]
-[ext_resource type="PackedScene" uid="uid://bqbmq3x2syd4w" path="res://models/gateway_game.fbx" id="8_cyq4t"]
 
 [sub_resource type="Curve" id="Curve_p8vsj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.418773, 0.146269), 0.460682, 0.460682, 0, 0, Vector2(0.66426, 0.485821), 1.79154, 1.79154, 0, 0, Vector2(0.978339, 1), -0.103358, 0.0, 0, 0]
@@ -210,7 +209,6 @@ mesh = SubResource("BoxMesh_oho2g")
 
 [node name="GameChangeSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("8_cyq4t")
 
 [node name="RoomAmbience" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -229,4 +227,28 @@ process_mode = 3
 stream = ExtResource("12_dbnuq")
 
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level" to="." method="unlock_game"]
+[connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D" to="." method="unlock_game"]
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]
+
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Objects/BucketWrapper"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Objects/Chasm1/FirstChasm"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room1/EnemyWrapper2D"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/BossWrapper2D"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room2/EnemyWrapper2D2"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room2/EnemyWrapper2D3"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room2/EnemyWrapper2D4"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room3/EnemyWrapper2D5"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room3/EnemyWrapper2D6"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room3/EnemyWrapper2D7"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room4/EnemyWrapper2D8"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room4/EnemyWrapper2D9"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room4/EnemyWrapper2D10"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room4/EnemyWrapper2D11"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room4/EnemyWrapper2D12"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room5/EnemyWrapper2D13"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room5/EnemyWrapper2D14"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room5/EnemyWrapper2D15"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room5/EnemyWrapper2D16"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room6/EnemyWrapper2D17"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room10/Chasm2/Chasm"]

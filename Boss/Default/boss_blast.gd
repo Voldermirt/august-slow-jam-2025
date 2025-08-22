@@ -50,7 +50,7 @@ func _ready():
 
 func damage_player(body: Node):
 	if body is BasePlayer2D:
-		body._on_getting_hit(get_damage(), false)
+		body._on_getting_hit(get_damage(), false, "FirstBoss")
 	
 func _on_windup_timeout():
 	#collision_layer = active_collision_layer
