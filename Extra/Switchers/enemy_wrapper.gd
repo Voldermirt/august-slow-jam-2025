@@ -1,20 +1,13 @@
 extends SwitchWrapper2D
 
-class_name ObjectWrapper2D
+signal cri_jun_request_fulfilled
 
-"""
-	Object wrapper specifically for storing Critter Junctioninfo between Games
-"""
-
-# persistent info for Critter Junction
-enum state {PLOT, SAPLING, TREE}
 enum fruit {APPLE, ORANGE, CHERRY, PEACH, PEAR}
 
-var cri_jun_state: state
-var cri_jun_fruit: fruit
-var cri_jun_made_fruit: bool = false
+@export var cri_jun_requested_fruit: fruit
+@export var cri_jun_requested_count: int
+var cri_jun_fulfilled := false
 
-# custom switch_to which
 
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
@@ -37,18 +30,21 @@ func switch_to(game: Globals.GameList):
 		#return
 		#
 	
-	scene_to_replace = switching_scene 
+	scene_to_replace = switching_scene
 	
 	#scene_to_replace = children[0]
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return
-	elif scene_to_replace.name == "CriJunObject2D":
-		# Snatch the fruit and current state of the plant and if its made fruit
-		var tree = get_child(0)
-		cri_jun_fruit = tree.fruit_type
-		cri_jun_state = tree.current_state
-		cri_jun_made_fruit = tree.made_fruit
+	elif scene_to_replace.name == "CritterJunctionEnemy2D":
+		# Snatch variable values
+		var villager = get_child(0)
+		cri_jun_requested_fruit = villager.requested_fruit
+		cri_jun_requested_count = villager.requested_count
+		cri_jun_fulfilled = villager.fulfilled
+		# disconnect signal
+		scene_to_replace.disconnect("cri_jun_request_fulfilled", _on_cri_jun_fulfilled_request)
+		
 
 	previous_position = scene_to_replace.position
 	
@@ -64,15 +60,13 @@ func switch_to(game: Globals.GameList):
 			new_scene.add_to_group("gateway")
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
-			# Load the saved state and fruit into the cri jun scene
-				# grow the tree if switching back to scene with a sapling
-			if cri_jun_state == state.SAPLING:
-				new_scene.current_state = state.TREE
-			else:
-				new_scene.current_state = cri_jun_state
 			
-			new_scene.fruit_type = cri_jun_fruit
-			new_scene.made_fruit = cri_jun_made_fruit
+			# Load stored variable values into Villager
+			new_scene.requested_fruit = cri_jun_requested_fruit
+			new_scene.requested_count = cri_jun_requested_count
+			new_scene.fulfilled = cri_jun_fulfilled
+			# connect signal
+			new_scene.fulfilled_request.connect(_on_cri_jun_fulfilled_request)
 			new_scene.add_to_group("critter_junction")
 		_:
 			push_error("Trying to switch to a non-existing game!")
@@ -88,4 +82,6 @@ func switch_to(game: Globals.GameList):
 	
 	new_scene.global_position = previous_position
 	add_child(new_scene)
-	
+
+func _on_cri_jun_fulfilled_request():
+	emit_signal("cri_jun_request_fulfilled")

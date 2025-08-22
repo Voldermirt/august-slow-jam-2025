@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://co58b5oeybe3b"]
+
+[ext_resource type="Texture2D" uid="uid://cqut0h1wua4u0" path="res://Object/CritterJunction/fruit.png" id="1_xh6g4"]
+
+[resource]
+atlas = ExtResource("1_xh6g4")
+region = Rect2(0, 0, 16, 16)

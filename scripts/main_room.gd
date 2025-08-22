@@ -9,11 +9,15 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 @export var gateway_code : Array[Direction]
 @export var critter_junction_code : Array[Direction]
 
+# Array of currently available codes, default code is available at the beginning
+var available_codes: = [default_code]
+
 @onready var zoom_anim := %ZoomAnim
 @onready var view_2d := $ScreenEffects/EffectViewport/Render2D
 @onready var view_3d := $Render3D
 @onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D/Level
 
+# Game cases are unique identifiers already
 
 var zoom_out = false      # Are we zoomed/zooming out
 var current_sequence = [] # Current cheat code input sequence
@@ -116,8 +120,8 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	if len(current_sequence) > 5:
 		current_sequence.remove_at(0)
 	
-	# Check if input matches any of the codes
-	for code in [default_code, boom_code, gateway_code, critter_junction_code]:
+	# Check if input matches any of the available codes
+	for code in available_codes:
 		if current_sequence == code:
 			if code_to_game(code) != Globals.current_game_index:
 				print("Code successfully inputted!")
@@ -138,3 +142,15 @@ func code_to_game(code) -> Globals.GameList:
 	if code == critter_junction_code:
 		return Globals.GameList.CRITTER_JUNCTION
 	return Globals.GameList.DEFAULT
+
+
+# Show games when needed
+func show_game(game: String):
+	match game:
+		"boom":
+			%boom_game.show()
+			available_codes.append(boom_code)
+		"gateway":
+			print("show gateway")
+		"cri_jun":
+			print("show critter junction")

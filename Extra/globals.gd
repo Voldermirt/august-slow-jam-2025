@@ -20,6 +20,7 @@ var current_game_index: int = GameList.DEFAULT
 var temp_last_save: Dictionary
 var can_switch = true
 
+
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
 		switch_random_games()
@@ -134,4 +135,3 @@ func switch_games(game_index: GameList):
 	for wrapper in wrappers:
 		wrapper.switch_to(game_index)
 	game_changed.emit(game_index)
-	

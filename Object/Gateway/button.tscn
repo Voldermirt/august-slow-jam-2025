@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://fh7g8bngkpq8"]
+
+[ext_resource type="Script" uid="uid://rm3x2v5vuteg" path="res://Object/Gateway/button.gd" id="1_axpfa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_se25j"]
+radius = 12.0
+
+[node name="Button" type="Area2D"]
+script = ExtResource("1_axpfa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_se25j")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.6, 0.126, 0.126, 1)
+polygon = PackedVector2Array(-7, -10, 0, -11, 7, -10, 10, 0, 7, 10, -7, 10, -10, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
