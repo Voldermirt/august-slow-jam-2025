@@ -6,6 +6,8 @@
 radius = 12.0
 
 [node name="Button" type="Area2D"]
+collision_layer = 32
+collision_mask = 33
 script = ExtResource("1_axpfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
