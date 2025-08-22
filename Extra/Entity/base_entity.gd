@@ -43,6 +43,7 @@ func _knockback_proccess(delta):
 	if cur_knock_duration <= 0.0:
 		cur_knock_force = Vector2.ZERO
 	
+
 func _ready():
 	if not get_parent().is_in_group("switch_wrapper"):
 		assert(false, str(self, " entity is not the child of in the SwitchWrapper"))
@@ -63,6 +64,9 @@ func _on_getting_hit(damage: float, bypass_invincibility=false):
 			_on_death()
 		else:
 			_start_damage_recovery()
+
+func heal(amount : float):
+	health = clamp(health + amount, 0, BASE_MAX_HEALTH)
 
 func _on_death():
 	death.emit()

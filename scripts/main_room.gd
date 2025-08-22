@@ -56,11 +56,13 @@ func _input(event: InputEvent) -> void:
 		view_3d.visible = true
 		zoom_out = true
 		zoom_anim.play("zoom")
+		Globals.set_zoom_out(true)
 		get_tree().paused = true
 	elif event.is_action_released("zoom") and zoom_out:
 		# Zoom in
 		zoom_out = false
 		zoom_anim.play_backwards("zoom")
+		Globals.set_zoom_out(false)
 	
 	# Get directional inputs
 	for dir in ["up", "down", "left", "right"]:
