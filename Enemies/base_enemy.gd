@@ -77,7 +77,8 @@ func make_path(position: Vector2):
 	if n_agent == null or position == Vector2.ZERO or position == Vector2.INF:
 		return Vector2.INF
 	n_agent.target_position = position
-	awareness_raycast.look_at(position)
+	if awareness_raycast != null:
+		awareness_raycast.look_at(position)
 	return n_agent.target_position
 
 func make_wander_path():
@@ -215,7 +216,8 @@ func _physics_process(delta):
 		return
 		
 	if is_instance_valid(player_body) and n_agent != null and spawn_delay != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
-		awareness_raycast.look_at(player_body.global_position)
+		if awareness_raycast != null:
+			awareness_raycast.look_at(player_body.global_position)
 		match thinking_state:
 			ThinkState.Neutral:
 				# Check if we could find the player
@@ -281,7 +283,7 @@ func animate():
 	if not anim:
 		return
 	
-	if velocity.length() > 0:
+	if velocity.length() > 0 and health > 0:
 		anim.play("walk")
 	else:
 		anim.play("idle")

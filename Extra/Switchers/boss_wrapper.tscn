@@ -1,11 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://csvqos6vt8axp"]
 
-[ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_6rbvy"]
 [ext_resource type="PackedScene" uid="uid://dub6m5q2lfqoq" path="res://Boss/Default/default_boss.tscn" id="2_bk4r8"]
 [ext_resource type="PackedScene" uid="uid://ktj28riv7puy" path="res://Boss/Boom/boom_boss.tscn" id="3_4u6t5"]
+[ext_resource type="Script" uid="uid://b2b2g0yhitsmy" path="res://Extra/Switchers/boss_wrapper.gd" id="4_p7g37"]
 
-[node name="BossWrapper2D" groups=["boss"] instance=ExtResource("1_6rbvy")]
+[node name="BossWrapper" type="Node2D" groups=["switch_wrapper"]]
+script = ExtResource("4_p7g37")
 default_scene = ExtResource("2_bk4r8")
 boom_scene = ExtResource("3_4u6t5")
+gateway_scene = ExtResource("2_bk4r8")
+critter_junction_scene = ExtResource("2_bk4r8")
 
-[node name="DefaultBoss2D" parent="." index="0" instance=ExtResource("2_bk4r8")]
+[node name="DefaultBoss2D" parent="." instance=ExtResource("2_bk4r8")]
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

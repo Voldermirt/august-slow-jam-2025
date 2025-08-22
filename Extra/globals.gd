@@ -79,7 +79,7 @@ func load_game():
 		saving_game.emit()
 		
 		# Make sure to delete all portals
-		for gateway in get_tree().get_nodes_in_group("portal_instance"):
+		for gateway in get_tree().get_nodes_in_group("delete_on_load"):
 			gateway.queue_free()
 	pass
 

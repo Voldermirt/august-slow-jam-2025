@@ -82,7 +82,7 @@ func _physics_process(delta):
 	# Animate
 	if anim:
 		if anim.animation != "dash":
-			if movement_direction.length() > 0:
+			if movement_direction.length() > 0 and health > 0:
 				anim.play("walk")
 			else:
 				anim.play("idle")
