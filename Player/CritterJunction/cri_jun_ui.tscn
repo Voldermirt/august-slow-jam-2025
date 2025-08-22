@@ -57,7 +57,7 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("3_f2tcw")
 region = Rect2(128, 0, 32, 32)
 
-[node name="CriJunUI" type="Control" groups=["cri_jun_ui"]]
+[node name="CriJunUI" type="Control" groups=["cri_jun_ui", "critter_junction"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

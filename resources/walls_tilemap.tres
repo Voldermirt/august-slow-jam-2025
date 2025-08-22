@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bmgdqt5klxnk1"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://bmgdqt5klxnk1"]
 
 [ext_resource type="Texture2D" uid="uid://caeaoc2g3yl01" path="res://assets/sprites/default_walls.png" id="1_vrii4"]
 [ext_resource type="Texture2D" uid="uid://bjtfum45iwdq" path="res://Map/enemy_test_area/debug_floor.png" id="2_mdcg2"]
+[ext_resource type="Texture2D" uid="uid://c7knjy3jv821n" path="res://Map/enemy_test_area/boss_floor.png" id="2_qxhi5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qxhi5"]
 
@@ -388,6 +389,10 @@ texture_region_size = Vector2i(32, 32)
 11:3/0/terrains_peering_bit/top_left_corner = 0
 11:3/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4a8b"]
+texture = ExtResource("2_qxhi5")
+texture_region_size = Vector2i(32, 32)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mdcg2"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -408,5 +413,7 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = " Walls"
 terrain_set_0/terrain_0/color = Color(0.692957, 1.15514e-06, 0.408526, 1)
 navigation_layer_0/layers = 1
+navigation_layer_1/layers = 2
 sources/0 = SubResource("TileSetAtlasSource_0c70c")
 sources/3 = SubResource("TileSetAtlasSource_mdcg2")
+sources/1 = SubResource("TileSetAtlasSource_u4a8b")

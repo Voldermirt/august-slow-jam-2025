@@ -42,8 +42,7 @@ size = Vector2(32, 32)
 
 [node name="DefaultObject2D" type="RigidBody2D" groups=["default"]]
 collision_layer = 32
-collision_mask = 59
-freeze_mode = 1
+collision_mask = 8
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_t3rni")
@@ -56,5 +55,9 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p45qf")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 20.0
+vertices = PackedVector2Array(30, -30, -30, -30, -30, 30, 30, 30)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

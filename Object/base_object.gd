@@ -3,6 +3,7 @@ extends RigidBody2D
 class_name BaseObject2D
 
 #var prev_pos_debug: Vector2
+const DAMP: float = 30
 
 func _ready():
 	gravity_scale = 0
