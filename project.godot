@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="August Slow Jam"
-run/main_scene="uid://6ye3apqayap2"
+run/main_scene="uid://bt2j76m7ful7f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
