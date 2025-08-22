@@ -61,6 +61,7 @@ fill_mode = 3
 show_percentage = false
 
 [node name="DashCount" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 32.0
 offset_top = 297.0

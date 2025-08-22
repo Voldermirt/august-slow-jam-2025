@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0mj8pauo4inv"]
+[gd_scene load_steps=12 format=3 uid="uid://b0mj8pauo4inv"]
 
 [ext_resource type="Script" uid="uid://3xunmn8dhic2" path="res://Player/Default/default_weapon.gd" id="1_t005n"]
 [ext_resource type="Texture2D" uid="uid://bjbq5tvx0tlo5" path="res://Player/Default/sword.png" id="2_dey40"]
+[ext_resource type="AudioStream" uid="uid://u7qjdq35x62l" path="res://assets/sounds/sfx/Default/sword_attack.wav" id="3_amdv7"]
+[ext_resource type="AudioStream" uid="uid://5psj0m2tred" path="res://assets/sounds/sfx/Default/shield.wav" id="4_4t82s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dey40"]
 size = Vector2(31, 5)
@@ -96,6 +98,21 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../BlockSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_4t82s")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_amdv7"]
 resource_name = "idle"
@@ -189,6 +206,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 4]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AttackSound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_amdv7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_amdv7"]
 _data = {
@@ -235,6 +267,10 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rotatator/BlockCollision"]
 shape = SubResource("SegmentShape2D_dey40")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+
+[node name="BlockSound" type="AudioStreamPlayer" parent="."]
 
 [connection signal="body_entered" from="Rotatator/Sword" to="." method="_on_sword_body_entered"]
 [connection signal="animation_finished" from="Rotatator/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

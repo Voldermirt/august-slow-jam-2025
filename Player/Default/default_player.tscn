@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ubjo2o0sluou"]
+[gd_scene load_steps=12 format=3 uid="uid://ubjo2o0sluou"]
 
 [ext_resource type="Script" uid="uid://pbh68marjmsv" path="res://Player/Default/default_player.gd" id="1_3v0ge"]
 [ext_resource type="Texture2D" uid="uid://dl4vnlasjmn4p" path="res://Player/Default/player.png" id="2_yt6s3"]
 [ext_resource type="PackedScene" uid="uid://b0mj8pauo4inv" path="res://Player/Default/default_weapon.tscn" id="3_qgiie"]
+[ext_resource type="AudioStream" uid="uid://d00lpmvq5231a" path="res://assets/sounds/sfx/Other/player_hurt.wav" id="4_dhyap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 size = Vector2(15, 20)
@@ -72,3 +73,6 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="DefaultSword" parent="." groups=["default"] instance=ExtResource("3_qgiie")]
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dhyap")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfd037tri4hfn"
+path="res://.godot/imported/quest1.wav-18053cb56c8d6f8ee11f91e6b8c7f47c.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/Critter Junction/quest1.wav"
+dest_files=["res://.godot/imported/quest1.wav-18053cb56c8d6f8ee11f91e6b8c7f47c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

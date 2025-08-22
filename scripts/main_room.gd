@@ -64,6 +64,8 @@ func _input(event: InputEvent) -> void:
 		zoom_anim.play("zoom")
 		Globals.set_zoom_out(true)
 		get_tree().paused = true
+		$ComputerAmbience.play()
+		$RoomAmbience.play()
 	elif event.is_action_released("zoom") and zoom_out:
 		# Zoom in
 		zoom_out = false
@@ -84,6 +86,8 @@ func _on_zoom_anim_animation_finished(anim_name: StringName) -> void:
 	if not zoom_out:
 		view_3d.visible = false
 		get_tree().paused = false
+		$ComputerAmbience.stop()
+		$RoomAmbience.stop()
 
 func change_level(new_level : PackedScene):
 	level.queue_free()
@@ -120,6 +124,8 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	if not pressed:
 		return # I have this as a parameter just in case, I guess
 	
+	[$KeyboardSound1, $KeyboardSound2].pick_random().play()
+	
 	current_sequence.append(dir)
 	if len(current_sequence) > 5:
 		current_sequence.remove_at(0)
@@ -133,6 +139,7 @@ func handle_directional_input(dir : Direction, pressed : bool):
 				print("Code successfully inputted!")
 				#Globals.switch_games(code_to_game(code))
 				selected_game = code_to_game(code)
+				$GameChangeSound.play()
 				glitching = true
 				current_sequence = []
 				return

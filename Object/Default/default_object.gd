@@ -22,6 +22,7 @@ func break_itself(body: Node):
 			parent_node.add_sibling(inside_object)
 	
 	$Sprite2D.play("break")
+	$DestroySound.play()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	#kill()
 

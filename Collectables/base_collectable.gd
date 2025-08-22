@@ -7,6 +7,8 @@ const BASE_VALUE = 1
 @export var money_value := 2
 @export var health_value := 50
 
+var pickup_sound = null
+
 func get_value():
 	return BASE_VALUE
 
@@ -23,4 +25,8 @@ func _on_body_entered(body: CharacterBody2D):
 		#player._on_get_collectable(self)
 		player.collectables += money_value
 		player.heal(health_value)
-		get_parent().queue_free()
+		if pickup_sound:
+			pickup_sound.play()
+		process_mode = Node.PROCESS_MODE_DISABLED
+		$Sprite2D.visible = false
+		#get_parent().queue_free()

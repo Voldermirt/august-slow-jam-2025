@@ -23,6 +23,7 @@ func shoot_portal(is_orange):
 	Globals.get_2d_root().add_child(bullet)
 	bullet.global_position = global_position
 	bullet.direction = Vector2.RIGHT.rotated(global_rotation)
+	$ShootSound.play()
 
 func delete_existing_portal(orange):
 	for portal in get_tree().get_nodes_in_group("portal_instance"):

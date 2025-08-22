@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://csxiow13e80jm"]
+[gd_scene load_steps=4 format=3 uid="uid://csxiow13e80jm"]
 
 [ext_resource type="Script" uid="uid://cove68frnhifa" path="res://Player/Gateway/gateway_gun.gd" id="1_ulaan"]
 [ext_resource type="Texture2D" uid="uid://cim1om0ifdv07" path="res://Player/Gateway/portal_gun.png" id="2_gy27w"]
+[ext_resource type="AudioStream" uid="uid://dfhlg3cr5mwu5" path="res://assets/sounds/sfx/Gateway Gun/shoot_portal.wav" id="3_3qdhg"]
 
 [node name="GatewayGun" type="Node2D"]
 script = ExtResource("1_ulaan")
@@ -13,3 +14,6 @@ position = Vector2(16, 0)
 
 [node name="WeaponSprite" type="Sprite2D" parent="Rotatator"]
 texture = ExtResource("2_gy27w")
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3qdhg")

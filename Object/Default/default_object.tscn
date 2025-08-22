@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://do3pnxooit0it"]
+[gd_scene load_steps=9 format=3 uid="uid://do3pnxooit0it"]
 
 [ext_resource type="Script" uid="uid://yofgf6jo17wk" path="res://Object/Default/default_object.gd" id="1_t3rni"]
 [ext_resource type="Texture2D" uid="uid://b1mt2ifdwl4lp" path="res://assets/sprites/default_crate.png" id="2_p45qf"]
+[ext_resource type="AudioStream" uid="uid://b1tvr30jypa0n" path="res://assets/sounds/sfx/Default/break_crate.wav" id="3_ud5y3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p45qf"]
 atlas = ExtResource("2_p45qf")
@@ -53,7 +54,10 @@ metadata/_custom_type_script = "uid://yofgf6jo17wk"
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_ew7eo")
+animation = &"break"
 autoplay = "default"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p45qf")
@@ -61,5 +65,9 @@ shape = SubResource("RectangleShape2D_p45qf")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 radius = 20.0
 vertices = PackedVector2Array(30, -30, -30, -30, -30, 30, 30, 30)
+
+[node name="DestroySound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_ud5y3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
