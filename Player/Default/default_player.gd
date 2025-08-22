@@ -17,3 +17,8 @@ func _physics_process(delta):
 	super._physics_process(delta)
 	if not default_weapon.is_attacking():
 		_weapon_rotation_process(default_weapon)
+
+func _on_death():
+	death.emit()
+	# death animation here
+	Globals.load_game()

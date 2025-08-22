@@ -1,5 +1,7 @@
 extends Node2D
 
+signal unlock_game(game: String)
+
 @export_group("Tiles")
 @export var default_tiles : Texture2D
 @export var boom_tiles : Texture2D
@@ -17,8 +19,17 @@ extends Node2D
 @onready var tileset_atlas = $TileMapLayer.get_tile_set().get_source(0)
 @onready var bg_sprite = $Background/Sprite2D
 
+var dragon_death: int = 0
+
 func _ready() -> void:
 	pass
+
+"""DISCONNECT AND DELETE ONCE THE DRAGON IS COMPLETE"""
+func _on_testdeathfield_body_entered(body: Node2D) -> void:
+	Globals.load_game()
+	dragon_death += 1
+	if dragon_death == 2:
+		emit_signal("unlock_game", "boom")
 
 func switch_to(game : Globals.GameList):
 	match game:
@@ -36,3 +47,7 @@ func switch_to(game : Globals.GameList):
 			bg_sprite.self_modulate = cri_jun_color
 		_:
 			push_error("Trying to switch to a non-existing game!")
+
+
+func _on_first_chasm_fallen_into() -> void:
+	emit_signal("unlock_game", "gateway")

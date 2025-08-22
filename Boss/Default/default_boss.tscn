@@ -29,7 +29,6 @@ metadata/_custom_type_script = "uid://d1k1rwld8vib1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5.72204e-07, -9.53674e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oyoo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

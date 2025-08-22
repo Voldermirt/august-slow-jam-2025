@@ -62,4 +62,19 @@ texture_progress = SubResource("PlaceholderTexture2D_alrrk")
 tint_under = Color(0.144091, 6.69318e-08, 1.50409e-08, 1)
 tint_progress = Color(1, 0, 0, 1)
 
+[node name="ToolTips" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheatIntro" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 0
+offset_left = 168.0
+offset_top = 102.0
+offset_right = 453.0
+offset_bottom = 142.0
+bbcode_enabled = true
+text = "This game sucks. Hold TAB to cheat."
+
 [connection signal="child_entered_tree" from="UISwitcher" to="UISwitcher" method="_on_child_entered_tree"]

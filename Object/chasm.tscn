@@ -7,7 +7,7 @@
 load_path = "res://.godot/imported/default_chasm.png-99bc5e9be2cd8831d0032c613cddc27d.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxb3e"]
-size = Vector2(40, 32)
+size = Vector2(40, 288)
 
 [node name="Chasm" type="Node2D" groups=["switch_wrapper"]]
 z_index = -1
