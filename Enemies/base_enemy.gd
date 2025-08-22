@@ -49,6 +49,9 @@ var anim : AnimatedSprite2D = null
 
 var hitbox_og_mask: int
 
+func get_contact_damage() -> int:
+	return ENEMY_BASE_CONTACT_DAMAGE
+
 func get_attack_time() -> float: 
 	return randf_range(ATTACK_DELAY_MIN, ATTACK_DELAY_MAX)
 
@@ -191,7 +194,7 @@ func _ready():
 	awareness_raycast.global_position = global_position
 	decision_timer.start()
 	
-func is_player_seen():
+func is_player_seen() -> bool:
 	if awareness_raycast != null and player_body != null and is_instance_valid(player_body):
 		return awareness_raycast.is_colliding() and awareness_raycast.get_collider() is BasePlayer2D and thinking_switch_timer.time_left <= 0
 	return false
@@ -300,7 +303,7 @@ func _on_contact_hitbox_timeout():
 	for body in bodies:
 		if body is BasePlayer2D:
 			var player: BasePlayer2D = body as BasePlayer2D
-			player._on_getting_hit(ENEMY_BASE_CONTACT_DAMAGE)
+			player._on_getting_hit(get_contact_damage())
 			var dir = global_position.direction_to(body.global_position)
 			player.knockback_applied(dir, KNOCKBACK_FORCE, 0.1)
 			#global_position += dir * (global_position.distance_to(body.global_position)/2)
