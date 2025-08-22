@@ -24,7 +24,11 @@ var zoom_out = false
 
 @onready var current_bgm_track := $DefaultMusic
 
-
+func _ready():
+	var root: Node2D = get_2d_root()
+	if root != null:
+		root.ready.connect(save_game)
+	
 func set_zoom_out(new_zoom : bool) -> void:
 	zoom_out = new_zoom
 	set_bgm(current_game_index)
@@ -32,6 +36,8 @@ func set_zoom_out(new_zoom : bool) -> void:
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
 		switch_random_games()
+	if OS.is_debug_build() and Input.is_action_pressed("interact"):
+		Globals.load_game()
 
 func save_game() -> bool:
 	var file: FileAccess
@@ -164,4 +170,3 @@ func set_bgm(game_index : GameList) -> void:
 	# Just to make sure
 	new_track.seek(old_pos)
 	current_bgm_track = new_track
-	

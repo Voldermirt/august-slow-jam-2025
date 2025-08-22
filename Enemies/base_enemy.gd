@@ -61,9 +61,20 @@ func set_spawn_data():
 	self.health = BASE_MAX_HEALTH
 	thinking_state = ThinkState.Neutral
 	
+func save_json_data() -> Dictionary:
+	var data = super.save_json_data()
+	#health = get_max_health()
+	data["think_state"] = thinking_state
+	
+	return data
+
 func load_json_data(data: Dictionary):
 	super.load_json_data(data)
+	thinking_state = data["think_state"]
+	
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
+	pass
+
 
 # Moves towards the navigation agent's target
 func move_to_ntarget():
