@@ -1,5 +1,7 @@
 extends Node2D
 
+signal fallen_into
+
 @export var default_sprite : Texture2D = null
 @export var boom_sprite : Texture2D = null
 @export var gateway_sprite : Texture2D = null
@@ -26,3 +28,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 	
 	body._on_getting_hit(999999, true)
+	emit_signal("fallen_into")

@@ -2,17 +2,17 @@ extends CharacterBody2D
 
 class_name BaseProjectile2D
 
-@export var speed := 600
+const BASE_DAMAGE: float = 10
 
-var damage: float = 10
+@export var base_speed := 600
 
 var direction := Vector2.RIGHT
 
 func get_speed():
-	return speed
+	return base_speed
 
 func get_damage():
-	return damage
+	return BASE_DAMAGE
 	
 func _ready() -> void:
 	Globals.game_changed.connect(game_changed)

@@ -157,13 +157,16 @@ func code_to_game(code) -> Globals.GameList:
 	return Globals.GameList.DEFAULT
 
 
-# Show games when needed
-func show_game(game: String):
+# Unlock games when needed
+func unlock_game(game: String):
 	match game:
 		"boom":
 			%boom_game.show()
 			available_codes.append(boom_code)
 		"gateway":
-			print("show gateway")
+			%gateway_game.show()
+			available_codes.append(gateway_code)
 		"cri_jun":
 			print("show critter junction")
+		_:
+			push_error("Unlocked invalid game! Check if you are matching the cases correctly?")

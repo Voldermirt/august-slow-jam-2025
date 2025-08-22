@@ -36,7 +36,7 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 
 # Gives entity the data it should receive on initial Îspawning
 func set_spawn_data():
-	self.health = BASE_MAX_HEALTH
+	self.health = get_max_health()
 
 func save_json_data() -> Dictionary:
 	var base_player_json_data = {

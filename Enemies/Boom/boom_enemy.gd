@@ -13,7 +13,7 @@ var fireball_scene = preload("res://Enemies/Boom/enemy_fileball.tscn")
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if spawn_delay != null and spawn_delay.time_left <= 0:
+	if spawn_delay != null and spawn_delay.time_left <= 0 and health > 0:
 		match thinking_state:
 			ThinkState.Targeting:
 				if is_player_seen() and fireball_cd_timer.time_left <= 0:

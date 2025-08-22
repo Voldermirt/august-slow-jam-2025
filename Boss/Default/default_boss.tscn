@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dub6m5q2lfqoq"]
+[gd_scene load_steps=9 format=3 uid="uid://dub6m5q2lfqoq"]
 
 [ext_resource type="Script" uid="uid://d1k1rwld8vib1" path="res://Boss/Default/default_boss.gd" id="1_ubfvn"]
+[ext_resource type="PackedScene" uid="uid://crnbbsvmi8oop" path="res://Boss/Default/default_blast.tscn" id="2_oyoo0"]
 [ext_resource type="Texture2D" uid="uid://ca3dt6icidsgy" path="res://Player/Default/player_stub.png" id="2_ubfvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyoo0"]
@@ -20,16 +21,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxw40"]
 size = Vector2(25, 25)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oyoo0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wvmes"]
+
 [node name="DefaultBoss2D" type="CharacterBody2D" groups=["boss", "default"]]
 scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_ubfvn")
+blast = ExtResource("2_oyoo0")
 metadata/_custom_type_script = "uid://d1k1rwld8vib1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5.72204e-07, -9.53674e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_oyoo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -41,3 +46,22 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1, 1.4)
 shape = SubResource("RectangleShape2D_hxw40")
+
+[node name="BossHealth" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -24.01
+offset_right = 15.0
+offset_bottom = -19.01
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("PlaceholderTexture2D_oyoo0")
+texture_progress = SubResource("PlaceholderTexture2D_wvmes")
+tint_under = Color(0.209665, 0.0333795, 0.278646, 1)
+tint_progress = Color(0.781616, 0, 0.877604, 1)
