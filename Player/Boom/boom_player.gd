@@ -35,8 +35,8 @@ func perform_dash():
 func _ready():
 	super._ready()
 	anim = $AnimatedSprite2D
-	
-	
+	hurt_sound = $HurtSound
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
 		weapon.shoot()

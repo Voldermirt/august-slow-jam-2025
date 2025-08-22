@@ -19,10 +19,17 @@ func game_changed(_game):
 	queue_free()
 
 func teleport(body):
-	body.global_position = $TeleportTarget.global_position
+	if body is RigidBody2D:
+		PhysicsServer2D.body_set_state(
+			body.get_rid(),
+			PhysicsServer2D.BODY_STATE_TRANSFORM,
+			Transform2D.IDENTITY.translated($ObjectTeleportTarget.global_position))
+	else:
+		body.global_position = $PlayerTeleportTarget.global_position
 	particles.emitting = true
 	just_teleported = true
-	await get_tree().create_timer(0.1).timeout
+	$TeleportSound.play()
+	await get_tree().create_timer(1).timeout
 	just_teleported = false
 
 func _on_body_entered(body: Node2D) -> void:

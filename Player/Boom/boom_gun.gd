@@ -19,7 +19,7 @@ func shoot():
 		return
 	var bullet = Bullet.instantiate()
 	Globals.get_2d_root().add_child(bullet)
-	bullet.global_position = global_position
+	bullet.global_position = $Rotatator/WeaponSprite/Marker2D.global_position
 	bullet.direction = Vector2.RIGHT.rotated(global_rotation)
 	
 	ammo -= 1
@@ -28,6 +28,7 @@ func shoot():
 	PlayerStats.ammo = ammo
 	PlayerStats.max_cooldown = shoot_cooldown
 	PlayerStats.cooldown = shoot_cooldown
+	$ShootSound.play()
 	autoreload_timer.start()
 
 func _process(delta : float) -> void:
@@ -44,6 +45,7 @@ func reload():
 	await cooldown_timer.timeout
 	ammo = max_ammo
 	PlayerStats.ammo = ammo
+	$ReloadSound.play()
 
 func animate():
 	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90

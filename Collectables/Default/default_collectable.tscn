@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0n5mu8b66cta"]
+[gd_scene load_steps=12 format=3 uid="uid://c0n5mu8b66cta"]
 
 [ext_resource type="Script" uid="uid://bbgqvpkp2dqul" path="res://Collectables/Default/default_collectable.gd" id="1_56ux8"]
 [ext_resource type="Texture2D" uid="uid://bb0jv3g252jg3" path="res://Object/Default/coin.png" id="2_n6l1f"]
+[ext_resource type="AudioStream" uid="uid://dxn66ocltoocy" path="res://assets/sounds/sfx/Default/money_pickup.wav" id="3_4lanw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
@@ -67,3 +68,7 @@ shape = SubResource("RectangleShape2D_56ux8")
 sprite_frames = SubResource("SpriteFrames_wgnnr")
 autoplay = "default"
 frame_progress = 0.190262
+
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_4lanw")

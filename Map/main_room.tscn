@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bt2j76m7ful7f"]
+[gd_scene load_steps=24 format=3 uid="uid://bt2j76m7ful7f"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
 [ext_resource type="PackedScene" uid="uid://dmbt7ahfudc6w" path="res://Map/main_level.tscn" id="2_3anwy"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
 [ext_resource type="PackedScene" uid="uid://dwna61n0p3n4m" path="res://models/default_game.fbx" id="6_uj7hd"]
 [ext_resource type="PackedScene" uid="uid://b0cimbwysm564" path="res://models/boom_game.fbx" id="7_oho2g"]
+[ext_resource type="AudioStream" uid="uid://b6upjs3jj6yxc" path="res://assets/sounds/sfx/Other/glitch_short.wav" id="8_cyq4t"]
+[ext_resource type="AudioStream" uid="uid://byn4mb3xx241o" path="res://assets/sounds/sfx/Other/room_ambience.wav" id="9_0sjnj"]
+[ext_resource type="AudioStream" uid="uid://b7bac1s80wny" path="res://assets/sounds/sfx/Other/computer_ambience.wav" id="10_qbyyd"]
+[ext_resource type="AudioStream" uid="uid://nq22u5vkh0pn" path="res://assets/sounds/sfx/Other/keyboard1.wav" id="11_rpbss"]
+[ext_resource type="AudioStream" uid="uid://dsd8dr73apyb3" path="res://assets/sounds/sfx/Other/keyboard2.wav" id="12_dbnuq"]
 [ext_resource type="PackedScene" uid="uid://bqbmq3x2syd4w" path="res://models/gateway_game.fbx" id="8_cyq4t"]
 
 [sub_resource type="Curve" id="Curve_p8vsj"]
@@ -202,6 +207,26 @@ spot_angle = 42.9989
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Render3D/Level3D/DeskRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38571, 0, -0.392381)
 mesh = SubResource("BoxMesh_oho2g")
+
+[node name="GameChangeSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_cyq4t")
+
+[node name="RoomAmbience" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("9_0sjnj")
+
+[node name="ComputerAmbience" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_qbyyd")
+
+[node name="KeyboardSound1" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_rpbss")
+
+[node name="KeyboardSound2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("12_dbnuq")
 
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level" to="." method="unlock_game"]
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]

@@ -8,6 +8,7 @@ class_name DefaultPlayer2D
 func _ready():
 	super._ready()
 	anim = $AnimatedSprite2D
+	hurt_sound = $HurtSound
 
 #func save_json_data() -> JSON:
 	#var super_data: JSON = super.save_json_data()

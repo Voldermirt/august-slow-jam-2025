@@ -14,13 +14,16 @@ func _ready():
 func explode():
 		var explosion = explosion_effect.instantiate() as GPUParticles2D
 		if explosion != null:
-			explosion.finished.connect(kill)
+			#explosion.finished.connect(kill)
 			var parent: Node = get_parent()
 			if parent != null:
 				parent.add_sibling(explosion)
 				explosion.global_position = self.global_position
 			explosion.emitting = true
-		kill()
+		#kill()
+		$ExplodeSound.play()
+		process_mode = Node.PROCESS_MODE_DISABLED
+		$Sprite2D.visible = false
 
 func receive_damage(body: Node):
 	super.receive_damage(body)
