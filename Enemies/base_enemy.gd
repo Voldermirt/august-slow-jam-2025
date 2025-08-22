@@ -10,7 +10,7 @@ enum ThinkState {Neutral, Targeting}
 const AWARENESS_NEUTRAL_DISTANCE: float = 300
 const AWARENESS_COLLISION_MASK: int = 9
 
-const WANDER_DISTANCE_MAX: float = 500
+const WANDER_DISTANCE_MAX: float = 100
 const WANDER_DISTANCE_MIN: float = 5
 
 const DEFAULT_RECOVERY_SECONDS: float = 0.2
@@ -49,6 +49,9 @@ var anim : AnimatedSprite2D = null
 
 var hitbox_og_mask: int
 
+func get_contact_damage() -> int:
+	return ENEMY_BASE_CONTACT_DAMAGE
+
 func get_attack_time() -> float: 
 	return randf_range(ATTACK_DELAY_MIN, ATTACK_DELAY_MAX)
 
@@ -57,6 +60,10 @@ func set_spawn_data():
 	super.set_spawn_data()
 	self.health = BASE_MAX_HEALTH
 	thinking_state = ThinkState.Neutral
+	
+func load_json_data(data: Dictionary):
+	super.load_json_data(data)
+	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
 
 # Moves towards the navigation agent's target
 func move_to_ntarget():
@@ -86,12 +93,12 @@ func make_wander_path():
 	return make_path(random_move_position)
 
 func make_player_path():
-	if player_body == null:
+	if player_body == null or not is_instance_valid(player_body):
 		return make_path(Vector2.INF)
 	return make_path(player_body.global_position)
 	
 func make_player_around_path():
-	if player_body == null:
+	if player_body == null or not is_instance_valid(player_body):
 		make_path(Vector2.INF)
 	
 	var player_pos: Vector2 = player_body.global_position
@@ -112,22 +119,26 @@ func make_player_around_path():
 		#final_destination_position = player_pos + perpendicular * around_player_radius
 
 	return make_path(final_destination_position)
-	
 
+func refresh_player_reference():
+	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
 
 func _ready():
 	super._ready()
-	await get_tree().process_frame
+	#await get_tree().process_frame
 	
 	# Assign the player to navigate towards
-	await get_tree().process_frame
-	player_body = get_tree().get_first_node_in_group("player") as BasePlayer2D
+	#await get_tree().process_frame
+	refresh_player_reference()
 	
 	moving_speed = ENEMY_MOVEMENT
 	
 	if n_agent == null:
 		n_agent = NavigationAgent2D.new()
 		n_agent.navigation_finished.connect(_n_navigation_reached)
+		#n_agent.avoidance_enabled = true
+		#n_agent.avoidance_mask = 1
+		#n_agent.avoidance_layers = 1
 		
 		if OS.is_debug_build():
 			n_agent.debug_enabled = true
@@ -181,16 +192,17 @@ func _ready():
 	add_child(awareness_raycast)
 	
 	awareness_raycast.global_position = global_position
-	
 	decision_timer.start()
 	
-func is_player_seen():
-	if awareness_raycast != null and player_body != null:
+func is_player_seen() -> bool:
+	if awareness_raycast != null and player_body != null and is_instance_valid(player_body):
 		return awareness_raycast.is_colliding() and awareness_raycast.get_collider() is BasePlayer2D and thinking_switch_timer.time_left <= 0
 	return false
 #
 ## Decision-making
-#func _process(delta):
+func _process(delta):
+	if not is_instance_valid(player_body):
+		refresh_player_reference()
 	#if n_agent != null and spawn_delay.time_left <= 0:
 		#match thinking_state:
 			#ThinkState.Neutral:
@@ -199,7 +211,10 @@ func is_player_seen():
 				#pass
 
 func _physics_process(delta):
-	if n_agent != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
+	if health <= 0:
+		return
+		
+	if is_instance_valid(player_body) and n_agent != null and spawn_delay != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
 		awareness_raycast.look_at(player_body.global_position)
 		match thinking_state:
 			ThinkState.Neutral:
@@ -224,6 +239,9 @@ func _physics_process(delta):
 func decide_movement():
 	var desired_movement_position: Vector2 = Vector2.INF
 	
+	if health <= 0:
+		return desired_movement_position
+		
 	pathing_limit_timer.stop()
 	
 	match thinking_state:
@@ -274,6 +292,8 @@ func animate():
 		anim.flip_h = true
 
 func _on_hitbox_entering(body: Node2D):
+	if health <= 0:
+		return
 	if body is BasePlayer2D:
 		var delay = get_attack_time()
 		on_contact_hit_delay_timer.start(delay)
@@ -283,7 +303,7 @@ func _on_contact_hitbox_timeout():
 	for body in bodies:
 		if body is BasePlayer2D:
 			var player: BasePlayer2D = body as BasePlayer2D
-			player._on_getting_hit(ENEMY_BASE_CONTACT_DAMAGE)
+			player._on_getting_hit(get_contact_damage())
 			var dir = global_position.direction_to(body.global_position)
 			player.knockback_applied(dir, KNOCKBACK_FORCE, 0.1)
 			#global_position += dir * (global_position.distance_to(body.global_position)/2)

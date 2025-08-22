@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt2j76m7ful7f"]
+[gd_scene load_steps=19 format=3 uid="uid://bt2j76m7ful7f"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
 [ext_resource type="PackedScene" uid="uid://dmbt7ahfudc6w" path="res://Map/main_level.tscn" id="2_3anwy"]
 [ext_resource type="Shader" uid="uid://natvlroojwx1" path="res://glitch.gdshader" id="2_p8vsj"]
 [ext_resource type="PackedScene" uid="uid://cj1u75xigyjh1" path="res://Extra/game_ui.tscn" id="3_3anwy"]
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
+[ext_resource type="PackedScene" uid="uid://dwna61n0p3n4m" path="res://models/default_game.fbx" id="6_uj7hd"]
+[ext_resource type="PackedScene" uid="uid://b0cimbwysm564" path="res://models/boom_game.fbx" id="7_oho2g"]
 
 [sub_resource type="Curve" id="Curve_p8vsj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.418773, 0.146269), 0.460682, 0.460682, 0, 0, Vector2(0.66426, 0.485821), 1.79154, 1.79154, 0, 0, Vector2(0.978339, 1), -0.103358, 0.0, 0, 0]
@@ -17,15 +19,6 @@ shader_parameter/rotation_ratio = 0.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nsuby"]
 viewport_path = NodePath("ScreenEffects/EffectViewport")
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c6fgr"]
-
-[sub_resource type="Sky" id="Sky_dsxa0"]
-sky_material = SubResource("ProceduralSkyMaterial_c6fgr")
-
-[sub_resource type="Environment" id="Environment_c6fgr"]
-background_mode = 2
-sky = SubResource("Sky_dsxa0")
 
 [sub_resource type="Animation" id="Animation_dsxa0"]
 length = 0.001
@@ -62,6 +55,24 @@ _data = {
 &"RESET": SubResource("Animation_dsxa0"),
 &"zoom": SubResource("Animation_c6fgr")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oho2g"]
+albedo_color = Color(0.67451, 0.576471, 0.384314, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cyq4t"]
+material = SubResource("StandardMaterial3D_oho2g")
+
+[sub_resource type="Environment" id="Environment_oho2g"]
+background_mode = 2
+ambient_light_color = Color(0.0338533, 0.0338533, 0.0338532, 1)
+glow_bloom = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyq4t"]
+albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oho2g"]
+material = SubResource("StandardMaterial3D_cyq4t")
+size = Vector3(1, 1, 0.1)
 
 [node name="MainRoom" type="Control"]
 process_mode = 3
@@ -138,7 +149,6 @@ texture = SubResource("ViewportTexture_nsuby")
 
 [node name="Camera3D" type="Camera3D" parent="Render3D/Level3D/DeskRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.292)
-environment = SubResource("Environment_c6fgr")
 current = true
 size = 0.46
 
@@ -149,9 +159,41 @@ libraries = {
 }
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Render3D/Level3D/DeskRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.185934, 0.277266, 0.796172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.779088, 0.212751, 0.120068)
+light_energy = 0.5
+light_indirect_energy = 0.0
+omni_range = 0.21094
 
 [node name="desk" parent="Render3D/Level3D/DeskRoom" instance=ExtResource("3_p8vsj")]
 transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.429633, -1.33828, -0.226489)
+
+[node name="default_game" parent="Render3D/Level3D/DeskRoom" instance=ExtResource("6_uj7hd")]
+unique_name_in_owner = true
+transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.429633, -1.33828, -0.226489)
+
+[node name="boom_game" parent="Render3D/Level3D/DeskRoom" instance=ExtResource("7_oho2g")]
+unique_name_in_owner = true
+transform = Transform3D(-1.9233e-08, 0, -0.44, 0, 0.44, 0, 0.44, 0, -1.9233e-08, -0.429633, -1.33828, -0.226489)
+visible = false
+
+[node name="Wall" type="MeshInstance3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(7.54271, 0, 0, 0, -4.36214e-08, -4.53696, 0, 0.997942, -1.98317e-07, 0, 0, -0.381496)
+mesh = SubResource("PlaneMesh_cyq4t")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Render3D/Level3D/DeskRoom"]
+environment = SubResource("Environment_oho2g")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(-0.931236, 0.292238, -0.217709, 0.0175311, 0.63265, 0.774239, 0.363996, 0.717182, -0.59427, -0.779088, 0.212751, 0.120068)
+spot_angle = 42.9989
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(-0.92252, 0.278487, -0.26721, -0.335173, -0.921347, 0.196925, -0.191352, 0.271229, 0.943302, -1.10126, 0.212751, 1.21547)
+light_energy = 0.5
+spot_angle = 42.9989
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38571, 0, -0.392381)
+mesh = SubResource("BoxMesh_oho2g")
 
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]

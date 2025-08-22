@@ -3,7 +3,7 @@ extends SwitchWrapper2D
 class_name ObjectWrapper2D
 
 """
-	Object wrapper specifically for storing info between Games
+	Object wrapper specifically for storing Critter Junctioninfo between Games
 """
 
 # persistent info for Critter Junction

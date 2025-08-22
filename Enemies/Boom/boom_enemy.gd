@@ -2,10 +2,6 @@ extends BaseEnemy2D
 
 class_name BoomEnemy2D
 
-func _ready() -> void:
-	super._ready()
-	anim = $AnimatedSprite2D
-
 const STAND_TIME: float = 0.1
 const FIREBALL_CD_TIME_MAX = 3
 const FIREBALL_CD_TIME_MIN = 1
@@ -17,11 +13,15 @@ var fireball_scene = preload("res://Enemies/Boom/enemy_fileball.tscn")
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if spawn_delay.time_left <= 0:
+	if spawn_delay != null and spawn_delay.time_left <= 0:
 		match thinking_state:
 			ThinkState.Targeting:
 				if is_player_seen() and fireball_cd_timer.time_left <= 0:
 					launch_fireball()
+
+func _ready() -> void:
+	super._ready()
+	anim = $AnimatedSprite2D
 
 
 func decide_movement():
@@ -36,17 +36,17 @@ func decide_movement():
 				desired_movement_position = make_wander_path()
 		ThinkState.Targeting:
 			
-			var total_weight: int = 1
+			var total_weight: int = 0
 			var roll: int = 0
-			
-			var straight_weight: int = 1 if is_player_seen() else 4
-			var around_weight: int = 5 if is_player_seen() else 2
-			var stand_weight: int = 2 if is_player_seen() else 1
+			var player_seen: bool = is_player_seen()
+			var straight_weight: int = 1 if player_seen else 4
+			var around_weight: int = 5 if player_seen else 2
+			var stand_weight: int = 2 if player_seen else 1
 			
 			total_weight = straight_weight + around_weight + stand_weight
 			if total_weight != 0:
 				roll = randi() % total_weight
-	
+
 			if roll < straight_weight:
 				decision_timer.start(DECISION_TIME_DEFAULT)
 			elif roll < straight_weight + around_weight:

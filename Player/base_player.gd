@@ -15,8 +15,6 @@ var movement_direction: Vector2 = Vector2.ZERO
  
 var effective_size := Vector2(32, 32)
 
-var last_checkpoint: Vector2
-
 var anim : AnimatedSprite2D = null
 
 func retrieve_data(retrieved_from: BaseEntity2D):
@@ -27,15 +25,27 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 
 func get_max_health():
 	return BASE_PLAYER_MAX_HEALTH
+
+func save_json_data() -> Dictionary:
+	var data = super.save_json_data()
+	data["collectables"] = collectables
 	
+	return data
+
+func load_json_data(data: Dictionary):
+	super.load_json_data(data)
+	collectables = data["collectables"]
+
+func get_mouse_pos() -> Vector2:
+	var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
+	var screen_pos = get_global_transform_with_canvas().origin
+	var look_pos = (mouse_pos - screen_pos) + global_position
+
+	return look_pos
 # Rotate the weapon held in hands towards the mouse
 func _weapon_rotation_process(weapon_to_rotate: BaseWeapon2D):
 	if weapon_to_rotate != null:
-		var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()
-		var screen_pos = get_global_transform_with_canvas().origin
-		var look_pos = (mouse_pos - screen_pos) + global_position
-		
-		weapon_to_rotate.look_at(look_pos)
+		weapon_to_rotate.look_at(get_mouse_pos())
 
 func _on_get_collectable(found_collectable: BaseCollectable2D):
 	self.collectables += found_collectable.get_value()
@@ -43,14 +53,10 @@ func _on_get_collectable(found_collectable: BaseCollectable2D):
 
 func _ready():
 	super._ready()
-	
-	#if (collision_layer & PLAYER_LAYER_NUMBER) == 0:
-		#collision_layer += PLAYER_LAYER_NUMBER
-	#if (collision_mask & ENEMY_LAYER_NUMER) == 0:
-		#collision_mask += ENEMY_LAYER_NUMER
-	
 
 func _physics_process(delta):
+	if health <= 0:
+		return 
 	
 	movement_direction = Vector2.ZERO
 	
@@ -75,10 +81,11 @@ func _physics_process(delta):
 	
 	# Animate
 	if anim:
-		if movement_direction.length() > 0:
-			anim.play("walk")
-		else:
-			anim.play("idle")
+		if anim.animation != "dash":
+			if movement_direction.length() > 0:
+				anim.play("walk")
+			else:
+				anim.play("idle")
 		
 		if movement_direction.x > 0:
 			anim.flip_h = false

@@ -43,10 +43,10 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 100.0,
 "texture": SubResource("AtlasTexture_ge180")
 }],
-"loop": true,
+"loop": false,
 "name": &"dash",
 "speed": 5.0
 }, {
