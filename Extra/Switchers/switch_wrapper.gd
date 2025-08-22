@@ -45,6 +45,7 @@ func _ready():
 			active_game = Globals.GameList.CRITTER_JUNCTION
 		else:
 			active_game = Globals.GameList.DEFAULT
+			print(name)
 			push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to", active_game))
 			
 		if children_nodes[0] is BaseEntity2D:

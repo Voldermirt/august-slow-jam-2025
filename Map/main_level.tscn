@@ -84,7 +84,7 @@ gateway_scene = ExtResource("12_ccsef")
 critter_junction_scene = ExtResource("12_ccsef")
 metadata/_edit_group_ = true
 
-[node name="Bucket" parent="Objects/BucketWrapper" instance=ExtResource("11_26esg")]
+[node name="Bucket" parent="Objects/BucketWrapper" groups=["default"] instance=ExtResource("11_26esg")]
 
 [node name="CollectableWrapper2D" parent="Objects" instance=ExtResource("12_oh5ot")]
 position = Vector2(3928, 80)

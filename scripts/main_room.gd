@@ -3,6 +3,8 @@ class_name MainRoom
 
 enum Direction {UP, DOWN, LEFT, RIGHT}
 
+@export var debug_mode = false
+
 @export_group("Cheat Codes")
 @export var default_code : Array[Direction]
 @export var boom_code : Array[Direction]
@@ -123,6 +125,8 @@ func handle_directional_input(dir : Direction, pressed : bool):
 		current_sequence.remove_at(0)
 	
 	# Check if input matches any of the available codes
+	if debug_mode:
+		available_codes = [default_code, boom_code, gateway_code, critter_junction_code]
 	for code in available_codes:
 		if current_sequence == code:
 			if code_to_game(code) != Globals.current_game_index:
