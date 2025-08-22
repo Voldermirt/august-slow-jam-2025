@@ -21,6 +21,9 @@ var moving_speed: float = 100.0
 var cur_knock_force: Vector2
 var cur_knock_duration: float
 
+func get_recovery_time():
+	return damage_recovery_seconds
+
 func get_max_health():
 	return BASE_MAX_HEALTH
 
@@ -32,6 +35,18 @@ func retrieve_data(retrieved_from: BaseEntity2D):
 func set_spawn_data():
 	self.health = BASE_MAX_HEALTH
 
+func save_json_data() -> Dictionary:
+	var base_player_json_data = {
+		"health": health,
+		"global_position": global_position
+	}
+	return base_player_json_data
+
+func load_json_data(data: Dictionary):
+	
+	health = data["health"]
+	global_position = str_to_var("Vector2" + data["global_position"])
+	
 func knockback_applied(direction: Vector2, force: float, duration: float):
 	cur_knock_force = direction * force
 	cur_knock_duration = duration 
@@ -47,6 +62,9 @@ func _ready():
 	if not get_parent().is_in_group("switch_wrapper"):
 		assert(false, str(self, " entity is not the child of in the SwitchWrapper"))
 	
+	if not is_in_group("entity"):
+		add_to_group("entity", true)
+	
 	recovery_timer = Timer.new()
 	recovery_timer.one_shot = true
 	recovery_timer.autostart = false
@@ -54,10 +72,12 @@ func _ready():
 	add_child(recovery_timer)
 
 func _physics_process(delta):
+	if health <= 0:
+		return
 	pass
 
 func _on_getting_hit(damage: float, bypass_invincibility=false):
-	if bypass_invincibility or not is_invincible:
+	if bypass_invincibility or not is_invincible and health > 0: 
 		health -= damage
 		if health <= 0:
 			_on_death()
@@ -67,14 +87,12 @@ func _on_getting_hit(damage: float, bypass_invincibility=false):
 func _on_death():
 	death.emit()
 	var parent = get_parent()
-	if parent != null and parent.is_in_group("switch_wrapper"):
-		get_parent().queue_free()
-	else:
-		queue_free()
+	#if parent != null and parent.is_in_group("switch_wrapper"):
+		#get_parent().queue_free()
 
 # Start the recover after damage, during which player can't be damaged
 func _start_damage_recovery():
-	recovery_timer.start(damage_recovery_seconds)
+	recovery_timer.start(get_recovery_time())
 	modulate.a = 0.5
 	is_invincible = true
 
