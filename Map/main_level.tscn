@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dmbt7ahfudc6w"]
+[gd_scene load_steps=30 format=4 uid="uid://dmbt7ahfudc6w"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
 [ext_resource type="Script" uid="uid://0ag0yqm6uqvv" path="res://Map/main_level.gd" id="1_lipnt"]
@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://cnsuq3opkiymb" path="res://Object/door.tscn" id="21_qqpjv"]
 [ext_resource type="PackedScene" uid="uid://dua4bgn4syyt1" path="res://Extra/Switchers/enemy_wrapper.tscn" id="22_53uk6"]
 [ext_resource type="PackedScene" uid="uid://csvqos6vt8axp" path="res://Extra/Switchers/boss_wrapper.tscn" id="23_o36ip"]
-[ext_resource type="PackedScene" uid="uid://dub6m5q2lfqoq" path="res://Boss/Default/default_boss.tscn" id="24_2rijx"]
 [ext_resource type="PackedScene" uid="uid://18h1gm28udx5" path="res://Extra/checkpoint.tscn" id="26_2rijx"]
 [ext_resource type="PackedScene" uid="uid://dnob5uyswtc7a" path="res://Object/Gateway/gateway_button_wrapper_2d.tscn" id="26_063bw"]
 
@@ -215,13 +214,9 @@ position = Vector2(1896, 224)
 [node name="Door" parent="Rooms/RoomBoss" instance=ExtResource("21_qqpjv")]
 position = Vector2(3768, 544)
 
-[node name="BossWrapper2D" parent="Rooms/RoomBoss" instance=ExtResource("23_o36ip")]
+[node name="BossWrapper2D" parent="Rooms/RoomBoss" node_paths=PackedStringArray("bound_area") instance=ExtResource("23_o36ip")]
 position = Vector2(3675, 538)
-gateway_scene = ExtResource("24_2rijx")
-critter_junction_scene = ExtResource("24_2rijx")
-
-[node name="DefaultBoss2D" parent="Rooms/RoomBoss/BossWrapper2D" index="0" node_paths=PackedStringArray("bound_area")]
-bound_area = NodePath("../../BossArea2D")
+bound_area = NodePath("../BossArea2D")
 
 [node name="BossArea2D" type="Area2D" parent="Rooms/RoomBoss"]
 position = Vector2(3675, 538)
