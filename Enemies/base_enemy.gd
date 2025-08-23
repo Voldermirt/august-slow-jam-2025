@@ -84,12 +84,11 @@ func make_path(position: Vector2):
 func make_wander_path():
 	if nav_region == null:
 		return make_path(Vector2.INF)
-	
+		
 	var random_move_position: Vector2 = NavigationServer2D.region_get_random_point(nav_region, 1, false)
 	var distance = self.global_position.distance_to(random_move_position)
-	
 	# We received out-of-range random point
-	if distance > WANDER_DISTANCE_MAX and distance < WANDER_DISTANCE_MIN:
+	if distance > WANDER_DISTANCE_MAX or distance < WANDER_DISTANCE_MIN:
 		return make_path(Vector2.INF)
 	return make_path(random_move_position)
 

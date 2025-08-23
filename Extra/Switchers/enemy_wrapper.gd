@@ -43,7 +43,7 @@ func switch_to(game: Globals.GameList):
 		cri_jun_requested_count = villager.requested_count
 		cri_jun_fulfilled = villager.fulfilled
 		# disconnect signal
-		scene_to_replace.disconnect("cri_jun_request_fulfilled", _on_cri_jun_fulfilled_request)
+		scene_to_replace.disconnect("fulfilled_request", _on_cri_jun_fulfilled_request)
 		
 
 	previous_position = scene_to_replace.position

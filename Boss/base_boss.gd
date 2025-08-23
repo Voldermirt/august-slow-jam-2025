@@ -170,3 +170,15 @@ func connect_bound_area():
 			bound_area.body_entered.connect(_on_player_entering_area)
 		if not bound_area.body_exited.is_connected(_on_player_exiting_area):
 			bound_area.body_exited.connect(_on_player_exiting_area)
+
+func _on_contact_hitbox_timeout():
+	var bodies: Array[Node2D] = on_contact_hitbox.get_overlapping_bodies()
+	for body in bodies:
+		if body is BasePlayer2D:
+			var player: BasePlayer2D = body as BasePlayer2D
+			player._on_getting_hit(get_contact_damage(), false, "FirstBoss")
+			var dir = global_position.direction_to(body.global_position)
+			player.knockback_applied(dir, KNOCKBACK_FORCE, 0.1)
+			#global_position += dir * (global_position.distance_to(body.global_position)/2)
+			
+			decision_timer.start(DECISION_TIME_DEFAULT)
