@@ -15,7 +15,6 @@ func switch_to(game: Globals.GameList):
 	if switching_scene != null and switching_scene is BaseBoss2D:
 		(switching_scene as BaseBoss2D).bound_area = bound_area
 		(switching_scene as BaseBoss2D).connect_bound_area()
-pass
 
 func _on_child_entered_tree(node: Node):
 	super._on_child_entered_tree(node)
