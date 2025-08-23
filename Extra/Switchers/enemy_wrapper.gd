@@ -36,14 +36,15 @@ func switch_to(game: Globals.GameList):
 	if scene_to_replace == null:
 		assert(false, INVALID_CHILD_ERROR)
 		return
-	elif scene_to_replace.name == "CritterJunctionEnemy2D":
+	elif scene_to_replace is CriJunVillager2D:
 		# Snatch variable values
-		var villager = get_child(0)
+		var villager: CriJunVillager2D = scene_to_replace as CriJunVillager2D
 		cri_jun_requested_fruit = villager.requested_fruit
 		cri_jun_requested_count = villager.requested_count
 		cri_jun_fulfilled = villager.fulfilled
 		# disconnect signal
-		scene_to_replace.disconnect("cri_jun_request_fulfilled", _on_cri_jun_fulfilled_request)
+		if villager.fulfilled_request.is_connected(_on_cri_jun_fulfilled_request):
+			villager.disconnect("fulfilled_request", _on_cri_jun_fulfilled_request)
 		
 
 	previous_position = scene_to_replace.position

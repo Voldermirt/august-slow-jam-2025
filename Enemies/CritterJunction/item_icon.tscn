@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://lxwxuvuuv3oi"]
+
+[ext_resource type="Texture2D" uid="uid://co58b5oeybe3b" path="res://resources/cri_jun_atlas_icons.tres" id="1_n4d0o"]
+
+[node name="ItemIcon" type="TextureRect"]
+texture = ExtResource("1_n4d0o")
+expand_mode = 3

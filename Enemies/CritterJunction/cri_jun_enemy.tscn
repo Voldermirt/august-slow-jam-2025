@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8saum54nmi5k" path="res://Enemies/CritterJunction/cri_jun_enemy.gd" id="1_tjt3c"]
 [ext_resource type="Texture2D" uid="uid://dehc1ok5gfbsg" path="res://Player/CritterJunction/villager.png" id="2_5bdio"]
-[ext_resource type="Texture2D" uid="uid://co58b5oeybe3b" path="res://resources/cri_jun_atlas_icons.tres" id="3_5bdio"]
+[ext_resource type="PackedScene" uid="uid://lxwxuvuuv3oi" path="res://Enemies/CritterJunction/item_icon.tscn" id="3_5bdio"]
 [ext_resource type="PackedScene" uid="uid://cdghdt3tlu53t" path="res://Extra/interaction_manger.tscn" id="4_5bdio"]
 [ext_resource type="Script" uid="uid://l2k6y8vccta8" path="res://Extra/cri_jun_villager_interaction.gd" id="5_epqun"]
 
@@ -70,11 +70,9 @@ theme_override_constants/margin_bottom = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="ItemIcon" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ItemIcon" parent="Control/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_5bdio")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("3_5bdio")
-expand_mode = 3
 
 [node name="ItemCount" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -83,7 +81,7 @@ layout_mode = 2
 bbcode_enabled = true
 text = "0"
 fit_content = true
-autowrap_mode = 2
+autowrap_mode = 0
 
 [node name="InteractionManager" parent="." instance=ExtResource("4_5bdio")]
 collision_layer = 128

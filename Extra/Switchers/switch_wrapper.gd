@@ -19,7 +19,6 @@ var savefile_index: int = -1
 	#push_error("This is an abstract method, only should be overriden and called in the subclass")
 	
 func _ready():
-	var children_nodes: Array[Node]
 	
 	if default_scene == null:
 		push_error("No default export scene supplied")
@@ -31,31 +30,11 @@ func _ready():
 		push_error("No critter junction export scene supplied")
 	
 	
-	# Makes sure that the Entity spawns with the correct starting data
-	children_nodes = get_children()
-	if children_nodes != null and children_nodes.size() == 1:
-		switching_scene = children_nodes[0]
-		if switching_scene.is_in_group("default"):
-			active_game = Globals.GameList.DEFAULT
-		elif switching_scene.is_in_group("boom"):
-			active_game = Globals.GameList.BOOM
-		elif switching_scene.is_in_group("gateway"):
-			active_game = Globals.GameList.GATEWAY
-		elif switching_scene.is_in_group("critter_junction"):
-			active_game = Globals.GameList.CRITTER_JUNCTION
-		else:
-			active_game = Globals.GameList.DEFAULT
-			print(name)
-			push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to", active_game))
-			
-		if children_nodes[0] is BaseEntity2D:
-			(children_nodes[0] as BaseEntity2D).set_spawn_data()
-	else:
-		push_error("The switch wrapper has more than one scene upon wrapper's creation!")
-
 func save_json_data() -> Dictionary:
 	var scene_data: Dictionary = {}
 	
+	if switching_scene is BaseEnemy2D:
+		pass
 	#if switching_scene != null and switching_scene.has_method("save_json_data"):
 	if switching_scene == null:
 		push_error("The entity to be saved is missing in its wrapper!")
@@ -96,12 +75,14 @@ func load_json_data():
 	
 	# switch the game if it is different
 	var prev_game = data.get("active_game")
-	if prev_game != null and prev_game != active_game:
-		switch_to(int(prev_game))
 	
+	#if prev_game != null and prev_game != active_game:
+	if prev_game != null:
+		switch_to(int(prev_game))
+	await get_tree().process_frame
+		
 	if switching_scene.has_method("load_json_data"):
 		switching_scene.load_json_data(data)
-
 
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
@@ -180,5 +161,27 @@ func switch_to(game: Globals.GameList):
 
 
 func _on_child_entered_tree(node: Node):
+	
 	# REMEMBER THIS
 	switching_scene = node
+	
+	# Makes sure that the Entity spawns with the correct starting data
+	if switching_scene.is_in_group("default"):
+		active_game = Globals.GameList.DEFAULT
+	elif switching_scene.is_in_group("boom"):
+		active_game = Globals.GameList.BOOM
+	elif switching_scene.is_in_group("gateway"):
+		active_game = Globals.GameList.GATEWAY
+	elif switching_scene.is_in_group("critter_junction"):
+		active_game = Globals.GameList.CRITTER_JUNCTION
+	else:
+		active_game = Globals.GameList.DEFAULT
+		print(name)
+		push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to ", active_game))
+		
+	if switching_scene is BaseEntity2D:
+		(switching_scene as BaseEntity2D).set_spawn_data()
+	#else:
+		#push_error("The switch wrapper has more than one scene upon wrapper's creation!")
+
+	

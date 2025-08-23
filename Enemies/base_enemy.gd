@@ -55,15 +55,29 @@ func get_contact_damage() -> int:
 func get_attack_time() -> float: 
 	return randf_range(ATTACK_DELAY_MIN, ATTACK_DELAY_MAX)
 
+func get_max_health():
+	return BASE_MAX_HEALTH
+	
 # Gives entity the data it should receive on initial spawning
 func set_spawn_data():
 	super.set_spawn_data()
-	self.health = BASE_MAX_HEALTH
+	self.health = get_max_health()
 	thinking_state = ThinkState.Neutral
 	
+func save_json_data() -> Dictionary:
+	var data = super.save_json_data()
+	#health = get_max_health()
+	data["think_state"] = thinking_state
+	
+	return data
+
 func load_json_data(data: Dictionary):
 	super.load_json_data(data)
+	thinking_state = data["think_state"]
+	
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
+	pass
+
 
 # Moves towards the navigation agent's target
 func move_to_ntarget():
@@ -84,13 +98,8 @@ func make_path(position: Vector2):
 func make_wander_path():
 	if nav_region == null:
 		return make_path(Vector2.INF)
-	
-	var random_move_position: Vector2 = NavigationServer2D.region_get_random_point(nav_region, 1, false)
+	var random_move_position: Vector2 = global_position + global_position.direction_to(NavigationServer2D.region_get_random_point(nav_region, 1, false)).normalized()*WANDER_DISTANCE_MAX
 	var distance = self.global_position.distance_to(random_move_position)
-	
-	# We received out-of-range random point
-	if distance > WANDER_DISTANCE_MAX and distance < WANDER_DISTANCE_MIN:
-		return make_path(Vector2.INF)
 	return make_path(random_move_position)
 
 func make_player_path():
@@ -250,7 +259,10 @@ func decide_movement():
 		ThinkState.Neutral:
 			## If we have not yet found the player
 			if thinking_switch_timer.time_left <= 0:
+				#for i in 10:
 				desired_movement_position = make_wander_path()
+				if desired_movement_position == Vector2.INF:
+					decision_timer.start(1)
 		ThinkState.Targeting:
 			var chance_rolled: int = randi_range(0, 100)
 			if chance_rolled > 90:
@@ -312,18 +324,21 @@ func _on_contact_hitbox_timeout():
 			
 			decision_timer.start(DECISION_TIME_DEFAULT)
 
-func _n_navigation_reached():
+func default_decision_making():
 	match thinking_state:
 		ThinkState.Neutral:
 			decision_timer.start(DECISION_TIME_DEFAULT)
 		ThinkState.Targeting:
 			decision_timer.start(0.1)
+			
+func _n_navigation_reached():
+	default_decision_making()
 
 func _on_decision_timeout():
 	decide_movement()
 
 func _on_pathing_limit_timeout():
-	decide_movement()
+	default_decision_making()
 
 # Switch the states
 func _on_thinking_timeout():

@@ -136,5 +136,6 @@ func _on_player_entered_zone(body, zone_idx):
 	set_cam_bounds_from_rect2(cam, zone)
 
 	current_zone_idx = zone_idx
-	body.velocity = player_vel
+	if is_instance_valid(body):
+		body.velocity = player_vel
 	get_tree().paused = false

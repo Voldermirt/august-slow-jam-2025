@@ -28,6 +28,7 @@ func get_max_health():
 
 func save_json_data() -> Dictionary:
 	var data = super.save_json_data()
+	health = get_max_health()
 	data["collectables"] = collectables
 	
 	return data
@@ -98,4 +99,9 @@ func _push_objects():
 		var collision = get_slide_collision(i)
 		if collision.get_collider().is_in_group("pushable"):
 			collision.get_collider().apply_central_impulse(movement_direction * push_force)
-	
+
+func _on_death():
+	if death_sound:
+		death_sound.play()
+	death.emit()
+	Globals.load_game()

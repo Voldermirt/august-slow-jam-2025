@@ -28,6 +28,7 @@ func connect_enemies(_game=null):
 	await get_tree().process_frame
 	for enemy in get_enemies():
 		enemy.death.connect(_on_enemy_death)
+		
 
 func _on_enemy_death():
 	await get_tree().process_frame

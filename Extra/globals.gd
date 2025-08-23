@@ -5,7 +5,9 @@ extends Node
 # (idk lmao)
 signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
-signal saving_game
+signal start_loading_game
+
+signal first_time_swapping_to(game: GameList)
 
 enum GameList {
 	DEFAULT,
@@ -22,9 +24,15 @@ var can_switch = true
 
 var zoom_out = false
 
+var first_swap: Array[bool] = [true, true, true, true]
 
 
 @onready var current_bgm_track := $DefaultMusic
+
+func _ready():
+	var root: Node2D = get_2d_root()
+	if root != null:
+		root.ready.connect(save_game)
 
 
 func set_zoom_out(new_zoom : bool) -> void:
@@ -34,6 +42,8 @@ func set_zoom_out(new_zoom : bool) -> void:
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
 		switch_random_games()
+	if OS.is_debug_build() and Input.is_action_pressed("interact"):
+		Globals.load_game()
 
 func save_game() -> bool:
 	var file: FileAccess
@@ -41,6 +51,8 @@ func save_game() -> bool:
 	var currently_saved_data: Dictionary = {}
 	var currently_json_index: int = 0
 	temp_last_save.clear()
+	
+	await  get_tree().process_frame
 	
 	file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file != null:
@@ -63,8 +75,8 @@ func save_entities(to_save_data: Dictionary, current_json_index: int) -> int:
 			to_save_data[current_json_index] = retrieved_data
 			
 			wrapper.retrieve_savefile_index(current_json_index)
-			if not saving_game.is_connected(wrapper.load_json_data):
-				saving_game.connect(wrapper.load_json_data)
+			if not start_loading_game.is_connected(wrapper.load_json_data):
+				start_loading_game.connect(wrapper.load_json_data)
 			
 		current_json_index += 1
 	return current_json_index
@@ -76,7 +88,7 @@ func load_game():
 	if file != null:
 		var text = file.get_as_text()
 		temp_last_save = JSON.parse_string(text)
-		saving_game.emit()
+		start_loading_game.emit()
 		
 		# Make sure to delete all portals
 		for gateway in get_tree().get_nodes_in_group("delete_on_load"):
@@ -140,6 +152,12 @@ func switch_random_games():
 func switch_games(game_index: GameList):
 	if not can_switch:
 		return
+	
+	# Check if this is the first time switching to the game
+	if first_swap[game_index]:
+		first_swap[game_index] = false
+		emit_signal("first_time_swapping_to", game_index)
+	
 	var wrappers: Array[Node] = get_tree().get_nodes_in_group("switch_wrapper")
 	current_game_index = game_index
 	for wrapper in wrappers:
@@ -166,4 +184,3 @@ func set_bgm(game_index : GameList) -> void:
 	# Just to make sure
 	new_track.seek(old_pos)
 	current_bgm_track = new_track
-	
