@@ -29,7 +29,6 @@ shape = SubResource("RectangleShape2D_vs2sg")
 position = Vector2(0, -30)
 texture = ExtResource("2_mdje4")
 hframes = 3
-frame = 2
 
 [node name="PlantInteractArea" type="Area2D" parent="."]
 collision_layer = 128

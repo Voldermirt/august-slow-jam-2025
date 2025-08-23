@@ -20,8 +20,9 @@ func _ready():
 		$Control.hide()
 	else:
 		# offset the atlas to be the correct fruit
-		icon.set_region(Rect2(16 * requested_fruit, 0, 16, 16))
-		%ItemIcon.texture = icon
+		var unique_icon = icon.duplicate(true)
+		unique_icon.set_region(Rect2(16 * requested_fruit, 0, 16, 16))
+		%ItemIcon.texture = unique_icon
 		%ItemCount.text = str(requested_count)
 
 func _physics_process(delta: float) -> void:

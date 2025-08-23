@@ -31,6 +31,7 @@ func _on_getting_hit(damage: float, bypass_invincibility=false, hit_by=""):
 				killed_by_first_boss += 1
 				if killed_by_first_boss >= 2:
 					emit_signal("unlock_game", "boom")
+			await get_tree().create_timer(0.25).timeout
 			_on_death()
 		else:
 			if hurt_sound:
@@ -38,6 +39,8 @@ func _on_getting_hit(damage: float, bypass_invincibility=false, hit_by=""):
 			_start_damage_recovery()
 
 func _on_death():
+	if death_sound:
+		death_sound.play()
 	death.emit()
 	# death animation here
 	Globals.load_game()

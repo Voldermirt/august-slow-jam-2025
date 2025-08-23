@@ -97,9 +97,7 @@ func _on_death():
 	if death_sound:
 		death_sound.play()
 	death.emit()
-	var parent = get_parent()
-	#if parent != null and parent.is_in_group("switch_wrapper"):
-		#get_parent().queue_free()
+
 
 # Start the recover after damage, during which player can't be damaged
 func _start_damage_recovery():
