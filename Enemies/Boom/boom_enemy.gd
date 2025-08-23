@@ -5,6 +5,7 @@ class_name BoomEnemy2D
 const STAND_TIME: float = 0.1
 const FIREBALL_CD_TIME_MAX = 3
 const FIREBALL_CD_TIME_MIN = 1
+const CACODEMON_HEALTH = 50
 
 var fireball_scene = preload("res://Enemies/Boom/enemy_fileball.tscn")
 @onready var fireball_cd_timer: Timer = $FireballCD
@@ -17,6 +18,9 @@ func _physics_process(delta):
 			ThinkState.Targeting:
 				if is_player_seen() and fireball_cd_timer.time_left <= 0:
 					launch_fireball()
+
+func get_max_health():
+	return CACODEMON_HEALTH
 
 func _ready() -> void:
 	super._ready()
