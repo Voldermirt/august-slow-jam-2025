@@ -5,7 +5,7 @@ extends Node
 # (idk lmao)
 signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
-signal saving_game
+signal start_loading_game
 
 enum GameList {
 	DEFAULT,
@@ -67,8 +67,8 @@ func save_entities(to_save_data: Dictionary, current_json_index: int) -> int:
 			to_save_data[current_json_index] = retrieved_data
 			
 			wrapper.retrieve_savefile_index(current_json_index)
-			if not saving_game.is_connected(wrapper.load_json_data):
-				saving_game.connect(wrapper.load_json_data)
+			if not start_loading_game.is_connected(wrapper.load_json_data):
+				start_loading_game.connect(wrapper.load_json_data)
 			
 		current_json_index += 1
 	return current_json_index
@@ -80,7 +80,7 @@ func load_game():
 	if file != null:
 		var text = file.get_as_text()
 		temp_last_save = JSON.parse_string(text)
-		saving_game.emit()
+		start_loading_game.emit()
 		
 		# Make sure to delete all portals
 		for gateway in get_tree().get_nodes_in_group("delete_on_load"):
