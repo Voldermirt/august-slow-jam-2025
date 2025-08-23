@@ -46,6 +46,8 @@ func save_game() -> bool:
 	var currently_json_index: int = 0
 	temp_last_save.clear()
 	
+	await  get_tree().process_frame
+	
 	file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file != null:
 		save_entities(currently_saved_data, currently_json_index)
