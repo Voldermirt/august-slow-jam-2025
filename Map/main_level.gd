@@ -1,5 +1,7 @@
 extends Node2D
 
+signal unlock_game(game: String)
+
 @export_group("Tiles")
 @export var default_tiles : Texture2D
 @export var boom_tiles : Texture2D
@@ -36,3 +38,12 @@ func switch_to(game : Globals.GameList):
 			bg_sprite.self_modulate = cri_jun_color
 		_:
 			push_error("Trying to switch to a non-existing game!")
+
+
+func _on_first_chasm_fallen_into() -> void:
+	emit_signal("unlock_game", "gateway")
+
+
+func _on_end_room_trip_wire_basically_body_entered(body: Node2D) -> void:
+	if body is BasePlayer2D:
+		$Rooms/Room15/Door.close()

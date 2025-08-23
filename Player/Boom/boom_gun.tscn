@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ryqhbpys3hvx"]
+[gd_scene load_steps=5 format=3 uid="uid://ryqhbpys3hvx"]
 
 [ext_resource type="Script" uid="uid://dm81tuhe30h37" path="res://Player/Boom/boom_gun.gd" id="1_e6h6s"]
 [ext_resource type="Texture2D" uid="uid://b7sd520uc5hqr" path="res://Player/Boom/boom_gun.png" id="2_382ef"]
+[ext_resource type="AudioStream" uid="uid://cwy0qufg78t4o" path="res://assets/sounds/sfx/BOOM/boom_shoot.wav" id="3_cmf0o"]
+[ext_resource type="AudioStream" uid="uid://cjdjc182ofcfm" path="res://assets/sounds/sfx/BOOM/reload.wav" id="4_schu1"]
 
 [node name="BoomGun" type="Node2D"]
 script = ExtResource("1_e6h6s")
@@ -12,11 +14,23 @@ position = Vector2(21, 0)
 [node name="WeaponSprite" type="Sprite2D" parent="Rotatator"]
 texture = ExtResource("2_382ef")
 
+[node name="Marker2D" type="Marker2D" parent="Rotatator/WeaponSprite"]
+position = Vector2(10, -2)
+
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="AudoReload" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 
+[node name="AudoReload2" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cmf0o")
+
+[node name="ReloadSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_schu1")
+
 [connection signal="timeout" from="AudoReload" to="." method="_on_audo_reload_timeout"]
+[connection signal="timeout" from="AudoReload2" to="." method="_on_audo_reload_timeout"]

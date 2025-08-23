@@ -98,7 +98,6 @@ func make_path(position: Vector2):
 func make_wander_path():
 	if nav_region == null:
 		return make_path(Vector2.INF)
-	
 	var random_move_position: Vector2 = global_position + global_position.direction_to(NavigationServer2D.region_get_random_point(nav_region, 1, false)).normalized()*WANDER_DISTANCE_MAX
 	var distance = self.global_position.distance_to(random_move_position)
 	return make_path(random_move_position)

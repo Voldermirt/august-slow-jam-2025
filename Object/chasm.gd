@@ -1,5 +1,7 @@
 extends Node2D
 
+signal fallen_into
+
 @export var default_sprite : Texture2D = null
 @export var boom_sprite : Texture2D = null
 @export var gateway_sprite : Texture2D = null
@@ -24,5 +26,10 @@ func switch_to(game: Globals.GameList):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not (body is BasePlayer2D):
 		return
-	
+	print(body)
 	body._on_getting_hit(999999, true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	emit_signal("fallen_into")
+	await get_tree().create_timer(0.25)
+	$Area2D/CollisionShape2D.set_deferred("disabled", false)
+	

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://blfyu7tb70bno"
+path="res://.godot/imported/teleport.wav-d88264918d1b0eda942e6b768b2dbeba.sample"
+
+[deps]
+
+source_file="res://assets/sounds/sfx/Gateway Gun/teleport.wav"
+dest_files=["res://.godot/imported/teleport.wav-d88264918d1b0eda942e6b768b2dbeba.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -18,6 +18,14 @@ var available_codes: = [default_code]
 @onready var view_2d := $ScreenEffects/EffectViewport/Render2D
 @onready var view_3d := $Render3D
 @onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D/Level
+@onready var player = $ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D/DefaultPlayer2D
+@onready var ui = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI
+@onready var cheat_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CheatIntro
+@onready var boom_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/BoomIntro
+@onready var gateway_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/GatewayIntro
+@onready var critter_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CritterIntro
+@onready var bsod = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/BSoD
+@onready var panel = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/Panel
 
 # Game cases are unique identifiers already
 
@@ -41,6 +49,7 @@ var selected_game : Globals.GameList
 func _ready() -> void:
 	Globals.level_change_requested.connect(change_level)
 	view_2d.material.set_shader_parameter("offset", 0.0)
+	Globals.first_time_swapping_to.connect(show_tooltip)
 
 func string_to_dir(input : String):
 	match input:
@@ -64,6 +73,8 @@ func _input(event: InputEvent) -> void:
 		zoom_anim.play("zoom")
 		Globals.set_zoom_out(true)
 		get_tree().paused = true
+		$ComputerAmbience.play()
+		$RoomAmbience.play()
 	elif event.is_action_released("zoom") and zoom_out:
 		# Zoom in
 		zoom_out = false
@@ -84,6 +95,8 @@ func _on_zoom_anim_animation_finished(anim_name: StringName) -> void:
 	if not zoom_out:
 		view_3d.visible = false
 		get_tree().paused = false
+		$ComputerAmbience.stop()
+		$RoomAmbience.stop()
 
 func change_level(new_level : PackedScene):
 	level.queue_free()
@@ -120,6 +133,8 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	if not pressed:
 		return # I have this as a parameter just in case, I guess
 	
+	[$KeyboardSound1, $KeyboardSound2].pick_random().play()
+	
 	current_sequence.append(dir)
 	if len(current_sequence) > 5:
 		current_sequence.remove_at(0)
@@ -133,10 +148,11 @@ func handle_directional_input(dir : Direction, pressed : bool):
 				print("Code successfully inputted!")
 				#Globals.switch_games(code_to_game(code))
 				selected_game = code_to_game(code)
+				$GameChangeSound.play()
 				glitching = true
 				current_sequence = []
 				return
-	
+
 
 func code_to_game(code) -> Globals.GameList:
 	if code == default_code:
@@ -150,13 +166,57 @@ func code_to_game(code) -> Globals.GameList:
 	return Globals.GameList.DEFAULT
 
 
-# Show games when needed
-func show_game(game: String):
+# Unlock games when needed
+# just realized I could have just used the globals.gamelist thing but oh well
+func unlock_game(game: String):
 	match game:
 		"boom":
+			panel.show()
 			%boom_game.show()
 			available_codes.append(boom_code)
+			cheat_intro.show()
 		"gateway":
-			print("show gateway")
+			%gateway_game.show()
+			available_codes.append(gateway_code)
 		"cri_jun":
-			print("show critter junction")
+			%cri_jun_game.show()
+			available_codes.append(critter_junction_code)
+		_:
+			push_error("Unlocked invalid game! Check if you are matching the cases correctly?")
+
+# probably a much better way to do this but oh well... shows the tooltips
+func show_tooltip(game: Globals.GameList):
+	panel.show()
+	match game:
+		Globals.GameList.BOOM:
+			cheat_intro.hide()
+			boom_intro.show()
+			await get_tree().create_timer(7).timeout
+			boom_intro.hide()
+		Globals.GameList.GATEWAY:
+			gateway_intro.show()
+			await get_tree().create_timer(7).timeout
+			gateway_intro.hide()
+		Globals.GameList.CRITTER_JUNCTION:
+			critter_intro.show()
+			await get_tree().create_timer(7).timeout
+			critter_intro.hide()
+	panel.hide()
+
+
+# im tired
+func _on_end_room_trip_wire_basically_body_entered(body: Node2D) -> void:
+	player.death.connect(end_game)
+	$ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D.player_switched_games.connect(_on_player_wrapper_2d_player_switched_games)
+
+func end_game():
+	bsod.show()
+
+func _on_player_wrapper_2d_player_switched_games(players_newest_scene: BasePlayer2D) -> void:
+	if players_newest_scene.is_connected("death", end_game) == false:
+		players_newest_scene.death.connect(end_game)
+
+
+func _on_unlock_cri_jun_body_entered(body: Node2D) -> void:
+	if body is BasePlayer2D and available_codes.has(critter_junction_code) == false:
+		unlock_game("cri_jun")

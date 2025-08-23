@@ -62,4 +62,127 @@ texture_progress = SubResource("PlaceholderTexture2D_alrrk")
 tint_under = Color(0.144091, 6.69318e-08, 1.50409e-08, 1)
 tint_progress = Color(1, 0, 0, 1)
 
+[node name="ToolTips" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = 92.0
+offset_right = 198.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheatIntro" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=lightgray]This game [rainbow]sucks[/rainbow]. Hold [wave]TAB[/wave] to cheat. I have some codes to the left on my desk."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoomIntro" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=lightgray]LMB - Shoot
+RMB - Dash"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GatewayIntro" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=lightgray]LMB - Blue Portal
+RMB - Orange Portal
+E - Reset Portals"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CritterIntro" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=lightgray]LMB - Interact w/ Shovel
+Mouse Wheel - Select Sapling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BSoD" type="Control" parent="."]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BSoD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0183, 0.393043, 0.61, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BSoD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BSoD/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b][bgcolor={code/name}][color=#05649c]Mr McKernel[/color][/bgcolor][/b]
+
+[left]Your computer ran into a critical error and needs to restart. What are you doing on your computer to get this error code?
+Error Code: ROM_MALFUNCTION
+[/left]
+[wave]Thank you for playing![/wave]
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="child_entered_tree" from="UISwitcher" to="UISwitcher" method="_on_child_entered_tree"]

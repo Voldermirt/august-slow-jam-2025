@@ -2,6 +2,8 @@ extends Node2D
 
 signal all_enemies_died
 
+var enemies_killed: int = 0
+
 func get_num_enemies():
 	return len(get_enemies())
 	
@@ -16,6 +18,7 @@ func get_enemies():
 	return enemies
 
 func _ready() -> void:
+	await get_tree().process_frame
 	connect_enemies()
 	Globals.game_changed.connect(connect_enemies)
 	if get_num_enemies() == 0:
@@ -25,8 +28,10 @@ func connect_enemies(_game=null):
 	await get_tree().process_frame
 	for enemy in get_enemies():
 		enemy.death.connect(_on_enemy_death)
+		
 
 func _on_enemy_death():
 	await get_tree().process_frame
-	if get_num_enemies() <= 0:
+	enemies_killed += 1
+	if get_num_enemies() - enemies_killed <= 0:
 		all_enemies_died.emit()

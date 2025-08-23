@@ -7,6 +7,7 @@ func _ready() -> void:
 	Globals.can_switch = false
 
 func _on_play() -> void:
+	$UISound.play()
 	Globals.can_switch = true
 	#Globals.change_level(main_scene)
 	get_tree().change_scene_to_packed(main_scene)

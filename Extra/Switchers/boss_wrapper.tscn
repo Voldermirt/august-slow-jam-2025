@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ktj28riv7puy" path="res://Boss/Boom/boom_boss.tscn" id="3_4u6t5"]
 [ext_resource type="Script" uid="uid://b2b2g0yhitsmy" path="res://Extra/Switchers/boss_wrapper.gd" id="4_p7g37"]
 
-[node name="BossWrapper" type="Node2D" groups=["switch_wrapper"]]
+[node name="BossWrapper" type="Node2D" groups=["boss", "switch_wrapper"]]
 script = ExtResource("4_p7g37")
 default_scene = ExtResource("2_bk4r8")
 boom_scene = ExtResource("3_4u6t5")

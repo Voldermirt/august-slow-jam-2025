@@ -21,6 +21,7 @@ func _physics_process(delta):
 func _ready() -> void:
 	super._ready()
 	anim = $AnimatedSprite2D
+	hurt_sound = $HurtSound
 
 
 func decide_movement():
@@ -66,6 +67,7 @@ func decide_movement():
 func launch_fireball():
 	if not player_body:
 		return
+	$AttackSound.play()
 	var fireball_projectile: FireballProjectile2D = fireball_scene.instantiate()
 	var destination = player_body.global_position
 	

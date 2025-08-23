@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3y6vpr4xcp4n"]
+[gd_scene load_steps=13 format=3 uid="uid://b3y6vpr4xcp4n"]
 
 [ext_resource type="Script" uid="uid://bylf7n3n8p70k" path="res://Enemies/Default/default_enemy.gd" id="1_d1gei"]
 [ext_resource type="Texture2D" uid="uid://dpg0xgt7ki7x1" path="res://Enemies/Default/skeleton.png" id="2_d1gei"]
+[ext_resource type="AudioStream" uid="uid://f0n80yatu57o" path="res://assets/sounds/sfx/Default/skeleton_death.wav" id="3_hr2l0"]
+[ext_resource type="AudioStream" uid="uid://bo8fdodjaqyt0" path="res://assets/sounds/sfx/Other/universal_hurt.wav" id="4_wecmk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d1gei"]
 radius = 36.0
@@ -76,3 +78,9 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_d1gei")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hr2l0")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wecmk")

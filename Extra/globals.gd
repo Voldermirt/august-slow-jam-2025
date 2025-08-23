@@ -7,6 +7,8 @@ signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
 signal start_loading_game
 
+signal first_time_swapping_to(game: GameList)
+
 enum GameList {
 	DEFAULT,
 	BOOM,
@@ -22,13 +24,17 @@ var can_switch = true
 
 var zoom_out = false
 
+var first_swap: Array[bool] = [true, true, true, true]
+
+
 @onready var current_bgm_track := $DefaultMusic
 
 func _ready():
 	var root: Node2D = get_2d_root()
 	if root != null:
 		root.ready.connect(save_game)
-	
+
+
 func set_zoom_out(new_zoom : bool) -> void:
 	zoom_out = new_zoom
 	set_bgm(current_game_index)
@@ -146,6 +152,12 @@ func switch_random_games():
 func switch_games(game_index: GameList):
 	if not can_switch:
 		return
+	
+	# Check if this is the first time switching to the game
+	if first_swap[game_index]:
+		first_swap[game_index] = false
+		emit_signal("first_time_swapping_to", game_index)
+	
 	var wrappers: Array[Node] = get_tree().get_nodes_in_group("switch_wrapper")
 	current_game_index = game_index
 	for wrapper in wrappers:
