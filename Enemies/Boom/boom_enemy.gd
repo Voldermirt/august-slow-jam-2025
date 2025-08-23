@@ -10,7 +10,6 @@ var fireball_scene = preload("res://Enemies/Boom/enemy_fileball.tscn")
 @onready var fireball_cd_timer: Timer = $FireballCD
 @onready var close_range_area: Area2D = $CloseRange
 
-
 func _physics_process(delta):
 	super._physics_process(delta)
 	if spawn_delay != null and spawn_delay.time_left <= 0 and health > 0:

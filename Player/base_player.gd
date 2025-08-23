@@ -28,6 +28,7 @@ func get_max_health():
 
 func save_json_data() -> Dictionary:
 	var data = super.save_json_data()
+	health = get_max_health()
 	data["collectables"] = collectables
 	
 	return data
