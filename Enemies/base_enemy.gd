@@ -61,7 +61,6 @@ func get_max_health():
 # Gives entity the data it should receive on initial spawning
 func set_spawn_data():
 	super.set_spawn_data()
-	self.health = get_max_health()
 	thinking_state = ThinkState.Neutral
 	
 func save_json_data() -> Dictionary:
@@ -73,7 +72,8 @@ func save_json_data() -> Dictionary:
 
 func load_json_data(data: Dictionary):
 	super.load_json_data(data)
-	thinking_state = data["think_state"]
+	if data.get("think_state") != null:
+		thinking_state = data.get("think_state")
 	
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
 	pass

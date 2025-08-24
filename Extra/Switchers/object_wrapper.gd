@@ -77,9 +77,6 @@ func switch_to(game: Globals.GameList):
 		_:
 			push_error("Trying to switch to a non-existing game!")
 	
-	# Copy the data
-	if new_scene is BaseEntity2D and scene_to_replace is BaseEntity2D:
-		(new_scene as BaseEntity2D).retrieve_data(scene_to_replace as BaseEntity2D)
 	
 	# Deletes the previous scene and waits until it is deleted!
 	scene_to_replace.queue_free()

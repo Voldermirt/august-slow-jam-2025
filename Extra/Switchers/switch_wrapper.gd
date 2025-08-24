@@ -28,6 +28,10 @@ func _ready():
 		push_error("No gateway export scene supplied")
 	if critter_junction_scene == null:
 		push_error("No critter junction export scene supplied")
+		
+	
+	if switching_scene is BaseEntity2D:
+		(switching_scene as BaseEntity2D).set_spawn_data()
 	
 	
 func save_json_data() -> Dictionary:
@@ -96,8 +100,6 @@ func load_json_data():
 				switching_scene.show()
 		else:
 			pass
-			
-	
 		
 	if switching_scene.has_method("load_json_data"):
 		switching_scene.load_json_data(data)
@@ -207,9 +209,7 @@ func _on_child_entered_tree(node: Node):
 		#active_game = Globals.GameList.DEFAULT
 		#print(name)
 		#push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to ", active_game))
-		
-	if switching_scene is BaseEntity2D:
-		(switching_scene as BaseEntity2D).set_spawn_data()
+
 	#else:
 		#push_error("The switch wrapper has more than one scene upon wrapper's creation!")
 
