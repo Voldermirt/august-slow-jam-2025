@@ -10,7 +10,7 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 @export var critter_junction_scene: PackedScene
 
 var switching_scene: Node
-var active_game: Globals.GameList
+var active_game: Globals.GameList = 0
 # Is used to map the data from the JSON save file 
 var savefile_index: int = -1
 
@@ -32,7 +32,6 @@ func _ready():
 	
 	if switching_scene is BaseEntity2D:
 		(switching_scene as BaseEntity2D).set_spawn_data()
-	
 	
 func save_json_data() -> Dictionary:
 	var scene_data: Dictionary = {}
@@ -195,22 +194,4 @@ func _on_child_entered_tree(node: Node):
 	
 	if switching_scene is BaseCollectable2D:
 		pass
-	
-	## Makes sure that the Entity spawns with the correct starting data
-	#if switching_scene.is_in_group("default"):
-		#active_game = Globals.GameList.DEFAULT
-	#elif switching_scene.is_in_group("boom"):
-		#active_game = Globals.GameList.BOOM
-	#elif switching_scene.is_in_group("gateway"):
-		#active_game = Globals.GameList.GATEWAY
-	#elif switching_scene.is_in_group("critter_junction"):
-		#active_game = Globals.GameList.CRITTER_JUNCTION
-	#else:
-		#active_game = Globals.GameList.DEFAULT
-		#print(name)
-		#push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to ", active_game))
-
-	#else:
-		#push_error("The switch wrapper has more than one scene upon wrapper's creation!")
-
 	

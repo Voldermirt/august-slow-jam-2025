@@ -77,7 +77,15 @@ func save_entities(to_save_data: Dictionary, current_json_index: int) -> int:
 			wrapper.retrieve_savefile_index(current_json_index)
 			if not start_loading_game.is_connected(wrapper.load_json_data):
 				start_loading_game.connect(wrapper.load_json_data)
+		elif object is MainLevel2D:
+			var level: MainLevel2D = object as MainLevel2D
+			var data: Dictionary = {"active_game": level.active_game}
+			to_save_data[current_json_index] = data
 			
+			level.retrieve_savefile_index(current_json_index)
+			if not start_loading_game.is_connected(level.load_json_data):
+				start_loading_game.connect(level.load_json_data)
+		
 		current_json_index += 1
 	return current_json_index
 
