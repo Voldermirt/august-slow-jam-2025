@@ -12,12 +12,20 @@ var pickup_sound = null
 func get_value():
 	return BASE_VALUE
 
+func save_json_data() -> Dictionary:
+	var base_player_json_data = {
+		"global_position": global_position
+	}
+	return base_player_json_data
+
+func load_json_data(data: Dictionary):
+	global_position = str_to_var("Vector2" + data["global_position"])
+
 func _ready():
-	
 	if not get_parent().is_in_group("switch_wrapper"):
 		assert(false, str(self, " object is not the child of in the SwitchWrapper"))
-		
-	body_entered.connect(_on_body_entered)
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: CharacterBody2D):
 	if body is BasePlayer2D:
@@ -30,6 +38,9 @@ func _on_body_entered(body: CharacterBody2D):
 		await get_tree().process_frame
 		process_mode = Node.PROCESS_MODE_DISABLED
 		$Sprite2D.visible = false
-		if pickup_sound:
-			await pickup_sound.finished
-		get_parent().queue_free()
+		
+		set_deferred("monitoring", false)
+		hide()
+		
+		#$Sprite2D.visible = false
+		#get_parent().queue_free()

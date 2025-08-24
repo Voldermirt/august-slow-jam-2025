@@ -3,9 +3,9 @@ extends BasePlayer2D
 class_name BoomPlayer2D
 
 const BOOM_PLAYER_MAX_HEALTH: float = 100
-const DASH_DURATION_TIME: float = 0.1
+const DASH_DURATION_TIME: float = 0.5
 const DASH_CD_TIME: float = 1
-const DASH_STRENGTH: float = 300
+const DASH_STRENGTH: float = 100
 const MAX_DASHES: int = 2
 
 const DASH_PARTICLES = preload("res://Player/Boom/dash_particles.tscn")

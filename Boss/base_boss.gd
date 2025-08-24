@@ -70,7 +70,9 @@ func decide_movement():
 	else:
 		thinking_state = ThinkState.Targeting
 	
-	var is_center_close: bool = global_position.distance_to(bound_area.global_position) < 5
+	var is_center_close: bool = false
+	if bound_area != null:
+		is_center_close = global_position.distance_to(bound_area.global_position) < 5
 	
 	match thinking_state:
 		ThinkState.Neutral:

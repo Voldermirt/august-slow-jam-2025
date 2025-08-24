@@ -10,7 +10,7 @@ const INVALID_CHILD_ERROR: String = "The wrapper MUST have a single child player
 @export var critter_junction_scene: PackedScene
 
 var switching_scene: Node
-var active_game: Globals.GameList
+var active_game: Globals.GameList = 0
 # Is used to map the data from the JSON save file 
 var savefile_index: int = -1
 
@@ -28,13 +28,14 @@ func _ready():
 		push_error("No gateway export scene supplied")
 	if critter_junction_scene == null:
 		push_error("No critter junction export scene supplied")
+		
 	
+	if switching_scene is BaseEntity2D:
+		(switching_scene as BaseEntity2D).set_spawn_data()
 	
 func save_json_data() -> Dictionary:
 	var scene_data: Dictionary = {}
 	
-	if switching_scene is BaseEnemy2D:
-		pass
 	#if switching_scene != null and switching_scene.has_method("save_json_data"):
 	if switching_scene == null:
 		push_error("The entity to be saved is missing in its wrapper!")
@@ -43,7 +44,10 @@ func save_json_data() -> Dictionary:
 		scene_data = switching_scene.save_json_data()
 		#push_error("The entity to be saved doesn't have save method!")
 		#return {}
+		
 	scene_data["active_game"] = active_game
+	if switching_scene is BaseCollectable2D:
+		scene_data["process_mode"] = switching_scene.process_mode
 	return scene_data
 	
 # So that the entity knows which entity from JSON file to pull data from
@@ -76,10 +80,25 @@ func load_json_data():
 	# switch the game if it is different
 	var prev_game = data.get("active_game")
 	
+	if switching_scene is BaseCollectable2D:
+		pass
+		
 	#if prev_game != null and prev_game != active_game:
 	if prev_game != null:
 		switch_to(int(prev_game))
+		
 	await get_tree().process_frame
+	
+	if switching_scene is BaseCollectable2D:
+		var pm = data.get("process_mode")
+		if pm != null:
+			switching_scene.process_mode = int(pm)
+			#if pm != ProcessMode.PROCESS_MODE_DISABLED and switching_scene.process_mode == ProcessMode.PROCESS_MODE_DISABLED:
+			if switching_scene.process_mode != ProcessMode.PROCESS_MODE_DISABLED:
+				switching_scene.set_deferred("monitoring", true)
+				switching_scene.show()
+		else:
+			pass
 		
 	if switching_scene.has_method("load_json_data"):
 		switching_scene.load_json_data(data)
@@ -109,6 +128,8 @@ func switch_to(game: Globals.GameList):
 		#
 	
 	scene_to_replace = switching_scene
+	if scene_to_replace is BaseCollectable2D:
+		pass
 	
 	#scene_to_replace = children[0]
 	if scene_to_replace == null:
@@ -135,6 +156,7 @@ func switch_to(game: Globals.GameList):
 				return
 			new_scene = gateway_scene.instantiate()
 			new_scene.add_to_group("gateway")
+			
 			active_game = Globals.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			if critter_junction_scene == null:
@@ -149,6 +171,11 @@ func switch_to(game: Globals.GameList):
 	# Copy the data
 	if new_scene is BaseEntity2D and scene_to_replace is BaseEntity2D:
 		(new_scene as BaseEntity2D).retrieve_data(scene_to_replace as BaseEntity2D)
+		
+	# Keep certain collectables disabled if they already were
+	if new_scene is BaseCollectable2D and scene_to_replace is BaseCollectable2D and scene_to_replace.process_mode == ProcessMode.PROCESS_MODE_DISABLED:
+		(new_scene as BaseCollectable2D).hide()
+		(new_scene as BaseCollectable2D).process_mode = Node.PROCESS_MODE_DISABLED
 	
 	# Deletes the previous scene and waits until it is deleted!
 	scene_to_replace.queue_free()
@@ -165,23 +192,6 @@ func _on_child_entered_tree(node: Node):
 	# REMEMBER THIS
 	switching_scene = node
 	
-	# Makes sure that the Entity spawns with the correct starting data
-	if switching_scene.is_in_group("default"):
-		active_game = Globals.GameList.DEFAULT
-	elif switching_scene.is_in_group("boom"):
-		active_game = Globals.GameList.BOOM
-	elif switching_scene.is_in_group("gateway"):
-		active_game = Globals.GameList.GATEWAY
-	elif switching_scene.is_in_group("critter_junction"):
-		active_game = Globals.GameList.CRITTER_JUNCTION
-	else:
-		active_game = Globals.GameList.DEFAULT
-		print(name)
-		push_error(str("Switch wrapper couldn't identify the game of the child scene, setting to ", active_game))
-		
-	if switching_scene is BaseEntity2D:
-		(switching_scene as BaseEntity2D).set_spawn_data()
-	#else:
-		#push_error("The switch wrapper has more than one scene upon wrapper's creation!")
-
+	if switching_scene is BaseCollectable2D:
+		pass
 	

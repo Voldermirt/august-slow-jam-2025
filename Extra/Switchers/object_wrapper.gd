@@ -56,14 +56,18 @@ func switch_to(game: Globals.GameList):
 		Globals.GameList.DEFAULT:
 			new_scene = default_scene.instantiate()
 			new_scene.add_to_group("default")
+			active_game = Globals.GameList.DEFAULT
 		Globals.GameList.BOOM:
 			new_scene = boom_scene.instantiate()
 			new_scene.add_to_group("boom")
+			active_game = Globals.GameList.BOOM
 		Globals.GameList.GATEWAY:
 			new_scene = gateway_scene.instantiate()
 			new_scene.add_to_group("gateway")
+			active_game = Globals.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
+			active_game = Globals.GameList.CRITTER_JUNCTION
 			# Load the saved state and fruit into the cri jun scene
 				# grow the tree if switching back to scene with a sapling
 			if cri_jun_state == state.SAPLING:
@@ -77,9 +81,6 @@ func switch_to(game: Globals.GameList):
 		_:
 			push_error("Trying to switch to a non-existing game!")
 	
-	# Copy the data
-	if new_scene is BaseEntity2D and scene_to_replace is BaseEntity2D:
-		(new_scene as BaseEntity2D).retrieve_data(scene_to_replace as BaseEntity2D)
 	
 	# Deletes the previous scene and waits until it is deleted!
 	scene_to_replace.queue_free()
