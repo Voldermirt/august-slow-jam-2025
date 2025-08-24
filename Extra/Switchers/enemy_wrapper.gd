@@ -53,14 +53,18 @@ func switch_to(game: Globals.GameList):
 		Globals.GameList.DEFAULT:
 			new_scene = default_scene.instantiate()
 			new_scene.add_to_group("default")
+			active_game = Globals.GameList.DEFAULT
 		Globals.GameList.BOOM:
 			new_scene = boom_scene.instantiate()
 			new_scene.add_to_group("boom")
+			active_game = Globals.GameList.BOOM
 		Globals.GameList.GATEWAY:
 			new_scene = gateway_scene.instantiate()
 			new_scene.add_to_group("gateway")
+			active_game = Globals.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
+			active_game = Globals.GameList.CRITTER_JUNCTION
 			
 			# Load stored variable values into Villager
 			new_scene.requested_fruit = cri_jun_requested_fruit

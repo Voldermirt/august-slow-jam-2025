@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ktj28riv7puy"]
+[gd_scene load_steps=5 format=3 uid="uid://ktj28riv7puy"]
 
 [ext_resource type="Texture2D" uid="uid://cv4gis312h5no" path="res://Enemies/Boom/enemy_stub.png" id="1_3pqcb"]
-[ext_resource type="Script" uid="uid://dmo2131h74atk" path="res://Boss/Boom/boom_boss.gd" id="1_fwi8l"]
-[ext_resource type="PackedScene" uid="uid://crnbbsvmi8oop" path="res://Boss/Default/default_blast.tscn" id="2_0pqh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
 size = Vector2(24, 32)
@@ -25,8 +23,6 @@ size = Vector2(25, 25)
 scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 16
-script = ExtResource("1_fwi8l")
-blast = ExtResource("2_0pqh3")
 metadata/_custom_type_script = "uid://dmo2131h74atk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -9,8 +9,17 @@ func _ready():
 	gravity_scale = 0
 	linear_velocity = Vector2i.ZERO
 	angular_velocity = 0
-	
-	#
+
+
+func save_json_data() -> Dictionary:
+	var base_data = {
+		"global_position": global_position
+	}
+	return base_data
+
+func load_json_data(data: Dictionary):
+	global_position = str_to_var("Vector2" + data["global_position"])
+
 #func _process(delta):
 	#if linear_velocity != Vector2.ZERO:
 		#pass
