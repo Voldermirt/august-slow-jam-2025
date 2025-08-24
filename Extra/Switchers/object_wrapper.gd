@@ -14,6 +14,8 @@ var cri_jun_state: state
 var cri_jun_fruit: fruit
 var cri_jun_made_fruit: bool = false
 
+@export var crate_inside_object: PackedScene
+
 # custom switch_to which
 
 func switch_to(game: Globals.GameList):

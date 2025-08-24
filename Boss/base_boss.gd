@@ -19,7 +19,7 @@ var blast_cd_timer: Timer
 var is_player_in_arena: bool
 
 func get_blast_cd() -> float:
-	return 10 # randi_range(BASE_LAUNCH_CD_MIN, BASE_LAUNCH_CD_MAX)
+	return randf_range(4, 8) # randi_range(BASE_LAUNCH_CD_MIN, BASE_LAUNCH_CD_MAX)
 
 func get_blast() -> BaseBlast2D:
 	if blast == null or not blast.can_instantiate():
@@ -36,14 +36,22 @@ func retrieve_data(data_from: BaseEntity2D):
 	
 func launch_blast() -> bool:
 	var blast: BaseBlast2D = get_blast()
-	if blast == null or player_body == null:
+	if blast == null or player_body == null or health <= 0:
 		return false
+	var parent = get_parent()
 	var windup_time: float = blast.get_windup_time()
 	var persistance_time: float = blast.get_windup_time()
+	
 	is_blasting_timer.start(windup_time + persistance_time)
 	is_blasting_timer.timeout.connect(_on_blast_timeout)
-	add_child(blast)
-	global_position = blast.global_position
+	
+	if parent != null:
+		parent.add_sibling(blast)
+	else:
+		add_child(blast)
+		
+	blast.scale = scale
+	blast.global_position = global_position
 	blast.aim(player_body.global_position)
 	
 	return true
@@ -62,6 +70,9 @@ func get_recovery_time():
 
 func decide_movement():
 	var desired_movement_position: Vector2 = Vector2.INF
+	
+	if health <= 0:
+		return Vector2.INF
 	
 	pathing_limit_timer.stop()
 	

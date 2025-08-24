@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0na0as1pkuo"]
+
+[ext_resource type="Script" uid="uid://dp2do46o8cvww" path="res://Boss/Default/boom_blast.gd" id="1_svt21"]
+[ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_em8o6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pcv8"]
+size = Vector2(58, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vibyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_em8o6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoomBlast" type="Area2D" groups=["delete_on_load"]]
+script = ExtResource("1_svt21")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_7pcv8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(20, 0)
+scale = Vector2(2.25, 1)
+sprite_frames = SubResource("SpriteFrames_vibyo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
