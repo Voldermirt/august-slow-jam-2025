@@ -20,7 +20,8 @@ signal unlock_game(game: String)
 @onready var bg_sprite = $Background/Sprite2D
 
 func _ready() -> void:
-	pass
+	var global_scene: Global =  get_tree().get_first_node_in_group("global_scene")
+	global_scene.save_game()
 
 func switch_to(game : Globals.GameList):
 	match game:

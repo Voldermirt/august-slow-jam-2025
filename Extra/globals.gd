@@ -1,5 +1,7 @@
 extends Node
 
+class_name Global
+
 # It's time for a GAME CHANGER
 # I'm Sam Reich, and I've been here the WHOLE TIME
 # (idk lmao)
@@ -26,14 +28,12 @@ var zoom_out = false
 
 var first_swap: Array[bool] = [true, true, true, true]
 
-
 @onready var current_bgm_track := $DefaultMusic
 
-func _ready():
-	var root: Node2D = get_2d_root()
-	if root != null:
-		root.ready.connect(save_game)
-
+#func _ready():
+	#var root: Node2D = get_2d_root()
+	#if root != null:
+		#root.ready.connect(save_game)
 
 func set_zoom_out(new_zoom : bool) -> void:
 	zoom_out = new_zoom

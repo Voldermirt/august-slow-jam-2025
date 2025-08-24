@@ -96,15 +96,13 @@ func make_path(position: Vector2):
 	return n_agent.target_position
 
 func make_wander_path():
-	if nav_region == null:
-		return make_path(Vector2.INF)
-		
-	var random_move_position: Vector2 = NavigationServer2D.region_get_random_point(nav_region, 1, false)
-	var distance = self.global_position.distance_to(random_move_position)
-	# We received out-of-range random point
-	if distance > WANDER_DISTANCE_MAX or distance < WANDER_DISTANCE_MIN:
-		return make_path(Vector2.INF)
-	return make_path(random_move_position)
+	#if nav_region == null:
+		#return make_path(Vector2.INF)
+	#var random_move_position: Vector2 = global_position + global_position.direction_to(NavigationServer2D.region_get_random_point(nav_region, 1, false)).normalized()*WANDER_DISTANCE_MAX
+	#var distance = self.global_position.distance_to(random_move_position)
+	#return make_path(random_move_position)
+	
+	return Vector2.INF
 
 func make_player_path():
 	if player_body == null or not is_instance_valid(player_body):

@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dfe68uxevqhch" path="res://assets/sounds/music/lowq_gateway_music.wav" id="8_2ih7w"]
 [ext_resource type="AudioStream" uid="uid://rpbetib8o1v5" path="res://assets/sounds/music/lowq_cri_jun_music.wav" id="9_h5sc4"]
 
-[node name="Globals" type="Node"]
+[node name="Globals" type="Node" groups=["global_scene"]]
 process_mode = 3
 script = ExtResource("1_rs2d8")
 
