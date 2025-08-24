@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bt2j76m7ful7f"]
+[gd_scene load_steps=27 format=3 uid="uid://bt2j76m7ful7f"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
 [ext_resource type="PackedScene" uid="uid://dmbt7ahfudc6w" path="res://Map/main_level.tscn" id="2_3anwy"]
@@ -10,9 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bqbmq3x2syd4w" path="res://models/gateway_game.fbx" id="8_cyq4t"]
 [ext_resource type="AudioStream" uid="uid://byn4mb3xx241o" path="res://assets/sounds/sfx/Other/room_ambience.wav" id="9_0sjnj"]
 [ext_resource type="PackedScene" uid="uid://oo7g1nwtdywe" path="res://models/cri_jun_game.fbx" id="9_dbnuq"]
+[ext_resource type="AudioStream" uid="uid://b6upjs3jj6yxc" path="res://assets/sounds/sfx/Other/glitch_short.wav" id="10_bvl0g"]
 [ext_resource type="AudioStream" uid="uid://b7bac1s80wny" path="res://assets/sounds/sfx/Other/computer_ambience.wav" id="10_qbyyd"]
 [ext_resource type="AudioStream" uid="uid://nq22u5vkh0pn" path="res://assets/sounds/sfx/Other/keyboard1.wav" id="11_rpbss"]
 [ext_resource type="AudioStream" uid="uid://dsd8dr73apyb3" path="res://assets/sounds/sfx/Other/keyboard2.wav" id="12_dbnuq"]
+[ext_resource type="AudioStream" uid="uid://gu5bqclw2dk4" path="res://assets/sounds/sfx/Other/achievement.wav" id="14_6nitn"]
 
 [sub_resource type="Curve" id="Curve_p8vsj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.418773, 0.146269), 0.460682, 0.460682, 0, 0, Vector2(0.66426, 0.485821), 1.79154, 1.79154, 0, 0, Vector2(0.978339, 1), -0.103358, 0.0, 0, 0]
@@ -89,6 +91,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1mhs4")
+debug_mode = true
 default_code = Array[int]([3, 0, 1, 2, 3])
 boom_code = Array[int]([2, 3, 2, 3, 0])
 gateway_code = Array[int]([0, 3, 1, 2, 0])
@@ -214,6 +217,7 @@ mesh = SubResource("BoxMesh_oho2g")
 
 [node name="GameChangeSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+stream = ExtResource("10_bvl0g")
 
 [node name="RoomAmbience" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -231,8 +235,12 @@ stream = ExtResource("11_rpbss")
 process_mode = 3
 stream = ExtResource("12_dbnuq")
 
+[node name="UnlockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_6nitn")
+
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level" to="." method="unlock_game"]
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D" to="." method="unlock_game"]
+[connection signal="death" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/BossWrapper2D/DefaultBoss2D" to="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/Door" method="open"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room12/UnlockCriJun" to="." method="_on_unlock_cri_jun_body_entered"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room16/EndRoomTripWireBasically" to="." method="_on_end_room_trip_wire_basically_body_entered"]
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]

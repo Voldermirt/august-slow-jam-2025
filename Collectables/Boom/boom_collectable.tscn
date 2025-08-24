@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddd3g4d6q3clu"]
+[gd_scene load_steps=5 format=3 uid="uid://ddd3g4d6q3clu"]
 
 [ext_resource type="Script" uid="uid://so4fnn84iq2a" path="res://Collectables/Boom/boom_collectable.gd" id="1_y3twh"]
 [ext_resource type="Texture2D" uid="uid://c5xsrguw8qn5o" path="res://Object/Boom/medkit.png" id="2_y3twh"]
+[ext_resource type="AudioStream" uid="uid://djcfknuh0a1rf" path="res://assets/sounds/sfx/Other/pickup.wav" id="3_t7aky"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
@@ -15,3 +16,7 @@ shape = SubResource("RectangleShape2D_56ux8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y3twh")
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_t7aky")

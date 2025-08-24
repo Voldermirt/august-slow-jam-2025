@@ -1,21 +1,59 @@
-[gd_scene load_steps=8 format=3 uid="uid://cidgov3h5uqox"]
+[gd_scene load_steps=14 format=3 uid="uid://cidgov3h5uqox"]
 
 [ext_resource type="Script" uid="uid://b2h0i7wn08swy" path="res://Player/CritterJunction/cri_jun_player.gd" id="1_r35s0"]
 [ext_resource type="Texture2D" uid="uid://dehc1ok5gfbsg" path="res://Player/CritterJunction/villager.png" id="2_r35s0"]
-[ext_resource type="Script" uid="uid://drmshrrht2qhr" path="res://Player/CritterJunction/tools.gd" id="3_42cfi"]
-[ext_resource type="Script" uid="uid://creki1cferih2" path="res://Player/CritterJunction/interaction.gd" id="4_ae7tb"]
+[ext_resource type="Script" path="res://Player/CritterJunction/tools.gd" id="3_42cfi"]
+[ext_resource type="Script" path="res://Player/CritterJunction/interaction.gd" id="4_ae7tb"]
+[ext_resource type="AudioStream" uid="uid://dm32lphcahr26" path="res://assets/sounds/sfx/Default/default_footsteps.wav" id="5_hl0vd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 size = Vector2(15, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl0vd"]
+atlas = ExtResource("2_r35s0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk07u"]
+atlas = ExtResource("2_r35s0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr8gb"]
+atlas = ExtResource("2_r35s0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4x1f"]
+atlas = ExtResource("2_r35s0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5ofp"]
+atlas = ExtResource("2_r35s0")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_r35s0")
+"texture": SubResource("AtlasTexture_hl0vd")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk07u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr8gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4x1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5ofp")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -34,6 +72,8 @@ shape = SubResource("RectangleShape2D_l8h54")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4ntmi")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Tools" type="Node2D" parent="."]
 script = ExtResource("3_42cfi")
@@ -52,5 +92,12 @@ script = ExtResource("4_ae7tb")
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_42cfi")
 
+[node name="FootstepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hl0vd")
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="area_entered" from="Tools/Polygon2D/Interaction" to="Tools/Polygon2D/Interaction" method="_on_area_entered"]
 [connection signal="area_exited" from="Tools/Polygon2D/Interaction" to="Tools/Polygon2D/Interaction" method="_on_area_exited"]
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

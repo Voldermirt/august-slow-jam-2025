@@ -15,8 +15,6 @@ var movement_direction: Vector2 = Vector2.ZERO
  
 var effective_size := Vector2(32, 32)
 
-var anim : AnimatedSprite2D = null
-
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
 	var player_retrieved_from: BasePlayer2D = (retrieved_from as BasePlayer2D)
