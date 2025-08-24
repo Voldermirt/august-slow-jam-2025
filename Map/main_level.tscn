@@ -188,6 +188,7 @@ default_scene = ExtResource("4_rrqod")
 boom_scene = ExtResource("5_lipnt")
 gateway_scene = ExtResource("6_dukwj")
 critter_junction_scene = ExtResource("7_w7g0n")
+metadata/_edit_group_ = true
 
 [node name="DefaultPlayer2D" parent="PlayerWrapper2D" instance=ExtResource("4_rrqod")]
 position = Vector2(300, 189)
@@ -209,6 +210,7 @@ texture = ExtResource("16_doev0")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Rooms" groups=["navigation_map"]]
 position = Vector2(224, 40)
 navigation_polygon = SubResource("NavigationPolygon_ojblk")
+metadata/_edit_lock_ = true
 
 [node name="Room1" parent="Rooms" instance=ExtResource("20_sxhp5")]
 
