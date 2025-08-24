@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqkbxbrdinqrh"]
+[gd_scene load_steps=46 format=3 uid="uid://dqkbxbrdinqrh"]
 
 [ext_resource type="FontFile" uid="uid://kxxnh1pkyvk6" path="res://GameFont.ttf" id="1_csa5h"]
 [ext_resource type="Script" uid="uid://bwaytkvbnfyrq" path="res://Extra/title_screen.gd" id="1_ywq4r"]
 [ext_resource type="Texture2D" uid="uid://6msmo1f6jg7q" path="res://assets/sprites/button.png" id="2_x7vqw"]
 [ext_resource type="Texture2D" uid="uid://bjbq5tvx0tlo5" path="res://Player/Default/sword.png" id="3_x7vqw"]
 [ext_resource type="AudioStream" uid="uid://dyriu25mmvrn4" path="res://assets/sounds/sfx/Other/ui_button.wav" id="5_gv7e2"]
+[ext_resource type="Texture2D" uid="uid://dyi3chyc4drlp" path="res://assets/sprites/KnightsWell Intro.png" id="6_gmmii"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csa5h"]
 texture = ExtResource("2_x7vqw")
@@ -44,6 +45,264 @@ keycode = 4194309
 
 [sub_resource type="Shortcut" id="Shortcut_ywq4r"]
 events = [SubResource("InputEventKey_ywq4r")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_recy4"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmmii"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvffg"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(0, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qbm3"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(256, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pkh3"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(512, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj7js"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(768, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u41t"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1024, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn8b1"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1280, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dtut"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1536, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlb7i"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1792, 0, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjml5"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(0, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve1kp"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(256, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncr11"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(512, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv6i3"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(768, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5kmh"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1024, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwtib"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1280, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyntl"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1536, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsiel"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1792, 144, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36neg"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(0, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1takl"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(256, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe604"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(512, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhbfb"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(768, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o60h1"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1024, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5itt"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1280, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqbwk"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1536, 288, 256, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76gah"]
+atlas = ExtResource("6_gmmii")
+region = Rect2(1792, 288, 256, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h3j5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvffg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qbm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pkh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj7js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u41t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn8b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dtut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlb7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjml5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ve1kp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncr11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv6i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5kmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwtib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyntl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsiel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36neg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1takl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe604")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhbfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o60h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5itt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqbwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76gah")
+}],
+"loop": false,
+"name": &"play",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_vvffg"]
+resource_name = "intro"
+length = 30.0
+step = 0.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/SubViewportContainer/SubViewport/Sprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"play", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ContinuePrompt:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 27, 28),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gmmii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ContinuePrompt:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qbm3"]
+_data = {
+&"RESET": SubResource("Animation_gmmii"),
+&"intro": SubResource("Animation_vvffg")
+}
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -215,6 +474,91 @@ warning!"
 
 [node name="UISound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_gv7e2")
+
+[node name="IntroSequence" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_recy4")
+
+[node name="Panel" type="PanelContainer" parent="IntroSequence"]
+custom_minimum_size = Vector2(258, 146)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.0
+offset_top = 32.0
+offset_right = 129.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gmmii")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="IntroSequence/Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_group_ = true
+
+[node name="SubViewport" type="SubViewport" parent="IntroSequence/Panel/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(256, 144)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="IntroSequence/Panel/SubViewportContainer/SubViewport"]
+sprite_frames = SubResource("SpriteFrames_h3j5w")
+animation = &"play"
+centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="IntroSequence"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -139.0
+offset_right = -32.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("1_csa5h")
+bbcode_enabled = true
+text = "
+Under the cover of Night, a brave [wave freq=3]knight[/wave] creeps 
+to the Well where the Foul [shake][color=red]Dragon[/color][/shake] sleeps, 
+hoping to finally end its reign of terror..."
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ContinuePrompt" type="Label" parent="IntroSequence"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -31.0
+offset_right = 87.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_csa5h")
+theme_override_font_sizes/font_size = 8
+text = "Press any button to continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroSequence"]
+libraries = {
+&"": SubResource("AnimationLibrary_1qbm3")
+}
+autoplay = "intro"
 
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/PlayButton/Button" to="." method="_on_play"]
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/QuitButton/Button" to="." method="_on_quit"]

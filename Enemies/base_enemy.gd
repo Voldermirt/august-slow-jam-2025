@@ -45,7 +45,6 @@ var thinking_switch_timer: Timer
 var spawn_delay: Timer
 
 var player_body: BasePlayer2D
-var anim : AnimatedSprite2D = null
 
 var hitbox_og_mask: int
 

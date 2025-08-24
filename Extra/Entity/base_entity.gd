@@ -23,6 +23,7 @@ var cur_knock_duration: float
 
 var hurt_sound = null
 var death_sound = null
+var anim : AnimatedSprite2D = null
 
 func get_recovery_time():
 	return damage_recovery_seconds
@@ -96,6 +97,8 @@ func heal(amount : float):
 func _on_death():
 	if death_sound:
 		death_sound.play()
+	if anim and anim.sprite_frames.has_animation("death"):
+		anim.play("death")
 	death.emit()
 
 

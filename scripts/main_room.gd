@@ -169,6 +169,7 @@ func code_to_game(code) -> Globals.GameList:
 # Unlock games when needed
 # just realized I could have just used the globals.gamelist thing but oh well
 func unlock_game(game: String):
+	$UnlockSound.play()
 	match game:
 		"boom":
 			panel.show()
