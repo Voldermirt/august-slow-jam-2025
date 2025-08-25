@@ -29,7 +29,7 @@ var can_switch = true
 var zoom_out = false
 
 var first_swap: Array[bool] = [true, true, true, true]
-
+var game_over = false
 @onready var current_bgm_track := $DefaultMusic
 
 #func _ready():
@@ -54,7 +54,7 @@ func save_game() -> bool:
 	var currently_json_index: int = 0
 	temp_last_save.clear()
 	
-	await  get_tree().process_frame
+	await get_tree().process_frame
 	
 	file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file != null:
@@ -209,9 +209,10 @@ func player_death(location : Vector2):
 		get_tree().get_first_node_in_group("cam_zone_manager").game_switch_disable_animate(null)
 	#await get_tree().process_frame
 	#await get_tree().process_frame
-	load_game()
-	get_tree().paused = false
-	set_bgm(current_game_index)
+	if game_over == false:
+		load_game()
+		get_tree().paused = false
+		set_bgm(current_game_index)
 
 func set_music(playing : bool):
 	for node in [self, $LowQualityMusic]:

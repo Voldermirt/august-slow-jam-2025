@@ -235,6 +235,7 @@ a = Vector2(0, 12)
 b = Vector2(0, -12)
 
 [node name="DefaultSword" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_t005n")
 
 [node name="Rotatator" type="Node2D" parent="."]
