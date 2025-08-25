@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dub6m5q2lfqoq"]
+[gd_scene load_steps=17 format=3 uid="uid://dub6m5q2lfqoq"]
 
 [ext_resource type="Script" uid="uid://d1k1rwld8vib1" path="res://Boss/Default/default_boss.gd" id="1_ubfvn"]
 [ext_resource type="PackedScene" uid="uid://crnbbsvmi8oop" path="res://Boss/Default/default_blast.tscn" id="2_oyoo0"]
 [ext_resource type="Texture2D" uid="uid://def26kjiv8860" path="res://Boss/Default/dragon.png" id="3_oyoo0"]
 [ext_resource type="AudioStream" uid="uid://dahc38melsc53" path="res://assets/sounds/sfx/Default/dragon_fire.wav" id="4_wvmes"]
+[ext_resource type="AudioStream" uid="uid://bo8fdodjaqyt0" path="res://assets/sounds/sfx/Other/universal_hurt.wav" id="5_hxw40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyoo0"]
 size = Vector2(36, 42)
@@ -105,9 +106,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -15.0
-offset_top = -24.01
+offset_top = -35.0
 offset_right = 15.0
-offset_bottom = -19.01
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 max_value = 1000.0
@@ -124,3 +125,6 @@ position = Vector2(-64, 5)
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_wvmes")
 bus = &"SFX"
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hxw40")

@@ -66,6 +66,7 @@ func save_json_data() -> Dictionary:
 	var data = super.save_json_data()
 	#health = get_max_health()
 	#data["think_state"] = thinking_state
+	data["player_body"] = player_body
 	
 	return data
 
@@ -74,8 +75,6 @@ func load_json_data(data: Dictionary):
 	#if data.get("think_state") != null:
 		#thinking_state = data.get("think_state")
 	thinking_state = ThinkState.Neutral
-	
-	player_body = data.get("player_body")
 	
 	spawn_delay.start(3)
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit

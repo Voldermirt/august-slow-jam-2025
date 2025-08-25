@@ -7,20 +7,30 @@ signal fallen_into
 @export var gateway_sprite : Texture2D = null
 @export var cri_jun_sprite : Texture2D = null
 
+@onready var children = get_children()
+
 func switch_to(game: Globals.GameList):
 	match game:
 		Globals.GameList.DEFAULT:
 			if default_sprite:
-				$Sprite2D.texture = default_sprite
+				for child in children:
+					if child is Sprite2D:
+						child.texture = default_sprite
 		Globals.GameList.BOOM:
 			if boom_sprite:
-				$Sprite2D.texture = boom_sprite
+				for child in children:
+					if child is Sprite2D:
+						child.texture = boom_sprite
 		Globals.GameList.GATEWAY:
 			if gateway_sprite:
-				$Sprite2D.texture = gateway_sprite
+				for child in children:
+					if child is Sprite2D:
+						child.texture = gateway_sprite
 		Globals.GameList.CRITTER_JUNCTION:
 			if cri_jun_sprite:
-				$Sprite2D.texture = cri_jun_sprite
+				for child in children:
+					if child is Sprite2D:
+						child.texture = cri_jun_sprite
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

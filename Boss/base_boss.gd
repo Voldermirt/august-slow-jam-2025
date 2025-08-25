@@ -41,10 +41,10 @@ func animate():
 		else:
 			anim.play("idle")
 	
-	if velocity.x > 0:
+	if player_body.global_position.x > global_position.x:
 		anim.flip_h = true
 		$BlastPos.position.x = blast_pos_x
-	elif velocity.x < 0:
+	else:
 		anim.flip_h = false
 		$BlastPos.position.x = -blast_pos_x
 

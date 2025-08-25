@@ -26,6 +26,7 @@ func _ready() -> void:
 	super._ready()
 	anim = $AnimatedSprite2D
 	hurt_sound = $HurtSound
+	death_sound = $DeathSound
 
 
 func decide_movement():
