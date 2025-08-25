@@ -28,6 +28,7 @@ func shoot():
 	PlayerStats.ammo = ammo
 	PlayerStats.max_cooldown = reload_cooldown
 	PlayerStats.cooldown = shoot_cooldown
+	$ShootSound.pitch_scale = randf_range(0.9, 1.1)
 	$ShootSound.play()
 	autoreload_timer.start()
 

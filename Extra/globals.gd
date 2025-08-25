@@ -11,6 +11,7 @@ signal start_loading_game
 signal player_died(location)
 
 signal first_time_swapping_to(game: GameList)
+signal entered_glitch_area
 
 enum GameList {
 	DEFAULT,
@@ -43,7 +44,7 @@ func set_zoom_out(new_zoom : bool) -> void:
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
 		switch_random_games()
-	if OS.is_debug_build() and Input.is_action_pressed("interact"):
+	if Input.is_action_pressed("interact"):
 		Globals.load_game()
 
 func save_game() -> bool:
@@ -93,6 +94,7 @@ func save_entities(to_save_data: Dictionary, current_json_index: int) -> int:
 func load_game():
 	print("Loading game")
 	var file: FileAccess
+	get_tree().get_first_node_in_group("cam_zone_manager").game_switch_disable_animate(null)
 	
 	file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file != null:
@@ -180,7 +182,7 @@ func switch_games(game_index: GameList):
 
 func set_bgm(game_index : GameList) -> void:
 	# Change BGM
-	create_tween().tween_property(current_bgm_track, "volume_db", -40, 1)
+	create_tween().tween_property(current_bgm_track, "volume_db", -60, 1)
 	var old_pos = current_bgm_track.get_playback_position()
 	var new_track = current_bgm_track
 	var music_node = $LowQualityMusic if zoom_out else self
@@ -209,3 +211,12 @@ func player_death(location : Vector2):
 	#await get_tree().process_frame
 	load_game()
 	get_tree().paused = false
+	set_bgm(current_game_index)
+
+func set_music(playing : bool):
+	for node in [self, $LowQualityMusic]:
+		for track in ["DefaultMusic", "BoomMusic", "GatewayMusic", "CriJunMusic"]:
+			node.get_node(track).playing = playing
+
+func enter_glitch_area():
+	entered_glitch_area.emit()

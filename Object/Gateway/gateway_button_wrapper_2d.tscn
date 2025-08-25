@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnob5uyswtc7a"]
+[gd_scene load_steps=6 format=3 uid="uid://dnob5uyswtc7a"]
 
 [ext_resource type="PackedScene" uid="uid://7wmqgm21rt3g" path="res://Extra/Switchers/switch_wrapper.tscn" id="1_nsld3"]
 [ext_resource type="PackedScene" uid="uid://fh7g8bngkpq8" path="res://Object/Gateway/button.tscn" id="2_2jb8g"]
 [ext_resource type="Script" uid="uid://dsa2bcyfftkhm" path="res://Object/Gateway/gateway_button_wrapper_2d.gd" id="2_nsld3"]
 [ext_resource type="PackedScene" uid="uid://b75dje0685v5l" path="res://Extra/placeholder.tscn" id="3_pxs71"]
+[ext_resource type="Script" uid="uid://bcg2gn0aqix37" path="res://Extra/placeholder.gd" id="5_jnh27"]
 
 [node name="ButtonWrapper2D" instance=ExtResource("1_nsld3")]
 script = ExtResource("2_nsld3")
@@ -13,3 +14,4 @@ gateway_scene = ExtResource("2_2jb8g")
 critter_junction_scene = ExtResource("3_pxs71")
 
 [node name="PLACEHOLDER" parent="." index="0" groups=["default"] instance=ExtResource("3_pxs71")]
+script = ExtResource("5_jnh27")

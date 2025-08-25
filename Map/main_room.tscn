@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bt2j76m7ful7f"]
+[gd_scene load_steps=29 format=3 uid="uid://bt2j76m7ful7f"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
 [ext_resource type="PackedScene" uid="uid://dmbt7ahfudc6w" path="res://Map/main_level.tscn" id="2_3anwy"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://oo7g1nwtdywe" path="res://models/cri_jun_game.fbx" id="9_dbnuq"]
 [ext_resource type="AudioStream" uid="uid://b6upjs3jj6yxc" path="res://assets/sounds/sfx/Other/glitch_short.wav" id="10_bvl0g"]
 [ext_resource type="AudioStream" uid="uid://b7bac1s80wny" path="res://assets/sounds/sfx/Other/computer_ambience.wav" id="10_qbyyd"]
+[ext_resource type="Texture2D" uid="uid://cq4titjbppelt" path="res://assets/sprites/arrow.png" id="11_f6j1g"]
 [ext_resource type="AudioStream" uid="uid://nq22u5vkh0pn" path="res://assets/sounds/sfx/Other/keyboard1.wav" id="11_rpbss"]
 [ext_resource type="AudioStream" uid="uid://dsd8dr73apyb3" path="res://assets/sounds/sfx/Other/keyboard2.wav" id="12_dbnuq"]
 [ext_resource type="AudioStream" uid="uid://gu5bqclw2dk4" path="res://assets/sounds/sfx/Other/achievement.wav" id="14_6nitn"]
@@ -83,7 +84,7 @@ albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
 material = SubResource("StandardMaterial3D_cyq4t")
 size = Vector3(1, 1, 0.1)
 
-[node name="MainRoom" type="Control"]
+[node name="MainRoom" type="Control" groups=["main_room"]]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -246,6 +247,38 @@ spot_angle = 42.9989
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Render3D/Level3D/DeskRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38571, 0, -0.392381)
 mesh = SubResource("BoxMesh_oho2g")
+
+[node name="InputDisplay" type="Node3D" parent="Render3D/Level3D/DeskRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.749605, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="UpArrow" type="Sprite3D" parent="Render3D/Level3D/DeskRoom/InputDisplay"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+modulate = Color(1, 1, 1, 0.25098)
+texture_filter = 0
+texture = ExtResource("11_f6j1g")
+
+[node name="RightArrow" type="Sprite3D" parent="Render3D/Level3D/DeskRoom/InputDisplay"]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.1, 0, 0)
+modulate = Color(1, 1, 1, 0.25098)
+texture_filter = 0
+texture = ExtResource("11_f6j1g")
+
+[node name="DownArrow" type="Sprite3D" parent="Render3D/Level3D/DeskRoom/InputDisplay"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.1, 0)
+modulate = Color(1, 1, 1, 0.25098)
+texture_filter = 0
+texture = ExtResource("11_f6j1g")
+
+[node name="LeftArrow" type="Sprite3D" parent="Render3D/Level3D/DeskRoom/InputDisplay"]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.1, 0, 0)
+modulate = Color(1, 1, 1, 0.25098)
+texture_filter = 0
+texture = ExtResource("11_f6j1g")
 
 [node name="GameChangeSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3

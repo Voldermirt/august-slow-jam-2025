@@ -1,7 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn85l00otsm16"]
+[gd_scene load_steps=10 format=3 uid="uid://cn85l00otsm16"]
 
 [ext_resource type="Script" uid="uid://3p6na7i7is4v" path="res://Enemies/Gateway/gateway_enemy.gd" id="1_vyccc"]
+[ext_resource type="Texture2D" uid="uid://bsnselenqjra5" path="res://Enemies/Gateway/turret_dead.png" id="2_efvc2"]
 [ext_resource type="Texture2D" uid="uid://bn2mvht5sfwxv" path="res://Enemies/Gateway/turret.png" id="2_vyccc"]
+[ext_resource type="AudioStream" uid="uid://bpcr5n68tmwmk" path="res://Enemies/Gateway/laser.wav" id="4_1apf4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1apf4"]
+atlas = ExtResource("2_efvc2")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efvc2"]
 atlas = ExtResource("2_vyccc")
@@ -9,6 +15,14 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1apf4")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_efvc2")
@@ -40,7 +54,7 @@ metadata/_custom_type_script = "uid://3p6na7i7is4v"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pubjm")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -54,3 +68,7 @@ shape = SubResource("CircleShape2D_vyccc")
 
 [node name="LaserCd" type="Timer" parent="."]
 one_shot = true
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1apf4")
+volume_db = -5.0

@@ -42,19 +42,25 @@ func switch_to(game: Globals.GameList):
 		Globals.GameList.DEFAULT:
 			new_scene = default_scene.instantiate()
 			new_scene.add_to_group("default")
+			active_game = Global.GameList.DEFAULT
 		Globals.GameList.BOOM:
 			new_scene = boom_scene.instantiate()
 			new_scene.add_to_group("boom")
+			active_game = Global.GameList.BOOM
 		Globals.GameList.GATEWAY:
 			new_scene = gateway_scene.instantiate()
 			new_scene.on.connect(_on_button_on)
 			new_scene.off.connect(_on_button_off)
 			new_scene.add_to_group("gateway")
+			active_game = Global.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			new_scene = critter_junction_scene.instantiate()
 			new_scene.add_to_group("critter_junction")
+			active_game = Global.GameList.CRITTER_JUNCTION
 		_:
 			push_error("Trying to switch to a non-existing game!")
+			
+		
 	
 	# Copy the data
 	if new_scene is BaseEntity2D and scene_to_replace is BaseEntity2D:
