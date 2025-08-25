@@ -33,7 +33,7 @@ func _physics_process(delta):
 func _on_getting_hit(damage: float, bypass_invincibility=false, hit_by=""):
 	if (bypass_invincibility or (not is_invincible)) and health > 0:
 		if default_weapon.is_blocking():
-			damage = max(damage / 2, 1)
+			damage = max(damage / 10.0, 1)
 		health -= damage
 		if health <= 0:
 			if hit_by == "FirstBoss":

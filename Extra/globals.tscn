@@ -24,21 +24,21 @@ bus = &"BGM"
 [node name="BoomMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("3_hnqa5")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 
 [node name="GatewayMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("4_4xpwa")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 
 [node name="CriJunMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_0jsfv")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 
@@ -47,28 +47,28 @@ bus = &"BGM"
 [node name="DefaultMusic" type="AudioStreamPlayer" parent="LowQualityMusic"]
 process_mode = 3
 stream = ExtResource("6_ksate")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 
 [node name="BoomMusic" type="AudioStreamPlayer" parent="LowQualityMusic"]
 process_mode = 3
 stream = ExtResource("7_64vno")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 
 [node name="GatewayMusic" type="AudioStreamPlayer" parent="LowQualityMusic"]
 process_mode = 3
 stream = ExtResource("8_2ih7w")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 
 [node name="CriJunMusic" type="AudioStreamPlayer" parent="LowQualityMusic"]
 process_mode = 3
 stream = ExtResource("9_h5sc4")
-volume_db = -40.0
+volume_db = -60.0
 autoplay = true
 bus = &"BGM"
 

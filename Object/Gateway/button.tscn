@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://fh7g8bngkpq8"]
+[gd_scene load_steps=6 format=3 uid="uid://fh7g8bngkpq8"]
 
 [ext_resource type="Script" uid="uid://rm3x2v5vuteg" path="res://Object/Gateway/button.gd" id="1_axpfa"]
+[ext_resource type="Texture2D" uid="uid://b1r2bsrxplaql" path="res://Object/Gateway/gateway_button.png" id="2_yo535"]
+[ext_resource type="AudioStream" uid="uid://c5xbwboiq8e2o" path="res://assets/sounds/sfx/Gateway Gun/button_press.wav" id="3_hdf5f"]
+[ext_resource type="AudioStream" uid="uid://e88iw71g7o7l" path="res://assets/sounds/sfx/Gateway Gun/button_release.wav" id="4_sv1s1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_se25j"]
 radius = 12.0
@@ -13,9 +16,15 @@ script = ExtResource("1_axpfa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_se25j")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.6, 0.126, 0.126, 1)
-polygon = PackedVector2Array(-7, -10, 0, -11, 7, -10, 10, 0, 7, 10, -7, 10, -10, 0)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_yo535")
+
+[node name="PressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hdf5f")
+
+[node name="ReleaseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sv1s1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

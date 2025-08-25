@@ -32,6 +32,13 @@ func connect_enemies(_game=null):
 
 func _on_enemy_death():
 	await get_tree().process_frame
-	enemies_killed += 1
-	if get_num_enemies() - enemies_killed <= 0:
+	#enemies_killed += 1
+	if get_num_enemies() - get_dead_enemies() <= 0:
 		all_enemies_died.emit()
+
+func get_dead_enemies():
+	var count = 0
+	for enemy in get_enemies():
+		if enemy.health <= 0:
+			count += 1
+	return count

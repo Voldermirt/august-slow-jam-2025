@@ -53,6 +53,8 @@ func _ready() -> void:
 	view_2d.material.set_shader_parameter("offset", 0.0)
 	Globals.first_time_swapping_to.connect(show_tooltip)
 	Globals.player_died.connect(play_death_effect)
+	Globals.entered_glitch_area.connect(enter_glitch_area)
+	
 
 func string_to_dir(input : String):
 	match input:
@@ -138,6 +140,7 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	
 	[$KeyboardSound1, $KeyboardSound2].pick_random().play()
 	
+	
 	current_sequence.append(dir)
 	if len(current_sequence) > 5:
 		current_sequence.remove_at(0)
@@ -145,6 +148,7 @@ func handle_directional_input(dir : Direction, pressed : bool):
 	# Check if input matches any of the available codes
 	if debug_mode:
 		available_codes = [default_code, boom_code, gateway_code, critter_junction_code]
+	var green = false
 	for code in available_codes:
 		if current_sequence == code:
 			if code_to_game(code) != Globals.current_game_index:
@@ -154,7 +158,13 @@ func handle_directional_input(dir : Direction, pressed : bool):
 				$GameChangeSound.play()
 				glitching = true
 				current_sequence = []
-				return
+				green = true
+	
+	var arrow_dirs = [dir]
+	if green:
+		arrow_dirs = [Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT]
+	for arrow_dir in arrow_dirs:
+		pulse_arrow(arrow_dir, green)
 
 
 func code_to_game(code) -> Globals.GameList:
@@ -172,21 +182,25 @@ func code_to_game(code) -> Globals.GameList:
 # Unlock games when needed
 # just realized I could have just used the globals.gamelist thing but oh well
 func unlock_game(game: String):
-	$UnlockSound.play()
+	var new_code = default_code
 	match game:
 		"boom":
 			panel.show()
 			%boom_game.show()
-			available_codes.append(boom_code)
+			new_code = boom_code
 			cheat_intro.show()
 		"gateway":
+			new_code = gateway_code
 			%gateway_game.show()
-			available_codes.append(gateway_code)
 		"cri_jun":
+			new_code = critter_junction_code
 			%cri_jun_game.show()
-			available_codes.append(critter_junction_code)
 		_:
 			push_error("Unlocked invalid game! Check if you are matching the cases correctly?")
+	
+	if not new_code in available_codes:
+		available_codes.append(new_code)
+		$UnlockSound.play()
 
 # probably a much better way to do this but oh well... shows the tooltips
 func show_tooltip(game: Globals.GameList):
@@ -229,5 +243,30 @@ func play_death_effect(location):
 	death_effect.visible = true
 	death_particles.global_position = location
 	death_particles.emitting = true
+	ui.visible = false
 	await get_tree().create_timer(3.1).timeout
 	death_effect.visible = false
+	ui.visible = true
+
+func pulse_arrow(dir: Direction, green : bool):
+	var arrow : Sprite3D
+	match dir:
+		Direction.UP:
+			arrow = %UpArrow
+		Direction.RIGHT:
+			arrow = %RightArrow
+		Direction.DOWN:
+			arrow = %DownArrow
+		Direction.LEFT:
+			arrow = %LeftArrow
+	
+	var default_color = Color(1, 1, 1, 0.25)
+	var color = Color.GREEN if green else Color.WHITE
+	var tween = create_tween().set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(arrow, "modulate", color, 0.1)
+	tween.tween_property(arrow, "modulate", default_color, 0.1)
+	
+
+func enter_glitch_area():
+	min_glitch = 1.0
+	glitch_spin_ratio = 0.1
