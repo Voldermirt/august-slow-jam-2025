@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dmbt7ahfudc6w"]
+[gd_scene load_steps=37 format=4 uid="uid://dmbt7ahfudc6w"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
 [ext_resource type="Script" uid="uid://0ag0yqm6uqvv" path="res://Map/main_level.gd" id="1_lipnt"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://6lct7wefkvt0" path="res://Enemies/Boom/boom_enemy.tscn" id="28_5blyv"]
 [ext_resource type="PackedScene" uid="uid://dx2q6nx1rdria" path="res://Enemies/CritterJunction/cri_jun_enemy.tscn" id="29_uisfa"]
 [ext_resource type="PackedScene" uid="uid://ktj28riv7puy" path="res://Boss/Boom/boom_boss.tscn" id="30_5dpqi"]
+[ext_resource type="PackedScene" uid="uid://dub6m5q2lfqoq" path="res://Boss/Default/default_boss.tscn" id="31_5blyv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ojblk"]
 vertices = PackedVector2Array(10782, -262.008, 10782, 1781.99, -461.93, 1774, -448.063, -278.977)
@@ -943,7 +944,14 @@ critter_junction_scene = ExtResource("30_5dpqi")
 [node name="BossWrapper2" parent="Rooms/Room16" node_paths=PackedStringArray("bound_area") instance=ExtResource("23_o36ip")]
 position = Vector2(10728, 1312)
 bound_area = NodePath("../FinalBossArea")
-critter_junction_scene = ExtResource("30_5dpqi")
+default_scene = ExtResource("30_5dpqi")
+boom_scene = ExtResource("31_5blyv")
+gateway_scene = ExtResource("30_5dpqi")
+
+[node name="BossWrapper3" parent="Rooms/Room16" node_paths=PackedStringArray("bound_area") instance=ExtResource("23_o36ip")]
+position = Vector2(10728, 1240)
+bound_area = NodePath("../FinalBossArea")
+boom_scene = ExtResource("31_5blyv")
 
 [node name="FinalBossArea" type="Area2D" parent="Rooms/Room16"]
 position = Vector2(10560, 1280)

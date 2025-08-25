@@ -40,6 +40,6 @@ position = Vector2(64, 5)
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_vibyo")
 autoplay = "default"
-frame_progress = 0.963665
+frame_progress = 0.854804
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -16,6 +16,7 @@ var bound_area: Area2D
 @onready var health_bar = $BossHealth
 @onready var blast_pos = $BlastPos
 @onready var blast_pos_x = abs(blast_pos.position.x)
+@onready var attack_sound = $AttackSound
 
 var is_blasting_timer: Timer
 var blast_cd_timer: Timer
@@ -58,6 +59,8 @@ func retrieve_data(data_from: BaseEntity2D):
 func launch_blast() -> bool:
 	if anim:
 		anim.play("attack")
+	if attack_sound:
+		attack_sound.play()
 	var blast: BaseBlast2D = get_blast()
 	if blast == null or player_body == null or health <= 0:
 		return false

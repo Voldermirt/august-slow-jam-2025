@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dflmvsb4567q7"]
+
+[ext_resource type="Script" uid="uid://cx7qltf262ctl" path="res://Boss/Boom/boom_boss_projectile.gd" id="1_edicd"]
+[ext_resource type="Texture2D" uid="uid://drmsq6psp5u3h" path="res://Boss/Boom/spiderdemon_bullet.png" id="2_edicd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hybkl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_572ja"]
+atlas = ExtResource("2_edicd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhgm5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_572ja")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoomBossProjectile" type="CharacterBody2D"]
+script = ExtResource("1_edicd")
+base_speed = 300
+metadata/_custom_type_script = "uid://bpksg34lhntww"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hybkl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_xhgm5")

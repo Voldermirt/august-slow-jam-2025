@@ -49,6 +49,7 @@ var min_glitch := 0
 var selected_game : Globals.GameList
 
 func _ready() -> void:
+	available_codes = [default_code]
 	Globals.level_change_requested.connect(change_level)
 	view_2d.material.set_shader_parameter("offset", 0.0)
 	Globals.first_time_swapping_to.connect(show_tooltip)
