@@ -3,18 +3,64 @@
 [ext_resource type="Texture2D" uid="uid://cv4gis312h5no" path="res://Enemies/Boom/enemy_stub.png" id="1_3pqcb"]
 [ext_resource type="Script" uid="uid://dmo2131h74atk" path="res://Boss/Boom/boom_boss.gd" id="1_fwi8l"]
 [ext_resource type="PackedScene" uid="uid://c0na0as1pkuo" path="res://Boss/Default/boom_blast.tscn" id="2_0pqh3"]
+[ext_resource type="Texture2D" uid="uid://clvoujirgkuau" path="res://Boss/Boom/spiderdemon.png" id="2_fwi8l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
 size = Vector2(24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pqh3"]
+atlas = ExtResource("2_fwi8l")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msbj6"]
+atlas = ExtResource("2_fwi8l")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta7kb"]
+atlas = ExtResource("2_fwi8l")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyv3h"]
+atlas = ExtResource("2_fwi8l")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3qcw"]
+atlas = ExtResource("2_fwi8l")
+region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3pqcb")
+"texture": SubResource("AtlasTexture_0pqh3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msbj6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta7kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyv3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3qcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyv3h")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -25,8 +71,10 @@ size = Vector2(25, 25)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwi8l"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwi8l"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0pqh3"]
 [node name="BoomBoss2D" type="CharacterBody2D" groups=["boom", "boss"]]
-scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_fwi8l")
@@ -39,6 +87,8 @@ shape = SubResource("RectangleShape2D_j5ojn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pubjm")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -59,9 +109,10 @@ offset_right = 15.0
 offset_bottom = -19.01
 grow_horizontal = 2
 grow_vertical = 2
-value = 100.0
+max_value = 500.0
+value = 500.0
 nine_patch_stretch = true
-texture_under = SubResource("PlaceholderTexture2D_3pqcb")
-texture_progress = SubResource("PlaceholderTexture2D_fwi8l")
+texture_under = SubResource("PlaceholderTexture2D_fwi8l")
+texture_progress = SubResource("PlaceholderTexture2D_0pqh3")
 tint_under = Color(0.209665, 0.0333795, 0.278646, 1)
 tint_progress = Color(0.781616, 0, 0.877604, 1)

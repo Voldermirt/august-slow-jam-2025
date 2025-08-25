@@ -69,6 +69,6 @@ sprite_frames = SubResource("SpriteFrames_wgnnr")
 autoplay = "default"
 frame_progress = 0.190262
 
-[node name="Pickup" type="AudioStreamPlayer" parent="."]
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("3_4lanw")

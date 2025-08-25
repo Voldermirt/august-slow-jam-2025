@@ -35,7 +35,9 @@ func _on_body_entered(body: CharacterBody2D):
 		player.heal(health_value)
 		if pickup_sound:
 			pickup_sound.play()
+		await get_tree().process_frame
 		process_mode = Node.PROCESS_MODE_DISABLED
+		$Sprite2D.visible = false
 		
 		set_deferred("monitoring", false)
 		hide()

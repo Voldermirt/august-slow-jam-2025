@@ -15,8 +15,6 @@ var movement_direction: Vector2 = Vector2.ZERO
  
 var effective_size := Vector2(32, 32)
 
-var anim : AnimatedSprite2D = null
-
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)
 	var player_retrieved_from: BasePlayer2D = (retrieved_from as BasePlayer2D)
@@ -83,7 +81,7 @@ func _physics_process(delta):
 	# Animate
 	if anim:
 		if anim.animation != "dash":
-			if movement_direction.length() > 0 and health > 0:
+			if velocity.length() > 0 and health > 0:
 				anim.play("walk")
 			else:
 				anim.play("idle")
@@ -103,5 +101,6 @@ func _push_objects():
 func _on_death():
 	if death_sound:
 		death_sound.play()
-	death.emit()
-	Globals.load_game()
+	Globals.player_death(global_position)
+	#death.emit()
+	#Globals.load_game()

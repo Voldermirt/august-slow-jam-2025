@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr0tu4ea1313"]
+[gd_scene load_steps=12 format=3 uid="uid://dr0tu4ea1313"]
 
 [ext_resource type="Script" uid="uid://bjyywkkb36366" path="res://Player/Gateway/gateway_player.gd" id="1_1s7tf"]
 [ext_resource type="Texture2D" uid="uid://ccjkpqq6lw2bx" path="res://Player/Gateway/player.png" id="2_j700q"]
 [ext_resource type="PackedScene" uid="uid://csxiow13e80jm" path="res://Player/Gateway/gateway_gun.tscn" id="3_j700q"]
+[ext_resource type="AudioStream" uid="uid://dm32lphcahr26" path="res://assets/sounds/sfx/Default/default_footsteps.wav" id="4_yyqln"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j700q"]
 radius = 4.6875
@@ -53,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [node name="GatewayPlayer2D" type="CharacterBody2D" groups=["gateway", "player"]]
@@ -71,5 +72,14 @@ shape = SubResource("CapsuleShape2D_j700q")
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 animation = &"walk"
 autoplay = "idle"
+frame_progress = 0.491109
 
 [node name="GatewayGun" parent="." instance=ExtResource("3_j700q")]
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="FootstepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yyqln")
+
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

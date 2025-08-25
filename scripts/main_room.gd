@@ -26,6 +26,8 @@ var available_codes: = [default_code]
 @onready var critter_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CritterIntro
 @onready var bsod = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/BSoD
 @onready var panel = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/Panel
+@onready var death_effect := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect
+@onready var death_particles := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect/DeathParticles
 
 # Game cases are unique identifiers already
 
@@ -50,6 +52,7 @@ func _ready() -> void:
 	Globals.level_change_requested.connect(change_level)
 	view_2d.material.set_shader_parameter("offset", 0.0)
 	Globals.first_time_swapping_to.connect(show_tooltip)
+	Globals.player_died.connect(play_death_effect)
 
 func string_to_dir(input : String):
 	match input:
@@ -169,6 +172,7 @@ func code_to_game(code) -> Globals.GameList:
 # Unlock games when needed
 # just realized I could have just used the globals.gamelist thing but oh well
 func unlock_game(game: String):
+	$UnlockSound.play()
 	match game:
 		"boom":
 			panel.show()
@@ -220,3 +224,10 @@ func _on_player_wrapper_2d_player_switched_games(players_newest_scene: BasePlaye
 func _on_unlock_cri_jun_body_entered(body: Node2D) -> void:
 	if body is BasePlayer2D and available_codes.has(critter_junction_code) == false:
 		unlock_game("cri_jun")
+
+func play_death_effect(location):
+	death_effect.visible = true
+	death_particles.global_position = location
+	death_particles.emitting = true
+	await get_tree().create_timer(3.1).timeout
+	death_effect.visible = false

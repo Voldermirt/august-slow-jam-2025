@@ -50,10 +50,12 @@ func _ready():
 		add_child(area)
 	
 	Globals.game_changed.connect(game_switch_disable_animate)
+	#Globals.player_died.connect(game_switch_disable_animate)
 	
 func game_switch_disable_animate(_game):
+	print("Disabling camzone animation temporarily")
 	set_animate(false)
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	set_animate(true)
 
 func _process(_delta):
@@ -117,9 +119,10 @@ func _on_player_entered_zone(body, zone_idx):
 	var tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	# Make it so the tween doesn't pause
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	var new_player_position = ensure_is_inside_rect2(body.global_position, body.effective_size * 1.3, zone)
+	if animate:
+		var new_player_position = ensure_is_inside_rect2(body.global_position, body.effective_size * 1.3, zone)
 	
-	tween.parallel().tween_property(body, "global_position", new_player_position, (0.25 if animate else 0.0))
+		tween.parallel().tween_property(body, "global_position", new_player_position, (0.25 if animate else 0.0))
 	
 	var new_cam_pos = ensure_is_inside_rect2(cam.global_position, screen_size, zone)
 	var old_cam_pos = ensure_is_inside_rect2(cam.global_position, screen_size, zones[current_zone_idx])

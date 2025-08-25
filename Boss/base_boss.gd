@@ -13,6 +13,7 @@ const CLOSE_DISTANCE: int = 300
 
 var bound_area: Area2D
 @export var blast: PackedScene
+@onready var health_bar = $BossHealth
 
 var is_blasting_timer: Timer
 var blast_cd_timer: Timer
@@ -35,6 +36,8 @@ func retrieve_data(data_from: BaseEntity2D):
 		connect_bound_area()
 	
 func launch_blast() -> bool:
+	if anim:
+		anim.play("attack")
 	var blast: BaseBlast2D = get_blast()
 	if blast == null or player_body == null or health <= 0:
 		return false
@@ -55,7 +58,7 @@ func launch_blast() -> bool:
 	blast.aim(player_body.global_position)
 	
 	return true
-
+ 
 func get_contact_damage():
 	return BASE_BOSS_DAMAGE
 
@@ -142,6 +145,7 @@ func _physics_process(delta):
 			decide_movement()
 			
 	animate()
+	$BossHealth.value = health
 
 func _on_blast_timeout():
 	blast_cd_timer.start(get_blast_cd())

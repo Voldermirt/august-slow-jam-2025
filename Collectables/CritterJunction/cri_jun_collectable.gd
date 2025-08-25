@@ -7,4 +7,13 @@ func _on_body_entered(body: CharacterBody2D):
 		var player = body as BasePlayer2D
 		PlayerStats.fruit_count[$Sprite2D.frame] += 1
 		player._on_get_collectable(self)
+		pickup_sound.play()
+		await get_tree().process_frame
+		process_mode = Node.PROCESS_MODE_DISABLED
+		$Sprite2D.visible = false
+		await pickup_sound.finished
 		get_parent().queue_free()
+
+func _ready() -> void:
+	super._ready()
+	pickup_sound = $PickupSound
