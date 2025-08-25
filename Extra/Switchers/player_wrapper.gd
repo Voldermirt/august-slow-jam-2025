@@ -51,12 +51,12 @@ func switch_to(game: Globals.GameList):
 		scene_to_replace.disconnect("unlock_game", on_default_unlock_game)
 
 	previous_position = scene_to_replace.position
-	
 	match game:
 		Globals.GameList.DEFAULT:
 			if default_scene == null:
 				return
 			new_scene = default_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.connect("unlock_game", on_default_unlock_game)
 			new_scene.add_to_group("default")
 			active_game = Globals.GameList.DEFAULT
@@ -64,18 +64,21 @@ func switch_to(game: Globals.GameList):
 			if boom_scene == null:
 				return
 			new_scene = boom_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.add_to_group("boom")
 			active_game = Globals.GameList.BOOM
 		Globals.GameList.GATEWAY:
 			if gateway_scene == null:
 				return
 			new_scene = gateway_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.add_to_group("gateway")
 			active_game = Globals.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			if critter_junction_scene == null:
 				return
 			new_scene = critter_junction_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.add_to_group("critter_junction")
 			active_game = Globals.GameList.CRITTER_JUNCTION
 		_:

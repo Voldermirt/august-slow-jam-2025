@@ -93,7 +93,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[color=lightgray]This game [rainbow]sucks[/rainbow]. Hold [wave]TAB[/wave] to cheat. I have some codes to the left on my desk."
+text = "[color=lightgray]This game [rainbow]sucks[/rainbow]. Hold [wave]TAB[/wave] to cheat. I have some arrow codes to the left on my desk."
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -108,7 +108,8 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[color=lightgray]LMB - Shoot
-RMB - Dash"
+RMB - Dash
+You are [color=gold]invincible while dashing!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,9 +122,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[color=lightgray]LMB - Blue Portal
-RMB - Orange Portal
-E - Reset Portals"
+text = "[color=lightgray]LMB - Shoot [color=lightblue]Blue Portal[/color]
+RMB - Shoot [color=orange]Orange Portal[/color]
+Go through portals to teleport!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -137,7 +138,10 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[color=lightgray]LMB - Interact w/ Shovel
-Mouse Wheel - Select Sapling"
+Mouse Wheel - Select Sapling
+
+[color=yellow]Interact with villagers and holes/trees![/color]
+[i]Trees that have bore fruit can be shoveled up again.[/i]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -177,7 +181,7 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[b][bgcolor={code/name}][color=#05649c]Mr McKernel[/color][/bgcolor][/b]
 
-[left]Your computer ran into a critical error and needs to restart. What are you doing on your computer to get this error code?
+[left]Your computer ran into a critical error and needs to restart. [i]What are you doing on your computer to get this error code?[/i]
 Error Code: ROM_MALFUNCTION
 [/left]
 [wave]Thank you for playing![/wave]

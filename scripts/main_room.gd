@@ -19,6 +19,7 @@ var available_codes: = [default_code]
 @onready var view_3d := $Render3D
 @onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D/Level
 @onready var player = $ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D
+@onready var ui = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI
 @onready var cheat_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CheatIntro
 @onready var boom_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/BoomIntro
 @onready var gateway_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/GatewayIntro
@@ -27,6 +28,9 @@ var available_codes: = [default_code]
 @onready var panel = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/Panel
 @onready var death_effect := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect
 @onready var death_particles := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect/DeathParticles
+@onready var sudden_black_3d = $Render3D/Level3D/DeskRoom/Camera3D/FadeInBlack
+@onready var bsod_noise = $GlitchLong
+@onready var title_screen = preload("res://Map/title_screen.tscn")
 
 # Game cases are unique identifiers already
 
@@ -71,6 +75,10 @@ func string_to_dir(input : String):
 			return Direction.DOWN
 
 func _input(event: InputEvent) -> void:
+	# ending screen
+	if Globals.game_over:
+		return
+	
 	if event.is_action_pressed("zoom") and not zoom_out:
 		# Zoom out
 		view_3d.visible = true
@@ -225,15 +233,30 @@ func show_tooltip(game: Globals.GameList):
 # im tired
 func _on_end_room_trip_wire_basically_body_entered(body: Node2D) -> void:
 	player.player_death.connect(end_game)
-	$ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D.player_switched_games.connect(_on_player_wrapper_2d_player_switched_games)
 
 func end_game():
+	bsod_noise.play()
+	Globals.game_over = true
+	Globals.set_music(false)
 	bsod.show()
-
-func _on_player_wrapper_2d_player_switched_games(players_newest_scene: BasePlayer2D) -> void:
-	if players_newest_scene.is_connected("death", end_game) == false:
-		players_newest_scene.death.connect(end_game)
-
+	get_tree().paused = true
+	min_glitch = 0.0
+	await get_tree().create_timer(10).timeout
+	view_3d.visible = true
+	zoom_out = true
+	zoom_anim.play("zoom", -1, 0.25)
+	# fan sfx plays, slowly becoming louder, probably attach an animationplayer
+	# on it
+	Globals.set_zoom_out(true)
+	get_tree().paused = true
+	$ComputerAmbience.play()
+	$RoomAmbience.play()
+	await get_tree().create_timer(6).timeout
+	sudden_black_3d.show()
+	# explosion sfx
+	await get_tree().create_timer(4).timeout
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Map/title_screen.tscn")
 
 func _on_unlock_cri_jun_body_entered(body: Node2D) -> void:
 	if body is BasePlayer2D and available_codes.has(critter_junction_code) == false:
