@@ -15,6 +15,7 @@ var fulfilled: int = false
 
 func _ready():
 	super._ready()
+	$Sprite2D.frame = randi_range(0, $Sprite2D.hframes - 1)
 	
 	if fulfilled:
 		$Control.hide()

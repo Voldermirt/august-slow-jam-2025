@@ -10,6 +10,9 @@ const SWORD_DAMAGE: float = 50
 func is_attacking():
 	return anim.current_animation == "swing"
 
+func is_blocking():
+	return anim.current_animation == "block"
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
 		attack()

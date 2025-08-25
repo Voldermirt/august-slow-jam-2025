@@ -50,7 +50,7 @@ func launch_blast() -> bool:
 	blast.aim(player_body.global_position)
 	
 	return true
-
+ 
 func get_contact_damage():
 	return BASE_BOSS_DAMAGE
 

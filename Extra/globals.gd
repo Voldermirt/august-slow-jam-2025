@@ -8,6 +8,7 @@ class_name Global
 signal game_changed(new_game : GameList)
 signal level_change_requested(new_level : PackedScene)
 signal start_loading_game
+signal player_died(location)
 
 signal first_time_swapping_to(game: GameList)
 
@@ -90,6 +91,7 @@ func save_entities(to_save_data: Dictionary, current_json_index: int) -> int:
 	return current_json_index
 
 func load_game():
+	print("Loading game")
 	var file: FileAccess
 	
 	file = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -97,11 +99,14 @@ func load_game():
 		var text = file.get_as_text()
 		temp_last_save = JSON.parse_string(text)
 		start_loading_game.emit()
+		for key in temp_last_save.keys():
+			if temp_last_save[key].has("active_game"):
+				current_game_index = temp_last_save[key]["active_game"]
+		#current_game_index = temp_last_save[0]["active_game"]
 		
 		# Make sure to delete all portals
 		for gateway in get_tree().get_nodes_in_group("delete_on_load"):
 			gateway.queue_free()
-	pass
 
 #func load_entities():
 	#var entities: Array[Node] = get_tree().get_nodes_in_group("entity")
@@ -192,3 +197,14 @@ func set_bgm(game_index : GameList) -> void:
 	# Just to make sure
 	new_track.seek(old_pos)
 	current_bgm_track = new_track
+
+func player_death(location : Vector2):
+	$PlayerDeathSound.play()
+	get_tree().paused = true
+	player_died.emit(location)
+	await get_tree().create_timer(3).timeout
+	get_tree().get_first_node_in_group("cam_zone_manager").game_switch_disable_animate(null)
+	#await get_tree().process_frame
+	#await get_tree().process_frame
+	load_game()
+	get_tree().paused = false

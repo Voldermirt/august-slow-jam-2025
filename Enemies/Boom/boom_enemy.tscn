@@ -1,12 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://6lct7wefkvt0"]
+[gd_scene load_steps=14 format=3 uid="uid://6lct7wefkvt0"]
 
 [ext_resource type="Script" uid="uid://ypb3yci08os4" path="res://Enemies/Boom/boom_enemy.gd" id="1_ccxsa"]
 [ext_resource type="Texture2D" uid="uid://ci20la8rttyh2" path="res://Enemies/Boom/cacodemon.png" id="2_ccxsa"]
+[ext_resource type="Texture2D" uid="uid://ce5en4ggnrai6" path="res://Enemies/Boom/cacodemon_death.png" id="2_yfx1k"]
 [ext_resource type="AudioStream" uid="uid://cqb0a5fdummg5" path="res://assets/sounds/sfx/BOOM/cacodemon_attack.wav" id="3_lir3l"]
 [ext_resource type="AudioStream" uid="uid://bo8fdodjaqyt0" path="res://assets/sounds/sfx/Other/universal_hurt.wav" id="4_yfx1k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccxsa"]
 height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yjns"]
+atlas = ExtResource("2_yfx1k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pk0g"]
+atlas = ExtResource("2_yfx1k")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0l3xu"]
 atlas = ExtResource("2_ccxsa")
@@ -18,6 +27,17 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pubjm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yjns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pk0g")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0l3xu")

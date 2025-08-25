@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt2j76m7ful7f"]
+[gd_scene load_steps=28 format=3 uid="uid://bt2j76m7ful7f"]
 
 [ext_resource type="Script" uid="uid://c477ib1jeiw4q" path="res://scripts/main_room.gd" id="1_1mhs4"]
 [ext_resource type="PackedScene" uid="uid://dmbt7ahfudc6w" path="res://Map/main_level.tscn" id="2_3anwy"]
 [ext_resource type="Shader" uid="uid://natvlroojwx1" path="res://glitch.gdshader" id="2_p8vsj"]
 [ext_resource type="PackedScene" uid="uid://cj1u75xigyjh1" path="res://Extra/game_ui.tscn" id="3_3anwy"]
 [ext_resource type="PackedScene" uid="uid://bexrmnunxafva" path="res://models/desk.fbx" id="3_p8vsj"]
+[ext_resource type="Texture2D" uid="uid://dpbtb3vavy3wi" path="res://assets/sprites/background.png" id="4_1ymts"]
 [ext_resource type="PackedScene" uid="uid://dwna61n0p3n4m" path="res://models/default_game.fbx" id="6_uj7hd"]
 [ext_resource type="PackedScene" uid="uid://b0cimbwysm564" path="res://models/boom_game.fbx" id="7_oho2g"]
 [ext_resource type="PackedScene" uid="uid://bqbmq3x2syd4w" path="res://models/gateway_game.fbx" id="8_cyq4t"]
@@ -134,6 +135,38 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="ScreenEffects/EffectViewport/Render2D/Level2D"]
 
 [node name="UI" parent="ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer" instance=ExtResource("3_3anwy")]
+
+[node name="DeathEffect" type="Node2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D"]
+process_mode = 3
+visible = false
+
+[node name="Background" type="Parallax2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 100
+scroll_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect/Background"]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_1ymts")
+centered = false
+
+[node name="DeathParticles" type="CPUParticles2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect"]
+z_index = 110
+position = Vector2(320, 180)
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.95
+direction = Vector2(0, -5)
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+scale_amount_min = 8.0
+scale_amount_max = 12.0
 
 [node name="Render3D" type="SubViewportContainer" parent="."]
 process_mode = 3
