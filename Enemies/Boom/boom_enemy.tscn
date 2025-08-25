@@ -71,6 +71,7 @@ metadata/_custom_type_script = "uid://ypb3yci08os4"
 shape = SubResource("CapsuleShape2D_ccxsa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_pubjm")
 animation = &"walk"
 autoplay = "idle"

@@ -10,6 +10,7 @@ const TURRET_HEALTH = 1
 var laser_scene := preload("res://Enemies/Gateway/enemy_laser.tscn")
 
 func _ready():
+	anim = $AnimatedSprite2D
 	super._ready()
 	pass
 

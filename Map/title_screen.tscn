@@ -450,7 +450,7 @@ text = "- Controls -
 WASD: Move
 LMB: Attack
 RMB: Block
-"
+E: reload save"
 
 [node name="Credits" type="Label" parent="HBoxContainer/RightSide/VBoxContainer"]
 layout_mode = 2
@@ -476,6 +476,7 @@ warning!"
 stream = ExtResource("5_gv7e2")
 
 [node name="IntroSequence" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -506,7 +507,7 @@ metadata/_edit_group_ = true
 [node name="SubViewport" type="SubViewport" parent="IntroSequence/Panel/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(256, 144)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="IntroSequence/Panel/SubViewportContainer/SubViewport"]
 sprite_frames = SubResource("SpriteFrames_h3j5w")
