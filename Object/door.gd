@@ -12,13 +12,13 @@ extends StaticBody2D
 	#else:
 		#_on_all_enemies_dead()
 
-func open():
+func open(arg = null):
 	# Play a sound
 	#queue_free()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	$Sprite2D.visible = false
 
-func close():
+func close(arg = null):
 	# Play a sound
 	process_mode = Node.PROCESS_MODE_INHERIT
 	$Sprite2D.visible = true

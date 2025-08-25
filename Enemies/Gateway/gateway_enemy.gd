@@ -38,6 +38,7 @@ func launch_laser():
 	projectile.direction = global_position.direction_to(destination)
 	projectile.global_position = global_position
 	laser_cd_timer.start(randi_range(0.5, 1))
+	$LaserSound.play()
 
 
 func decide_movement():

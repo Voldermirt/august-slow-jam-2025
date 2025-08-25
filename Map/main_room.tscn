@@ -84,7 +84,7 @@ albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
 material = SubResource("StandardMaterial3D_cyq4t")
 size = Vector3(1, 1, 0.1)
 
-[node name="MainRoom" type="Control"]
+[node name="MainRoom" type="Control" groups=["main_room"]]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
