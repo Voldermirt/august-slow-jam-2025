@@ -102,5 +102,5 @@ func _on_death():
 	if death_sound:
 		death_sound.play()
 	Globals.player_death(global_position)
-	#death.emit()
+	death.emit()
 	#Globals.load_game()
