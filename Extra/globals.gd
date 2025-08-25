@@ -211,6 +211,12 @@ func player_death(location : Vector2):
 	#await get_tree().process_frame
 	load_game()
 	get_tree().paused = false
+	set_bgm(current_game_index)
+
+func set_music(playing : bool):
+	for node in [self, $LowQualityMusic]:
+		for track in ["DefaultMusic", "BoomMusic", "GatewayMusic", "CriJunMusic"]:
+			node.get_node(track).playing = playing
 
 func enter_glitch_area():
 	entered_glitch_area.emit()

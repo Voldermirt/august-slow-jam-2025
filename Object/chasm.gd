@@ -7,6 +7,9 @@ signal fallen_into
 @export var gateway_sprite : Texture2D = null
 @export var cri_jun_sprite : Texture2D = null
 
+func _ready() -> void:
+	Globals.start_loading_game.connect(_on_load_game)
+
 func switch_to(game: Globals.GameList):
 	match game:
 		Globals.GameList.DEFAULT:
@@ -32,9 +35,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 	if body.health <= 0:
 		return
+	$Area2D.process_mode = Node.PROCESS_MODE_INHERIT
 	body._on_getting_hit(999999, true)
-	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	emit_signal("fallen_into")
-	await get_tree().create_timer(0.25)
-	$Area2D/CollisionShape2D.set_deferred("disabled", false)
-	
+
+func _on_load_game():
+	await get_tree().create_timer(0.5).timeout
+	$Area2D.process_mode = Node.PROCESS_MODE_INHERIT

@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dqkbxbrdinqrh"]
+[gd_scene load_steps=109 format=3 uid="uid://dqkbxbrdinqrh"]
 
 [ext_resource type="FontFile" uid="uid://kxxnh1pkyvk6" path="res://GameFont.ttf" id="1_csa5h"]
 [ext_resource type="Script" uid="uid://bwaytkvbnfyrq" path="res://Extra/title_screen.gd" id="1_ywq4r"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dyriu25mmvrn4" path="res://assets/sounds/sfx/Other/ui_button.wav" id="5_gv7e2"]
 [ext_resource type="Texture2D" uid="uid://dyi3chyc4drlp" path="res://assets/sprites/KnightsWell Intro.png" id="6_gmmii"]
 [ext_resource type="Texture2D" uid="uid://ck0grkpuk6gqi" path="res://assets/sprites/titlescreen_animated.png" id="6_recy4"]
+[ext_resource type="AudioStream" uid="uid://cki1k7slhmedl" path="res://assets/sounds/music/intro1.wav" id="8_vvffg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csa5h"]
 texture = ExtResource("2_x7vqw")
@@ -920,7 +921,7 @@ render_target_update_mode = 4
 [node name="Title" type="AnimatedSprite2D" parent="Title/SubViewport"]
 sprite_frames = SubResource("SpriteFrames_txdqm")
 autoplay = "default"
-frame_progress = 0.737871
+frame_progress = 0.344009
 centered = false
 
 [node name="IntroSequence" type="Panel" parent="."]
@@ -1007,6 +1008,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_1qbm3")
 }
 autoplay = "intro"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_vvffg")
+autoplay = true
 
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/PlayButton/Button" to="." method="_on_play"]
 [connection signal="pressed" from="HBoxContainer/LeftSide/VBoxContainer/MarginContainer/VBoxContainer/QuitButton/Button" to="." method="_on_quit"]
