@@ -39,10 +39,10 @@ func reload():
 		return
 	autoreload_timer.stop()
 	
-	cooldown_timer.start(reload_cooldown)
-	PlayerStats.max_cooldown = reload_cooldown
-	PlayerStats.cooldown = reload_cooldown
-	await cooldown_timer.timeout
+	#cooldown_timer.start(reload_cooldown)
+	#PlayerStats.max_cooldown = reload_cooldown
+	#PlayerStats.cooldown = reload_cooldown
+	#await cooldown_timer.timeout
 	ammo = max_ammo
 	PlayerStats.ammo = ammo
 	$ReloadSound.play()

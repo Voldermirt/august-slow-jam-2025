@@ -21,9 +21,11 @@ position = Vector2(10, -2)
 one_shot = true
 
 [node name="AudoReload" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="AudoReload2" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]

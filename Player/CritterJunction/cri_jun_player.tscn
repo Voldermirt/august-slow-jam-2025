@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cidgov3h5uqox"]
+[gd_scene load_steps=15 format=3 uid="uid://cidgov3h5uqox"]
 
 [ext_resource type="Script" uid="uid://b2h0i7wn08swy" path="res://Player/CritterJunction/cri_jun_player.gd" id="1_r35s0"]
 [ext_resource type="Texture2D" uid="uid://dehc1ok5gfbsg" path="res://Player/CritterJunction/villager.png" id="2_r35s0"]
 [ext_resource type="Script" path="res://Player/CritterJunction/tools.gd" id="3_42cfi"]
 [ext_resource type="Script" path="res://Player/CritterJunction/interaction.gd" id="4_ae7tb"]
 [ext_resource type="AudioStream" uid="uid://dm32lphcahr26" path="res://assets/sounds/sfx/Default/default_footsteps.wav" id="5_hl0vd"]
+[ext_resource type="Texture2D" uid="uid://ccpu6wm7hc6v8" path="res://Player/CritterJunction/shovel.png" id="5_pk07u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l8h54"]
 size = Vector2(15, 10)
@@ -71,6 +72,7 @@ scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_l8h54")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 animation = &"idle"
 autoplay = "idle"
@@ -78,9 +80,7 @@ autoplay = "idle"
 [node name="Tools" type="Node2D" parent="."]
 script = ExtResource("3_42cfi")
 
-[node name="Polygon2D" type="Polygon2D" parent="Tools"]
-color = Color(0.450648, 0.450648, 0.450648, 1)
-polygon = PackedVector2Array(12, -1, 23, -1, 23, -4, 27, -4, 30, -1, 27, 2, 23, 2, 23, 0, 12, 0)
+[node name="Polygon2D" type="Node2D" parent="Tools"]
 
 [node name="Interaction" type="Area2D" parent="Tools/Polygon2D"]
 position = Vector2(23, 0)
@@ -91,6 +91,10 @@ script = ExtResource("4_ae7tb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tools/Polygon2D/Interaction"]
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_42cfi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tools/Polygon2D"]
+position = Vector2(22, -1)
+texture = ExtResource("5_pk07u")
 
 [node name="FootstepSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_hl0vd")

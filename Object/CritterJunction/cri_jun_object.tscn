@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cg5tdbwenia4d" path="res://Object/CritterJunction/cri_jun_object.gd" id="1_vs2sg"]
 [ext_resource type="Texture2D" uid="uid://dsw7vhmniuf76" path="res://Object/CritterJunction/tree.png" id="2_mdje4"]
-[ext_resource type="Script" uid="uid://bu4cttp7wtsyd" path="res://Object/CritterJunction/plant_interact_area.gd" id="3_mdje4"]
+[ext_resource type="Script" path="res://Object/CritterJunction/plant_interact_area.gd" id="3_mdje4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs2sg"]
 size = Vector2(24, 10)

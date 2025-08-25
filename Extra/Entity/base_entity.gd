@@ -75,6 +75,10 @@ func _ready():
 	recovery_timer.autostart = false
 	recovery_timer.timeout.connect(_end_damage_recovery)
 	add_child(recovery_timer)
+	
+	await get_tree().process_frame
+	if health <= 0 and anim and anim.sprite_frames.has_animation("death"):
+		anim.play("death")
 
 func _physics_process(delta):
 	if health <= 0:

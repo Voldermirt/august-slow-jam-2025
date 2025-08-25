@@ -62,14 +62,15 @@ func _physics_process(delta):
 	if dash_duration_timer.time_left > 0:
 		move_and_slide()
 	
-	if velocity.length() > 0 and not step_sound.playing:
+	_weapon_rotation_process(weapon)
+	
+	if velocity.length() > 0 and not step_sound.playing and anim.animation != "dash":
 		$StepTimer.start()
 		step_sound.play()
-	elif velocity.length() <= 0:
+	elif velocity.length() <= 0 or anim.animation == "dash":
 		$StepTimer.stop()
 		step_sound.stop()
 	
-	_weapon_rotation_process(weapon)
 
 func retrieve_data(retrieved_from: BaseEntity2D):
 	super.retrieve_data(retrieved_from)

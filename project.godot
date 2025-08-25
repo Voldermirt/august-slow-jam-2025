@@ -54,6 +54,7 @@ room=""
 navigation_map=""
 ui=""
 delete_on_load=""
+cam_zone_manager=""
 
 [input]
 

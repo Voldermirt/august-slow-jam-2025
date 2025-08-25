@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://du5p7n5o0sxma" path="res://Collectables/CritterJunction/cri_jun_collectable.gd" id="1_on0bj"]
 [ext_resource type="Texture2D" uid="uid://cqut0h1wua4u0" path="res://Object/CritterJunction/fruit.png" id="2_on0bj"]
-[ext_resource type="AudioStream" uid="uid://ct00bs18xnuux" path="res://assets/sounds/sfx/Other/eat.wav" id="3_6on65"]
+[ext_resource type="AudioStream" uid="uid://djcfknuh0a1rf" path="res://assets/sounds/sfx/Other/pickup.wav" id="3_6on65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ux8"]
 
@@ -21,5 +21,6 @@ hframes = 5
 [node name="PickupSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("3_6on65")
+volume_db = -15.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
