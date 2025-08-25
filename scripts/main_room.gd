@@ -18,8 +18,7 @@ var available_codes: = [default_code]
 @onready var view_2d := $ScreenEffects/EffectViewport/Render2D
 @onready var view_3d := $Render3D
 @onready var level = $ScreenEffects/EffectViewport/Render2D/Level2D/Level
-@onready var player = $ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D/DefaultPlayer2D
-@onready var ui = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI
+@onready var player = $ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D
 @onready var cheat_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CheatIntro
 @onready var boom_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/BoomIntro
 @onready var gateway_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/GatewayIntro
@@ -211,7 +210,7 @@ func show_tooltip(game: Globals.GameList):
 
 # im tired
 func _on_end_room_trip_wire_basically_body_entered(body: Node2D) -> void:
-	player.death.connect(end_game)
+	player.player_death.connect(end_game)
 	$ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D.player_switched_games.connect(_on_player_wrapper_2d_player_switched_games)
 
 func end_game():

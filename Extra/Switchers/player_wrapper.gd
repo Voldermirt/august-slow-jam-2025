@@ -5,6 +5,7 @@ class_name PlayerWrapper2D
 signal player_switched_games(players_newest_scene: BasePlayer2D)
 signal ui_update_requested()
 signal unlock_game(game: String)
+signal player_death
 
 func _process(delta):
 	ui_update_requested.emit()
@@ -14,6 +15,7 @@ func _ready():
 	player_switched_games.emit(switching_scene as BasePlayer2D)
 	# Connect unlock game signal from default
 	get_child(0).connect("unlock_game", on_default_unlock_game)
+	get_child(0).connect("death", on_player_death)
 	
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
@@ -101,3 +103,6 @@ func _on_child_entered_tree(node: Node):
 
 func on_default_unlock_game(game: String):
 	emit_signal("unlock_game", game)
+
+func on_player_death():
+	emit_signal("player_death")
