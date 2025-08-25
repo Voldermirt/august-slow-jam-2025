@@ -192,9 +192,9 @@ func unlock_game(game: String):
 # probably a much better way to do this but oh well... shows the tooltips
 func show_tooltip(game: Globals.GameList):
 	panel.show()
+	cheat_intro.set_deferred("visible", false)
 	match game:
 		Globals.GameList.BOOM:
-			cheat_intro.hide()
 			boom_intro.show()
 			await get_tree().create_timer(7).timeout
 			boom_intro.hide()

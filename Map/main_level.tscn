@@ -490,7 +490,7 @@ position = Vector2(9344, 1176)
 position = Vector2(9168, 1144)
 
 [node name="ButtonWrapper2D" parent="Rooms/Room14" instance=ExtResource("26_063bw")]
-position = Vector2(9184, 1344)
+position = Vector2(9216, 1344)
 
 [node name="ButtonWrapper2D2" parent="Rooms/Room14" instance=ExtResource("26_063bw")]
 position = Vector2(9040, 1176)
