@@ -6,6 +6,9 @@ enum fruit {APPLE, ORANGE, CHERRY, PEACH, PEAR}
 
 @export var cri_jun_requested_fruit: fruit
 @export var cri_jun_requested_count: int
+
+@export var turret_face_down = false
+
 var cri_jun_fulfilled := false
 
 
@@ -45,6 +48,8 @@ func switch_to(game: Globals.GameList):
 		# disconnect signal
 		if villager.fulfilled_request.is_connected(_on_cri_jun_fulfilled_request):
 			villager.disconnect("fulfilled_request", _on_cri_jun_fulfilled_request)
+	elif scene_to_replace is GatewayEnemy2D:
+		scene_to_replace.face_down = turret_face_down
 		
 
 	previous_position = scene_to_replace.position

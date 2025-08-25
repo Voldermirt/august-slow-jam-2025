@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx2q6nx1rdria"]
+[gd_scene load_steps=10 format=3 uid="uid://dx2q6nx1rdria"]
 
 [ext_resource type="Script" uid="uid://8saum54nmi5k" path="res://Enemies/CritterJunction/cri_jun_enemy.gd" id="1_tjt3c"]
 [ext_resource type="Texture2D" uid="uid://dgjhcxii80f7v" path="res://Enemies/CritterJunction/villager_npc.png" id="2_5bdio"]
 [ext_resource type="PackedScene" uid="uid://lxwxuvuuv3oi" path="res://Enemies/CritterJunction/item_icon.tscn" id="3_5bdio"]
 [ext_resource type="PackedScene" uid="uid://cdghdt3tlu53t" path="res://Extra/interaction_manger.tscn" id="4_5bdio"]
-[ext_resource type="Script" uid="uid://l2k6y8vccta8" path="res://Extra/cri_jun_villager_interaction.gd" id="5_epqun"]
+[ext_resource type="Script" path="res://Extra/cri_jun_villager_interaction.gd" id="5_epqun"]
+[ext_resource type="AudioStream" uid="uid://cfd037tri4hfn" path="res://assets/sounds/sfx/Critter Junction/quest1.wav" id="6_hqhal"]
+[ext_resource type="AudioStream" uid="uid://n05jaoud6k1g" path="res://assets/sounds/sfx/Critter Junction/quest2.wav" id="7_7b22j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqhal"]
 size = Vector2(24, 10)
@@ -82,7 +84,11 @@ shape = SubResource("RectangleShape2D_5bdio")
 wait_time = 0.5
 one_shot = true
 
-[node name="FulfillmentNoise" type="AudioStreamPlayer2D" parent="."]
+[node name="FulfillmentNoise1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hqhal")
+
+[node name="FulfillmentNoise2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7b22j")
 
 [connection signal="on_interaction" from="InteractionManager" to="." method="_on_interaction_manger_on_interaction"]
 [connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]

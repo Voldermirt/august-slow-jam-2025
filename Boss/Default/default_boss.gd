@@ -7,6 +7,7 @@ const DRAGON_BOSS_MAX_HEALTH = 1000
 func _ready() -> void:
 	super._ready()
 	hurt_sound = $HurtSound
+	anim = $AnimatedSprite2D
 	
 func get_max_health():
 	return DRAGON_BOSS_MAX_HEALTH

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b2h0i7wn08swy" path="res://Player/CritterJunction/cri_jun_player.gd" id="1_r35s0"]
 [ext_resource type="Texture2D" uid="uid://dehc1ok5gfbsg" path="res://Player/CritterJunction/villager.png" id="2_r35s0"]
-[ext_resource type="Script" uid="uid://drmshrrht2qhr" path="res://Player/CritterJunction/tools.gd" id="3_42cfi"]
-[ext_resource type="Script" uid="uid://creki1cferih2" path="res://Player/CritterJunction/interaction.gd" id="4_ae7tb"]
+[ext_resource type="Script" path="res://Player/CritterJunction/tools.gd" id="3_42cfi"]
+[ext_resource type="Script" path="res://Player/CritterJunction/interaction.gd" id="4_ae7tb"]
 [ext_resource type="AudioStream" uid="uid://dm32lphcahr26" path="res://assets/sounds/sfx/Default/default_footsteps.wav" id="5_hl0vd"]
 [ext_resource type="Texture2D" uid="uid://ccpu6wm7hc6v8" path="res://Player/CritterJunction/shovel.png" id="5_pk07u"]
 

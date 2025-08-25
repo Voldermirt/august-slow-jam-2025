@@ -40,6 +40,7 @@ func _on_interaction_manger_on_interaction() -> void:
 		emit_signal("fulfilled_request")
 		fulfilled = true
 		PlayerStats.fruit_count[requested_fruit] -= requested_count
+		[$FulfillmentNoise1, $FulfillmentNoise2].pick_random().play()
 	else:
 		%ItemCount.text = str("[shake]" + str(requested_count) + "[/shake]")
 		$ShakeTimer.start()

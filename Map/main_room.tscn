@@ -132,6 +132,21 @@ render_target_update_mode = 4
 
 [node name="Level" parent="ScreenEffects/EffectViewport/Render2D/Level2D" instance=ExtResource("2_3anwy")]
 
+[node name="EnemyWrapper2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13/SubRoom13" index="0"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D2" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13/SubRoom13" index="1"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D3" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13/SubRoom13" index="2"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D4" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13" index="1"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room14" index="9"]
+turret_face_down = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="ScreenEffects/EffectViewport/Render2D/Level2D"]
 
 [node name="UI" parent="ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer" instance=ExtResource("3_3anwy")]
@@ -305,6 +320,7 @@ stream = ExtResource("14_6nitn")
 
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level" to="." method="unlock_game"]
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D" to="." method="unlock_game"]
+[connection signal="death" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/BossWrapper2D/DefaultBoss2D" to="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/Door" method="open"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room12/UnlockCriJun" to="." method="_on_unlock_cri_jun_body_entered"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room16/EndRoomTripWireBasically" to="." method="_on_end_room_trip_wire_basically_body_entered"]
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]

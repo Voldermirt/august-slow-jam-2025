@@ -9,6 +9,8 @@ const TURRET_HEALTH = 1
 
 var laser_scene := preload("res://Enemies/Gateway/enemy_laser.tscn")
 
+var face_down = false
+
 func _ready():
 	anim = $AnimatedSprite2D
 	super._ready()
@@ -19,6 +21,15 @@ func get_max_health():
 
 func _physics_process(delta):
 	super._physics_process(delta)
+	while awareness_raycast.rotation_degrees > 360:
+		awareness_raycast.rotation_degrees -= 360
+	while awareness_raycast.rotation_degrees < 0:
+		awareness_raycast.rotation_degrees += 360
+	if face_down:
+		awareness_raycast.rotation_degrees = clamp(awareness_raycast.rotation_degrees, 20, 170)
+	else:
+		awareness_raycast.rotation_degrees = clamp(awareness_raycast.rotation_degrees, 110, 250)
+	
 	if health <= 0:
 		return 
 		

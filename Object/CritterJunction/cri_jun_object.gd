@@ -78,7 +78,7 @@ func _on_plant_interaction() -> void:
 			current_state = state.SAPLING
 			sprite.frame = 1
 			collision.disabled = true
-		
+			$PlantSound.play()
 		# turn it back into a hole
 		state.TREE:
 			current_state = state.PLOT
@@ -87,3 +87,4 @@ func _on_plant_interaction() -> void:
 				fruit.position.y = 6
 			sprite.frame = 0
 			collision.disabled = false
+			$DigSound.play()
