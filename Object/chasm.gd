@@ -11,22 +11,27 @@ func switch_to(game: Globals.GameList):
 	match game:
 		Globals.GameList.DEFAULT:
 			if default_sprite:
-				$Sprite2D.texture = default_sprite
+				set_texture(default_sprite)
 		Globals.GameList.BOOM:
 			if boom_sprite:
-				$Sprite2D.texture = boom_sprite
+				set_texture(boom_sprite)
 		Globals.GameList.GATEWAY:
 			if gateway_sprite:
-				$Sprite2D.texture = gateway_sprite
+				set_texture(gateway_sprite)
 		Globals.GameList.CRITTER_JUNCTION:
 			if cri_jun_sprite:
-				$Sprite2D.texture = cri_jun_sprite
+				set_texture(cri_jun_sprite)
 
+func set_texture(texture):
+	for child in get_children():
+		if child is Sprite2D:
+			child.texture = texture
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not (body is BasePlayer2D):
 		return
-	print(body)
+	if body.health <= 0:
+		return
 	body._on_getting_hit(999999, true)
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	emit_signal("fallen_into")

@@ -11,6 +11,7 @@ signal start_loading_game
 signal player_died(location)
 
 signal first_time_swapping_to(game: GameList)
+signal entered_glitch_area
 
 enum GameList {
 	DEFAULT,
@@ -181,7 +182,7 @@ func switch_games(game_index: GameList):
 
 func set_bgm(game_index : GameList) -> void:
 	# Change BGM
-	create_tween().tween_property(current_bgm_track, "volume_db", -40, 1)
+	create_tween().tween_property(current_bgm_track, "volume_db", -60, 1)
 	var old_pos = current_bgm_track.get_playback_position()
 	var new_track = current_bgm_track
 	var music_node = $LowQualityMusic if zoom_out else self
@@ -210,3 +211,6 @@ func player_death(location : Vector2):
 	#await get_tree().process_frame
 	load_game()
 	get_tree().paused = false
+
+func enter_glitch_area():
+	entered_glitch_area.emit()

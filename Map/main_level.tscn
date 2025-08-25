@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dmbt7ahfudc6w"]
+[gd_scene load_steps=38 format=4 uid="uid://dmbt7ahfudc6w"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
 [ext_resource type="Script" uid="uid://0ag0yqm6uqvv" path="res://Map/main_level.gd" id="1_lipnt"]
@@ -40,6 +40,16 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(10792, -272, -458, -289
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dpqi"]
 size = Vector2(42, 104)
+
+[sub_resource type="GDScript" id="GDScript_5blyv"]
+resource_name = "trigger_glitch_effect"
+script/source = "extends Area2D
+
+
+func _on_body_entered(body):
+	print(\"Glitch effect enabling\")
+	Globals.enter_glitch_area()
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ujrw"]
 size = Vector2(34, 72)
@@ -169,7 +179,6 @@ region_enabled = true
 region_rect = Rect2(0, 32, 64, 32)
 
 [node name="PlayerWrapper2D" parent="." groups=["player_wrapper"] instance=ExtResource("3_ojblk")]
-position = Vector2(2520, 0)
 script = ExtResource("4_c4224")
 default_scene = ExtResource("4_rrqod")
 boom_scene = ExtResource("5_lipnt")
@@ -909,6 +918,15 @@ position = Vector2(9664, 1152)
 [node name="Door" parent="Rooms/Room15" instance=ExtResource("21_qqpjv")]
 position = Vector2(10240, 1152)
 
+[node name="PenultimateRoomTripWireBasically" type="Area2D" parent="Rooms/Room15"]
+position = Vector2(9640, 1272)
+collision_layer = 0
+script = SubResource("GDScript_5blyv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room15/PenultimateRoomTripWireBasically"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_8ujrw")
+
 [node name="Room16" parent="Rooms" instance=ExtResource("20_sxhp5")]
 
 [node name="EndRoomTripWireBasically" type="Area2D" parent="Rooms/Room16"]
@@ -1057,7 +1075,8 @@ position = Vector2(7195.53, 1352.36)
 [connection signal="button_on" from="Rooms/Room14/ButtonWrapper2D2" to="Rooms/Room14/Door2" method="open"]
 [connection signal="cri_jun_request_fulfilled" from="Rooms/Room14/EnemyWrapper2D" to="Rooms/Room14/Door3" method="open"]
 [connection signal="all_enemies_died" from="Rooms/Room15" to="Rooms/Room15/Door" method="open"]
-[connection signal="body_entered" from="Rooms/Room16/EndRoomTripWireBasically" to="." method="_on_end_room_trip_wire_basically_body_entered"]
+[connection signal="body_entered" from="Rooms/Room15/PenultimateRoomTripWireBasically" to="Rooms/Room15/PenultimateRoomTripWireBasically" method="_on_body_entered"]
+[connection signal="body_entered" from="Rooms/Room16/EndRoomTripWireBasically" to="Rooms/Room15/Door" method="close"]
 
 [editable path="Objects/BucketWrapper"]
 [editable path="Objects/Chasm1/FirstChasm"]

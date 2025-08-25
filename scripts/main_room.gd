@@ -40,7 +40,7 @@ var current_sequence = [] # Current cheat code input sequence
 @export var glitch_curve : Curve
 @export var max_glitch := 600
 @export var glitch_seconds := 1.0
-var glitch_spin_ratio = 1.0
+var glitch_spin_ratio = 0.2
 var glitch_rotation := 0.0
 var current_glitch_time := 0.0
 var glitching := false
@@ -54,6 +54,8 @@ func _ready() -> void:
 	view_2d.material.set_shader_parameter("offset", 0.0)
 	Globals.first_time_swapping_to.connect(show_tooltip)
 	Globals.player_died.connect(play_death_effect)
+	Globals.entered_glitch_area.connect(enter_glitch_area)
+	
 
 func string_to_dir(input : String):
 	match input:
@@ -259,3 +261,7 @@ func pulse_arrow(dir: Direction, green : bool):
 	tween.tween_property(arrow, "modulate", color, 0.1)
 	tween.tween_property(arrow, "modulate", default_color, 0.1)
 	
+
+func enter_glitch_area():
+	min_glitch = 1.0
+	glitch_spin_ratio = 0.1
