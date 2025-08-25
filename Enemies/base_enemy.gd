@@ -157,8 +157,8 @@ func _ready():
 		#n_agent.avoidance_mask = 1
 		#n_agent.avoidance_layers = 1
 		
-		if OS.is_debug_build():
-			n_agent.debug_enabled = true
+		#if OS.is_debug_build():
+			#n_agent.debug_enabled = true
 		
 		nav_region = get_tree().get_first_node_in_group("navigation_map")
 		

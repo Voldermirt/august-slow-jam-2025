@@ -62,5 +62,6 @@ frame_progress = 0.159069
 
 [node name="SaveSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_nwig3")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
