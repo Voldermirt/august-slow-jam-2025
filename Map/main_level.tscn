@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://dmbt7ahfudc6w"]
+[gd_scene load_steps=39 format=4 uid="uid://dmbt7ahfudc6w"]
 
 [ext_resource type="TileSet" uid="uid://bmgdqt5klxnk1" path="res://resources/walls_tilemap.tres" id="1_2l6ds"]
 [ext_resource type="Script" uid="uid://0ag0yqm6uqvv" path="res://Map/main_level.gd" id="1_lipnt"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dnob5uyswtc7a" path="res://Object/Gateway/gateway_button_wrapper_2d.tscn" id="26_063bw"]
 [ext_resource type="PackedScene" uid="uid://cn85l00otsm16" path="res://Enemies/Gateway/gateway_enemy.tscn" id="27_5dpqi"]
 [ext_resource type="PackedScene" uid="uid://6lct7wefkvt0" path="res://Enemies/Boom/boom_enemy.tscn" id="28_5blyv"]
+[ext_resource type="AudioStream" uid="uid://c7d1gus7gnkvy" path="res://assets/sounds/sfx/Other/glitch_long.wav" id="29_5blyv"]
 [ext_resource type="PackedScene" uid="uid://dx2q6nx1rdria" path="res://Enemies/CritterJunction/cri_jun_enemy.tscn" id="29_uisfa"]
 [ext_resource type="PackedScene" uid="uid://ktj28riv7puy" path="res://Boss/Boom/boom_boss.tscn" id="30_5dpqi"]
 [ext_resource type="PackedScene" uid="uid://dub6m5q2lfqoq" path="res://Boss/Default/default_boss.tscn" id="31_5blyv"]
@@ -57,7 +58,8 @@ script/source = "extends Area2D
 
 
 func _on_body_entered(body):
-	print(\"Glitch effect enabling\")
+	#print(\"Glitch effect enabling\")
+	$GlitchSound.play()
 	Globals.enter_glitch_area()
 "
 
@@ -461,20 +463,24 @@ position = Vector2(8960, 1728)
 position = Vector2(9192, 1520)
 cri_jun_requested_fruit = 4
 cri_jun_requested_count = 1000
+turret_face_down = true
 
 [node name="EnemyWrapper2D2" parent="Rooms/Room13/SubRoom13" instance=ExtResource("22_53uk6")]
 position = Vector2(9352, 1560)
 cri_jun_requested_fruit = 4
 cri_jun_requested_count = 1000
+turret_face_down = true
 
 [node name="EnemyWrapper2D3" parent="Rooms/Room13/SubRoom13" instance=ExtResource("22_53uk6")]
 position = Vector2(9064, 1544)
 cri_jun_requested_count = 1000
+turret_face_down = true
 
 [node name="EnemyWrapper2D4" parent="Rooms/Room13" instance=ExtResource("22_53uk6")]
 position = Vector2(9520, 1512)
 cri_jun_requested_fruit = 2
 cri_jun_requested_count = 6
+turret_face_down = true
 
 [node name="ObjectWrapper2D" parent="Rooms/Room13" instance=ExtResource("10_rrqod")]
 position = Vector2(9152, 1600)
@@ -523,8 +529,10 @@ position = Vector2(9040, 1176)
 
 [node name="EnemyWrapper2D" parent="Rooms/Room14" instance=ExtResource("22_53uk6")]
 position = Vector2(9200, 1168)
+scale = Vector2(1.02372, 1.55377)
 cri_jun_requested_fruit = 4
 cri_jun_requested_count = 9
+turret_face_down = true
 
 [node name="CollectableWrapper2D" parent="Rooms/Room14" instance=ExtResource("12_oh5ot")]
 position = Vector2(9528, 1376)
@@ -590,6 +598,9 @@ script = SubResource("GDScript_5blyv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room15/PenultimateRoomTripWireBasically"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_8ujrw")
+
+[node name="GlitchSound" type="AudioStreamPlayer" parent="Rooms/Room15/PenultimateRoomTripWireBasically"]
+stream = ExtResource("29_5blyv")
 
 [node name="Room16" parent="Rooms" instance=ExtResource("20_sxhp5")]
 

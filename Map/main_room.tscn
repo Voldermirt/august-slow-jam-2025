@@ -155,6 +155,21 @@ render_target_update_mode = 4
 [node name="Level" parent="ScreenEffects/EffectViewport/Render2D/Level2D" instance=ExtResource("2_3anwy")]
 process_mode = 1
 
+[node name="EnemyWrapper2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13/SubRoom13" index="0"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D2" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13/SubRoom13" index="1"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D3" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13/SubRoom13" index="2"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D4" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room13" index="1"]
+turret_face_down = false
+
+[node name="EnemyWrapper2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room14" index="9"]
+turret_face_down = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="ScreenEffects/EffectViewport/Render2D/Level2D"]
 
 [node name="UI" parent="ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer" instance=ExtResource("3_3anwy")]

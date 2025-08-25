@@ -3,9 +3,9 @@ extends Area2D
 class_name BaseBlast2D
 
 const BASE_BLAST_DMG: float = 50
-const BASE_BLAST_WINDUP: float = 1
+const BASE_BLAST_WINDUP: float = 0
 
-const PERSISTANCE_TIME_MAX: int = 2
+const PERSISTANCE_TIME_MAX: int = 1
 const PERSISTANCE_TIME_MIN: int = 1
 
 var active_collision_mask: int
@@ -25,13 +25,21 @@ func get_windup_time():
 func get_damage():
 	return BASE_BLAST_DMG
 	
-func aim(aiming_position: Vector2):
+func aim(aiming_position: Vector2, facing_right := false):
 	look_at(aiming_position)
+	while rotation_degrees > 360:
+		rotation_degrees -= 360
+	while rotation_degrees < 0:
+		rotation_degrees += 360
+	if facing_right:
+		rotation_degrees = clamp(rotation_degrees, 60, 300)
+	else:
+		rotation_degrees = clamp(rotation_degrees, 120, 210)
 	
 func _ready():
 	#collision_layer = 0
 	#collision_mask = 0 
-	monitoring = false
+	#monitoring = false
 	
 	wind_up_timer = Timer.new()
 	wind_up_timer.one_shot = true

@@ -19,8 +19,8 @@ func _on_quit() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_pressed():
-		if $Music.get_playback_position() < 20:
-			$Music.seek(20)
+		if $Music.get_playback_position() < 26:
+			$Music.seek(26)
 		if $IntroSequence.visible:
 			$UISound.play()
 		$IntroSequence.visible = false

@@ -57,16 +57,17 @@ func retrieve_data(data_from: BaseEntity2D):
 		connect_bound_area()
 	
 func launch_blast() -> bool:
-	if anim:
-		anim.play("attack")
+	is_currently_blasting = true
 	if attack_sound:
 		attack_sound.play()
 	var blast: BaseBlast2D = get_blast()
 	if blast == null or player_body == null or health <= 0:
 		return false
+	anim.play("attack")
+	await anim.animation_finished
 	var parent = get_parent()
 	var windup_time: float = blast.get_windup_time()
-	var persistance_time: float = blast.get_windup_time()
+	var persistance_time: float = blast.get_persistance_time()
 	
 	is_blasting_timer.start(windup_time + persistance_time)
 	is_blasting_timer.timeout.connect(_on_blast_timeout)
@@ -77,14 +78,14 @@ func launch_blast() -> bool:
 	else:
 		blast.scale = scale
 	blast.global_position = blast_pos.global_position
-	blast.aim(player_body.global_position)
+	blast.aim(player_body.global_position, anim.flip_h)
 	
 	if parent != null:
 		parent.add_sibling(blast)
 	else:
 		add_child(blast)
+	
 		
-	is_currently_blasting = true
 	return true
  
 func get_contact_damage():
@@ -140,7 +141,7 @@ func decide_movement():
 			
 			
 			if is_player_close and blast_cd_timer.time_left <= 0:
-				var is_launched: bool = launch_blast()
+				launch_blast()
 			elif roll < blast_weight + around_weight and (not is_player_close or is_center_close):
 				desired_movement_position = make_player_around_path()
 			elif roll < blast_weight + around_weight + follow_weight and (not is_player_close or is_center_close):

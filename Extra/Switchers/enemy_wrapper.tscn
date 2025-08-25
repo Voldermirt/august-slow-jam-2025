@@ -11,6 +11,7 @@
 script = ExtResource("2_gwh63")
 cri_jun_requested_fruit = 0
 cri_jun_requested_count = 0
+turret_face_down = false
 default_scene = ExtResource("2_mm2aw")
 boom_scene = ExtResource("3_gwh63")
 gateway_scene = ExtResource("4_wk7dv")

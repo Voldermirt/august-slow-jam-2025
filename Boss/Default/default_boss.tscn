@@ -89,8 +89,10 @@ shape = SubResource("RectangleShape2D_oyoo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wvmes")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -116,8 +118,8 @@ value = 1000.0
 nine_patch_stretch = true
 texture_under = SubResource("PlaceholderTexture2D_oyoo0")
 texture_progress = SubResource("PlaceholderTexture2D_wvmes")
-tint_under = Color(0.209665, 0.0333795, 0.278646, 1)
-tint_progress = Color(0.781616, 0, 0.877604, 1)
+tint_under = Color(0.294638, 3.21874e-07, 8.42288e-08, 1)
+tint_progress = Color(1, 0, 0, 1)
 
 [node name="BlastPos" type="Marker2D" parent="."]
 position = Vector2(-64, 5)
