@@ -235,28 +235,33 @@ func _process(delta):
 func _physics_process(delta):
 	if health <= 0:
 		return
+	
+	if cur_knock_duration > 0.0:
+		_knockback_proccess(delta)
 		
-	if is_instance_valid(player_body) and n_agent != null and spawn_delay != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
-		if awareness_raycast != null:
-			awareness_raycast.look_at(player_body.global_position)
-		match thinking_state:
-			ThinkState.Neutral:
-				# Check if we could find the player
-				if is_player_seen() and is_node_ready():
-					thinking_switch_timer.start(randi_range(PLAYER_DETECTED_DELAY_MIN, PLAYER_DETECTED_DELAY_MAX))
+		move_and_slide()
+	else:
+		if is_instance_valid(player_body) and n_agent != null and spawn_delay != null and spawn_delay.time_left <= 0 and on_contact_hit_delay_timer.time_left <= 0:
+			if awareness_raycast != null:
+				awareness_raycast.look_at(player_body.global_position)
+			match thinking_state:
+				ThinkState.Neutral:
+					# Check if we could find the player
+					if is_player_seen() and is_node_ready():
+						thinking_switch_timer.start(randi_range(PLAYER_DETECTED_DELAY_MIN, PLAYER_DETECTED_DELAY_MAX))
+					
+				ThinkState.Targeting:
+					pass
+					
+			#if cur_knock_duration > 0.0:
+				#_knockback_proccess(delta)
+			if n_agent.target_position != Vector2.INF and decision_timer.time_left <= 0:
+				move_to_ntarget()
+			# We have an invalid desitination position, try to find another
+			elif n_agent.target_position == Vector2.INF:
+				decide_movement()
 				
-			ThinkState.Targeting:
-				pass
-				
-		#if cur_knock_duration > 0.0:
-			#_knockback_proccess(delta)
-		if n_agent.target_position != Vector2.INF and decision_timer.time_left <= 0:
-			move_to_ntarget()
-		# We have an invalid desitination position, try to find another
-		elif n_agent.target_position == Vector2.INF:
-			decide_movement()
-			
-	animate()
+		animate()
 
 
 func decide_movement():
