@@ -1,20 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://dub6m5q2lfqoq"]
+[gd_scene load_steps=15 format=3 uid="uid://dub6m5q2lfqoq"]
 
 [ext_resource type="Script" uid="uid://d1k1rwld8vib1" path="res://Boss/Default/default_boss.gd" id="1_ubfvn"]
 [ext_resource type="PackedScene" uid="uid://crnbbsvmi8oop" path="res://Boss/Default/default_blast.tscn" id="2_oyoo0"]
-[ext_resource type="Texture2D" uid="uid://ca3dt6icidsgy" path="res://Player/Default/player_stub.png" id="2_ubfvn"]
+[ext_resource type="Texture2D" uid="uid://def26kjiv8860" path="res://Boss/Default/dragon.png" id="3_oyoo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyoo0"]
 size = Vector2(24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvmes"]
+atlas = ExtResource("3_oyoo0")
+region = Rect2(0, 62, 128, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxw40"]
+atlas = ExtResource("3_oyoo0")
+region = Rect2(128, 62, 128, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_melkb"]
+atlas = ExtResource("3_oyoo0")
+region = Rect2(256, 62, 128, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc1h0"]
+atlas = ExtResource("3_oyoo0")
+region = Rect2(0, 0, 128, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37ipq"]
+atlas = ExtResource("3_oyoo0")
+region = Rect2(0, 0, 128, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjx1e"]
+atlas = ExtResource("3_oyoo0")
+region = Rect2(128, 0, 128, 62)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wvmes"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ubfvn")
+"texture": SubResource("AtlasTexture_wvmes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxw40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_melkb")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc1h0")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37ipq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjx1e")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -26,7 +75,6 @@ size = Vector2(25, 25)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wvmes"]
 
 [node name="DefaultBoss2D" type="CharacterBody2D" groups=["boss", "default"]]
-scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_ubfvn")
@@ -39,6 +87,8 @@ shape = SubResource("RectangleShape2D_oyoo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wvmes")
+animation = &"walk"
+autoplay = "idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -59,7 +109,8 @@ offset_right = 15.0
 offset_bottom = -19.01
 grow_horizontal = 2
 grow_vertical = 2
-value = 100.0
+max_value = 1000.0
+value = 1000.0
 nine_patch_stretch = true
 texture_under = SubResource("PlaceholderTexture2D_oyoo0")
 texture_progress = SubResource("PlaceholderTexture2D_wvmes")

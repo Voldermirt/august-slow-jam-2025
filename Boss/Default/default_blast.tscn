@@ -1,16 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://crnbbsvmi8oop"]
+[gd_scene load_steps=7 format=3 uid="uid://crnbbsvmi8oop"]
 
 [ext_resource type="Script" uid="uid://ca5laggdwbdbp" path="res://Boss/Default/default_blast.gd" id="1_7pcv8"]
-[ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_xb66r"]
+[ext_resource type="Texture2D" uid="uid://def26kjiv8860" path="res://Boss/Default/dragon.png" id="2_7pcv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pcv8"]
-size = Vector2(58, 32)
+size = Vector2(99, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb66r"]
+atlas = ExtResource("2_7pcv8")
+region = Rect2(0, 186, 128, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krylp"]
+atlas = ExtResource("2_7pcv8")
+region = Rect2(128, 186, 128, 62)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vibyo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xb66r")
+"texture": SubResource("AtlasTexture_xb66r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krylp")
 }],
 "loop": true,
 "name": &"default",
@@ -21,12 +32,12 @@ animations = [{
 script = ExtResource("1_7pcv8")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(19, 0)
+position = Vector2(-1.5, 3.5)
 shape = SubResource("RectangleShape2D_7pcv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(20, 0)
-scale = Vector2(2.25, 1)
+position = Vector2(-14, -3)
 sprite_frames = SubResource("SpriteFrames_vibyo")
+frame_progress = 0.595969
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
