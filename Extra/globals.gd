@@ -203,7 +203,8 @@ func player_death(location : Vector2):
 	get_tree().paused = true
 	player_died.emit(location)
 	await get_tree().create_timer(3).timeout
-	get_tree().get_first_node_in_group("cam_zone_manager").game_switch_disable_animate(null)
+	if get_tree().get_first_node_in_group("cam_zone_manager") != null:
+		get_tree().get_first_node_in_group("cam_zone_manager").game_switch_disable_animate(null)
 	#await get_tree().process_frame
 	#await get_tree().process_frame
 	load_game()
