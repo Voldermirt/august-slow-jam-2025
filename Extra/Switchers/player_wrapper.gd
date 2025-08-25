@@ -5,6 +5,7 @@ class_name PlayerWrapper2D
 signal player_switched_games(players_newest_scene: BasePlayer2D)
 signal ui_update_requested()
 signal unlock_game(game: String)
+signal player_death
 
 func _process(delta):
 	ui_update_requested.emit()
@@ -14,6 +15,7 @@ func _ready():
 	player_switched_games.emit(switching_scene as BasePlayer2D)
 	# Connect unlock game signal from default
 	get_child(0).connect("unlock_game", on_default_unlock_game)
+	get_child(0).connect("death", on_player_death)
 	
 func switch_to(game: Globals.GameList):
 	# Get all the children to make sure everything works
@@ -49,12 +51,12 @@ func switch_to(game: Globals.GameList):
 		scene_to_replace.disconnect("unlock_game", on_default_unlock_game)
 
 	previous_position = scene_to_replace.position
-	
 	match game:
 		Globals.GameList.DEFAULT:
 			if default_scene == null:
 				return
 			new_scene = default_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.connect("unlock_game", on_default_unlock_game)
 			new_scene.add_to_group("default")
 			active_game = Globals.GameList.DEFAULT
@@ -62,18 +64,21 @@ func switch_to(game: Globals.GameList):
 			if boom_scene == null:
 				return
 			new_scene = boom_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.add_to_group("boom")
 			active_game = Globals.GameList.BOOM
 		Globals.GameList.GATEWAY:
 			if gateway_scene == null:
 				return
 			new_scene = gateway_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.add_to_group("gateway")
 			active_game = Globals.GameList.GATEWAY
 		Globals.GameList.CRITTER_JUNCTION:
 			if critter_junction_scene == null:
 				return
 			new_scene = critter_junction_scene.instantiate()
+			new_scene.connect("death", on_player_death)
 			new_scene.add_to_group("critter_junction")
 			active_game = Globals.GameList.CRITTER_JUNCTION
 		_:
@@ -101,3 +106,6 @@ func _on_child_entered_tree(node: Node):
 
 func on_default_unlock_game(game: String):
 	emit_signal("unlock_game", game)
+
+func on_player_death():
+	emit_signal("player_death")

@@ -32,13 +32,15 @@ func _on_player_entering_area(body: Node2D):
 		is_player_in_arena = true
 		thinking_state = ThinkState.Targeting
 		player_body = body
-		projectile_cd.start()
+		if projectile_cd:
+			projectile_cd.start()
 
 func _on_player_exiting_area(body: Node2D):
 	if body is BasePlayer2D:
 		is_player_in_arena = false
 		thinking_state = ThinkState.Neutral
-		projectile_cd.stop()
+		if projectile_cd:
+			projectile_cd.stop()
 
 func _on_projectile_cd_timeout() -> void:
 	if not player_body:
