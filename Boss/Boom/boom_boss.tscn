@@ -1,6 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ktj28riv7puy"]
+[gd_scene load_steps=9 format=3 uid="uid://ktj28riv7puy"]
 
+[ext_resource type="Texture2D" uid="uid://cv4gis312h5no" path="res://Enemies/Boom/enemy_stub.png" id="1_3pqcb"]
 [ext_resource type="Script" uid="uid://dmo2131h74atk" path="res://Boss/Boom/boom_boss.gd" id="1_fwi8l"]
+[ext_resource type="PackedScene" uid="uid://c0na0as1pkuo" path="res://Boss/Default/boom_blast.tscn" id="2_0pqh3"]
 [ext_resource type="Texture2D" uid="uid://clvoujirgkuau" path="res://Boss/Boom/spiderdemon.png" id="2_fwi8l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5ojn"]
@@ -65,14 +67,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwi8l"]
 size = Vector2(25, 25)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3pqcb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwi8l"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fwi8l"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0pqh3"]
-
 [node name="BoomBoss2D" type="CharacterBody2D" groups=["boom", "boss"]]
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_fwi8l")
+blast = ExtResource("2_0pqh3")
 metadata/_custom_type_script = "uid://dmo2131h74atk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

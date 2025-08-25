@@ -9,6 +9,7 @@
 
 [node name="ObjectWrapper2D" instance=ExtResource("1_lbkgf")]
 script = ExtResource("2_cw3y5")
+crate_inside_object = null
 default_scene = ExtResource("2_4b3tr")
 boom_scene = ExtResource("4_24m20")
 gateway_scene = ExtResource("5_ppmgh")
