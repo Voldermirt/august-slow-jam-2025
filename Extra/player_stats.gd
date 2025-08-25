@@ -12,6 +12,7 @@ var _money := 0
 var ammo : int
 var max_cooldown : float
 var cooldown : float
+var avail_dashes : int
 
 ## GATEWAY STATS
 # ...
