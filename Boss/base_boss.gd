@@ -14,10 +14,13 @@ const CLOSE_DISTANCE: int = 300
 var bound_area: Area2D
 @export var blast: PackedScene
 @onready var health_bar = $BossHealth
+@onready var blast_pos = $BlastPos
+@onready var blast_pos_x = abs(blast_pos.position.x)
 
 var is_blasting_timer: Timer
 var blast_cd_timer: Timer
 var is_player_in_arena: bool
+var is_currently_blasting: bool
 
 func get_blast_cd() -> float:
 	return randf_range(4, 8) # randi_range(BASE_LAUNCH_CD_MIN, BASE_LAUNCH_CD_MAX)
@@ -26,7 +29,24 @@ func get_blast() -> BaseBlast2D:
 	if blast == null or not blast.can_instantiate():
 		return null
 	return blast.instantiate()
+
+func animate():
+	if not anim:
+		return
 	
+	if is_currently_blasting == false:
+		if velocity.length() > 0 and health > 0:
+			anim.play("walk")
+		else:
+			anim.play("idle")
+	
+	if velocity.x > 0:
+		anim.flip_h = true
+		$BlastPos.position.x = blast_pos_x
+	elif velocity.x < 0:
+		anim.flip_h = false
+		$BlastPos.position.x = -blast_pos_x
+
 func retrieve_data(data_from: BaseEntity2D):
 	super.retrieve_data(data_from)
 	
@@ -48,15 +68,20 @@ func launch_blast() -> bool:
 	is_blasting_timer.start(windup_time + persistance_time)
 	is_blasting_timer.timeout.connect(_on_blast_timeout)
 	
+	if anim.flip_h == true:
+		blast.scale.x = -scale.x
+		blast.scale.y = scale.y
+	else:
+		blast.scale = scale
+	blast.global_position = blast_pos.global_position
+	blast.aim(player_body.global_position)
+	
 	if parent != null:
 		parent.add_sibling(blast)
 	else:
 		add_child(blast)
 		
-	blast.scale = scale
-	blast.global_position = global_position
-	blast.aim(player_body.global_position)
-	
+	is_currently_blasting = true
 	return true
  
 func get_contact_damage():
@@ -148,6 +173,9 @@ func _physics_process(delta):
 	$BossHealth.value = health
 
 func _on_blast_timeout():
+	is_currently_blasting = false
+	if anim:
+		anim.play("walk")
 	blast_cd_timer.start(get_blast_cd())
 	decision_timer.start(0.5)
 
@@ -155,6 +183,7 @@ func _on_player_entering_area(body: Node2D):
 	if body is BasePlayer2D:
 		is_player_in_arena = true
 		thinking_state = ThinkState.Targeting
+		player_body = body
 	
 func _on_player_exiting_area(body: Node2D):
 	if body is BasePlayer2D:
@@ -163,13 +192,15 @@ func _on_player_exiting_area(body: Node2D):
 
 func _ready():
 	super._ready()
-	
+	anim = $AnimatedSprite2D
 	blast_cd_timer = Timer.new()
+	blast_cd_timer.set_wait_time(0.1)
 	blast_cd_timer.one_shot = true
 	blast_cd_timer.autostart = false
 	
 	
 	is_blasting_timer = Timer.new()
+	is_blasting_timer.set_wait_time(0.1)
 	is_blasting_timer.one_shot = true
 	is_blasting_timer.autostart = false
 	

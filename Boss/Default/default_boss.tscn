@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://def26kjiv8860" path="res://Boss/Default/dragon.png" id="3_oyoo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyoo0"]
-size = Vector2(24, 32)
+size = Vector2(36, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvmes"]
 atlas = ExtResource("3_oyoo0")
@@ -82,12 +82,12 @@ blast = ExtResource("2_oyoo0")
 metadata/_custom_type_script = "uid://d1k1rwld8vib1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5.72204e-07, -9.53674e-07)
+position = Vector2(6, 7)
 shape = SubResource("RectangleShape2D_oyoo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wvmes")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -116,3 +116,6 @@ texture_under = SubResource("PlaceholderTexture2D_oyoo0")
 texture_progress = SubResource("PlaceholderTexture2D_wvmes")
 tint_under = Color(0.209665, 0.0333795, 0.278646, 1)
 tint_progress = Color(0.781616, 0, 0.877604, 1)
+
+[node name="BlastPos" type="Marker2D" parent="."]
+position = Vector2(-64, 5)

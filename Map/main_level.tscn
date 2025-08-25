@@ -38,7 +38,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(10792, -272, -458, -289, -472, 1784, 10792, 1792)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dpqi"]
-size = Vector2(20, 64)
+size = Vector2(42, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ujrw"]
 size = Vector2(34, 72)
@@ -168,6 +168,7 @@ region_enabled = true
 region_rect = Rect2(0, 32, 64, 32)
 
 [node name="PlayerWrapper2D" parent="." groups=["player_wrapper"] instance=ExtResource("3_ojblk")]
+position = Vector2(2520, 0)
 script = ExtResource("4_c4224")
 default_scene = ExtResource("4_rrqod")
 boom_scene = ExtResource("5_lipnt")
@@ -640,6 +641,7 @@ position = Vector2(8352, 1504)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room12/UnlockCriJun"]
+position = Vector2(11, 12)
 shape = SubResource("RectangleShape2D_5dpqi")
 
 [node name="ObjectWrapper2D" parent="Rooms/Room12" instance=ExtResource("10_rrqod")]

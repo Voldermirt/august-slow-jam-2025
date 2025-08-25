@@ -32,12 +32,14 @@ animations = [{
 script = ExtResource("1_7pcv8")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 3.5)
+position = Vector2(49.5, -0.5)
 shape = SubResource("RectangleShape2D_7pcv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-14, -3)
+position = Vector2(64, 5)
+rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_vibyo")
-frame_progress = 0.595969
+autoplay = "default"
+frame_progress = 0.963665
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -65,7 +65,9 @@ func set_spawn_data():
 func save_json_data() -> Dictionary:
 	var data = super.save_json_data()
 	#health = get_max_health()
-	data["think_state"] = thinking_state
+	data["think_state"] = ThinkState.Neutral
+	# enemies forget where player is
+	data["player_body"] = null
 	
 	return data
 
@@ -73,6 +75,8 @@ func load_json_data(data: Dictionary):
 	super.load_json_data(data)
 	if data.get("think_state") != null:
 		thinking_state = data.get("think_state")
+	
+	player_body = data.get("player_body")
 	
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
 	pass
@@ -163,6 +167,7 @@ func _ready():
 	if on_contact_hitbox != null:
 		on_contact_hitbox.body_entered.connect(_on_hitbox_entering)
 		on_contact_hit_delay_timer = Timer.new()
+		on_contact_hit_delay_timer.set_wait_time(0.1)
 		on_contact_hit_delay_timer.one_shot = true
 		on_contact_hit_delay_timer.autostart = false
 		on_contact_hit_delay_timer.timeout.connect(_on_contact_hitbox_timeout)
@@ -207,6 +212,7 @@ func _ready():
 	
 func is_player_seen() -> bool:
 	if awareness_raycast != null and player_body != null and is_instance_valid(player_body):
+		var stuff = [awareness_raycast.is_colliding(), awareness_raycast.get_collider()]
 		return awareness_raycast.is_colliding() and awareness_raycast.get_collider() is BasePlayer2D and thinking_switch_timer.time_left <= 0
 	return false
 #
@@ -269,7 +275,7 @@ func decide_movement():
 			if chance_rolled > 90:
 				decision_timer.start(DECISION_TIME_DEFAULT)
 			elif chance_rolled > 70:
-				desired_movement_position = make_player_around_path()
+				desired_movement_position = make_player_path()
 			else:
 				desired_movement_position = make_player_path()
 	

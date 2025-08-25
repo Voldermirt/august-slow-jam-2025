@@ -92,7 +92,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1mhs4")
-debug_mode = true
 default_code = Array[int]([3, 0, 1, 2, 3])
 boom_code = Array[int]([2, 3, 2, 3, 0])
 gateway_code = Array[int]([0, 3, 1, 2, 0])
