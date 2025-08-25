@@ -65,15 +65,17 @@ func set_spawn_data():
 func save_json_data() -> Dictionary:
 	var data = super.save_json_data()
 	#health = get_max_health()
-	data["think_state"] = thinking_state
+	#data["think_state"] = thinking_state
 	
 	return data
 
 func load_json_data(data: Dictionary):
 	super.load_json_data(data)
-	if data.get("think_state") != null:
-		thinking_state = data.get("think_state")
+	#if data.get("think_state") != null:
+		#thinking_state = data.get("think_state")
+	thinking_state = ThinkState.Neutral
 	
+	spawn_delay.start(3)
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
 	pass
 
@@ -142,6 +144,8 @@ func _ready():
 	#await get_tree().process_frame
 	refresh_player_reference()
 	
+	thinking_state = ThinkState.Neutral
+	
 	moving_speed = ENEMY_MOVEMENT
 	
 	if n_agent == null:
@@ -189,7 +193,9 @@ func _ready():
 	
 	spawn_delay = Timer.new()
 	spawn_delay.one_shot = true
+	spawn_delay.wait_time = 3
 	spawn_delay.autostart = true
+	spawn_delay.timeout.connect(debug)
 	#add_child(stationary_timer)
 	
 	awareness_raycast = RayCast2D.new()
@@ -201,6 +207,8 @@ func _ready():
 	add_child(spawn_delay)
 	add_child(pathing_limit_timer)
 	add_child(awareness_raycast)
+	
+	#await get_tree().process_frame
 	
 	awareness_raycast.global_position = global_position
 	decision_timer.start()
@@ -231,7 +239,7 @@ func _physics_process(delta):
 		match thinking_state:
 			ThinkState.Neutral:
 				# Check if we could find the player
-				if is_player_seen():
+				if is_player_seen() and is_node_ready():
 					thinking_switch_timer.start(randi_range(PLAYER_DETECTED_DELAY_MIN, PLAYER_DETECTED_DELAY_MAX))
 				
 			ThinkState.Targeting:
@@ -354,3 +362,6 @@ func _on_thinking_timeout():
 			thinking_state = ThinkState.Neutral
 			#awareness_raycast.target_position = Vector2(AWARENESS_NEUTRAL_DISTANCE, 0)
 	decide_movement()
+
+func debug():
+	pass
