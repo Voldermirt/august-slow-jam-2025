@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dgjhcxii80f7v" path="res://Enemies/CritterJunction/villager_npc.png" id="2_5bdio"]
 [ext_resource type="PackedScene" uid="uid://lxwxuvuuv3oi" path="res://Enemies/CritterJunction/item_icon.tscn" id="3_5bdio"]
 [ext_resource type="PackedScene" uid="uid://cdghdt3tlu53t" path="res://Extra/interaction_manger.tscn" id="4_5bdio"]
-[ext_resource type="Script" path="res://Extra/cri_jun_villager_interaction.gd" id="5_epqun"]
+[ext_resource type="Script" uid="uid://l2k6y8vccta8" path="res://Extra/cri_jun_villager_interaction.gd" id="5_epqun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqhal"]
 size = Vector2(24, 10)

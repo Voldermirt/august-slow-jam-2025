@@ -92,7 +92,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1mhs4")
-debug_mode = true
 default_code = Array[int]([3, 0, 1, 2, 3])
 boom_code = Array[int]([2, 3, 2, 3, 0])
 gateway_code = Array[int]([0, 3, 1, 2, 0])
@@ -273,6 +272,7 @@ stream = ExtResource("14_6nitn")
 
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level" to="." method="unlock_game"]
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D" to="." method="unlock_game"]
+[connection signal="death" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/BossWrapper2D/DefaultBoss2D" to="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/Door" method="open"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room12/UnlockCriJun" to="." method="_on_unlock_cri_jun_body_entered"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room16/EndRoomTripWireBasically" to="." method="_on_end_room_trip_wire_basically_body_entered"]
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]
