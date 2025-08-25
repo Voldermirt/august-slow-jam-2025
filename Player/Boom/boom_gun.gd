@@ -26,7 +26,7 @@ func shoot():
 	cooldown_timer.start(shoot_cooldown)
 	
 	PlayerStats.ammo = ammo
-	PlayerStats.max_cooldown = shoot_cooldown
+	PlayerStats.max_cooldown = reload_cooldown
 	PlayerStats.cooldown = shoot_cooldown
 	$ShootSound.pitch_scale = randf_range(0.9, 1.1)
 	$ShootSound.play()
@@ -34,6 +34,7 @@ func shoot():
 
 func _process(delta : float) -> void:
 	animate()
+	PlayerStats.cooldown = autoreload_timer.get_time_left()
 
 func reload():
 	if not cooldown_timer.is_stopped():

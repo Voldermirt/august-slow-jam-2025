@@ -22,9 +22,65 @@ cri_jun_sprite = ExtResource("4_2a3ew")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
+position = Vector2(0, -128)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 32)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -96)
 texture = ExtResource("1_764os")
 region_enabled = true
 region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -64)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -32)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 32)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 64)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 96)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 32, 64, 32)
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 128)
+texture = ExtResource("1_764os")
+region_enabled = true
+region_rect = Rect2(0, 64, 64, 32)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 256

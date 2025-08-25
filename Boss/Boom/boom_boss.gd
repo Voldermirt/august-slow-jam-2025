@@ -5,6 +5,16 @@ class_name BoomBoss2D
 @onready var boom_boss_bullet_scene = preload("res://Boss/Boom/boom_boss_projectile.tscn")
 @onready var projectile_cd = $ProjectileCD
 
+const DRAGON_BOSS_MAX_HEALTH = 1000
+
+func _ready() -> void:
+	super._ready()
+	hurt_sound = $HurtSound
+	death_sound = $DeathSound
+
+func get_max_health():
+	return DRAGON_BOSS_MAX_HEALTH
+
 func get_blast_cd() -> float:
 	return randf_range(4, 8)
 

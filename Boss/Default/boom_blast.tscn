@@ -1,32 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0na0as1pkuo"]
+[gd_scene load_steps=7 format=3 uid="uid://c0na0as1pkuo"]
 
 [ext_resource type="Script" uid="uid://dp2do46o8cvww" path="res://Boss/Default/boom_blast.gd" id="1_svt21"]
-[ext_resource type="Texture2D" uid="uid://b27v0ldlqjngd" path="res://Player/Gateway/player_stub.png" id="2_em8o6"]
+[ext_resource type="Texture2D" uid="uid://b8p33bq7smyld" path="res://Boss/Boom/spider_demon_blast.png" id="2_svt21"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pcv8"]
-size = Vector2(53, 32)
+size = Vector2(62, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em8o6"]
+atlas = ExtResource("2_svt21")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjg45"]
+atlas = ExtResource("2_svt21")
+region = Rect2(64, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vibyo"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_em8o6")
+"texture": SubResource("AtlasTexture_em8o6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjg45")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="BoomBlast" type="Area2D" groups=["delete_on_load"]]
 script = ExtResource("1_svt21")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(27.5, 0)
+position = Vector2(31, 0)
 shape = SubResource("RectangleShape2D_7pcv8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(27, 0)
-scale = Vector2(2.25, 1)
+position = Vector2(32, 0)
+rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_vibyo")
+autoplay = "default"
+frame_progress = 0.964945
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

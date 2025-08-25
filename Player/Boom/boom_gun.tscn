@@ -24,10 +24,6 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="AudoReload2" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_cmf0o")
 
@@ -35,4 +31,3 @@ stream = ExtResource("3_cmf0o")
 stream = ExtResource("4_schu1")
 
 [connection signal="timeout" from="AudoReload" to="." method="_on_audo_reload_timeout"]
-[connection signal="timeout" from="AudoReload2" to="." method="_on_audo_reload_timeout"]

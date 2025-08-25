@@ -32,6 +32,7 @@ func perform_dash():
 		allowed_to_move = false
 		is_invincible = true
 		available_dashes -= 1
+		PlayerStats.avail_dashes = available_dashes
 		
 		var particles = DASH_PARTICLES.instantiate()
 		add_child(particles)
@@ -46,6 +47,7 @@ func _ready():
 	super._ready()
 	anim = $AnimatedSprite2D
 	hurt_sound = $HurtSound
+	PlayerStats.avail_dashes = available_dashes
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("primary"):
@@ -86,6 +88,7 @@ func _on_dash_cd_timeout():
 	
 	if available_dashes < MAX_DASHES:
 		dash_cd_timer.start(DASH_CD_TIME)
+	PlayerStats.avail_dashes = available_dashes
 
 
 func _on_step_timer_timeout() -> void:

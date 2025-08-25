@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://6lct7wefkvt0"]
+[gd_scene load_steps=15 format=3 uid="uid://6lct7wefkvt0"]
 
 [ext_resource type="Script" uid="uid://ypb3yci08os4" path="res://Enemies/Boom/boom_enemy.gd" id="1_ccxsa"]
 [ext_resource type="Texture2D" uid="uid://ci20la8rttyh2" path="res://Enemies/Boom/cacodemon.png" id="2_ccxsa"]
 [ext_resource type="Texture2D" uid="uid://ce5en4ggnrai6" path="res://Enemies/Boom/cacodemon_death.png" id="2_yfx1k"]
 [ext_resource type="AudioStream" uid="uid://cqb0a5fdummg5" path="res://assets/sounds/sfx/BOOM/cacodemon_attack.wav" id="3_lir3l"]
 [ext_resource type="AudioStream" uid="uid://bo8fdodjaqyt0" path="res://assets/sounds/sfx/Other/universal_hurt.wav" id="4_yfx1k"]
+[ext_resource type="AudioStream" uid="uid://droi8ha8ep17n" path="res://assets/sounds/sfx/Other/player_death.wav" id="6_2yjns"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccxsa"]
 height = 32.0
@@ -98,5 +99,9 @@ stream = ExtResource("3_lir3l")
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yfx1k")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2yjns")
+bus = &"SFX"
 
 [connection signal="timeout" from="FireballCD" to="." method="_on_fireball_cd_timeout"]
