@@ -21,6 +21,8 @@ animations = [{
 }]
 
 [node name="BoomBossProjectile" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 9
 script = ExtResource("1_edicd")
 base_speed = 300
 metadata/_custom_type_script = "uid://bpksg34lhntww"
