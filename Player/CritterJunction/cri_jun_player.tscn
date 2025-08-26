@@ -76,7 +76,7 @@ z_index = 10
 sprite_frames = SubResource("SpriteFrames_4ntmi")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.166652
+frame_progress = 0.560948
 
 [node name="Tools" type="Node2D" parent="."]
 script = ExtResource("3_42cfi")

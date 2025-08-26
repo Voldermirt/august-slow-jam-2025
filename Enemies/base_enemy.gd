@@ -76,7 +76,7 @@ func load_json_data(data: Dictionary):
 		#thinking_state = data.get("think_state")
 	thinking_state = ThinkState.Neutral
 	
-	spawn_delay.start(3)
+	spawn_delay.start(0.5)
 	decision_timer.start(randi_range(2, 5)) # On checkpoint loading, disable an enemy for a bit
 	pass
 
@@ -195,7 +195,7 @@ func _ready():
 	
 	spawn_delay = Timer.new()
 	spawn_delay.one_shot = true
-	spawn_delay.wait_time = 3
+	spawn_delay.wait_time = 0.5
 	spawn_delay.autostart = true
 	spawn_delay.timeout.connect(debug)
 	#add_child(stationary_timer)

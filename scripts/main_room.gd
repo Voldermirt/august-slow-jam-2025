@@ -195,17 +195,22 @@ func code_to_game(code) -> Globals.GameList:
 # just realized I could have just used the globals.gamelist thing but oh well
 func unlock_game(game: String):
 	var new_code = default_code
-	panel.show()
+	# bandage fix for this
 	match game:
 		"boom":
+			await get_tree().create_timer(0.5).timeout
+			panel.show()
 			%boom_game.show()
 			new_code = boom_code
 			cheat_intro.show()
 		"gateway":
+			await get_tree().create_timer(0.5).timeout
+			panel.show()
 			new_code = gateway_code
 			%gateway_game.show()
 			cheat_jingle_reminder.show()
 		"cri_jun":
+			panel.show()
 			new_code = critter_junction_code
 			%cri_jun_game.show()
 			cheat_boredom.show()
