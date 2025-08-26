@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://fh7g8bngkpq8" path="res://Object/Gateway/button.tscn" id="2_2jb8g"]
 [ext_resource type="Script" uid="uid://dsa2bcyfftkhm" path="res://Object/Gateway/gateway_button_wrapper_2d.gd" id="2_nsld3"]
 [ext_resource type="PackedScene" uid="uid://b75dje0685v5l" path="res://Extra/placeholder.tscn" id="3_pxs71"]
-[ext_resource type="Script" path="res://Extra/placeholder.gd" id="5_jnh27"]
+[ext_resource type="Script" uid="uid://bcg2gn0aqix37" path="res://Extra/placeholder.gd" id="5_jnh27"]
 
 [node name="ButtonWrapper2D" instance=ExtResource("1_nsld3")]
 script = ExtResource("2_nsld3")

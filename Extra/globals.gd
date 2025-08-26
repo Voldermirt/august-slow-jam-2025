@@ -42,8 +42,8 @@ func set_zoom_out(new_zoom : bool) -> void:
 	set_bgm(current_game_index)
 
 func _process(delta: float) -> void:
-	if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
-		switch_random_games()
+	#if OS.is_debug_build() and Input.is_action_just_pressed("ui_accept"):
+		#switch_random_games()
 	if Input.is_action_pressed("interact"):
 		Globals.load_game()
 

@@ -224,6 +224,7 @@ func is_player_seen() -> bool:
 ## Decision-making
 func _process(delta):
 	if not is_instance_valid(player_body):
+		print(is_instance_valid(player_body))
 		refresh_player_reference()
 	#if n_agent != null and spawn_delay.time_left <= 0:
 		#match thinking_state:

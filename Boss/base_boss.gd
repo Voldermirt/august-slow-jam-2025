@@ -178,7 +178,7 @@ func _physics_process(delta):
 
 func _on_blast_timeout():
 	is_currently_blasting = false
-	if anim:
+	if anim and health > 0:
 		anim.play("walk")
 	blast_cd_timer.start(get_blast_cd())
 	decision_timer.start(0.5)

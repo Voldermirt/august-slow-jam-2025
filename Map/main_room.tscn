@@ -50,21 +50,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0.292)]
 }
 
-[sub_resource type="Animation" id="Animation_c6fgr"]
-resource_name = "zoom"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.0333333, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.292), Vector3(0, 0, 0.954213)]
-}
-
 [sub_resource type="Animation" id="Animation_4obfm"]
 resource_name = "slow_zoom"
 length = 3.0
@@ -76,6 +61,21 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(-0.0333333, 3.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.292), Vector3(0, 0, 0.954213)]
+}
+
+[sub_resource type="Animation" id="Animation_c6fgr"]
+resource_name = "zoom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.292), Vector3(0, 0, 0.954213)]
@@ -360,6 +360,7 @@ bus = &"SFX"
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level" to="." method="unlock_game"]
 [connection signal="unlock_game" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D" to="." method="unlock_game"]
 [connection signal="death" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/BossWrapper2D/DefaultBoss2D" to="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/Door" method="open"]
+[connection signal="death" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room6/BossWrapper2D/DefaultBoss2D" to="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/RoomBoss/Door" method="open"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room12/UnlockCriJun" to="." method="_on_unlock_cri_jun_body_entered"]
 [connection signal="body_entered" from="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room16/EndRoomTripWireBasically" to="." method="_on_end_room_trip_wire_basically_body_entered"]
 [connection signal="animation_finished" from="Render3D/Level3D/DeskRoom/ZoomAnim" to="." method="_on_zoom_anim_animation_finished"]
@@ -385,6 +386,7 @@ bus = &"SFX"
 [editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room5/EnemyWrapper2D15"]
 [editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room5/EnemyWrapper2D16"]
 [editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room6/EnemyWrapper2D17"]
+[editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room6/BossWrapper2D"]
 [editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room8/Chasm1/Chasm"]
 [editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room10/Chasm2/Chasm"]
 [editable path="ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room11/Chasm/Chasm"]
