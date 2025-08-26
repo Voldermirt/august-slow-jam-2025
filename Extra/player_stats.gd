@@ -4,7 +4,8 @@ extends Node
 var _max_health := 100
 var _health := 100
 var _money := 0
-
+var player_collectibles := 0
+var max_collectibles := 0
 ## DEFAULT GAME STATS
 # ...
 

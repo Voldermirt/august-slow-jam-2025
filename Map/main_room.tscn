@@ -177,6 +177,7 @@ turret_face_down = false
 
 [node name="BSoD" parent="ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI" index="3"]
 process_mode = 3
+visible = false
 
 [node name="DeathEffect" type="Node2D" parent="ScreenEffects/EffectViewport/Render2D/Level2D"]
 process_mode = 3

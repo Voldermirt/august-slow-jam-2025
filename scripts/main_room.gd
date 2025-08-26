@@ -34,8 +34,9 @@ var available_codes: = [default_code]
 @onready var sudden_black_3d = $Render3D/Level3D/DeskRoom/Camera3D/FadeInBlack
 @onready var bsod_noise = $GlitchLong
 @onready var computer_fan_explosion = $ComputerOverheatExplosion
+@onready var collectible_count = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/BSoD/MarginContainer/CollectibleCount
 @onready var title_screen = preload("res://Map/title_screen.tscn")
-
+@onready var unlock_crijun = $ScreenEffects/EffectViewport/Render2D/Level2D/Level/Rooms/Room12/UnlockCriJun
 # Game cases are unique identifiers already
 
 var zoom_out = false      # Are we zoomed/zooming out
@@ -254,6 +255,7 @@ func end_game():
 	bsod_noise.play()
 	Globals.game_over = true
 	Globals.set_music(false)
+	collectible_count.text = "You picked up " + str(PlayerStats.player_collectibles) + "/" + "61" + " collectibles!\n" + str(PlayerStats._money) + " currency collected"
 	bsod.show()
 	get_tree().paused = true
 	min_glitch = 0.0
@@ -275,6 +277,7 @@ func end_game():
 func _on_unlock_cri_jun_body_entered(body: Node2D) -> void:
 	if body is BasePlayer2D and available_codes.has(critter_junction_code) == false:
 		unlock_game("cri_jun")
+		unlock_crijun.queue_free()
 
 func play_death_effect(location):
 	death_effect.visible = true

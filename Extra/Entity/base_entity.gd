@@ -51,6 +51,7 @@ func load_json_data(data: Dictionary):
 	
 	health = data["health"]
 	global_position = str_to_var("Vector2" + data["global_position"])
+	collision_layer = data["collision_layer"]
 	
 func knockback_applied(direction: Vector2, force: float, duration: float):
 	cur_knock_force = direction * force

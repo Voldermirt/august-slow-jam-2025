@@ -28,12 +28,14 @@ func save_json_data() -> Dictionary:
 	var data = super.save_json_data()
 	health = get_max_health()
 	data["collectables"] = collectables
+	data["collectables_picked_up"] = PlayerStats.player_collectibles
 	
 	return data
 
 func load_json_data(data: Dictionary):
 	super.load_json_data(data)
 	collectables = data["collectables"]
+	PlayerStats.player_collectibles = data["collectables_picked_up"]
 
 func get_mouse_pos() -> Vector2:
 	var mouse_pos = get_tree().current_scene.get_viewport().get_mouse_position()

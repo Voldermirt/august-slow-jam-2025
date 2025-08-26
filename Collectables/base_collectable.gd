@@ -32,6 +32,8 @@ func _on_body_entered(body: CharacterBody2D):
 		var player = body as BasePlayer2D
 		#player._on_get_collectable(self)
 		player.collectables += money_value
+		PlayerStats._money = player.collectables
+		PlayerStats.player_collectibles += 1
 		player.heal(health_value)
 		if pickup_sound:
 			pickup_sound.play()
