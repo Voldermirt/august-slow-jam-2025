@@ -92,3 +92,13 @@ func switch_to(game: Globals.GameList):
 	new_scene.global_position = previous_position
 	add_child(new_scene)
 	
+	
+### DEBUG
+@onready var last_pos = get_child(0).global_position
+
+func _process(delta: float) -> void:
+	if not get_child(0) is Node2D:
+		return
+	if get_child(0).global_position != last_pos:
+		print("Position changed: %s, Name: %s, Parent: %s" % [get_child(0).global_position, get_child(0).name, get_parent().name])
+	last_pos = get_child(0).global_position

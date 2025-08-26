@@ -268,7 +268,7 @@ func end_game():
 	$RoomAmbience.play()
 	await get_tree().create_timer(6).timeout
 	sudden_black_3d.show()
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(10).timeout
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Map/title_screen.tscn")
 
@@ -303,7 +303,3 @@ func pulse_arrow(dir: Direction, green : bool):
 	tween.tween_property(arrow, "modulate", color, 0.1)
 	tween.tween_property(arrow, "modulate", default_color, 0.1)
 	
-
-func enter_glitch_area():
-	min_glitch = 1.0
-	glitch_spin_ratio = 0.1

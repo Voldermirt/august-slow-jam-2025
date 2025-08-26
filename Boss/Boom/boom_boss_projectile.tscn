@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dflmvsb4567q7"]
 
-[ext_resource type="Script" uid="uid://cx7qltf262ctl" path="res://Boss/Boom/boom_boss_projectile.gd" id="1_edicd"]
+[ext_resource type="Script" path="res://Boss/Boom/boom_boss_projectile.gd" id="1_edicd"]
 [ext_resource type="Texture2D" uid="uid://drmsq6psp5u3h" path="res://Boss/Boom/spiderdemon_bullet.png" id="2_edicd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hybkl"]
@@ -21,6 +21,8 @@ animations = [{
 }]
 
 [node name="BoomBossProjectile" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 9
 script = ExtResource("1_edicd")
 base_speed = 300
 metadata/_custom_type_script = "uid://bpksg34lhntww"
