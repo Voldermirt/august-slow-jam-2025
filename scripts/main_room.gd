@@ -270,7 +270,7 @@ func end_game():
 	$RoomAmbience.play()
 	await get_tree().create_timer(6).timeout
 	sudden_black_3d.show()
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(10).timeout
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Map/title_screen.tscn")
 

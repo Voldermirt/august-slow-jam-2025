@@ -3,12 +3,24 @@ extends Control
 
 var main_scene := preload("res://Map/main_room.tscn")
 
+var starting = false
+
 func _ready() -> void:
 	Globals.set_music(false)
 	Globals.can_switch = false
 
 func _on_play() -> void:
+	if starting:
+		return
+	starting = true
 	$UISound.play()
+	
+	# Little fall "scene"
+	$BlackScreen.visible = true
+	await get_tree().create_timer(1).timeout
+	$FallSound.play()
+	await $FallSound.finished
+	# Start game
 	Globals.set_music(true)
 	Globals.can_switch = true
 	#Globals.change_level(main_scene)

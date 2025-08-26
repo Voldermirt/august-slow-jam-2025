@@ -451,7 +451,7 @@ script = SubResource("GDScript_uisfa")
 position = Vector2(11, 12)
 shape = SubResource("RectangleShape2D_5dpqi")
 
-[node name="ObjectWrapper2D" parent="Rooms/Room12" instance=ExtResource("10_rrqod")]
+[node name="TestObject" parent="Rooms/Room12" instance=ExtResource("10_rrqod")]
 position = Vector2(8464, 1712)
 
 [node name="ObjectWrapper2D2" parent="Rooms/Room12" instance=ExtResource("10_rrqod")]

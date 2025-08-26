@@ -28,7 +28,7 @@ scale_curve = SubResource("CurveTexture_moqwr")
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_ag21d")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kly11"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kj21f"]
 
 [node name="Explosion" type="GPUParticles2D"]
 emitting = false
@@ -46,7 +46,7 @@ collision_layer = 0
 collision_mask = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea2D"]
-shape = SubResource("RectangleShape2D_kly11")
+shape = SubResource("CircleShape2D_kj21f")
 
 [node name="TTL" type="Timer" parent="."]
 wait_time = 0.3
