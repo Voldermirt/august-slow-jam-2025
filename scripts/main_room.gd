@@ -33,6 +33,7 @@ var available_codes: = [default_code]
 @onready var death_particles := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect/DeathParticles
 @onready var sudden_black_3d = $Render3D/Level3D/DeskRoom/Camera3D/FadeInBlack
 @onready var bsod_noise = $GlitchLong
+@onready var computer_fan_explosion = $ComputerOverheatExplosion
 @onready var title_screen = preload("res://Map/title_screen.tscn")
 
 # Game cases are unique identifiers already
@@ -255,16 +256,14 @@ func end_game():
 	view_3d.visible = true
 	zoom_out = true
 	zoom_anim.play("zoom", -1, 0.25)
-	# fan sfx plays, slowly becoming louder, probably attach an animationplayer
-	# on it
+	computer_fan_explosion.play()
 	Globals.set_zoom_out(true)
 	get_tree().paused = true
 	$ComputerAmbience.play()
 	$RoomAmbience.play()
 	await get_tree().create_timer(6).timeout
 	sudden_black_3d.show()
-	# explosion sfx
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(5).timeout
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Map/title_screen.tscn")
 
