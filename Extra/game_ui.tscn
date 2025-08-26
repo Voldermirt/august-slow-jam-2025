@@ -187,7 +187,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BSoD" type="Control" parent="."]
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -229,5 +228,12 @@ Error Code: ROM_MALFUNCTION
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CollectibleCount" type="RichTextLabel" parent="BSoD/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=yellow]You picked up 0/0 Collectibles!"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="child_entered_tree" from="UISwitcher" to="UISwitcher" method="_on_child_entered_tree"]
