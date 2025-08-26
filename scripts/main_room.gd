@@ -303,3 +303,7 @@ func pulse_arrow(dir: Direction, green : bool):
 	tween.tween_property(arrow, "modulate", color, 0.1)
 	tween.tween_property(arrow, "modulate", default_color, 0.1)
 	
+
+func enter_glitch_area():
+	min_glitch = 1.0
+	glitch_spin_ratio = 0.1
