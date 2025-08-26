@@ -32,4 +32,4 @@ func delete_existing_portal(orange):
 
 func animate():
 	$Rotatator/WeaponSprite.flip_v = abs(global_rotation_degrees) > 90
-	sprite.z_index = -1 if global_rotation_degrees < 0 else 0
+	sprite.z_index = 0 if global_rotation_degrees < 0 else 2

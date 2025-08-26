@@ -12,11 +12,14 @@ func _ready() -> void:
 	hurt_sound = $HurtSound
 	death_sound = $DeathSound
 
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+
 func get_max_health():
 	return DRAGON_BOSS_MAX_HEALTH
 
 func get_blast_cd() -> float:
-	return randf_range(4, 8)
+	return randf_range(1, 2)
 
 func _on_getting_hit(damage: float, bypass_invincibility=false, hit_by=""):
 	if (bypass_invincibility or (not is_invincible)) and health > 0:

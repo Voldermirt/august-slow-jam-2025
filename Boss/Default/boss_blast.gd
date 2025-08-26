@@ -4,6 +4,7 @@ class_name BaseBlast2D
 
 const BASE_BLAST_DMG: float = 50
 const BASE_BLAST_WINDUP: float = 0
+const KNOCKBACK_FORCE: float = 200
 
 const PERSISTANCE_TIME_MAX: int = 1
 const PERSISTANCE_TIME_MIN: int = 1
@@ -59,6 +60,8 @@ func _ready():
 func damage_player(body: Node):
 	if body is BasePlayer2D:
 		body._on_getting_hit(get_damage(), false, "FirstBoss")
+		var dir = global_position.direction_to(body.global_position)
+		body.knockback_applied(dir, KNOCKBACK_FORCE, 0.1)
 	
 func _on_windup_timeout():
 	#collision_layer = active_collision_layer

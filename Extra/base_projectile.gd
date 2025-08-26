@@ -26,15 +26,18 @@ func _player_projectile_Process(delta: float) -> void:
 	
 	if col and col.get_collider() != null:
 		var collider: Object = col.get_collider()
-		if collider is BaseEnemy2D:
+		print(collider.name)
+		if collider is BaseEnemy2D and collider.health > 0:
 			var enemy: BaseEnemy2D = collider as BaseEnemy2D
 			enemy._on_getting_hit(get_damage())
 			
-		if collider is BaseObject2D:
+		elif collider is BaseObject2D:
 			var object: BaseObject2D = collider as BaseObject2D
 			object.receive_damage(self)
+		
 		hide()
 		queue_free()
+		
 
 func _enemy_projectile_process(delta: float) -> void:
 	global_rotation = direction.angle()

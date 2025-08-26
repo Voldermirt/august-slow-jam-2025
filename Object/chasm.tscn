@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bjact1h1v7imf" path="res://Object/Default/default_chasm.png" id="1_764os"]
 [ext_resource type="Script" uid="uid://cwabgrcp0mhb7" path="res://Object/chasm.gd" id="1_r4kk4"]
 [ext_resource type="Texture2D" uid="uid://doaimpk2co50" path="res://Object/Boom/boom_chasm.png" id="2_xb8qg"]
-[ext_resource type="Texture2D" uid="uid://60l7pawsankx" path="res://Object/Gateway/gateway_chasm.png" id="3_bxvep"]
+[ext_resource type="Texture2D" uid="uid://dxkkb2p384fbm" path="res://assets/sprites/gateway_chasm.png" id="3_xb8qg"]
 [ext_resource type="Texture2D" uid="uid://cx40skp53jdi0" path="res://Object/CritterJunction/critter_chasm.png" id="4_2a3ew"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_764os"]
@@ -17,7 +17,7 @@ z_index = -1
 script = ExtResource("1_r4kk4")
 default_sprite = SubResource("CompressedTexture2D_764os")
 boom_sprite = ExtResource("2_xb8qg")
-gateway_sprite = ExtResource("3_bxvep")
+gateway_sprite = ExtResource("3_xb8qg")
 cri_jun_sprite = ExtResource("4_2a3ew")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

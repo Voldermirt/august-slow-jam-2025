@@ -21,15 +21,19 @@ var available_codes: = [default_code]
 @onready var player = $ScreenEffects/EffectViewport/Render2D/Level2D/Level/PlayerWrapper2D
 @onready var ui = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI
 @onready var cheat_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CheatIntro
+@onready var cheat_jingle_reminder = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CheatJingleReminder
+@onready var cheat_boredom = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CheatBoredom
 @onready var boom_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/BoomIntro
 @onready var gateway_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/GatewayIntro
 @onready var critter_intro = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CritterIntro
+@onready var critter_intro2 = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/CritterIntro2
 @onready var bsod = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/BSoD
 @onready var panel = $ScreenEffects/EffectViewport/Render2D/Level2D/CanvasLayer/UI/ToolTips/Panel
 @onready var death_effect := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect
 @onready var death_particles := $ScreenEffects/EffectViewport/Render2D/Level2D/DeathEffect/DeathParticles
 @onready var sudden_black_3d = $Render3D/Level3D/DeskRoom/Camera3D/FadeInBlack
 @onready var bsod_noise = $GlitchLong
+@onready var computer_fan_explosion = $ComputerOverheatExplosion
 @onready var title_screen = preload("res://Map/title_screen.tscn")
 
 # Game cases are unique identifiers already
@@ -191,18 +195,25 @@ func code_to_game(code) -> Globals.GameList:
 # just realized I could have just used the globals.gamelist thing but oh well
 func unlock_game(game: String):
 	var new_code = default_code
+	# bandage fix for this
 	match game:
 		"boom":
+			await get_tree().create_timer(0.5).timeout
 			panel.show()
 			%boom_game.show()
 			new_code = boom_code
 			cheat_intro.show()
 		"gateway":
+			await get_tree().create_timer(0.5).timeout
+			panel.show()
 			new_code = gateway_code
 			%gateway_game.show()
+			cheat_jingle_reminder.show()
 		"cri_jun":
+			panel.show()
 			new_code = critter_junction_code
 			%cri_jun_game.show()
+			cheat_boredom.show()
 		_:
 			push_error("Unlocked invalid game! Check if you are matching the cases correctly?")
 	
@@ -214,6 +225,8 @@ func unlock_game(game: String):
 func show_tooltip(game: Globals.GameList):
 	panel.show()
 	cheat_intro.set_deferred("visible", false)
+	cheat_jingle_reminder.set_deferred("visible", false)
+	cheat_boredom.set_deferred("visible", false)
 	match game:
 		Globals.GameList.BOOM:
 			boom_intro.show()
@@ -227,6 +240,9 @@ func show_tooltip(game: Globals.GameList):
 			critter_intro.show()
 			await get_tree().create_timer(7).timeout
 			critter_intro.hide()
+			critter_intro2.show()
+			await get_tree().create_timer(6).timeout
+			critter_intro2.hide()
 	panel.hide()
 
 
@@ -245,16 +261,14 @@ func end_game():
 	view_3d.visible = true
 	zoom_out = true
 	zoom_anim.play("zoom", -1, 0.25)
-	# fan sfx plays, slowly becoming louder, probably attach an animationplayer
-	# on it
+	computer_fan_explosion.play()
 	Globals.set_zoom_out(true)
 	get_tree().paused = true
 	$ComputerAmbience.play()
 	$RoomAmbience.play()
 	await get_tree().create_timer(6).timeout
 	sudden_black_3d.show()
-	# explosion sfx
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(5).timeout
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Map/title_screen.tscn")
 

@@ -42,7 +42,8 @@ func set_spawn_data():
 func save_json_data() -> Dictionary:
 	var base_player_json_data = {
 		"health": health,
-		"global_position": global_position
+		"global_position": global_position,
+		"collision_layer": collision_layer
 	}
 	return base_player_json_data
 
@@ -103,6 +104,7 @@ func _on_death():
 		death_sound.play()
 	if anim and anim.sprite_frames.has_animation("death"):
 		anim.play("death")
+	collision_layer = 0
 	death.emit()
 
 

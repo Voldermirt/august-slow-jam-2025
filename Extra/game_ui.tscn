@@ -98,6 +98,34 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CheatJingleReminder" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=lightgray]Looks like there's [wave]no way across[/wave]... What other [rainbow]cheats[/rainbow] do I have?"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheatBoredom" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[color=lightgray]I'm getting a little [rainbow]bored[/rainbow]... Let's see what happens if I load this next cheat in an [wave]action game?"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BoomIntro" type="RichTextLabel" parent="ToolTips"]
 visible = false
 layout_mode = 1
@@ -142,6 +170,19 @@ Mouse Wheel - Select Sapling
 
 [color=yellow]Interact with villagers and holes/trees![/color]
 [i]Trees that have bore fruit can be shoveled up again.[/i]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CritterIntro2" type="RichTextLabel" parent="ToolTips"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Fruit grows once you [color=yellow]use another cheat code[/color]. Use that to your advantage!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
