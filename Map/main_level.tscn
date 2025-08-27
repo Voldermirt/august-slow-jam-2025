@@ -49,7 +49,7 @@ script/source = "extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body is BasePlayer2D:
 		get_tree().get_first_node_in_group(\"main_room\").unlock_game(\"cri_jun\")
-		print(\"unlock critter junction\")
+		queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dpqi"]
@@ -141,6 +141,7 @@ position = Vector2(6624, 1184)
 scale = Vector2(1.5, 0.25)
 
 [node name="PlayerWrapper2D" parent="." groups=["player_wrapper"] instance=ExtResource("3_ojblk")]
+position = Vector2(8064, 1320)
 script = ExtResource("4_c4224")
 default_scene = ExtResource("4_rrqod")
 boom_scene = ExtResource("5_lipnt")

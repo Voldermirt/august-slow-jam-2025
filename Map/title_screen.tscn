@@ -1026,6 +1026,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1qbm3")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_vvffg")
 autoplay = true
+bus = &"BGM"
 
 [node name="FallSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_1qbm3")
