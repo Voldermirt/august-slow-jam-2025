@@ -141,7 +141,6 @@ position = Vector2(6624, 1184)
 scale = Vector2(1.5, 0.25)
 
 [node name="PlayerWrapper2D" parent="." groups=["player_wrapper"] instance=ExtResource("3_ojblk")]
-position = Vector2(8064, 1320)
 script = ExtResource("4_c4224")
 default_scene = ExtResource("4_rrqod")
 boom_scene = ExtResource("5_lipnt")
