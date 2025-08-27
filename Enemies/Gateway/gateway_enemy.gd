@@ -13,8 +13,9 @@ var face_down = false
 
 func _ready():
 	anim = $AnimatedSprite2D
+	death_sound = $DeathSound
+	hurt_sound = $HurtSound
 	super._ready()
-	pass
 
 func get_max_health():
 	return TURRET_HEALTH

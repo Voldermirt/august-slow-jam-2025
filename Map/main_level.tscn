@@ -49,7 +49,7 @@ script/source = "extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body is BasePlayer2D:
 		get_tree().get_first_node_in_group(\"main_room\").unlock_game(\"cri_jun\")
-		print(\"unlock critter junction\")
+		queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dpqi"]

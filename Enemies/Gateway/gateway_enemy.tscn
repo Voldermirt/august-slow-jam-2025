@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn85l00otsm16"]
+[gd_scene load_steps=12 format=3 uid="uid://cn85l00otsm16"]
 
 [ext_resource type="Script" uid="uid://3p6na7i7is4v" path="res://Enemies/Gateway/gateway_enemy.gd" id="1_vyccc"]
 [ext_resource type="Texture2D" uid="uid://bsnselenqjra5" path="res://Enemies/Gateway/turret_dead.png" id="2_efvc2"]
 [ext_resource type="Texture2D" uid="uid://bn2mvht5sfwxv" path="res://Enemies/Gateway/turret.png" id="2_vyccc"]
 [ext_resource type="AudioStream" uid="uid://bpcr5n68tmwmk" path="res://Enemies/Gateway/laser.wav" id="4_1apf4"]
+[ext_resource type="AudioStream" uid="uid://gpho7y4qnudy" path="res://assets/sounds/sfx/Gateway Gun/turret_break.wav" id="5_sy152"]
+[ext_resource type="AudioStream" uid="uid://bo8fdodjaqyt0" path="res://assets/sounds/sfx/Other/universal_hurt.wav" id="6_6rklq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1apf4"]
 atlas = ExtResource("2_efvc2")
@@ -72,3 +74,9 @@ one_shot = true
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1apf4")
 volume_db = -5.0
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sy152")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6rklq")
